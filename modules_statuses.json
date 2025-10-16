@@ -1,0 +1,12 @@
+{
+    "Discount": true,
+    "Cart": true,
+    "Shop": true,
+    "Conversation": true,
+    "Sms": true,
+    "Blog": true,
+    "File": true,
+    "Splash": true,
+    "Motion": true,
+    "LessonPlan": true
+}
