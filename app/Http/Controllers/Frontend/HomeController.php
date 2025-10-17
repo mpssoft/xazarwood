@@ -25,7 +25,7 @@ class HomeController extends Controller
         $courses = Course::where('spotplayer_id','!=','')->where("status","active")->get();
         $lessons = Lesson::latest()->take(6)->get();
 
-        return view('frontend.home.index',compact('sliders','courses','lessons'));
+        return view('frontend.home.index2',compact('sliders','courses','lessons'));
     }
     public function play(Lesson $lesson)
     {

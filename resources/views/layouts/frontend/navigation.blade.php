@@ -1,20 +1,20 @@
-<nav class="     shadow-lg sticky top-0 z-50 bg-gray-600 dark:bg-slate-900 text-gray-900 dark:!text-white ">
+<nav class=" bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-lg sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4">
         <div class="flex justify-between items-center h-16">
-            <div class="flex items-center space-x-4 space-x-reverse">
+            <div class="flex items-center space-x-4 space-x-reverse text-amber-700 dark:text-amber-300 ">
                 <div
                     class="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
-                    <a href="{{ env("APP_URL") }}"> فیزیک بیست </a>
+                    <a href="{{ env("APP_URL") }}"> XAZARWOOD  </a>
                 </div>
-                {{--                <a href="#" onclick="showSection('home')" class="text-gray-700 hover:text-cyan-400 transition">خانه</a>--}}
+
 
                 <!-- Courses Dropdown -->
-                <div class="hidden md:flex flex gap-6 items-center block px-6  py-4 " x-data="{ openMenu: null }">
+                <div class="hidden md:flex  gap-6 items-center  px-6  py-4 " x-data="{ openMenu: null }">
 
                     <!-- دوره‌های آموزشی -->
                     <div class="relative">
                         <button @mouseenter="openMenu = openMenu === 'courses' ? null : 'courses'" class="flex items-center gap-1">
-                            دوره‌های آموزشی <i class="fas fa-chevron-down text-xs mt-0.5"></i>
+                            محصولات <i class="fas fa-chevron-down text-xs mt-0.5"></i>
                         </button>
                         <div
                             x-show="openMenu === 'courses'"
@@ -29,11 +29,11 @@
                                     <div class="grid grid-cols-2 gap-4 text-sm">
                                         <a href="{{route('all.courses')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
                                             <div class="text-cyan-400 text-xl">
-                                                <i class="fas fa-graduation-cap"></i>
+                                                <i class="fas fa-utensils"></i>
                                             </div>
                                             <div>
-                                                <p class="font-bold">دوره‌های آموزشی</p>
-                                                <p class="text-xs text-gray-300 mt-1">لیست دوره‌های آموزشی ویدیویی لایت</p>
+                                                <p class="font-bold"> میز روستیک</p>
+                                                <p class="text-xs text-gray-300 mt-1">میزهای روستیک در طرح و سایزهای مختلف</p>
                                             </div>
                                         </a>
                                         <a href="{{route('files')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
@@ -41,8 +41,8 @@
                                                 <i class="fas fa-file-archive"></i>
                                             </div>
                                             <div>
-                                                <p class="font-bold"> دانلود ها</p>
-                                                <p class="text-xs text-gray-300 mt-1">فایل ها و جزوات آموزشی </p>
+                                                <p class="font-bold">ظروف چوبی</p>
+                                                <p class="text-xs text-gray-300 mt-1">انواع ظروف زیبایی چوبی </p>
                                             </div>
                                         </a>
                                         <a href="{{route('free.lessons')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
@@ -50,11 +50,11 @@
                                                 <i class="fas fa-gift"></i>
                                             </div>
                                             <div>
-                                                <p class="font-bold">درس های رایگان</p>
-                                                <p class="text-xs text-gray-300 mt-1">برای شروع یادگیری رایگان ببینید</p>
+                                                <p class="font-bold">ساعت چوبی</p>
+                                                <p class="text-xs text-gray-300 mt-1">ساعت های جوبی روستیک </p>
                                             </div>
                                         </a>
-                                        <a href="{{route('lesson-plan')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
+                                       {{-- <a href="{{route('lesson-plan')}}" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
                                             <div class="text-yellow-400 text-xl">
                                                 <i class="fas fa-file-alt"></i>
                                             </div>
@@ -62,7 +62,7 @@
                                                 <p class="font-bold"> درخواست درسنامه</p>
                                                 <p class="text-xs text-gray-300 mt-1">ایجاد درس بر اساس نیاز شما</p>
                                             </div>
-                                        </a>
+                                        </a>--}}
                                         {{-- <a href="#" class="flex items-start space-x-2 space-x-reverse hover:bg-slate-700 p-3 rounded-lg transition">
                                              <div class="text-yellow-400 text-xl">
                                                  <i class="fas fa-certificate"></i>

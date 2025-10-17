@@ -27,7 +27,7 @@
         </script>
 
     </head>
-    <body class=" transition-colors duration-1000 bg-white text-black dark:bg-slate-900  dark:text-white" dir="rtl">
+    <body class="bg-amber-50 dark:bg-gray-900 text-amber-900 dark:text-amber-100 transition-colors duration-300" dir="rtl">
         <div class="min-h-screen ">
             @include('layouts.frontend.navigation')
 
