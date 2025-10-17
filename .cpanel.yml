@@ -1,11 +1,11 @@
 ---
 deployment:
   branches:
-    - slider
+    - main
   tasks:
     # Set paths
-    - export REPODIR=/home3/hrbldaru/repositories/fizikbist.ir
-    - export DEPLOYPATH=/home3/hrbldaru
+    - export REPODIR=/home3/iunfbcod/repositories/xazarwood.ir
+    - export DEPLOYPATH=/home3/iunfbcod
 
     # Copy all files from repo to project root without deleting existing files
     - /bin/cp -R $REPODIR/* $DEPLOYPATH
