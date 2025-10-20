@@ -1,0 +1,562 @@
+@extends('layouts.admin.master')
+
+@section('content')
+
+<div class="bg-gray-50 dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-colors duration-300">
+
+<!-- Header -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <header class="bg-white dark:bg-slate-800 shadow-lg border border-gray-200 dark:border-slate-700 rounded-xl">
+        <div class="px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Brand & Navigation -->
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <button id="back-btn" class="p-2 rounded-lg bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-600 dark:text-slate-300"></i>
+                    </button>
+                    <div class="w-12 h-12 bg-blue-600 dark:bg-slate-600 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-plus text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900 dark:text-slate-100">افزودن محصول جدید</h1>
+                        <p class="text-sm text-gray-500 dark:text-slate-400">XazarWood - پنل مدیریت</p>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors">
+                        <i class="fas fa-sun dark:hidden text-gray-600"></i>
+                        <i class="fas fa-moon hidden dark:inline text-slate-300"></i>
+                    </button>
+                    <button id="save-draft-btn" class="bg-gray-600 dark:bg-slate-600 hover:bg-gray-700 dark:hover:bg-slate-500 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                        <i class="fas fa-save ml-2"></i>ذخیره پیش‌نویس
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <form id="product-form" class="space-y-8">
+
+        <!-- Basic Information -->
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-6">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 bg-blue-100 dark:bg-slate-700 rounded-lg flex items-center justify-center ml-3">
+                    <i class="fas fa-info-circle text-blue-600 dark:text-slate-300"></i>
+                </div>
+                <h2 class="text-xl font-bold text-gray-900 dark:text-slate-100">اطلاعات پایه</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Product Name -->
+                <div class="md:col-span-2">
+                    <label for="product-name" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                        نام محصول *
+                    </label>
+                    <input type="text" id="product-name" name="name" required
+                           class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+                           placeholder="نام محصول را وارد کنید...">
+                </div>
+
+                <!-- Price -->
+                <div>
+                    <label for="product-price" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                        قیمت (تومان) *
+                    </label>
+                    <div class="relative">
+                        <input type="number" id="product-price" name="price" required
+                               class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+                               placeholder="0">
+                        <span class="absolute left-3 top-3 text-gray-500 dark:text-slate-400">تومان</span>
+                    </div>
+                </div>
+
+                <!-- Stock -->
+                <div>
+                    <label for="product-stock" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                        موجودی *
+                    </label>
+                    <input type="number" id="product-stock" name="stock" required min="0"
+                           class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+                           placeholder="تعداد موجودی">
+                </div>
+
+                <!-- Category -->
+                <div>
+                    <label for="product-category" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                        دسته‌بندی *
+                    </label>
+                    <select id="product-category" name="category" required
+                            class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100">
+                        <option value="">انتخاب دسته‌بندی</option>
+                        <option value="furniture">مبلمان</option>
+                        <option value="kitchen">آشپزخانه</option>
+                        <option value="decoration">تزئینی</option>
+                        <option value="tools">ابزار</option>
+                    </select>
+                </div>
+
+                <!-- Status -->
+                <div>
+                    <label for="product-status" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                        وضعیت
+                    </label>
+                    <select id="product-status" name="status"
+                            class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100">
+                        <option value="active">فعال</option>
+                        <option value="inactive">غیرفعال</option>
+                        <option value="draft">پیش‌نویس</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-6">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 bg-green-100 dark:bg-slate-700 rounded-lg flex items-center justify-center ml-3">
+                    <i class="fas fa-align-left text-green-600 dark:text-slate-300"></i>
+                </div>
+                <h2 class="text-xl font-bold text-gray-900 dark:text-slate-100">توضیحات محصول</h2>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Short Description -->
+                <div>
+                    <label for="short-description" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                        توضیحات کوتاه *
+                    </label>
+                    <textarea id="short-description" name="short_description" rows="3" required
+                              class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+                              placeholder="توضیح کوتاه محصول برای نمایش در لیست محصولات..."></textarea>
+                    <p class="text-sm text-gray-500 dark:text-slate-400 mt-1">حداکثر ۱۵۰ کاراکتر</p>
+                </div>
+
+                <!-- Full Description -->
+                <div>
+                    <label for="full-description" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                        توضیحات کامل
+                    </label>
+                    <textarea id="full-description" name="full_description" rows="6"
+                              class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+                              placeholder="توضیحات کامل محصول، ویژگی‌ها، مواد استفاده شده و..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Images -->
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-6">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 bg-purple-100 dark:bg-slate-700 rounded-lg flex items-center justify-center ml-3">
+                    <i class="fas fa-images text-purple-600 dark:text-slate-300"></i>
+                </div>
+                <h2 class="text-xl font-bold text-gray-900 dark:text-slate-100">تصاویر محصول</h2>
+            </div>
+
+            <!-- Main Image -->
+            <div class="mb-8">
+                <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-3">
+                    تصویر اصلی محصول *
+                </label>
+                <div id="main-image-upload" class="border-2 border-dashed border-gray-300 dark:border-slate-600 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors">
+                    <div id="main-image-placeholder">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 dark:text-slate-500 mb-4"></i>
+                        <p class="text-gray-600 dark:text-slate-400 mb-2">تصویر اصلی را اینجا بکشید یا کلیک کنید</p>
+                        <p class="text-sm text-gray-500 dark:text-slate-500">JPG, PNG یا GIF (حداکثر ۵ مگابایت)</p>
+                    </div>
+                    <input type="file" id="main-image-input" class="hidden" accept="image/*">
+                </div>
+                <div id="main-image-preview" class="mt-4 hidden">
+                    <!-- Main image preview will be shown here -->
+                </div>
+            </div>
+
+            <!-- Gallery Images -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-3">
+                    گالری تصاویر
+                </label>
+                <div id="gallery-upload" class="border-2 border-dashed border-gray-300 dark:border-slate-600 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors">
+                    <i class="fas fa-images text-4xl text-gray-400 dark:text-slate-500 mb-4"></i>
+                    <p class="text-gray-600 dark:text-slate-400 mb-2">تصاویر گالری را اینجا بکشید یا کلیک کنید</p>
+                    <p class="text-sm text-gray-500 dark:text-slate-500">می‌توانید چندین تصویر انتخاب کنید</p>
+                    <input type="file" id="gallery-input" class="hidden" accept="image/*" multiple>
+                </div>
+
+                <!-- Gallery Preview -->
+                <div id="gallery-preview" class="mt-6 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 hidden">
+                    <!-- Gallery images will be shown here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Specifications -->
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-6">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-orange-100 dark:bg-slate-700 rounded-lg flex items-center justify-center ml-3">
+                        <i class="fas fa-cogs text-orange-600 dark:text-slate-300"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-slate-100">مشخصات فنی</h2>
+                </div>
+                <button type="button" id="add-spec-btn" class="bg-blue-600 dark:bg-slate-600 hover:bg-blue-700 dark:hover:bg-slate-500 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                    <i class="fas fa-plus ml-2"></i>افزودن مشخصه
+                </button>
+            </div>
+
+            <div id="specifications-container" class="space-y-4">
+                <!-- Default specifications -->
+                <div class="spec-row grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-50 dark:bg-slate-700 rounded-lg">
+                    <div>
+                        <input type="text" name="spec_name[]" placeholder="نام مشخصه (مثل: جنس)"
+                               class="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100">
+                    </div>
+                    <div class="flex space-x-2 space-x-reverse">
+                        <input type="text" name="spec_value[]" placeholder="مقدار (مثل: چوب بلوط)"
+                               class="flex-1 px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100">
+                        <button type="button" class="remove-spec-btn p-2 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900 rounded-lg transition-colors">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO & Tags -->
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-6">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 bg-indigo-100 dark:bg-slate-700 rounded-lg flex items-center justify-center ml-3">
+                    <i class="fas fa-tags text-indigo-600 dark:text-slate-300"></i>
+                </div>
+                <h2 class="text-xl font-bold text-gray-900 dark:text-slate-100">برچسب‌ها و SEO</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Tags -->
+                <div>
+                    <label for="product-tags" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                        برچسب‌ها
+                    </label>
+                    <input type="text" id="product-tags" name="tags"
+                           class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+                           placeholder="چوب، دست‌ساز، مدرن (با کاما جدا کنید)">
+                    <p class="text-sm text-gray-500 dark:text-slate-400 mt-1">برچسب‌ها را با کاما از هم جدا کنید</p>
+                </div>
+
+                <!-- SKU -->
+                <div>
+                    <label for="product-sku" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                        کد محصول (SKU)
+                    </label>
+                    <input type="text" id="product-sku" name="sku"
+                           class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+                           placeholder="XW-001">
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-6">
+            <div class="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 sm:space-x-reverse">
+                <button type="button" id="cancel-btn" class="px-6 py-3 text-gray-700 dark:text-slate-300 bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 rounded-lg font-medium transition-colors">
+                    <i class="fas fa-times ml-2"></i>انصراف
+                </button>
+                <button type="button" id="preview-btn" class="px-6 py-3 text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900 hover:bg-blue-200 dark:hover:bg-blue-800 rounded-lg font-medium transition-colors">
+                    <i class="fas fa-eye ml-2"></i>پیش‌نمایش
+                </button>
+                <button type="submit" class="px-6 py-3 bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-600 text-white rounded-lg font-medium transition-colors">
+                    <i class="fas fa-check ml-2"></i>ایجاد محصول
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+</main>
+
+<!-- Success Modal -->
+<div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-xl max-w-md w-full p-6 text-center">
+        <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-check text-2xl text-green-600 dark:text-green-400"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 dark:text-slate-100 mb-2">محصول با موفقیت ایجاد شد!</h3>
+        <p class="text-gray-600 dark:text-slate-400 mb-6">محصول جدید به فهرست محصولات اضافه شد.</p>
+        <div class="flex space-x-3 space-x-reverse">
+            <button id="view-product-btn" class="flex-1 bg-blue-600 dark:bg-slate-600 hover:bg-blue-700 dark:hover:bg-slate-500 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                مشاهده محصول
+            </button>
+            <button id="add-another-btn" class="flex-1 bg-gray-600 dark:bg-slate-700 hover:bg-gray-700 dark:hover:bg-slate-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                افزودن محصول جدید
+            </button>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+        html.classList.add('dark');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        const isDark = html.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    // Back Button
+    document.getElementById('back-btn').addEventListener('click', () => {
+        // Navigate back to products list
+        console.log('Navigate back to products list');
+        // window.location.href = '/admin/products';
+    });
+
+    // Image Upload Handling
+    function setupImageUpload(uploadElement, inputElement, previewElement, isMultiple = false) {
+        uploadElement.addEventListener('click', () => {
+            inputElement.click();
+        });
+
+        uploadElement.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadElement.classList.add('border-blue-500', 'bg-blue-50', 'dark:bg-slate-700');
+        });
+
+        uploadElement.addEventListener('dragleave', () => {
+            uploadElement.classList.remove('border-blue-500', 'bg-blue-50', 'dark:bg-slate-700');
+        });
+
+        uploadElement.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadElement.classList.remove('border-blue-500', 'bg-blue-50', 'dark:bg-slate-700');
+
+            const files = e.dataTransfer.files;
+            handleImageFiles(files, previewElement, isMultiple);
+        });
+
+        inputElement.addEventListener('change', (e) => {
+            handleImageFiles(e.target.files, previewElement, isMultiple);
+        });
+    }
+
+    function handleImageFiles(files, previewElement, isMultiple) {
+        if (!isMultiple) {
+            // Handle single main image
+            const file = files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    previewElement.innerHTML = `
+                            <div class="relative inline-block">
+                                <img src="${e.target.result}" alt="Main Image" class="w-full h-48 object-cover rounded-lg">
+                                <button type="button" class="absolute top-2 right-2 p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors" onclick="removeMainImage()">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        `;
+                    previewElement.classList.remove('hidden');
+                    document.getElementById('main-image-placeholder').classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        } else {
+            // Handle gallery images
+            previewElement.classList.remove('hidden');
+
+            Array.from(files).forEach((file, index) => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const imageDiv = document.createElement('div');
+                        imageDiv.className = 'relative aspect-square bg-gray-100 dark:bg-slate-700 rounded-lg overflow-hidden group';
+                        imageDiv.innerHTML = `
+                                <img src="${e.target.result}" alt="Gallery ${index + 1}" class="w-full h-full object-cover">
+                                <button type="button" class="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity" onclick="this.parentElement.remove()">
+                                    <i class="fas fa-times text-xs"></i>
+                                </button>
+                            `;
+                        previewElement.appendChild(imageDiv);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    }
+
+    function removeMainImage() {
+        document.getElementById('main-image-preview').classList.add('hidden');
+        document.getElementById('main-image-preview').innerHTML = '';
+        document.getElementById('main-image-placeholder').classList.remove('hidden');
+        document.getElementById('main-image-input').value = '';
+    }
+
+    // Setup image uploads
+    setupImageUpload(
+        document.getElementById('main-image-upload'),
+        document.getElementById('main-image-input'),
+        document.getElementById('main-image-preview'),
+        false
+    );
+
+    setupImageUpload(
+        document.getElementById('gallery-upload'),
+        document.getElementById('gallery-input'),
+        document.getElementById('gallery-preview'),
+        true
+    );
+
+    // Specifications Management
+    document.getElementById('add-spec-btn').addEventListener('click', () => {
+        const container = document.getElementById('specifications-container');
+        const newSpec = document.createElement('div');
+        newSpec.className = 'spec-row grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-50 dark:bg-slate-700 rounded-lg';
+        newSpec.innerHTML = `
+                <div>
+                    <input type="text" name="spec_name[]" placeholder="نام مشخصه (مثل: جنس)"
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100">
+                </div>
+                <div class="flex space-x-2 space-x-reverse">
+                    <input type="text" name="spec_value[]" placeholder="مقدار (مثل: چوب بلوط)"
+                           class="flex-1 px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100">
+                    <button type="button" class="remove-spec-btn p-2 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900 rounded-lg transition-colors">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+        container.appendChild(newSpec);
+    });
+
+    // Remove specification
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('.remove-spec-btn')) {
+            e.target.closest('.spec-row').remove();
+        }
+    });
+
+    // Form Submission
+    document.getElementById('product-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Collect form data
+        const formData = new FormData(e.target);
+        const productData = {
+            name: formData.get('name'),
+            price: formData.get('price'),
+            stock: formData.get('stock'),
+            category: formData.get('category'),
+            status: formData.get('status'),
+            short_description: formData.get('short_description'),
+            full_description: formData.get('full_description'),
+            tags: formData.get('tags'),
+            sku: formData.get('sku'),
+            specifications: []
+        };
+
+        // Collect specifications
+        const specNames = formData.getAll('spec_name[]');
+        const specValues = formData.getAll('spec_value[]');
+        for (let i = 0; i < specNames.length; i++) {
+            if (specNames[i] && specValues[i]) {
+                productData.specifications.push({
+                    name: specNames[i],
+                    value: specValues[i]
+                });
+            }
+        }
+
+        // Here you would send the data to your backend
+        console.log('Product data:', productData);
+
+        // Show success modal
+        document.getElementById('success-modal').classList.remove('hidden');
+    });
+
+    // Success Modal Actions
+    document.getElementById('view-product-btn').addEventListener('click', () => {
+        console.log('Navigate to product view');
+        // window.location.href = '/admin/products/1';
+    });
+
+    document.getElementById('add-another-btn').addEventListener('click', () => {
+        document.getElementById('success-modal').classList.add('hidden');
+        document.getElementById('product-form').reset();
+        document.getElementById('main-image-preview').classList.add('hidden');
+        document.getElementById('main-image-preview').innerHTML = '';
+        document.getElementById('main-image-placeholder').classList.remove('hidden');
+        document.getElementById('gallery-preview').classList.add('hidden');
+        document.getElementById('gallery-preview').innerHTML = '';
+    });
+
+    // Other Actions
+    document.getElementById('cancel-btn').addEventListener('click', () => {
+        if (confirm('آیا مطمئن هستید؟ تغییرات ذخیره نشده از بین خواهد رفت.')) {
+            console.log('Navigate back to products list');
+            // window.location.href = '/admin/products';
+        }
+    });
+
+    document.getElementById('save-draft-btn').addEventListener('click', () => {
+        console.log('Save as draft');
+        showNotification('پیش‌نویس ذخیره شد', 'success');
+    });
+
+    document.getElementById('preview-btn').addEventListener('click', () => {
+        console.log('Show preview');
+        showNotification('پیش‌نمایش در حال توسعه است', 'info');
+    });
+
+    // Notification System
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `fixed top-4 left-4 z-50 p-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 ${
+            type === 'success' ? 'bg-green-500 text-white' :
+                type === 'error' ? 'bg-red-500 text-white' :
+                    'bg-blue-500 text-white'
+        }`;
+        notification.innerHTML = `
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'exclamation-triangle' : 'info'}-circle"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.classList.remove('translate-x-full');
+        }, 100);
+
+        setTimeout(() => {
+            notification.classList.add('translate-x-full');
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 300);
+        }, 3000);
+    }
+
+    // Auto-save functionality (optional)
+    let autoSaveTimeout;
+    const formInputs = document.querySelectorAll('input, textarea, select');
+
+    formInputs.forEach(input => {
+        input.addEventListener('input', () => {
+            clearTimeout(autoSaveTimeout);
+            autoSaveTimeout = setTimeout(() => {
+                // Auto-save logic here
+                console.log('Auto-saving...');
+            }, 2000);
+        });
+    });
+</script>
+
+@endsection

@@ -140,6 +140,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
             'Modules\\Shop\\Database\\Seeders\\' => 30,
             'Modules\\Shop\\Database\\Factories\\' => 32,
             'Modules\\Shop\\' => 13,
+            'Modules\\Product\\Tests\\' => 22,
+            'Modules\\Product\\Database\\Seeders\\' => 33,
+            'Modules\\Product\\Database\\Factories\\' => 35,
+            'Modules\\Product\\' => 16,
             'Modules\\Motion\\Tests\\' => 21,
             'Modules\\Motion\\Database\\Seeders\\' => 32,
             'Modules\\Motion\\Database\\Factories\\' => 34,
@@ -516,6 +520,22 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\Shop\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Modules/Shop/app',
+        ),
+        'Modules\\Product\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Product/tests',
+        ),
+        'Modules\\Product\\Database\\Seeders\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Product/database/seeders',
+        ),
+        'Modules\\Product\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Product/database/factories',
+        ),
+        'Modules\\Product\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Product/app',
         ),
         'Modules\\Motion\\Tests\\' => 
         array (
@@ -936,6 +956,9 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Notifications\\ActiveCode' => __DIR__ . '/../..' . '/app/Notifications/ActiveCode.php',
         'App\\Notifications\\Channels\\MelipayamakChannel' => __DIR__ . '/../..' . '/app/Notifications/Channels/MelipayamakChannel.php',
         'App\\Notifications\\Channels\\RayganSmsChannel' => __DIR__ . '/../..' . '/app/Notifications/Channels/RayganSmsChannel.php',
+        'App\\Notifications\\LessonPlanAcceptedNotification' => __DIR__ . '/../..' . '/app/Notifications/LessonPlanAcceptedNotification.php',
+        'App\\Notifications\\LessonPlanPaidNotification' => __DIR__ . '/../..' . '/app/Notifications/LessonPlanPaidNotification.php',
+        'App\\Notifications\\LessonPlanReadyNotification' => __DIR__ . '/../..' . '/app/Notifications/LessonPlanReadyNotification.php',
         'App\\Notifications\\LoginToWebsite' => __DIR__ . '/../..' . '/app/Notifications/LoginToWebsite.php',
         'App\\Notifications\\NotifyUserLicense' => __DIR__ . '/../..' . '/app/Notifications/NotifyUserLicense.php',
         'App\\Notifications\\SendOtpSms' => __DIR__ . '/../..' . '/app/Notifications/SendOtpSms.php',
@@ -4631,8 +4654,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Mockery\\VerificationExpectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationExpectation.php',
         'Modules\\Blog\\Database\\Seeders\\BlogDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Blog/database/seeders/BlogDatabaseSeeder.php',
         'Modules\\Blog\\Http\\Controllers\\Admin\\BlogController' => __DIR__ . '/../..' . '/Modules/Blog/app/Http/Controllers/Admin/BlogController.php',
+        'Modules\\Blog\\Http\\Controllers\\Admin\\CategoryController' => __DIR__ . '/../..' . '/Modules/Blog/app/Http/Controllers/Admin/CategoryController.php',
         'Modules\\Blog\\Http\\Controllers\\Frontend\\BlogController' => __DIR__ . '/../..' . '/Modules/Blog/app/Http/Controllers/Frontend/BlogController.php',
         'Modules\\Blog\\Models\\Blog' => __DIR__ . '/../..' . '/Modules/Blog/app/Models/Blog.php',
+        'Modules\\Blog\\Models\\Category' => __DIR__ . '/../..' . '/Modules/Blog/app/Models/Category.php',
         'Modules\\Blog\\Providers\\BlogServiceProvider' => __DIR__ . '/../..' . '/Modules/Blog/app/Providers/BlogServiceProvider.php',
         'Modules\\Blog\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Blog/app/Providers/EventServiceProvider.php',
         'Modules\\Blog\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Blog/app/Providers/RouteServiceProvider.php',
@@ -4652,7 +4677,10 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\File\\Providers\\FileServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/FileServiceProvider.php',
         'Modules\\File\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/File/app/Providers/RouteServiceProvider.php',
         'Modules\\LessonPlan\\Database\\Seeders\\LessonPlanDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/LessonPlan/database/seeders/LessonPlanDatabaseSeeder.php',
-        'Modules\\LessonPlan\\Http\\Controllers\\LessonPlanController' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Http/Controllers/LessonPlanController.php',
+        'Modules\\LessonPlan\\Http\\Controllers\\Admin\\LessonPlanController' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Http/Controllers/Admin/LessonPlanController.php',
+        'Modules\\LessonPlan\\Http\\Controllers\\Frontend\\LessonPlanController' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Http/Controllers/Frontend/LessonPlanController.php',
+        'Modules\\LessonPlan\\Http\\Controllers\\User\\LessonPlanController' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Http/Controllers/User/LessonPlanController.php',
+        'Modules\\LessonPlan\\Models\\LessonPlan' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Models/LessonPlan.php',
         'Modules\\LessonPlan\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Providers/EventServiceProvider.php',
         'Modules\\LessonPlan\\Providers\\LessonPlanServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Providers/LessonPlanServiceProvider.php',
         'Modules\\LessonPlan\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/LessonPlan/app/Providers/RouteServiceProvider.php',
@@ -4662,6 +4690,11 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'Modules\\Motion\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Motion/app/Providers/EventServiceProvider.php',
         'Modules\\Motion\\Providers\\MotionServiceProvider' => __DIR__ . '/../..' . '/Modules/Motion/app/Providers/MotionServiceProvider.php',
         'Modules\\Motion\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Motion/app/Providers/RouteServiceProvider.php',
+        'Modules\\Product\\Database\\Seeders\\ProductDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Product/database/seeders/ProductDatabaseSeeder.php',
+        'Modules\\Product\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/Modules/Product/app/Http/Controllers/ProductController.php',
+        'Modules\\Product\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Product/app/Providers/EventServiceProvider.php',
+        'Modules\\Product\\Providers\\ProductServiceProvider' => __DIR__ . '/../..' . '/Modules/Product/app/Providers/ProductServiceProvider.php',
+        'Modules\\Product\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Product/app/Providers/RouteServiceProvider.php',
         'Modules\\Shop\\Database\\Seeders\\ShopDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Shop/database/seeders/ShopDatabaseSeeder.php',
         'Modules\\Shop\\Http\\Controllers\\CartController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/CartController.php',
         'Modules\\Shop\\Http\\Controllers\\DiscountController' => __DIR__ . '/../..' . '/Modules/Shop/app/Http/Controllers/DiscountController.php',

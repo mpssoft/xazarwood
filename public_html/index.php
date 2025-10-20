@@ -9,7 +9,7 @@ define('LARAVEL_START', microtime(true));
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
     require $maintenance;
 }
-
+ini_set('display_errors', 1);
 // Register the Composer autoloader...
 require __DIR__.'/../vendor/autoload.php';
 

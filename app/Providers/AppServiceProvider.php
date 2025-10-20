@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         $this->loadViewsFrom(base_path('Modules/Splash/resources/views'), 'splash');
         $this->loadViewsFrom(base_path('Modules/Motion/resources/views'), 'motion');
         $this->loadViewsFrom(base_path('Modules/LessonPlan/resources/views'), 'lessonplan');
+        $this->loadViewsFrom(base_path('Modules/Product/resources/views'), 'product');
         Notification::extend('raygansms', function ($app) {
             return new RayganSmsChannel();
         });

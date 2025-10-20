@@ -289,80 +289,7 @@
     </div>
 </header>
 
-<!-- Image Slider Section -->
-<section class="pt-24 pb-12 wood-grain-bg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-
-        <!-- Image Slider -->
-        <div class="relative wood-panel rounded-3xl overflow-hidden slide-up">
-            <div class="slider-container relative h-80 md:h-[500px]">
-                <!-- Slide 1 -->
-                <div class="slider-slide active wood-texture flex items-center justify-center">
-                    <div class="text-center">
-                        <i class="fas fa-table text-7xl wooden-text mb-6"></i>
-                        <h3 class="text-3xl font-black text-gray-900 dark:text-gray-100 mb-3">میز روستیک بلوط</h3>
-                        <p class="text-lg text-gray-900 dark:text-gray-300 font-bold">میز ناهارخوری ۸ نفره از چوب بلوط طبیعی</p>
-                    </div>
-                </div>
-
-                <!-- Slide 2 -->
-                <div class="slider-slide wood-texture flex items-center justify-center">
-                    <div class="text-center">
-                        <i class="fas fa-utensils text-7xl wooden-text mb-6"></i>
-                        <h3 class="text-3xl font-black text-gray-900 dark:text-gray-100 mb-3">ست ظروف چوبی</h3>
-                        <p class="text-lg text-gray-900 dark:text-gray-300 font-bold">مجموعه کامل کاسه و بشقاب چوب گردو</p>
-                    </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="slider-slide wood-texture flex items-center justify-center">
-                    <div class="text-center">
-                        <i class="fas fa-mug-hot text-7xl wooden-text mb-6"></i>
-                        <h3 class="text-3xl font-black text-gray-900 dark:text-gray-100 mb-3">ماگ چوبی حکاکی</h3>
-                        <p class="text-lg text-gray-900 dark:text-gray-300 font-bold">ماگ چوب راش با حکاکی نام شخصی</p>
-                    </div>
-                </div>
-
-                <!-- Slide 4 -->
-                <div class="slider-slide wood-texture flex items-center justify-center">
-                    <div class="text-center">
-                        <i class="fas fa-clock text-7xl wooden-text mb-6"></i>
-                        <h3 class="text-3xl font-black text-gray-900 dark:text-gray-100 mb-3">ساعت دیواری چوبی</h3>
-                        <p class="text-lg text-gray-900 dark:text-gray-300 font-bold">ساعت دیواری با طراحی سنتی ایرانی</p>
-                    </div>
-                </div>
-
-                <!-- Slide 5 -->
-                <div class="slider-slide wood-texture flex items-center justify-center">
-                    <div class="text-center">
-                        <i class="fas fa-chair text-7xl wooden-text mb-6"></i>
-                        <h3 class="text-3xl font-black text-gray-900 dark:text-gray-100 mb-3">صندلی روستیک</h3>
-                        <p class="text-lg text-gray-900 dark:text-gray-300 font-bold">صندلی چوب بلوط با طراحی کلاسیک</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Navigation Arrows -->
-            <button class="slider-btn slider-prev absolute left-6 top-1/2 transform -translate-y-1/2 wood-button p-4 rounded-full text-white hover:scale-110 transition-all z-10 shadow-2xl">
-                <i class="fas fa-chevron-left text-xl"></i>
-            </button>
-            <button class="slider-btn slider-next absolute right-6 top-1/2 transform -translate-y-1/2 wood-button p-4 rounded-full text-white hover:scale-110 transition-all z-10 shadow-2xl">
-                <i class="fas fa-chevron-right text-xl"></i>
-            </button>
-
-            <!-- Dots Indicator -->
-            <div class="slider-dots absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 space-x-reverse">
-                <button class="slider-dot active w-3 h-3 rounded-full bg-orange-600 dark:bg-yellow-400 transition-all shadow-lg"></button>
-                <button class="slider-dot w-3 h-3 rounded-full bg-orange-300 dark:bg-gray-500 hover:bg-orange-600 dark:hover:bg-yellow-400 transition-all shadow-lg"></button>
-                <button class="slider-dot w-3 h-3 rounded-full bg-orange-300 dark:bg-gray-500 hover:bg-orange-600 dark:hover:bg-yellow-400 transition-all shadow-lg"></button>
-                <button class="slider-dot w-3 h-3 rounded-full bg-orange-300 dark:bg-gray-500 hover:bg-orange-600 dark:hover:bg-yellow-400 transition-all shadow-lg"></button>
-                <button class="slider-dot w-3 h-3 rounded-full bg-orange-300 dark:bg-gray-500 hover:bg-orange-600 dark:hover:bg-yellow-400 transition-all shadow-lg"></button>
-            </div>
-        </div>
-    </div>
-</section>
-
+@include('frontend.home.home-slider2', ['sliders' => $sliders])
 <!-- Hero Section -->
 <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden wood-grain-bg">
     <div class="absolute inset-0 wood-rings opacity-40"></div>
@@ -372,26 +299,21 @@
                 <i class="fas fa-hammer text-9xl wooden-text"></i>
             </div>
 
-            <h1 class="text-7xl md:text-9xl font-black text-gray-900 dark:text-orange-100 mb-8 leading-tight carved-shadow">
+            <h1 class="text-3xl md:text-5xl font-black text-gray-900 dark:text-orange-100 mb-8 leading-tight carved-shadow">
                 صنایع چوبی
                 <br>
+                <br>
+
                 <span class="wooden-text">XazarWood</span>
             </h1>
 
-            <p class="text-2xl md:text-4xl text-gray-900 dark:text-yellow-300 mb-12 max-w-5xl mx-auto leading-relaxed font-bold">
+            <p class="text-2xl md:text-3xl text-gray-900 dark:text-yellow-300 mb-12 max-w-5xl mx-auto leading-relaxed font-bold">
                 میزهای روستیک، ظروف چوبی، ماگ و ساعت‌های چوبی دست‌ساز
                 <br>
                 <span class="wooden-text">از دل طبیعت تا قلب خانه شما</span>
             </p>
 
-            <div class="flex flex-col sm:flex-row gap-8 justify-center items-center">
-                <button class="wood-button text-white px-12 py-6 rounded-2xl font-black text-2xl transition-all wood-glow">
-                    <i class="fas fa-shopping-bag ml-3"></i>کاوش محصولات
-                </button>
-                <button class="border-4 border-slate-600 dark:border-yellow-400 text-gray-900 dark:text-yellow-200 hover:bg-slate-600 hover:text-white dark:hover:bg-yellow-400 dark:hover:text-orange-900 px-12 py-6 rounded-2xl font-black text-2xl transition-all hover:scale-105">
-                    <i class="fas fa-phone-alt ml-3"></i>تماس فوری
-                </button>
-            </div>
+
         </div>
     </div>
 
@@ -413,29 +335,29 @@
         <div class="grid lg:grid-cols-2 gap-20 items-center">
             <div class="slide-up">
                 <div class="wood-panel p-12 rounded-3xl hover-wood">
-                    <h2 class="text-6xl md:text-7xl font-black text-gray-900 dark:text-orange-100 mb-10 carved-shadow">
+                    <h2 class="text-3xl font-black text-gray-900 dark:text-orange-100 mb-10 carved-shadow">
                         <i class="fas fa-seedling wooden-text ml-4"></i>
                         هنر کهن
                         <br>
                         <span class="wooden-text">کیفیت نوین</span>
                     </h2>
 
-                    <p class="text-2xl text-gray-900 dark:text-yellow-200 mb-8 leading-relaxed font-semibold">
+                    <p class="text-justify text-gray-900 dark:text-yellow-200 mb-8 leading-relaxed font-semibold">
                         XazarWood با ۲۰ سال تجربه در صنعت چوب، تولیدکننده میزهای روستیک و محصولات چوبی منحصر به فرد است. ما از بهترین چوب‌های طبیعی شمال کشور استفاده می‌کنیم.
                     </p>
 
-                    <p class="text-2xl text-gray-900 dark:text-yellow-200 mb-10 leading-relaxed font-semibold">
+                    <p class="text-justify text-gray-900 dark:text-yellow-200 mb-10 leading-relaxed font-semibold">
                         هر محصول با دست و با عشق ساخته می‌شود. از میزهای روستیک گرفته تا ظروف چوبی، ماگ‌ها و ساعت‌های چوبی - همه با کیفیت استثنایی و طراحی بی‌نظیر.
                     </p>
 
                     <!-- Achievement Cards -->
                     <div class="grid grid-cols-2 gap-6">
                         <div class="text-center wood-panel p-6 rounded-2xl hover-wood">
-                            <div class="text-5xl font-black wooden-text mb-3">۲۰+</div>
+                            <div class="text-3xl font-black wooden-text mb-3">۲۰+</div>
                             <div class="text-lg text-gray-900 dark:text-yellow-300 font-bold">سال تجربه</div>
                         </div>
                         <div class="text-center wood-panel p-6 rounded-2xl hover-wood">
-                            <div class="text-5xl font-black wooden-text mb-3">۸۰۰+</div>
+                            <div class="text-3xl font-black wooden-text mb-3">۸۰۰+</div>
                             <div class="text-lg text-gray-900 dark:text-yellow-300 font-bold">مشتری خوشحال</div>
                         </div>
                     </div>
@@ -447,7 +369,7 @@
                     <!-- Craft Process -->
                     <div class="wood-panel p-12 rounded-3xl hover-wood">
                         <div class="text-center mb-10">
-                            <i class="fas fa-cogs text-7xl wooden-text mb-6"></i>
+                            <i class="fas fa-cogs text-3xl wooden-text mb-6"></i>
                             <h3 class="text-3xl font-black text-orange-900 dark:text-orange-100 carved-shadow">فرآیند تولید</h3>
                         </div>
 
@@ -495,113 +417,115 @@
 </section>
 
 <!-- Products Section -->
-<section id="products" class="py-28 wood-grain-bg">
+<section id="products" class="py-10 wood-grain-bg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-24 slide-up">
-            <h2 class="text-6xl md:text-7xl font-black text-gray-900 dark:text-gray-100 mb-8 carved-shadow">
+            <h2 class="text-3xl md:text-3xl font-black text-gray-900 dark:text-gray-100 mb-8 carved-shadow">
                 <i class="fas fa-tools wooden-text ml-4"></i>محصولات ما
             </h2>
-            <p class="text-3xl text-gray-800 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed font-bold">
+            <p class=" text-gray-800 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed font-bold">
                 مجموعه کاملی از میزهای روستیک و صنایع چوبی دست‌ساز با کیفیت بی‌نظیر
             </p>
         </div>
 
-        <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-10">
+        <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
             <!-- Product 1 -->
-            <div class="slide-up wood-panel rounded-3xl overflow-hidden hover-wood">
-                <div class="h-80 wood-texture grain-lines flex items-center justify-center relative">
-                    <i class="fas fa-table text-9xl wooden-text"></i>
+            <div class="flex flex-col slide-up  wood-panel rounded-3xl max-h-[600px] overflow-hidden hover-wood ">
+                <div class="h-64 wood-texture grain-lines flex items-center justify-center relative">
+                    <i class="fas fa-table text-7xl wooden-text"></i>
                     <div class="absolute top-6 right-6 wood-button text-white px-4 py-2 rounded-full text-sm font-black">
                         محبوب‌ترین
                     </div>
                 </div>
-                <div class="p-10">
-                    <h3 class="text-3xl font-black text-gray-900 dark:text-orange-100 mb-4 carved-shadow">
+                <div class="p-7 flex flex-1 flex-col ">
+                    <h3 class="flex text-2xl font-black text-gray-900 dark:text-orange-100 mb-4 carved-shadow">
                         <i class="fas fa-table ml-3"></i>میزهای روستیک
                     </h3>
-                    <p class="text-gray-800 dark:text-yellow-300 mb-8 leading-relaxed font-semibold text-lg">
+                    <p class="flex  text-gray-800 dark:text-yellow-300 mb-4 leading-relaxed font-semibold text-lg">
                         میزهای چوب بلوط و راش دست‌ساز با طراحی روستیک اصیل و کلاسیک
                     </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-4xl font-black wooden-text">از ۳ میلیون</span>
-                        <button class="wood-button px-8 py-4 rounded-2xl font-black text-white transition-all hover:scale-105">
+                    <div class="flex flex-1 pb-5 flex-col  justify-end  items-center text-center gap-2">
+                        <div class=" text-2xl font-black wooden-text">از 12 میلیون</div>
+
+                        <button class=" wood-button px-8 py-4 w-full rounded-2xl font-black text-white transition-all hover:scale-105">
                             <i class="fas fa-eye ml-2"></i>مشاهده
                         </button>
                     </div>
                 </div>
             </div>
-
-            <!-- Product 2 -->
-            <div class="slide-up wood-panel rounded-3xl overflow-hidden hover-wood">
-                <div class="h-80 wood-texture grain-lines flex items-center justify-center relative">
-                    <i class="fas fa-utensils text-9xl wooden-text"></i>
+ <!-- Product 2 -->
+            <div class="flex flex-col slide-up  wood-panel rounded-3xl max-h-[600px] overflow-hidden hover-wood ">
+                <div class="h-64 wood-texture grain-lines flex items-center justify-center relative">
+                    <i class="fas fa-utensils text-7xl wooden-text"></i>
                     <div class="absolute top-6 right-6 wood-button text-white px-4 py-2 rounded-full text-sm font-black">
                         تازه
                     </div>
                 </div>
-                <div class="p-10">
-                    <h3 class="text-3xl font-black text-gray-900 dark:text-orange-100 mb-4 carved-shadow">
+                <div class="p-7 flex flex-1 flex-col ">
+                    <h3 class="flex text-2xl font-black text-gray-900 dark:text-orange-100 mb-4 carved-shadow">
                         <i class="fas fa-utensils ml-3"></i>ظروف چوبی
                     </h3>
-                    <p class="text-gray-800 dark:text-yellow-300 mb-8 leading-relaxed font-semibold text-lg">
+                    <p class="flex  text-gray-800 dark:text-yellow-300 mb-4 leading-relaxed font-semibold text-lg">
                         کاسه‌ها، بشقاب‌ها و ظروف سرو چوبی زیبا برای آشپزخانه مدرن
                     </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-4xl font-black wooden-text">از ۱۵۰ هزار</span>
-                        <button class="wood-button px-8 py-4 rounded-2xl font-black text-white transition-all hover:scale-105">
+                    <div class="flex flex-1 pb-5 flex-col  justify-end  items-center text-center gap-2">
+                        <div class=" text-2xl font-black wooden-text">از 150 هزار</div>
+
+                        <button class=" wood-button px-8 py-4 w-full rounded-2xl font-black text-white transition-all hover:scale-105">
                             <i class="fas fa-eye ml-2"></i>مشاهده
                         </button>
                     </div>
                 </div>
             </div>
-
-            <!-- Product 3 -->
-            <div class="slide-up wood-panel rounded-3xl overflow-hidden hover-wood">
-                <div class="h-80 wood-texture grain-lines flex items-center justify-center relative">
-                    <i class="fas fa-mug-hot text-9xl wooden-text"></i>
+ <!-- Product 3 -->
+            <div class="flex flex-col slide-up  wood-panel rounded-3xl max-h-[600px] overflow-hidden hover-wood ">
+                <div class="h-64 wood-texture grain-lines flex items-center justify-center relative">
+                    <i class="fas fa-mug-hot text-7xl wooden-text"></i>
                     <div class="absolute top-6 right-6 wood-button text-white px-4 py-2 rounded-full text-sm font-black">
                         پرفروش
                     </div>
                 </div>
-                <div class="p-10">
-                    <h3 class="text-3xl font-black text-gray-900 dark:text-orange-100 mb-4 carved-shadow">
-                        <i class="fas fa-mug-hot ml-3"></i>ماگ چوبی
+                <div class="p-7 flex flex-1 flex-col ">
+                    <h3 class="flex text-2xl font-black text-gray-900 dark:text-orange-100 mb-4 carved-shadow">
+                        <i class="fas fa-mug-hot ml-3"></i> ماگ چوبی
                     </h3>
-                    <p class="text-gray-800 dark:text-yellow-300 mb-8 leading-relaxed font-semibold text-lg">
+                    <p class="flex  text-gray-800 dark:text-yellow-300 mb-4 leading-relaxed font-semibold text-lg">
                         ماگ‌های چوبی عایق‌دار برای چای و قهوه با طراحی منحصر به فرد
                     </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-4xl font-black wooden-text">از ۲۲۰ هزار</span>
-                        <button class="wood-button px-8 py-4 rounded-2xl font-black text-white transition-all hover:scale-105">
+                    <div class="flex flex-1 pb-5 flex-col  justify-end  items-center text-center gap-2">
+                        <div class=" text-2xl font-black wooden-text">از 220 هزار</div>
+
+                        <button class=" wood-button px-8 py-4 w-full rounded-2xl font-black text-white transition-all hover:scale-105">
+                            <i class="fas fa-eye ml-2"></i>مشاهده
+                        </button>
+                    </div>
+                </div>
+            </div>
+<!-- Product 4 -->
+            <div class="flex flex-col slide-up  wood-panel rounded-3xl max-h-[600px] overflow-hidden hover-wood ">
+                <div class="h-64 wood-texture grain-lines flex items-center justify-center relative">
+                    <i class="fas fa-clock text-7xl wooden-text"></i>
+                    <div class="absolute top-6 right-6 wood-button text-white px-4 py-2 rounded-full text-sm font-black">
+                        ویژه
+                    </div>
+                </div>
+                <div class="p-7 flex flex-1 flex-col ">
+                    <h3 class="flex text-2xl font-black text-gray-900 dark:text-orange-100 mb-4 carved-shadow">
+                        <i class="fas fa-clock ml-3"></i> ساعت‌های چوبی
+                    </h3>
+                    <p class="flex  text-gray-800 dark:text-yellow-300 mb-4 leading-relaxed font-semibold text-lg">
+                        ساعت‌های دیواری و رومیزی با حکاکی دستی و طراحی سنتی
+                    </p>
+                    <div class="flex flex-1 pb-5 flex-col  justify-end  items-center text-center gap-2">
+                        <div class=" text-2xl font-black wooden-text">از 550 هزار</div>
+
+                        <button class=" wood-button px-8 py-4 w-full rounded-2xl font-black text-white transition-all hover:scale-105">
                             <i class="fas fa-eye ml-2"></i>مشاهده
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Product 4 -->
-            <div class="slide-up wood-panel rounded-3xl overflow-hidden hover-wood">
-                <div class="h-80 wood-texture grain-lines flex items-center justify-center relative">
-                    <i class="fas fa-clock text-9xl wooden-text"></i>
-                    <div class="absolute top-6 right-6 wood-button text-white px-4 py-2 rounded-full text-sm font-black">
-                        ویژه
-                    </div>
-                </div>
-                <div class="p-10">
-                    <h3 class="text-3xl font-black text-gray-900 dark:text-orange-100 mb-4 carved-shadow">
-                        <i class="fas fa-clock ml-3"></i>ساعت‌های چوبی
-                    </h3>
-                    <p class="text-gray-800 dark:text-yellow-300 mb-8 leading-relaxed font-semibold text-lg">
-                        ساعت‌های دیواری و رومیزی با حکاکی دستی و طراحی سنتی
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-4xl font-black wooden-text">از ۵۵۰ هزار</span>
-                        <button class="wood-button px-8 py-4 rounded-2xl font-black text-white transition-all hover:scale-105">
-                            <i class="fas fa-eye ml-2"></i>مشاهده
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -612,7 +536,7 @@
 <section id="showcase" class="py-28 wood-texture">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-24 slide-up">
-            <h2 class="text-6xl md:text-7xl font-black text-gray-900 dark:text-gray-100 mb-8 carved-shadow">
+            <h2 class="text-6xl md:text-3xl font-black text-gray-900 dark:text-gray-100 mb-8 carved-shadow">
                 <i class="fas fa-star wooden-text ml-4"></i>نمونه کارها
             </h2>
             <p class="text-3xl text-gray-900 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed font-bold">
@@ -623,7 +547,7 @@
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Showcase Card 1 -->
             <div class="slide-up wood-panel p-8 hover-wood group">
-                <div class="text-center mb-6">
+                <div class="text-center mb-6 border">
                     <i class="fas fa-table text-6xl wooden-text mb-4 group-hover:scale-110 transition-transform"></i>
                     <h3 class="text-2xl font-black text-gray-900 dark:text-orange-100 mb-3">میز روستیک بلوط</h3>
                     <p class="text-gray-800 dark:text-yellow-300 font-semibold">میز ناهارخوری ۶ نفره از چوب بلوط طبیعی</p>
@@ -742,7 +666,7 @@
 <section id="contact" class="py-28 wood-grain-bg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-24 slide-up">
-            <h2 class="text-6xl md:text-7xl font-black text-gray-900 dark:text-gray-100 mb-8 carved-shadow">
+            <h2 class="text-6xl md:text-3xl font-black text-gray-900 dark:text-gray-100 mb-8 carved-shadow">
                 <i class="fas fa-envelope wooden-text ml-4"></i>ارتباط با ما
             </h2>
             <p class="text-3xl text-gray-900 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed font-bold">
@@ -1059,97 +983,7 @@
         });
     });
 
-    // Image Slider Functionality
-    class ImageSlider {
-        constructor() {
-            this.currentSlide = 0;
-            this.slides = document.querySelectorAll('.slider-slide');
-            this.dots = document.querySelectorAll('.slider-dot');
-            this.prevBtn = document.querySelector('.slider-prev');
-            this.nextBtn = document.querySelector('.slider-next');
-            this.totalSlides = this.slides.length;
-            this.autoSlideInterval = null;
 
-            this.init();
-        }
-
-        init() {
-            // Add event listeners
-            this.prevBtn.addEventListener('click', () => this.prevSlide());
-            this.nextBtn.addEventListener('click', () => this.nextSlide());
-
-            // Add dot click listeners
-            this.dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => this.goToSlide(index));
-            });
-
-            // Start auto-slide
-            this.startAutoSlide();
-
-            // Pause auto-slide on hover
-            const sliderContainer = document.querySelector('.slider-container');
-            sliderContainer.addEventListener('mouseenter', () => this.stopAutoSlide());
-            sliderContainer.addEventListener('mouseleave', () => this.startAutoSlide());
-        }
-
-        updateSlider() {
-            // Update slides
-            this.slides.forEach((slide, index) => {
-                slide.classList.remove('active', 'prev');
-                if (index === this.currentSlide) {
-                    slide.classList.add('active');
-                } else if (index < this.currentSlide) {
-                    slide.classList.add('prev');
-                }
-            });
-
-            // Update dots
-            this.dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === this.currentSlide);
-                if (index === this.currentSlide) {
-                    dot.classList.remove('bg-orange-300', 'dark:bg-yellow-600');
-                    dot.classList.add('bg-orange-600', 'dark:bg-yellow-400');
-                } else {
-                    dot.classList.remove('bg-orange-600', 'dark:bg-yellow-400');
-                    dot.classList.add('bg-orange-300', 'dark:bg-yellow-600');
-                }
-            });
-        }
-
-        nextSlide() {
-            this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-            this.updateSlider();
-        }
-
-        prevSlide() {
-            this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-            this.updateSlider();
-        }
-
-        goToSlide(index) {
-            this.currentSlide = index;
-            this.updateSlider();
-        }
-
-        startAutoSlide() {
-            this.stopAutoSlide();
-            this.autoSlideInterval = setInterval(() => {
-                this.nextSlide();
-            }, 4000);
-        }
-
-        stopAutoSlide() {
-            if (this.autoSlideInterval) {
-                clearInterval(this.autoSlideInterval);
-                this.autoSlideInterval = null;
-            }
-        }
-    }
-
-    // Initialize slider when DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-        new ImageSlider();
-    });
 </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98fe8de61387c1a5',t:'MTc2MDY5MTA4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
