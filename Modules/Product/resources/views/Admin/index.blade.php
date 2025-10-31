@@ -22,13 +22,10 @@
 
                 <!-- Actions -->
                 <div class="flex items-center space-x-4 space-x-reverse">
-                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors">
-                        <i class="fas fa-sun dark:hidden text-gray-600"></i>
-                        <i class="fas fa-moon hidden dark:inline text-slate-300"></i>
-                    </button>
-                    <button id="add-product-btn" class="bg-blue-600 dark:bg-slate-600 hover:bg-blue-700 dark:hover:bg-slate-500 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+
+                    <a href="{{route('admin.products.create')}}" id="add-product-btn" class="bg-blue-600 dark:bg-slate-600 hover:bg-blue-700 dark:hover:bg-slate-500 text-white px-4 py-2 rounded-lg font-medium transition-colors">
                         <i class="fas fa-plus ml-2"></i>افزودن محصول
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -128,46 +125,48 @@
     <div id="products-grid" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
 
         <!-- Product Card 1 -->
+        @foreach($products as $product)
         <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <!-- Product Image -->
-            <div class="relative h-48 bg-gray-100 dark:bg-slate-700">
-                <div class="w-full h-full flex items-center justify-center">
-                    <i class="fas fa-table text-6xl text-gray-400 dark:text-slate-500"></i>
-                </div>
+            <div class="relative h-48 bg-gray-100 dark:bg-slate-700" style="background:url('{{asset($product->main_image)}}');background-size:cover">
+
                 <div class="absolute top-3 right-3">
                         <span class="bg-green-100 dark:bg-slate-700 text-green-800 dark:text-slate-300 px-2 py-1 rounded-full text-xs font-medium animate-pulse">
-                            موجود
+                            {{$product->stock > 0 ? 'موجود':'ناموجود'}}
                         </span>
                 </div>
                 <div class="absolute top-3 left-3 flex space-x-2 space-x-reverse">
-                    <button class="p-2 bg-white dark:bg-slate-800 rounded-full shadow-md hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+                    <a href="{{route('admin.products.edit',$product->id)}}" class="p-2 bg-white dark:bg-slate-800 rounded-full shadow-md hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
                         <i class="fas fa-edit text-blue-600 dark:text-slate-300 text-sm"></i>
-                    </button>
-                    <button class="p-2 bg-white dark:bg-slate-800 rounded-full shadow-md hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
+                    </a>
+                    <form action="{{ route('admin.products.destroy',$product->id) }}" onsubmit="event.preventDefault();confirmDelete(event);" method="post" id="{{'delete-'.$product->id}}">@csrf @method('delete')
+
+                        <button class="p-2 bg-white dark:bg-slate-800 rounded-full shadow-md hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
                         <i class="fas fa-trash text-red-600 dark:text-slate-300 text-sm"></i>
                     </button>
+                    </form>
                 </div>
             </div>
 
             <!-- Product Info -->
             <div class="p-6">
                 <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-slate-100">میز روستیک بلوط</h3>
-                    <span class="text-lg font-bold text-blue-600 dark:text-slate-300">۳.۵ میلیون</span>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-slate-100">{{$product->name}}</h3>
+                    <span class="text-lg font-bold text-blue-600 dark:text-slate-300">{{$product->price}} تومان </span>
                 </div>
 
                 <p class="text-gray-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
-                    میز ناهارخوری ۶ نفره از چوب بلوط طبیعی با طراحی روستیک و کلاسیک
+                    {{$product->description}}
                 </p>
 
                 <div class="flex justify-between items-center mb-4">
                     <div class="flex items-center space-x-2 space-x-reverse">
                         <i class="fas fa-boxes text-gray-400 dark:text-slate-500 text-sm"></i>
-                        <span class="text-sm text-gray-600 dark:text-slate-400">موجودی: ۵ عدد</span>
+                        <span class="text-sm text-gray-600 dark:text-slate-400">موجودی: {{$product->stock}} عدد</span>
                     </div>
                     <div class="flex items-center space-x-2 space-x-reverse">
                         <i class="fas fa-images text-gray-400 dark:text-slate-500 text-sm"></i>
-                        <span class="text-sm text-gray-600 dark:text-slate-400">۳ تصویر</span>
+                        <span class="text-sm text-gray-600 dark:text-slate-400">{{$product->images()->count()}} تصویر</span>
                     </div>
                 </div>
 
@@ -181,164 +180,20 @@
                     </div>
 
                     <div class="grid grid-cols-3 gap-2">
+
+                        @foreach($product->images as $image)
                         <div class="aspect-square bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center relative group">
-                            <i class="fas fa-image text-gray-400 dark:text-slate-500"></i>
+                            <img src="{{asset($image->image)}}" />
                             <button class="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
                                 <i class="fas fa-times text-xs"></i>
                             </button>
                         </div>
-                        <div class="aspect-square bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center relative group">
-                            <i class="fas fa-image text-gray-400 dark:text-slate-500"></i>
-                            <button class="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                                <i class="fas fa-times text-xs"></i>
-                            </button>
-                        </div>
-                        <div class="aspect-square bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center relative group">
-                            <i class="fas fa-image text-gray-400 dark:text-slate-500"></i>
-                            <button class="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                                <i class="fas fa-times text-xs"></i>
-                            </button>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Product Card 2 -->
-        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div class="relative h-48 bg-gray-100 dark:bg-slate-700">
-                <div class="w-full h-full flex items-center justify-center">
-                    <i class="fas fa-utensils text-6xl text-gray-400 dark:text-slate-500"></i>
-                </div>
-                <div class="absolute top-3 right-3">
-                        <span class="bg-yellow-100 dark:bg-slate-700 text-yellow-800 dark:text-slate-300 px-2 py-1 rounded-full text-xs font-medium animate-pulse">
-                            کم موجود
-                        </span>
-                </div>
-                <div class="absolute top-3 left-3 flex space-x-2 space-x-reverse">
-                    <button class="p-2 bg-white dark:bg-slate-800 rounded-full shadow-md hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
-                        <i class="fas fa-edit text-blue-600 dark:text-slate-300 text-sm"></i>
-                    </button>
-                    <button class="p-2 bg-white dark:bg-slate-800 rounded-full shadow-md hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
-                        <i class="fas fa-trash text-red-600 dark:text-slate-300 text-sm"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="p-6">
-                <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-slate-100">ست ظروف چوبی</h3>
-                    <span class="text-lg font-bold text-blue-600 dark:text-slate-300">۸۵۰ هزار</span>
-                </div>
-
-                <p class="text-gray-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
-                    مجموعه کامل کاسه و بشقاب چوب گردو برای آشپزخانه مدرن
-                </p>
-
-                <div class="flex justify-between items-center mb-4">
-                    <div class="flex items-center space-x-2 space-x-reverse">
-                        <i class="fas fa-boxes text-gray-400 dark:text-slate-500 text-sm"></i>
-                        <span class="text-sm text-gray-600 dark:text-slate-400">موجودی: ۲ عدد</span>
-                    </div>
-                    <div class="flex items-center space-x-2 space-x-reverse">
-                        <i class="fas fa-images text-gray-400 dark:text-slate-500 text-sm"></i>
-                        <span class="text-sm text-gray-600 dark:text-slate-400">۵ تصویر</span>
-                    </div>
-                </div>
-
-                <div class="border-t border-gray-200 dark:border-slate-700 pt-4">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="text-sm font-medium text-gray-700 dark:text-slate-300">گالری تصاویر</span>
-                        <button class="text-blue-600 dark:text-slate-300 hover:text-blue-700 dark:hover:text-slate-200 text-sm font-medium">
-                            <i class="fas fa-plus ml-1"></i>افزودن
-                        </button>
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-2">
-                        <div class="aspect-square bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center relative group">
-                            <i class="fas fa-image text-gray-400 dark:text-slate-500"></i>
-                            <button class="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                                <i class="fas fa-times text-xs"></i>
-                            </button>
-                        </div>
-                        <div class="aspect-square bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center relative group">
-                            <i class="fas fa-image text-gray-400 dark:text-slate-500"></i>
-                            <button class="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                                <i class="fas fa-times text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product Card 3 -->
-        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div class="relative h-48 bg-gray-100 dark:bg-slate-700">
-                <div class="w-full h-full flex items-center justify-center">
-                    <i class="fas fa-mug-hot text-6xl text-gray-400 dark:text-slate-500"></i>
-                </div>
-                <div class="absolute top-3 right-3">
-                        <span class="bg-red-100 dark:bg-slate-700 text-red-800 dark:text-slate-300 px-2 py-1 rounded-full text-xs font-medium animate-pulse">
-                            ناموجود
-                        </span>
-                </div>
-                <div class="absolute top-3 left-3 flex space-x-2 space-x-reverse">
-                    <button class="p-2 bg-white dark:bg-slate-800 rounded-full shadow-md hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
-                        <i class="fas fa-edit text-blue-600 dark:text-slate-300 text-sm"></i>
-                    </button>
-                    <button class="p-2 bg-white dark:bg-slate-800 rounded-full shadow-md hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors">
-                        <i class="fas fa-trash text-red-600 dark:text-slate-300 text-sm"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="p-6">
-                <div class="flex justify-between items-start mb-3">
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-slate-100">ماگ چوبی حکاکی</h3>
-                    <span class="text-lg font-bold text-blue-600 dark:text-slate-300">۳۲۰ هزار</span>
-                </div>
-
-                <p class="text-gray-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
-                    ماگ چوب راش با حکاکی نام شخصی و طراحی منحصر به فرد
-                </p>
-
-                <div class="flex justify-between items-center mb-4">
-                    <div class="flex items-center space-x-2 space-x-reverse">
-                        <i class="fas fa-boxes text-gray-400 dark:text-slate-500 text-sm"></i>
-                        <span class="text-sm text-gray-600 dark:text-slate-400">موجودی: ۰ عدد</span>
-                    </div>
-                    <div class="flex items-center space-x-2 space-x-reverse">
-                        <i class="fas fa-images text-gray-400 dark:text-slate-500 text-sm"></i>
-                        <span class="text-sm text-gray-600 dark:text-slate-400">۲ تصویر</span>
-                    </div>
-                </div>
-
-                <div class="border-t border-gray-200 dark:border-slate-700 pt-4">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="text-sm font-medium text-gray-700 dark:text-slate-300">گالری تصاویر</span>
-                        <button class="text-blue-600 dark:text-slate-300 hover:text-blue-700 dark:hover:text-slate-200 text-sm font-medium">
-                            <i class="fas fa-plus ml-1"></i>افزودن
-                        </button>
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-2">
-                        <div class="aspect-square bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center relative group">
-                            <i class="fas fa-image text-gray-400 dark:text-slate-500"></i>
-                            <button class="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                                <i class="fas fa-times text-xs"></i>
-                            </button>
-                        </div>
-                        <div class="aspect-square bg-gray-100 dark:bg-slate-700 rounded-lg flex items-center justify-center relative group">
-                            <i class="fas fa-image text-gray-400 dark:text-slate-500"></i>
-                            <button class="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                                <i class="fas fa-times text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
 
     </div>
 
@@ -365,22 +220,8 @@
 
 </main>
 </div>
+<script src="/js/modules/sweetalert2.js"></script>
 <script>
-    // Theme Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
-
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    if (currentTheme === 'dark') {
-        html.classList.add('dark');
-    }
-
-    themeToggle.addEventListener('click', () => {
-        html.classList.toggle('dark');
-        const isDark = html.classList.contains('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
-
     // Add Product Button - Navigate to new route
     const addProductBtn = document.getElementById('add-product-btn');
 
@@ -447,6 +288,31 @@
                 // Remove image
                 button.closest('.aspect-square').remove();
             }
+        }
+    });
+
+    function confirmDelete(e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'حذف دسته گرافیک',
+            text: 'آیا مطمئن هستید که می‌خواهید این دسته گرافیک را حذف کنید؟',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor:'red',
+            confirmButtonText: 'بله، حذف کن',
+            cancelButtonText: 'لغو'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                e.target.submit();
+            }
+        });
+        return false;
+    }
+
+    // Configure SweetAlert2 defaults for RTL
+    Swal.mixin({
+        customClass: {
+            popup: 'swal2-rtl'
         }
     });
 </script>

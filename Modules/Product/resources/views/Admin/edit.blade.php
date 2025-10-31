@@ -16,7 +16,7 @@
                         <i class="fas fa-plus text-white text-xl"></i>
                     </div>
                     <div>
-                        <h1 class="text-2xl font-bold text-gray-900 dark:text-slate-100">افزودن محصول جدید</h1>
+                        <h1 class="text-2xl font-bold text-gray-900 dark:text-slate-100">ویرایش محصول </h1>
                         <p class="text-sm text-gray-500 dark:text-slate-400">XazarWood - پنل مدیریت</p>
                     </div>
                 </div>
@@ -35,8 +35,9 @@
 <!-- Main Content -->
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     @include('layouts.errors')
-    <form id="product-form" class="space-y-8" method="post" action="{{route('admin.products.store')}}" onsubmit="removeCamas()">
+    <form id="product-form" class="space-y-8" action="{{route('admin.products.update',$product->id)}}" method="post">
 @csrf
+        @method('put')
         <!-- Basic Information -->
         <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-6">
             <div class="flex items-center mb-6">
@@ -53,6 +54,7 @@
                         نام محصول *
                     </label>
                     <input type="text" id="product-name" name="name" required
+                           value="{{old('name',$product->name)}}"
                            class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
                            placeholder="نام محصول را وارد کنید...">
                 </div>
@@ -64,6 +66,7 @@
                     </label>
                     <div class="relative">
                         <input type="text" id="product-price" name="price" required
+                               value="{{old('price',$product->price)}}"
                                class="w-full format_number px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
                                placeholder="0">
                         <span class="absolute left-3 top-3 text-gray-500 dark:text-slate-400">تومان</span>
@@ -75,7 +78,8 @@
                     <label for="product-stock" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
                         موجودی *
                     </label>
-                    <input type="text" id="product-stock" name="stock" required min="0"
+                    <input type="text" id="product-stock" name="stock" required
+                           value="{{old('stock',$product->stock)}}"
                            class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
                            placeholder="تعداد موجودی">
                 </div>
@@ -85,12 +89,12 @@
                     <label for="product-category" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
                         دسته‌بندی *
                     </label>
-                    <select id="product-category" name="category" required
+                    <select id="product-category" name="categories[]" multiple required
                             class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100">
                         <option value="">انتخاب دسته‌بندی</option>
-                       @foreach(\Modules\Blog\Models\Category::all() as $category)
-                            <option value="{{$category->id}}">{{$category->name}}</option>
-                       @endforeach
+                        @foreach(\Modules\Blog\Models\Category::all() as $category)
+                            <option value="{{$category->id}}" {{in_array($category->id,$product->categories->pluck('id')->toArray())? "selected":""}}>{{$category->name}}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -101,8 +105,8 @@
                     </label>
                     <select id="product-status" name="status"
                             class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100">
-                        <option value="active">فعال</option>
-                        <option value="inactive">غیرفعال</option>
+                        <option value="active" {{$product->status == "active"? "selected":""}}>فعال</option>
+                        <option value="inactive" {{$product->status == "inactive"? "selected":""}}>غیرفعال</option>
 
                     </select>
                 </div>
@@ -126,39 +130,19 @@
                     </label>
                     <textarea id="short-description" name="description" rows="3" required
                               class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
-                              placeholder="توضیح کوتاه محصول برای نمایش در لیست محصولات..."></textarea>
+                              placeholder="توضیح کوتاه محصول برای نمایش در لیست محصولات...">{{old('description',$product->description)}}</textarea>
                     <p class="text-sm text-gray-500 dark:text-slate-400 mt-1">حداکثر ۱۵۰ کاراکتر</p>
                 </div>
 
-                <!-- TinyMCE Content Editor -->
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-edit text-green-600 dark:text-green-400"></i>
-                        </div>
-                        <h2 class="text-xl font-bold text-gray-900 dark:text-white">محتوا </h2>
-
-                    </div>
-
-                    <div class="form-group">
-                        <label for="content" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                            <i class="fas fa-paragraph ml-2 text-purple-600"></i>
-                            شرح کامل  *
-                        </label>
-
-                        <!-- TinyMCE Editor -->
-                        <textarea id="content" name="content" class="tinymce-editor">          </textarea>
-
-                        <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                            <i class="fas fa-info-circle ml-1"></i>
-                            از ابزارهای ویرایشگر برای قالب‌بندی متن، افزودن تصاویر، جداول و لینک استفاده کنید
-                        </div>
-                    </div>
+                <!-- Full Description -->
+                <div>
+                    <label for="full-description" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                        توضیحات کامل
+                    </label>
+                    <textarea id="full-description" name="content" rows="6"
+                              class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+                              placeholder="توضیحات کامل محصول، ویژگی‌ها، مواد استفاده شده و...">{{old('content',$product->content)}}</textarea>
                 </div>
-
-                @error('content')
-                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
             </div>
         </div>
 
@@ -180,10 +164,10 @@
                     <button type="button" id="btn-main-image" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow">
                         انتخاب تصویر اصلی
                     </button>
-                    <input type="hidden" id="main_image" name="main_image">
+                    <input type="hidden" id="main_image" name="main_image" value="{{$product->main_image}}">
                 </div>
-                <div id="main-image-preview" class="mt-4 hidden">
-                    <img src="" class="rounded-lg shadow max-h-40" alt="Main Image">
+                <div id="main-image-preview" class="mt-4 ">
+                    <img src="{{asset($product->main_image)}}" class="rounded-lg shadow max-h-40" alt="Main Image">
                 </div>
             </div>
 
@@ -196,17 +180,25 @@
                     <button type="button" id="btn-gallery-images" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg shadow">
                         انتخاب تصاویر گالری
                     </button>
-                    <input type="hidden" id="gallery_images" name="gallery_images">
+
+
+                    <input type="hidden"  id="gallery_images" name="gallery_images" value="{{ implode(',',$product->images->pluck('image')->toArray())}}">
                 </div>
 
                 <!-- Gallery Preview -->
-                <div id="gallery-preview" class="mt-6 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 hidden">
-                    <!-- Gallery images preview here -->
+                <div id="gallery-preview" class="mt-6 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 ">
+
+                   @foreach($product->images as $image)
+                    <div class="relative">
+                        <img src="{{asset($image->image)}}" class="rounded-lg shadow max-h-32 w-full object-cover">
+                        <button type="button" class="absolute top-1 right-1 bg-red-600 text-white rounded-full px-2 py-1 text-xs remove-gallery" data-url="{{$image->image}}">×</button>
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
 
-        {{--<!-- Product Specifications -->
+      {{--  <!-- Product Specifications -->
         <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-6">
             <div class="flex items-center justify-between mb-6">
                 <div class="flex items-center">
@@ -247,31 +239,40 @@
                 <h2 class="text-xl font-bold text-gray-900 dark:text-slate-100">برچسب‌ها و SEO</h2>
             </div>
 
-            <div class=" gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Tags -->
                 <div>
                     <label for="product-tags" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
                         برچسب‌ها
                     </label>
                     <input type="text" id="product-tags" name="keywords"
+                           value="{{old('keywords',$product->keywords)}}"
                            class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
                            placeholder="چوب، دست‌ساز، مدرن (با کاما جدا کنید)">
                     <p class="text-sm text-gray-500 dark:text-slate-400 mt-1">برچسب‌ها را با کاما از هم جدا کنید</p>
                 </div>
 
-
+             {{--   <!-- SKU -->
+                <div>
+                    <label for="product-sku" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                        کد محصول (SKU)
+                    </label>
+                    <input type="text" id="product-sku" name="sku"
+                           class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+                           placeholder="XW-001">
+                </div>--}}
             </div>
         </div>
 
         <!-- Form Actions -->
         <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-6">
             <div class="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 sm:space-x-reverse">
-                <button type="button" id="cancel-btn" class="px-6 py-3 text-gray-700 dark:text-slate-300 bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 rounded-lg font-medium transition-colors">
+                <a href="{{route('admin.products.index')}}" type="button" id="cancel-btn" class="px-6 py-3 text-gray-700 dark:text-slate-300 bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 rounded-lg font-medium transition-colors">
                     <i class="fas fa-times ml-2"></i>انصراف
-                </button>
+                </a>
 
                 <button type="submit" class="px-6 py-3 bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-600 text-white rounded-lg font-medium transition-colors">
-                    <i class="fas fa-check ml-2"></i>ایجاد محصول
+                    <i class="fas fa-check ml-2"></i>ثبت تغییرات محصول
                 </button>
             </div>
         </div>
@@ -304,8 +305,6 @@
 @endsection
 @push('scripts')
     <script src="https://cdn.tiny.cloud/1/{{env('TINYMC_API_KEY')}}/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
-
     <script>
         // Initialize TinyMCE with Laravel File Manager
         tinymce.init({
@@ -369,28 +368,6 @@
         });
     </script>
     <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        if (currentTheme === 'dark') {
-            html.classList.add('dark');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            const isDark = html.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        });
-
-        // Back Button
-        document.getElementById('back-btn').addEventListener('click', () => {
-            // Navigate back to products list
-            console.log('Navigate back to products list');
-            // window.location.href = '/admin/products';
-        });
-
         // Image Upload Handling
         function setupImageUpload(uploadElement, inputElement, previewElement, isMultiple = false) {
             uploadElement.addEventListener('click', () => {
@@ -629,6 +606,7 @@
         });
     </script>
     <script>
+        $("#gallery_images").val(JSON.stringify($("#gallery_images").val().split(',')))
         function openFileManager(callback, type = 'image') {
             window.open('/file-manager/fm-button?type=' + type, 'fm', 'width=1000,height=600');
             window.fmSetLink = callback;
@@ -724,11 +702,11 @@
             console.log('Removed', url, 'remaining:', arr);
         });
 
+
         function removeCamas() {
             $('.format_number').each(function (index, element) {
                 $(this).val($(this).val().replace(/,/g, "")); // Remove existing commas
             });
         }
     </script>
-
 @endpush

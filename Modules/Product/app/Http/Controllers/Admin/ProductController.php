@@ -36,11 +36,13 @@ class ProductController extends Controller
             'name'        => 'required|string|max:255',
             'price'       => 'required|numeric|min:0',
             'description' => 'nullable|string',
+            'content' => 'nullable|string',
+            'video' => 'nullable|string',
             'keywords'    => 'nullable|string',
             'stock'       => 'required|integer|min:0',
             'main_image'  => 'nullable|string',  // file path from file manager
             'images'      => 'nullable|array',
-            'images.*'    => 'nullable|string',  // multiple file paths
+            'gallery_images'    => 'nullable|string',  // multiple file paths
         ]);
 
         DB::transaction(function () use ($data) {
@@ -48,19 +50,27 @@ class ProductController extends Controller
                 'name'        => $data['name'],
                 'price'       => $data['price'],
                 'description' => $data['description'] ?? null,
+                'content' => $data['content'] ?? null,
+                'video' => $data['video'] ?? null,
                 'keywords'    => $data['keywords'] ?? null,
                 'stock'       => $data['stock'],
                 'main_image'  => $data['main_image'] ?? null,
             ]);
 
-            if (!empty($data['images'])) {
-                foreach ($data['images'] as $img) {
-                    $product->images()->create(['image' => $img]);
+            if (!empty($data['gallery_images'])) {
+                $images = json_decode($data['gallery_images'], true); // Decode JSON array to PHP array
+
+                if (is_array($images)) {
+                    foreach ($images as $img) {
+                        $product->images()->create([
+                            'image' => $img
+                        ]);
+                    }
                 }
             }
         });
 
-        return redirect()->route('products.index')->with('success', 'Product created successfully!');
+        return redirect()->route('admin.products.index')->with('success', 'Product created successfully!');
     }
 
     /**
@@ -69,7 +79,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::with('images')->findOrFail($id);
-        return view('product::edit', compact('product'));
+        return view('product::admin.edit', compact('product'));
     }
 
     /**
@@ -83,11 +93,14 @@ class ProductController extends Controller
             'name'        => 'required|string|max:255',
             'price'       => 'required|numeric|min:0',
             'description' => 'nullable|string',
+            'content' => 'nullable|string',
+            'video' => 'nullable|string',
             'keywords'    => 'nullable|string',
             'stock'       => 'required|integer|min:0',
-            'main_image'  => 'nullable|string',
+            'main_image'  => 'nullable|string',  // file path from file manager
             'images'      => 'nullable|array',
-            'images.*'    => 'nullable|string',
+            'gallery_images'    => 'nullable|string',  // multiple file paths
+            'categories' => 'required'
         ]);
 
         DB::transaction(function () use ($product, $data) {
@@ -95,6 +108,8 @@ class ProductController extends Controller
                 'name'        => $data['name'],
                 'price'       => $data['price'],
                 'description' => $data['description'] ?? null,
+                'content' => $data['content'] ?? null,
+                'video' => $data['video'] ?? null,
                 'keywords'    => $data['keywords'] ?? null,
                 'stock'       => $data['stock'],
                 'main_image'  => $data['main_image'] ?? null,
@@ -102,14 +117,21 @@ class ProductController extends Controller
 
             // Replace images
             $product->images()->delete();
-            if (!empty($data['images'])) {
-                foreach ($data['images'] as $img) {
-                    $product->images()->create(['image' => $img]);
+            $product->categories()->sync($data['categories']);
+            if (!empty($data['gallery_images'])) {
+                $images = json_decode($data['gallery_images'], true); // Decode JSON array to PHP array
+
+                if (is_array($images)) {
+                    foreach ($images as $img) {
+                        $product->images()->create([
+                            'image' => $img
+                        ]);
+                    }
                 }
             }
         });
 
-        return redirect()->route('products.index')->with('success', 'Product updated successfully!');
+        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully!');
     }
 
     /**
@@ -120,7 +142,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('products.index')->with('success', 'Product deleted!');
+        return redirect()->route('admin.products.index')->with('success', 'Product deleted!');
     }
 
     /**

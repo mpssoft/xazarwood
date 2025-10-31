@@ -4,6 +4,8 @@ namespace Modules\Product\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Blog\Models\Category;
+
 // use Modules\Product\Database\Factories\ProductFactory;
 
 class Product extends Model
@@ -13,10 +15,15 @@ class Product extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['name','price','description','keywords','stock','main_image','images'];
+    protected $fillable = ['name','price','description','content','video','keywords','stock','main_image','images','status'];
 
     public function images()
     {
         return $this->hasMany(ProductImage::class);
     }
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_product', 'product_id', 'category_id');
+    }
+
 }

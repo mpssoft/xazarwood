@@ -56,7 +56,7 @@
             <div class="slider-container  relative h-80 md:h-[500px]" id="slider">
                 @foreach($sliders as $slider)
                 <!-- Slide 1 -->
-                <div class="slider-slide {{$loop->first? 'active':''}}  wood-texture p-20 flex flex-col items-center justify-center" style="background:url('{{$slider->image}}')">
+                <div class="slider-slide {{$loop->first? 'active':''}}  wood-texture p-20 flex flex-col items-center justify-center" style="background:url('{{$slider->image}};background-size:cover;')">
                     <div class="flex-1 "></div>
                     <div class="flex-col text-center " >
 

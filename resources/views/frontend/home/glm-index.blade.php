@@ -1,0 +1,401 @@
+@extends('layouts.app')
+
+@section('content')
+@include('frontend.home.glm-slider')
+<!-- Features Section -->
+<section class="py-12 bg-white dark:bg-wood-950 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-tree text-2xl text-amber-600 dark:text-amber-400 icon-pulse"></i>
+                </div>
+                <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">چوب طبیعی</h3>
+                <p class="text-sm text-wood-600 dark:text-wood-300">استفاده از بهترین چوب‌های طبیعی</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-hand-holding-heart text-2xl text-green-600 dark:text-green-400 icon-pulse"></i>
+                </div>
+                <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">ساخت دستی</h3>
+                <p class="text-sm text-wood-600 dark:text-wood-300">هر قطعه با دقت و عشق ساخته شده</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-truck text-2xl text-blue-600 dark:text-blue-400 icon-pulse"></i>
+                </div>
+                <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">ارسال سریع</h3>
+                <p class="text-sm text-wood-600 dark:text-wood-300">تحویل در کمتر از ۴۸ ساعت</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-award text-2xl text-purple-600 dark:text-purple-400 icon-pulse"></i>
+                </div>
+                <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">ضمانت کیفیت</h3>
+                <p class="text-sm text-wood-600 dark:text-wood-300">ضمانت ۱۰ ساله کیفیت محصولات</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section id="categories" class="py-16">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">محصولات ما</h2>
+            <p class="text-lg text-wood-600 dark:text-wood-300">هنر چوب در سه دسته اصلی</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Main Product - Rustic Tables -->
+            <div class="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2">
+                <div class="absolute top-4 right-4 z-10">
+                        <span class="px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white text-sm font-bold rounded-full animate-pulse">
+                            محصول اصلی
+                        </span>
+                </div>
+                <img src="https://picsum.photos/seed/rustictablemain/400/300" alt="میزهای روستیک" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end">
+                    <div class="p-6 text-right w-full">
+                        <div class="flex items-center justify-center mb-4">
+                            <i class="fas fa-table text-white text-4xl icon-bounce"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">میزهای روستیک</h3>
+                        <p class="text-white/90 text-sm mb-4">طراحی‌های منحصر به فرد با چوب طبیعی</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-white text-lg font-semibold">۱۵ محصول</span>
+                            <button class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
+                                مشاهده
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rustic Clocks -->
+            <div class="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2">
+                <img src="https://picsum.photos/seed/rusticclockmain/400/300" alt="ساعت‌های چوبی" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end">
+                    <div class="p-6 text-right w-full">
+                        <div class="flex items-center justify-center mb-4">
+                            <i class="fas fa-clock text-white text-4xl icon-bounce"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">ساعت‌های چوبی روستیک</h3>
+                        <p class="text-white/90 text-sm mb-4">زمان را با زیبایی طبیعت دنبال کنید</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-white text-lg font-semibold">۸ محصول</span>
+                            <button class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
+                                مشاهده
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wooden Kitchenware -->
+            <div class="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2">
+                <img src="https://picsum.photos/seed/woodenkitchenmain/400/300" alt="ظروف چوبی" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end">
+                    <div class="p-6 text-right w-full">
+                        <div class="flex items-center justify-center mb-4">
+                            <i class="fas fa-utensils text-white text-4xl icon-bounce"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">ظروف چوبی آشپزخانه</h3>
+                        <p class="text-white/90 text-sm mb-4">طعم طبیعت در غذای شما</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-white text-lg font-semibold">۱۲ محصول</span>
+                            <button class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
+                                مشاهده
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products - Main Focus on Rustic Tables -->
+<section id="products" class="py-16 bg-white dark:bg-wood-950 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">میزهای روستیک ویژه</h2>
+            <p class="text-lg text-wood-600 dark:text-wood-300">منتخب بهترین میزهای روستیک دست‌ساز</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Product 1 - Featured Rustic Table -->
+            <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
+                <div class="relative overflow-hidden">
+                    <img src="https://picsum.photos/seed/rustictable1/400/300" alt="میز ناهارخوری روستیک" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute top-4 right-4">
+                            <span class="px-3 py-1 bg-gradient-to-r from-amber-600 to-orange-600 text-white text-xs font-semibold rounded-full">
+                                پرفروش‌ترین
+                            </span>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">میز ناهارخوری روستیک</h3>
+                    <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">چوب گردو با طراحی کلاسیک</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-bold text-amber-700 dark:text-amber-400">۱۲٬۵۰۰٬۰۰۰ تومان</span>
+                        <button class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
+                            خرید
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
+                <div class="relative overflow-hidden">
+                    <img src="https://picsum.photos/seed/rustictable2/400/300" alt="میز قهوه‌خوری روستیک" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <span class="absolute top-4 right-4 px-3 py-1 bg-green-600 text-white text-xs font-semibold rounded-full">
+                            جدید
+                        </span>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">میز قهوه‌خوری روستیک</h3>
+                    <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">چوب بلوط با پایه‌های فلزی</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-bold text-amber-700 dark:text-amber-400">۸٬۹۰۰٬۰۰۰ تومان</span>
+                        <button class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
+                            خرید
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
+                <div class="relative overflow-hidden">
+                    <img src="https://picsum.photos/seed/rustictable3/400/300" alt="میز تحریر روستیک" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">میز تحریر روستیک</h3>
+                    <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">چوب افرا با کشوهای چوبی</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-bold text-amber-700 dark:text-amber-400">۱۰٬۲۰۰٬۰۰۰ تومان</span>
+                        <button class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
+                            خرید
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
+                <div class="relative overflow-hidden">
+                    <img src="https://picsum.photos/seed/rustictable4/400/300" alt="میز کنسول روستیک" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <span class="absolute top-4 right-4 px-3 py-1 bg-purple-600 text-white text-xs font-semibold rounded-full">
+                            محدود
+                        </span>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">میز کنسول روستیک</h3>
+                    <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">چوب گیلاس با طراحی هنری</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-bold text-amber-700 dark:text-amber-400">۶٬۸۰۰٬۰۰۰ تومان</span>
+                        <button class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
+                            خرید
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other Products Section -->
+        <div class="mt-16">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold text-wood-800 dark:text-wood-100 mb-4">ساعت‌ها و ظروف چوبی</h3>
+                <p class="text-lg text-wood-600 dark:text-wood-300">سایر محصولات روستیک</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Clock Product 1 -->
+                <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                    <div class="relative overflow-hidden">
+                        <img src="https://picsum.photos/seed/rusticclock1/400/300" alt="ساعت دیواری روستیک" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">ساعت دیواری روستیک</h3>
+                        <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">چوب گردو با عدد‌های رومی</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-amber-700 dark:text-amber-400">۲٬۴۰۰٬۰۰۰ تومان</span>
+                            <button class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
+                                خرید
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clock Product 2 -->
+                <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                    <div class="relative overflow-hidden">
+                        <img src="https://picsum.photos/seed/rusticclock2/400/300" alt="ساعت رومیزی روستیک" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">ساعت رومیزی روستیک</h3>
+                        <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">چوب بلوط با پایه فلزی</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-amber-700 dark:text-amber-400">۱٬۸۰۰٬۰۰۰ تومان</span>
+                            <button class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
+                                خرید
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kitchenware Product 1 -->
+                <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                    <div class="relative overflow-hidden">
+                        <img src="https://picsum.photos/seed/woodenbowl1/400/300" alt="کاسه چوبی" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">ست کاسه چوبی</h3>
+                        <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">چوب افرا، ست ۶ تایی</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-amber-700 dark:text-amber-400">۸۵۰٬۰۰۰ تومان</span>
+                            <button class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
+                                خرید
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kitchenware Product 2 -->
+                <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                    <div class="relative overflow-hidden">
+                        <img src="https://picsum.photos/seed/woodenboard1/400/300" alt="برش چوبی" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">برش آشپزخانه چوبی</h3>
+                        <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">چوب بامبو، ضد باکتری</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-amber-700 dark:text-amber-400">۴۵۰٬۰۰۰ تومان</span>
+                            <button class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
+                                خرید
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-8">
+            <button class="px-8 py-3 border-2 border-amber-600 text-amber-600 dark:text-amber-400 hover:bg-amber-600 hover:text-white rounded-lg font-semibold transition-all duration-300">
+                مشاهده همه محصولات
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-16">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <img src="https://picsum.photos/seed/woodworkshop/600/400" alt="کارگاه چوب" class="rounded-2xl shadow-2xl">
+            </div>
+            <div>
+                <h2 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-6">هنر میزهای روستیک</h2>
+                <p class="text-wood-600 dark:text-wood-300 mb-4">
+                    ما بیش از ۲۰ سال است که در زمینه تولید میزهای روستیک دست‌ساز فعالیت داریم. هر میز که از کارگاه ما خارج می‌شود، نتیجه ترکیبی از هنر سنتی و تکنیک‌های مدرن است.
+                </p>
+                <p class="text-wood-600 dark:text-wood-300 mb-6">
+                    تخصص اصلی ما ساخت میزهای روستیک است که هر کدام داستان خود را دارند. ما به استفاده از چوب‌های پایدار و روش‌های تولید دوست‌دار محیط زیست متعهد هستیم.
+                </p>
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div>
+                        <div class="text-3xl font-bold text-amber-600 dark:text-amber-400">۲۰+</div>
+                        <div class="text-sm text-wood-600 dark:text-wood-300">سال تجربه</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-amber-600 dark:text-amber-400">۵۰۰۰+</div>
+                        <div class="text-sm text-wood-600 dark:text-wood-300">میز فروخته شده</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-amber-600 dark:text-amber-400">۱۰۰%</div>
+                        <div class="text-sm text-wood-600 dark:text-wood-300">دست‌ساز</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{--
+<!-- Testimonials -->
+<section class="py-16 bg-white dark:bg-wood-950 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">نظرات مشتریان</h2>
+            <p class="text-lg text-wood-600 dark:text-wood-300">مشتریان ما چه می‌گویند</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-wood-50 dark:bg-wood-900 p-6 rounded-xl">
+                <div class="flex mb-4">
+                    <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p class="text-wood-600 dark:text-wood-300 mb-4">
+                    "میز روستیک که خریدم فوق‌العاده است. کیفیت چوب و طراحی بی‌نظیر است. واقعاً هنر دست‌ساز است."
+                </p>
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-amber-200 rounded-full ml-3"></div>
+                    <div>
+                        <div class="font-semibold text-wood-800 dark:text-wood-100">علی رضایی</div>
+                        <div class="text-sm text-wood-500 dark:text-wood-400">تهران</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-wood-50 dark:bg-wood-900 p-6 rounded-xl">
+                <div class="flex mb-4">
+                    <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p class="text-wood-600 dark:text-wood-300 mb-4">
+                    "ساعت چوبی روستیک که خریدم همزمان زیبا و کاربردی است. از خریدم بسیار راضی هستم."
+                </p>
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-green-200 rounded-full ml-3"></div>
+                    <div>
+                        <div class="font-semibold text-wood-800 dark:text-wood-100">مریم احمدی</div>
+                        <div class="text-sm text-wood-500 dark:text-wood-400">اصفهان</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-wood-50 dark:bg-wood-900 p-6 rounded-xl">
+                <div class="flex mb-4">
+                    <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                </div>
+                <p class="text-wood-600 dark:text-wood-300 mb-4">
+                    "ظروف چوبی آشپزخانه کیفیت فوق‌العاده‌ای دارند. هر قطعه هنری واقعی است. پیشنهاد می‌کنم!"
+                </p>
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-blue-200 rounded-full ml-3"></div>
+                    <div>
+                        <div class="font-semibold text-wood-800 dark:text-wood-100">رضا محمدی</div>
+                        <div class="text-sm text-wood-500 dark:text-wood-400">شیراز</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+--}}
+
+{{--
+<!-- Newsletter -->
+<section class="py-16 bg-gradient-to-r from-amber-600 to-orange-600">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <div class="flex items-center justify-center mb-4">
+            <i class="fas fa-table text-white text-3xl ml-3"></i>
+            <h2 class="text-3xl font-bold text-white">عضویت در خبرنامه میزهای روستیک</h2>
+        </div>
+        <p class="text-white/90 mb-8">از جدیدترین میزها و تخفیف‌های ویژه باخبر شوید</p>
+        <form class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+            <input type="email" placeholder="ایمیل خود را وارد کنید" class="flex-1 px-4 py-3 rounded-lg text-wood-800 focus:outline-none focus:ring-2 focus:ring-white">
+            <button type="submit" class="px-6 py-3 bg-white text-amber-600 rounded-lg font-semibold hover:bg-wood-50 transition-colors">
+                عضویت
+            </button>
+        </form>
+    </div>
+</section>
+--}}
+@endsection

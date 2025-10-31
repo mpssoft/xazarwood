@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
+            $table->longText('content')->nullable();
+            $table->text('video')->nullable();
             $table->string('keywords')->nullable();
             $table->decimal('price', 10, 2);
             $table->integer('stock')->default(0);
             $table->string('main_image')->nullable();
-
+            $table->enum('status', ['active', 'inactive'])->default('active');
 
             $table->timestamps();
         });

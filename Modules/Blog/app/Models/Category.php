@@ -4,6 +4,8 @@ namespace Modules\Blog\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Product\Models\Product;
+
 // use Modules\Blog\Database\Factories\CategoryFactory;
 
 class Category extends Model
@@ -22,6 +24,10 @@ class Category extends Model
     public function blogs()
     {
         return $this->belongsToMany(Blog::class, 'blog_category', 'category_id', 'blog_id');
+    }
+     public function products()
+    {
+        return $this->belongsToMany(Product::class, 'category_product', 'category_id', 'product_id');
     }
 
 }

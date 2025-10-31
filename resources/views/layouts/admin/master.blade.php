@@ -90,6 +90,11 @@
 
         }
     });
+        function removeCamas() {
+            $('.format_number').each(function (index, element) {
+                $(this).val($(this).val().replace(/,/g, "")); // Remove existing commas
+            });
+        }
     });
 </script>
 @include('sweetalert::alert')

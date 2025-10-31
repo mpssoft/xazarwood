@@ -16,7 +16,7 @@
                 <i class="fas fa-chevron-left text-xs"></i>
                 <a href="#" class="hover:text-gray-700 dark:hover:text-slate-300">دسته‌بندی‌ها</a>
                 <i class="fas fa-chevron-left text-xs"></i>
-                <span class="text-gray-900 dark:text-slate-100">افزودن جدید</span>
+                <span class="text-gray-900 dark:text-slate-100">ویرایش دسته</span>
             </nav>
 
             <div class="flex items-center justify-between">
@@ -29,7 +29,7 @@
                         <i class="fas fa-folder-plus text-white text-xl"></i>
                     </div>
                     <div>
-                        <h1 class="text-2xl font-bold text-gray-900 dark:text-slate-100">افزودن دسته‌بندی جدید</h1>
+                        <h1 class="text-2xl font-bold text-gray-900 dark:text-slate-100">ویرایش دسته‌بندی </h1>
                         <p class="text-sm text-gray-500 dark:text-slate-400">XazarWood - پنل مدیریت</p>
                     </div>
                 </div>
@@ -52,14 +52,15 @@
                 </div>
                 <div>
                     <h2 class="text-lg font-bold text-gray-900 dark:text-slate-100">اطلاعات دسته‌بندی</h2>
-                    <p class="text-sm text-gray-600 dark:text-slate-400">نام و توضیحات دسته‌بندی جدید را وارد کنید</p>
+                    <p class="text-sm text-gray-600 dark:text-slate-400">نام و توضیحات دسته‌بندی را وارد کنید</p>
                 </div>
             </div>
         </div>
 
         <!-- Form Body -->
-        <form method="POST" action="{{route('admin.categories.store')}}" class="p-6">
+        <form method="POST" action="{{route('admin.categories.update',$category->id)}}" class="p-6">
         @csrf
+            @method('put')
             <!-- Category Name -->
             <div class="mb-6">
                 <label for="category-name" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-3">
@@ -67,6 +68,7 @@
                     نام دسته‌بندی *
                 </label>
                 <input
+                    value="{{old('name',$category->name)}}"
                     type="text"
                     id="category-name"
                     name="name"
@@ -92,7 +94,7 @@
                     rows="5"
                     class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100 placeholder-gray-500 dark:placeholder-slate-400 resize-none transition-colors"
                     placeholder="توضیح کوتاهی درباره این دسته‌بندی و محصولاتی که شامل می‌شود..."
-                    maxlength="500"></textarea>
+                    maxlength="500">{{old('description',$category->description)}}</textarea>
                 <p class="text-xs text-gray-500 dark:text-slate-400 mt-2">
                     <i class="fas fa-info-circle ml-1"></i>
                     حداکثر ۵۰۰ کاراکتر - این فیلد اختیاری است
@@ -107,7 +109,7 @@
                 </a>
                 <button type="submit" class="inline-flex items-center justify-center px-6 py-3 bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-600 text-white rounded-lg font-medium transition-colors shadow-sm">
                     <i class="fas fa-check ml-2"></i>
-                    ایجاد دسته‌بندی
+                    ثبت تغییرات
                 </button>
             </div>
 

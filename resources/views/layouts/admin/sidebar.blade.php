@@ -243,8 +243,11 @@
                         <span class="text-gray-600 dark:text-gray-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">ایجاد مقاله جدید</span>
                     </a>
                     <a href="{{route('admin.categories.index')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-plus text-xs text-orange-300 w-3"></i>
+                        <i class="fas fa-list text-xs text-orange-300 w-3"></i>
                         <span class="text-gray-600 dark:text-gray-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">  مدیریت دسته ها</span>
+                    </a> <a href="{{route('admin.categories.create')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                        <i class="fas fa-plus text-xs text-orange-300 w-3"></i>
+                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">ایجاد دسته جدید </span>
                     </a>
                 </div>
             </div>

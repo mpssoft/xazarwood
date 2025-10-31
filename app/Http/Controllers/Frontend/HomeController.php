@@ -16,7 +16,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        //auth()->loginUsingId(1);
+       // auth()->loginUsingId(1);
         $this->seo()
             ->setTitle("آموزش به زبان شما!")
             ->setDescription("آموزش فیزیک به شیوه‌ای ساده، جذاب و کاربردی که دانش‌آموزان را برای موفقیت در کنکور و ادامه تحصیل در رشته‌های مهندسی و علوم پایه آماده کند. ما معتقدیم هر دانش‌آموزی می‌تواند فیزیک را بیاموزد.")
@@ -25,7 +25,7 @@ class HomeController extends Controller
         $courses = Course::where('spotplayer_id','!=','')->where("status","active")->get();
         $lessons = Lesson::latest()->take(6)->get();
 
-        return view('frontend.home.index2',compact('sliders','courses','lessons'));
+        return view('frontend.home.glm-index',compact('sliders','courses','lessons'));
     }
     public function play(Lesson $lesson)
     {

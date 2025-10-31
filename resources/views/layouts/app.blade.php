@@ -15,21 +15,137 @@
         <!-- Typography plugin CSS (jsDelivr) -->
 
         <script>
-            window.tailwind = {
-                config: {
-
-                    darkMode: 'class',
-                    theme: {
-                        extend: {},
-                    },
+            tailwind.config = {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        colors: {
+                            wood: {
+                                50: '#fdf8f3',
+                                100: '#faf2e8',
+                                200: '#f5e6d4',
+                                300: '#edd4b3',
+                                400: '#e2b88d',
+                                500: '#d4a574',
+                                600: '#b8935f',
+                                700: '#9c7a52',
+                                800: '#6b4e31',
+                                900: '#4a2f1f',
+                                950: '#2d1a0e',
+                            }
+                        }
+                    }
                 }
             }
         </script>
+        <style>
+            /* Custom scrollbar */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+            ::-webkit-scrollbar-track {
+                background: var(--wood-100);
+            }
+            ::-webkit-scrollbar-thumb {
+                background: var(--wood-500);
+                border-radius: 4px;
+            }
 
+            /* Dark mode scrollbar */
+            .dark ::-webkit-scrollbar-track {
+                background: var(--wood-900);
+            }
+            .dark ::-webkit-scrollbar-thumb {
+                background: var(--wood-600);
+            }
+
+            /* Slider transitions */
+            .slide {
+                transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            }
+
+            .slide-active {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            .slide-prev {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            .slide-next {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            /* Icon animations */
+            .icon-bounce {
+                animation: bounce 2s infinite;
+            }
+
+            @keyframes bounce {
+                0%, 20%, 50%, 80%, 100% {
+                    transform: translateY(0);
+                }
+                40% {
+                    transform: translateY(-10px);
+                }
+                60% {
+                    transform: translateY(-5px);
+                }
+            }
+
+            .icon-pulse {
+                animation: pulse 2s infinite;
+            }
+
+            @keyframes pulse {
+                0% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
+
+            /* Dropdown animations */
+            .dropdown-enter {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            .dropdown-enter-active {
+                opacity: 1;
+                transform: scale(1);
+                transition: opacity 200ms ease-out, transform 200ms ease-out;
+            }
+
+            .dropdown-leave {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            .dropdown-leave-active {
+                opacity: 0;
+                transform: scale(0.95);
+                transition: opacity 150ms ease-in, transform 150ms ease-in;
+            }
+
+            /* Blur effect for dropdowns */
+            .with-blur {
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+        </style>
+        <link rel="stylesheet" href="/css/fizik_styles.css" />
     </head>
-    <body class="bg-amber-50 dark:bg-gray-900 text-amber-900 dark:text-amber-100 transition-colors duration-300" dir="rtl">
+    <body dir="rtl" class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-wood-950 dark:to-wood-900 min-h-screen transition-colors duration-300">
         <div class="min-h-screen ">
-            @include('layouts.frontend.navigation')
+            @include('layouts.frontend.glm-navigation')
 
             <!-- Page Heading -->
             @isset($header)
@@ -39,18 +155,15 @@
                     </div>
                 </header>
             @endisset
-
-
-
             <!-- Page Content -->
             <main>
                 @yield('content')
                 {{ $slot ?? '' }}
             </main>
 
-            @include("layouts.frontend.footer")
+            @include("layouts.frontend.glm-footer")
         </div>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+
         <script src="/js/jquery/jquery.min.js"> </script>
         <script src="/js/modules/sweetalert2.js" ></script>
         <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
@@ -244,54 +357,11 @@
 
             </script>
         @endif
-        <link href="/css/fizik_styles.css?n=2" rel="stylesheet">
-        <style>
-            /* ✅ Blur utility (enabled by default) */
-            .with-blur {
-                backdrop-filter: blur(8px);
-                -webkit-backdrop-filter: blur(8px);
-            }
-            .hero-pattern {
-                background-image:
-                    radial-gradient(circle at 20% 20%, rgba(255, 0, 110, 0.4) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(131, 56, 236, 0.4) 0%, transparent 50%),
-                    radial-gradient(circle at 40% 80%, rgba(58, 134, 255, 0.4) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 80%, rgba(6, 255, 165, 0.4) 0%, transparent 50%),
-                    radial-gradient(circle at 60% 40%, rgba(255, 190, 11, 0.3) 0%, transparent 50%);
-            }
 
-            /* ✅ Disable blur on TV/extra large screens */
-            @media screen and (min-width: 1920px) {
-                .with-blur {
-                    backdrop-filter: none !important;
-                    -webkit-backdrop-filter: none !important;
-                    background-color: rgba(0, 0, 0, 0.3); /* fallback */
-                }
-                .tv-optimized-text-shadow {
-                    filter: none !important;
-                    text-shadow: none !important;
-                }
-
-                .hero-pattern {
-                    background-image:
-                        radial-gradient(circle at 30% 30%, rgba(255, 0, 110, 0.2) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 30%, rgba(131, 56, 236, 0.2) 0%, transparent 50%);
-                }
-            }
-
-             .prose ul { list-style-type: disc; padding-left: 1.5rem; }
-            .prose ol { list-style-type: decimal; padding-left: 1.5rem; }
-            .prose p  { margin-top: 1em; margin-bottom: 1em; line-height: 1.7; }
-            .prose h1 { font-size: 2em; font-weight: bold; margin: 1em 0; }
-            .prose h2 { font-size: 1.5em; font-weight: bold; margin: 1em 0; }
-
-        </style>
         <link rel="stylesheet" href="/fontawesome-6.0.0-web/css/all.css"/>
         <!-- Scripts -->
         @yield('style')
         @stack('styles')
-
-
 
         <!-- Splash Overlay -->
         <div id="splashOverlay" class="fixed inset-0 z-50 hidden">
@@ -611,6 +681,224 @@
     </body>
 </html>
 
+
+<script>
+    // Slider functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const indicators = document.querySelectorAll('.indicator');
+    let autoSlideInterval;
+
+    function showSlide(index) {
+        // Hide all slides
+        slides.forEach((slide, i) => {
+            slide.classList.remove('slide-active', 'slide-prev', 'slide-next');
+            if (i === index) {
+                slide.classList.add('slide-active');
+            } else if (i < index) {
+                slide.classList.add('slide-prev');
+            } else {
+                slide.classList.add('slide-next');
+            }
+        });
+
+        // Update indicators
+        indicators.forEach((indicator, i) => {
+            if (i === index) {
+                indicator.classList.remove('bg-white/50');
+                indicator.classList.add('bg-white');
+            } else {
+                indicator.classList.remove('bg-white');
+                indicator.classList.add('bg-white/50');
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+        resetAutoSlide();
+    }
+
+    function previousSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+        resetAutoSlide();
+    }
+
+    function goToSlide(index) {
+        currentSlide = index;
+        showSlide(currentSlide);
+        resetAutoSlide();
+    }
+
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, 5000);
+    }
+
+    function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        startAutoSlide();
+    }
+
+    // Theme Toggle
+    function toggleTheme() {
+        const html = document.documentElement;
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+
+        if (html.classList.contains('dark')) {
+            html.classList.remove('dark');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+            localStorage.setItem('theme', 'light');
+        } else {
+            html.classList.add('dark');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        const closeIcon = document.getElementById('closeIcon');
+
+        if (mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.remove('hidden');
+            menuIcon.classList.add('hidden');
+            closeIcon.classList.remove('hidden');
+        } else {
+            mobileMenu.classList.add('hidden');
+            menuIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+        }
+    }
+
+    // Dropdown functionality
+    document.addEventListener('DOMContentLoaded', () => {
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+        } else {
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        }
+
+        // Start auto slider
+        startAutoSlide();
+
+        // Pause auto slide on hover
+        const sliderContainer = document.querySelector('.relative.h-96');
+        sliderContainer.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+        sliderContainer.addEventListener('mouseleave', startAutoSlide);
+
+        // User dropdown functionality
+        @if(auth()->check())
+        const userMenuBtn = document.getElementById('userMenuBtn');
+        const userDropdown = document.getElementById('userDropdown');
+        let userTimeout;
+
+        userMenuBtn.addEventListener('mouseenter', () => {
+            clearTimeout(userTimeout);
+            userDropdown.classList.remove('hidden');
+            // Add animation classes
+            userDropdown.classList.add('dropdown-enter');
+            setTimeout(() => {
+                userDropdown.classList.remove('dropdown-enter');
+                userDropdown.classList.add('dropdown-enter-active');
+            }, 10);
+        });
+
+        userDropdown.addEventListener('mouseenter', () => {
+            clearTimeout(userTimeout);
+        });
+
+        userMenuBtn.addEventListener('mouseleave', () => {
+            userTimeout = setTimeout(() => {
+                userDropdown.classList.add('dropdown-leave');
+                userDropdown.classList.remove('dropdown-enter-active');
+                setTimeout(() => {
+                    userDropdown.classList.add('hidden');
+                    userDropdown.classList.remove('dropdown-leave');
+                }, 150);
+            }, 200);
+        });
+
+        userDropdown.addEventListener('mouseleave', () => {
+            userTimeout = setTimeout(() => {
+                userDropdown.classList.add('dropdown-leave');
+                userDropdown.classList.remove('dropdown-enter-active');
+                setTimeout(() => {
+                    userDropdown.classList.add('hidden');
+                    userDropdown.classList.remove('dropdown-leave');
+                }, 150);
+            }, 200);
+        });
+        @endif
+        // Cart dropdown functionality
+        const cartBtn = document.getElementById('cartBtn');
+        const cartDropdown = document.getElementById('cartDropdown');
+        let cartTimeout;
+
+        cartBtn.addEventListener('mouseenter', () => {
+            clearTimeout(cartTimeout);
+            cartDropdown.classList.remove('hidden');
+            // Add animation classes
+            cartDropdown.classList.add('dropdown-enter');
+            setTimeout(() => {
+                cartDropdown.classList.remove('dropdown-enter');
+                cartDropdown.classList.add('dropdown-enter-active');
+            }, 10);
+        });
+
+        cartDropdown.addEventListener('mouseenter', () => {
+            clearTimeout(cartTimeout);
+        });
+
+        cartBtn.addEventListener('mouseleave', () => {
+            cartTimeout = setTimeout(() => {
+                cartDropdown.classList.add('dropdown-leave');
+                cartDropdown.classList.remove('dropdown-enter-active');
+                setTimeout(() => {
+                    cartDropdown.classList.add('hidden');
+                    cartDropdown.classList.remove('dropdown-leave');
+                }, 150);
+            }, 200);
+        });
+
+        cartDropdown.addEventListener('mouseleave', () => {
+            cartTimeout = setTimeout(() => {
+                cartDropdown.classList.add('dropdown-leave');
+                cartDropdown.classList.remove('dropdown-enter-active');
+                setTimeout(() => {
+                    cartDropdown.classList.add('hidden');
+                    cartDropdown.classList.remove('dropdown-leave');
+                }, 150);
+            }, 200);
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuButton = e.target.closest('button[onclick="toggleMobileMenu()"]');
+
+        if (!mobileMenu.contains(e.target) && !menuButton) {
+            mobileMenu.classList.add('hidden');
+            document.getElementById('menuIcon').classList.remove('hidden');
+            document.getElementById('closeIcon').classList.add('hidden');
+        }
+    });
+</script>
 @include('sweetalert::alert')
 @yield('script')
 

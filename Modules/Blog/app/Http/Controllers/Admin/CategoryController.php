@@ -11,26 +11,26 @@ class CategoryController extends Controller
     // Show all categories
     public function index()
     {
-        $categories = Category::all();
-        return view('blog::categories.index', compact('categories'));
+        $categories = Category::paginate(20);
+        return view('blog::admin.categories.index', compact('categories'));
     }
 
     // Show form to create category
     public function create()
     {
-        return view('blog::categories.create');
+        return view('blog::admin.categories.create');
     }
 
     // Save new category
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255'
+
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string'
         ]);
 
-        Category::create([
-            'name' => $request->name
-        ]);
+        Category::create($data);
 
         return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
     }
@@ -39,19 +39,18 @@ class CategoryController extends Controller
     // Show form to edit category
     public function edit(Category $category)
     {
-        return view('blog::categories.edit', compact('category'));
+        return view('blog::admin.categories.edit', compact('category'));
     }
 
     // Update category
     public function update(Request $request, Category $category)
     {
-        $request->validate([
-            'name' => 'required|string|max:255'
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string'
         ]);
 
-        $category->update([
-            'name' => $request->name
-        ]);
+        $category->update($data);
 
         return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
     }
