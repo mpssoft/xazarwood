@@ -134,6 +134,7 @@ class CartService
             if (
                 (!$discount->courses->count() && !$discount->lessons->count()) ||
                 (in_array($item['model']->id, $discount->courses->pluck('id')->toArray())) ||
+                (in_array($item['model']->id, $discount->products->pluck('id')->toArray())) ||
                 (in_array($item['model']->id, $discount->lessons->pluck('id')->toArray()))
 
             ) {

@@ -5,6 +5,7 @@ namespace Modules\Product\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Blog\Models\Category;
+use Modules\Shop\Models\Discount;
 
 // use Modules\Product\Database\Factories\ProductFactory;
 
@@ -25,5 +26,8 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class, 'category_product', 'product_id', 'category_id');
     }
-
+    public function discounts()
+    {
+        return $this->morphToMany(Discount::class, 'discountable');
+    }
 }

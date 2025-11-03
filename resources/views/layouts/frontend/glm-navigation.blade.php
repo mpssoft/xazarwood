@@ -1,14 +1,24 @@
 <!-- Header -->
 <header class="bg-white/95 dark:bg-wood-950/95 backdrop-blur-sm shadow-lg sticky top-0 z-50 transition-colors duration-300">
-    <div class="max-w-7xl mx-auto px-4 py-4">
+    <div class="max-w-7xl mx-auto px-4 py-1">
         <div class="flex items-center justify-between">
             <!-- Brand and Navigation -->
             <div class="flex items-center space-x-reverse space-x-8">
-                <div class="flex items-center space-x-reverse space-x-3">
-                    <span class="text-3xl">🪵</span>
-                    <h1 class="text-2xl font-bold bg-gradient-to-l from-amber-700 to-orange-700 dark:from-wood-300 dark:to-wood-200 bg-clip-text text-transparent">
-                        میزهای روستیک
-                    </h1>
+                <div class="flex items-center justify-center space-x-3 space-x-reverse text-center">
+                    <div class="inline-flex items-center justify-center relative top-6 right-11 w-8 h-8 bg-wood-600 dark:bg-wood-400 rounded mb-4 shadow-lg"><i class="fas fa-tree text-wood-100 dark:text-wood-900 "></i>
+                    </div>
+                    <!-- 🪵 Brand Text -->
+                    <div class="flex flex-col items-center leading-tight font-extrabold">
+        <span class="text-3xl bg-gradient-to-l from-wood-700 to-wood-400 dark:from-wood-300 dark:to-wood-100
+                     bg-clip-text text-transparent drop-shadow-sm tracking-tight">
+            XazarWood
+        </span>
+                        <span class="text-xl text-wood-800 dark:text-wood-200 drop-shadow-sm tracking-tight">
+            خزر چوب
+        </span>
+                    </div>
+
+
                 </div>
 
                 <!-- Desktop Navigation -->
@@ -53,12 +63,12 @@
 
                 <!-- Cart Dropdown -->
                 <div class="relative">
-                    <button id="cartBtn" class="p-2 rounded-lg bg-wood-100 dark:bg-wood-800 hover:bg-wood-200 dark:hover:bg-wood-700 transition-colors relative">
+                    <a href="/cart" id="cartBtn" class="p-2 flex rounded-lg bg-wood-100 dark:bg-wood-800 hover:bg-wood-200 dark:hover:bg-wood-700 transition-colors relative">
                         <svg class="w-6 h-6 text-wood-700 dark:text-wood-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
-                        <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
-                    </button>
+                        <span id="itemsCount" class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
+                    </a>
 
                     <!-- Cart Dropdown Menu -->
                     <div id="cartDropdown" class="hidden absolute left-0 mt-3 w-72 max-w-[90vw] bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 rounded-2xl shadow-[0_8px_32px_rgba(74,47,31,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-3 space-y-2 with-blur border border-wood-300/50 dark:border-wood-700/50">
@@ -131,7 +141,7 @@
                     @else
                         <div id="authButtons">
                             <a href="#" onclick="openLightbox()"
-                               class="bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 px-6 py-2 rounded-lg font-medium hover:from-wood-100 hover:via-wood-200 hover:to-wood-300 dark:hover:from-wood-800 dark:hover:via-wood-700 dark:hover:to-wood-900 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                               class="bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 px-6 py-2 rounded-lg font-medium hover:from-wood-100 hover:via-wood-200 hover:to-wood-300 dark:hover:from-wood-800 dark:hover:via-wood-700 dark:hover:to-wood-900 hover:shadow-md hover:-translate-y-0.5 transition-all ">
                                 ورود / ثبت نام
                             </a>
                         </div>

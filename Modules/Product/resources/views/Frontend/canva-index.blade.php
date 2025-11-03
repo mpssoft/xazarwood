@@ -1,458 +1,350 @@
-<!doctype html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مجموعه چوبی خزر - محصولات چوبی</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Vazir:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-    <style>
-        body {
-            box-sizing: border-box;
-            font-family: 'Vazir', sans-serif;
-        }
+@extends('layouts.app')
 
-        .product-card {
-            transition: all 0.3s ease;
-        }
+@section('content')
+<div class="bg-wood-50 dark:bg-wood-950 text-wood-900 dark:text-wood-100 min-h-full transition-colors duration-300" dir="rtl"><!-- Header -->
+<header class="bg-gradient-to-r from-wood-100 to-wood-200 dark:from-wood-900 dark:to-wood-800 py-8 px-4">
+    <div class="max-w-7xl mx-auto text-center">
 
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(139, 69, 19, 0.15);
-        }
-
-        .wood-texture {
-            background-image:
-                linear-gradient(45deg, rgba(160, 82, 45, 0.1) 25%, transparent 25%),
-                linear-gradient(-45deg, rgba(160, 82, 45, 0.1) 25%, transparent 25%),
-                linear-gradient(45deg, transparent 75%, rgba(160, 82, 45, 0.1) 75%),
-                linear-gradient(-45deg, transparent 75%, rgba(160, 82, 45, 0.1) 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .badge-bestseller {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-        }
-
-        .badge-new {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-        }
-
-        .badge-sale {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-        }
-
-        .wood-badge {
-            background: rgba(92, 51, 23, 0.9);
-            color: #fef3c7;
-        }
-
-        .rating-stars {
-            color: #fbbf24;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #92400e, #78350f);
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #78350f, #451a03);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(120, 53, 15, 0.3);
-        }
-
-        .btn-secondary {
-            background: rgba(217, 119, 6, 0.1);
-            color: #92400e;
-            border: 1px solid rgba(217, 119, 6, 0.3);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(217, 119, 6, 0.2);
-            border-color: rgba(217, 119, 6, 0.5);
-        }
-
-        .filter-chip {
-            background: white;
-            border: 2px solid #e5e7eb;
-            transition: all 0.3s ease;
-        }
-
-        .filter-chip:hover {
-            border-color: #92400e;
-            background: #fef3c7;
-            transform: translateY(-2px);
-        }
-
-        .hero-pattern {
-            background-image: radial-gradient(circle at 25px 25px, rgba(139, 69, 19, 0.1) 2%, transparent 0%),
-            radial-gradient(circle at 75px 75px, rgba(160, 82, 45, 0.1) 2%, transparent 0%);
-            background-size: 100px 100px;
-        }
-    </style>
-    <style>@view-transition { navigation: auto; }</style>
-    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-    <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
-</head>
-<body class="bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 text-amber-900 min-h-full hero-pattern"><!-- Header -->
-<header class="text-center py-16 px-4">
-    <div class="max-w-4xl mx-auto">
-        <div class="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-amber-800 to-amber-900 rounded-full mb-8 shadow-2xl"><i class="fas fa-tree text-amber-100 text-4xl"></i>
-        </div>
-        <h1 class="text-5xl md:text-6xl font-bold text-amber-900 mb-6 leading-tight">مجموعه چوبی خزر</h1>
-        <p class="text-xl md:text-2xl text-amber-700 mb-8 leading-relaxed">کیفیت برتر، طراحی منحصر به فرد و زیبایی طبیعی چوب در هر محصول</p>
-        <div class="flex flex-wrap items-center justify-center gap-8 text-amber-600">
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center"><i class="fas fa-shipping-fast text-amber-800 text-lg"></i>
-                </div><span class="font-medium">ارسال رایگان</span>
+        <h1 class="text-3xl md:text-4xl font-bold text-wood-800 dark:text-wood-100 mb-3">مجموعه چوب دست‌ساز</h1>
+        <p class="text-lg text-wood-600 dark:text-wood-300 mb-6 max-w-xl mx-auto">قطعات مبلمان دست‌ساز که زیبایی طبیعی و ظرافت بی‌زمان را به خانه شما می‌آورد</p>
+        <div class="flex flex-wrap justify-center gap-4 text-wood-700 dark:text-wood-300">
+            <div class="flex items-center space-x-2 space-x-reverse">
+                <div class="w-8 h-8 bg-wood-300 dark:bg-wood-700 rounded-full flex items-center justify-center"><i class="fas fa-shipping-fast text-wood-700 dark:text-wood-300 text-sm"></i>
+                </div><span class="font-medium text-sm">ارسال رایگان</span>
             </div>
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center"><i class="fas fa-certificate text-amber-800 text-lg"></i>
-                </div><span class="font-medium">ضمانت کیفیت</span>
+            <div class="flex items-center space-x-2 space-x-reverse">
+                <div class="w-8 h-8 bg-wood-300 dark:bg-wood-700 rounded-full flex items-center justify-center"><i class="fas fa-certificate text-wood-700 dark:text-wood-300 text-sm"></i>
+                </div><span class="font-medium text-sm">ضمانت کیفیت</span>
             </div>
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center"><i class="fas fa-tools text-amber-800 text-lg"></i>
-                </div><span class="font-medium">ساخت دست</span>
+            <div class="flex items-center space-x-2 space-x-reverse">
+                <div class="w-8 h-8 bg-wood-300 dark:bg-wood-700 rounded-full flex items-center justify-center"><i class="fas fa-hammer text-wood-700 dark:text-wood-300 text-sm"></i>
+                </div><span class="font-medium text-sm">دست‌ساز</span>
             </div>
         </div>
     </div>
 </header><!-- Filter Section -->
-<section class="max-w-7xl mx-auto px-4 mb-12">
-    <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-amber-200/50 p-8 wood-texture">
-        <h2 class="text-2xl font-bold text-amber-900 mb-6 text-center"><i class="fas fa-filter ml-3"></i>دسته‌بندی محصولات</h2>
-        <div class="flex flex-wrap justify-center gap-4">
-            <div class="filter-chip px-6 py-3 rounded-2xl cursor-pointer font-medium"><i class="fas fa-th ml-2 text-amber-600"></i>همه محصولات
-            </div>
-            <div class="filter-chip px-6 py-3 rounded-2xl cursor-pointer font-medium"><i class="fas fa-table ml-2 text-amber-600"></i>میز و صندلی
-            </div>
-            <div class="filter-chip px-6 py-3 rounded-2xl cursor-pointer font-medium"><i class="fas fa-archive ml-2 text-amber-600"></i>کابینت و قفسه
-            </div>
-            <div class="filter-chip px-6 py-3 rounded-2xl cursor-pointer font-medium"><i class="fas fa-couch ml-2 text-amber-600"></i>مبلمان اداری
-            </div>
-            <div class="filter-chip px-6 py-3 rounded-2xl cursor-pointer font-medium"><i class="fas fa-star ml-2 text-amber-600"></i>تزئینی و هنری
-            </div>
+<section class="max-w-7xl mx-auto px-4 py-6">
+    <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg border border-wood-200 dark:border-wood-700 p-6">
+        <h2 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-4 text-center flex items-center justify-center"><i class="fas fa-filter ml-2 text-wood-600 dark:text-wood-400"></i> دسته‌بندی محصولات</h2>
+        <div class="flex flex-wrap justify-center gap-3"><button class="px-4 py-2 bg-wood-100 hover:bg-wood-200 dark:bg-wood-800 dark:hover:bg-wood-700 text-wood-800 dark:text-wood-200 rounded-lg font-medium transition-all duration-300 border border-wood-300 dark:border-wood-600 hover:shadow-md text-sm"> <i class="fas fa-th ml-2 text-wood-600 dark:text-wood-400"></i>همه محصولات </button> <button class="px-4 py-2 bg-wood-100 hover:bg-wood-200 dark:bg-wood-800 dark:hover:bg-wood-700 text-wood-800 dark:text-wood-200 rounded-lg font-medium transition-all duration-300 border border-wood-300 dark:border-wood-600 hover:shadow-md text-sm"> <i class="fas fa-table ml-2 text-wood-600 dark:text-wood-400"></i>میز و صندلی </button> <button class="px-4 py-2 bg-wood-100 hover:bg-wood-200 dark:bg-wood-800 dark:hover:bg-wood-700 text-wood-800 dark:text-wood-200 rounded-lg font-medium transition-all duration-300 border border-wood-300 dark:border-wood-600 hover:shadow-md text-sm"> <i class="fas fa-archive ml-2 text-wood-600 dark:text-wood-400"></i>کمد و قفسه </button> <button class="px-4 py-2 bg-wood-100 hover:bg-wood-200 dark:bg-wood-800 dark:hover:bg-wood-700 text-wood-800 dark:text-wood-200 rounded-lg font-medium transition-all duration-300 border border-wood-300 dark:border-wood-600 hover:shadow-md text-sm"> <i class="fas fa-couch ml-2 text-wood-600 dark:text-wood-400"></i>اتاق نشیمن </button> <button class="px-4 py-2 bg-wood-100 hover:bg-wood-200 dark:bg-wood-800 dark:hover:bg-wood-700 text-wood-800 dark:text-wood-200 rounded-lg font-medium transition-all duration-300 border border-wood-300 dark:border-wood-600 hover:shadow-md text-sm"> <i class="fas fa-star ml-2 text-wood-600 dark:text-wood-400"></i>تزئینی </button>
         </div>
     </div>
 </section><!-- Products Grid -->
 <main class="max-w-7xl mx-auto px-4 pb-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"><!-- Product 1: میز ناهارخوری چوب راش -->
-        <div class="product-card bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-amber-200/50 overflow-hidden">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"><!-- Product 1: Oak Dining Table -->
+        <div class="bg-white dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-xl border border-wood-200 dark:border-wood-700 overflow-hidden transition-all duration-300 hover:-translate-y-2">
             <div class="relative">
-                <div class="h-64 bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
-                    <div class="text-center text-amber-700"><i class="fas fa-table text-6xl mb-4"></i>
-                        <p class="text-sm font-medium">میز ناهارخوری راش</p>
+                <div class="h-64 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-800 dark:to-wood-700 flex items-center justify-center">
+                    <div class="text-center text-wood-700 dark:text-wood-300"><i class="fas fa-table text-6xl mb-4"></i>
+                        <p class="text-sm font-medium">میز غذاخوری بلوط</p>
                     </div>
                 </div>
-                <div class="absolute top-4 right-4 flex flex-col space-y-2"><span class="badge badge-bestseller"> <i class="fas fa-fire ml-1"></i>پرفروش </span> <span class="badge badge-sale"> <i class="fas fa-tag ml-1"></i>تخفیف ۱۵٪ </span>
+                <div class="absolute top-4 right-4 flex flex-col space-y-2"><span class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center"> <i class="fas fa-fire ml-1"></i>پرفروش </span> <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center"> <i class="fas fa-tag ml-1"></i>۱۵٪ تخفیف </span>
                 </div>
-                <div class="absolute bottom-4 left-4"><span class="badge wood-badge"> <i class="fas fa-tree ml-1"></i>چوب راش </span>
+                <div class="absolute bottom-4 left-4"><span class="bg-wood-600 dark:bg-wood-400 text-wood-100 dark:text-wood-900 px-3 py-1 rounded-full text-xs font-medium flex items-center"> <i class="fas fa-tree ml-1"></i>چوب بلوط </span>
                 </div>
             </div>
             <div class="p-6">
                 <div class="flex items-start justify-between mb-4">
-                    <h3 class="text-xl font-bold text-amber-900 leading-tight">میز ناهارخوری چوب راش</h3><button class="text-amber-400 hover:text-red-500 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
+                    <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100 leading-tight">میز غذاخوری بلوط ممتاز</h3><button class="text-wood-400 hover:text-red-500 dark:text-wood-500 dark:hover:text-red-400 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
                 </div>
-                <p class="text-amber-700 mb-4 leading-relaxed">میز ناهارخوری ۶ نفره از چوب راش طبیعی با طراحی کلاسیک و مدرن</p>
+                <p class="text-wood-600 dark:text-wood-400 mb-4 leading-relaxed">میز غذاخوری ۶ نفره دست‌ساز از چوب بلوط ممتاز با طراحی کلاسیک</p>
                 <div class="flex items-center justify-between mb-4">
-                    <div class="flex flex-col"><span class="text-2xl font-bold text-green-700">۳,۸۰۰,۰۰۰ تومان</span> <span class="text-sm text-amber-500 line-through">۴,۵۰۰,۰۰۰ تومان</span>
-                    </div><span class="bg-amber-200 text-amber-800 px-3 py-1 rounded-full text-sm font-medium">میز</span>
+                    <div class="flex flex-col"><span class="text-2xl font-bold text-green-600 dark:text-green-400">۱,۲۹۹,۰۰۰ تومان</span> <span class="text-sm text-wood-500 dark:text-wood-400 line-through">۱,۵۲۹,۰۰۰ تومان</span>
+                    </div><span class="bg-wood-200 dark:bg-wood-700 text-wood-800 dark:text-wood-200 px-3 py-1 rounded-full text-sm font-medium">میز</span>
                 </div>
-                <div class="flex items-center justify-between mb-6 text-sm text-amber-600">
-                    <div class="flex items-center space-x-2 space-x-reverse"><i class="fas fa-ruler-combined"></i> <span>۱۸۰×۹۰×۷۵ سم</span>
+                <div class="flex items-center justify-between mb-6 text-sm text-wood-600 dark:text-wood-400">
+                    <div class="flex items-center space-x-2 space-x-reverse"><i class="fas fa-ruler-combined"></i> <span>۱۸۳ × ۹۱ × ۷۶ سانتی‌متر</span>
                     </div>
                     <div class="flex items-center space-x-1 space-x-reverse">
-                        <div class="flex rating-stars"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                        </div><span class="text-amber-700 font-medium">(۱۲۷)</span>
+                        <div class="flex text-yellow-400"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                        </div><span class="text-wood-700 dark:text-wood-300 font-medium">(۱۲۷)</span>
                     </div>
                 </div>
-                <div class="flex space-x-3 space-x-reverse"><button class="flex-1 btn-primary text-white px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button> <button class="btn-secondary px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-eye"></i> </button>
+                <div class="flex space-x-3 space-x-reverse"><button class="flex-1 bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 px-4 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg"> <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button> <button class="bg-wood-200 hover:bg-wood-300 dark:bg-wood-700 dark:hover:bg-wood-600 text-wood-800 dark:text-wood-200 px-4 py-3 rounded-xl font-medium transition-all duration-300"> <i class="fas fa-eye"></i> </button>
                 </div>
             </div>
-        </div><!-- Product 2: صندلی اداری چوب بلوط -->
-        <div class="product-card bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-amber-200/50 overflow-hidden">
+        </div><!-- Product 2: Walnut Bookshelf -->
+        <div class="bg-white dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-xl border border-wood-200 dark:border-wood-700 overflow-hidden transition-all duration-300 hover:-translate-y-2">
             <div class="relative">
-                <div class="h-64 bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
-                    <div class="text-center text-amber-700"><i class="fas fa-chair text-6xl mb-4"></i>
-                        <p class="text-sm font-medium">صندلی اداری بلوط</p>
+                <div class="h-64 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-800 dark:to-wood-700 flex items-center justify-center">
+                    <div class="text-center text-wood-700 dark:text-wood-300"><i class="fas fa-book text-6xl mb-4"></i>
+                        <p class="text-sm font-medium">قفسه کتاب گردو</p>
                     </div>
                 </div>
-                <div class="absolute top-4 right-4"><span class="badge badge-new"> <i class="fas fa-star ml-1"></i>جدید </span>
+                <div class="absolute top-4 right-4"><span class="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center"> <i class="fas fa-star ml-1"></i>جدید </span>
                 </div>
-                <div class="absolute bottom-4 left-4"><span class="badge wood-badge"> <i class="fas fa-tree ml-1"></i>چوب بلوط </span>
+                <div class="absolute bottom-4 left-4"><span class="bg-wood-600 dark:bg-wood-400 text-wood-100 dark:text-wood-900 px-3 py-1 rounded-full text-xs font-medium flex items-center"> <i class="fas fa-tree ml-1"></i>چوب گردو </span>
                 </div>
             </div>
             <div class="p-6">
                 <div class="flex items-start justify-between mb-4">
-                    <h3 class="text-xl font-bold text-amber-900 leading-tight">صندلی اداری چوب بلوط</h3><button class="text-amber-400 hover:text-red-500 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
+                    <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100 leading-tight">قفسه کتاب نمایشی گردو</h3><button class="text-wood-400 hover:text-red-500 dark:text-wood-500 dark:hover:text-red-400 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
                 </div>
-                <p class="text-amber-700 mb-4 leading-relaxed">صندلی اداری ارگونومیک از چوب بلوط با نشیمن چرمی طبیعی</p>
+                <p class="text-wood-600 dark:text-wood-400 mb-4 leading-relaxed">قفسه کتاب ۵ طبقه از چوب گردو غنی با قفسه‌های قابل تنظیم</p>
                 <div class="flex items-center justify-between mb-4">
-                    <div class="flex flex-col"><span class="text-2xl font-bold text-amber-900">۲,۸۰۰,۰۰۰ تومان</span>
-                    </div><span class="bg-amber-200 text-amber-800 px-3 py-1 rounded-full text-sm font-medium">صندلی</span>
+                    <div class="flex flex-col"><span class="text-2xl font-bold text-wood-800 dark:text-wood-200">۸۹۹,۰۰۰ تومان</span>
+                    </div><span class="bg-wood-200 dark:bg-wood-700 text-wood-800 dark:text-wood-200 px-3 py-1 rounded-full text-sm font-medium">کمد</span>
                 </div>
-                <div class="flex items-center justify-between mb-6 text-sm text-amber-600">
-                    <div class="flex items-center space-x-2 space-x-reverse"><i class="fas fa-ruler-combined"></i> <span>۶۰×۶۰×۱۱۰ سم</span>
+                <div class="flex items-center justify-between mb-6 text-sm text-wood-600 dark:text-wood-400">
+                    <div class="flex items-center space-x-2 space-x-reverse"><i class="fas fa-ruler-combined"></i> <span>۱۲۲ × ۴۱ × ۲۰۱ سانتی‌متر</span>
                     </div>
                     <div class="flex items-center space-x-1 space-x-reverse">
-                        <div class="flex rating-stars"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star text-gray-300"></i>
-                        </div><span class="text-amber-700 font-medium">(۸۹)</span>
+                        <div class="flex text-yellow-400"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star text-gray-300"></i>
+                        </div><span class="text-wood-700 dark:text-wood-300 font-medium">(۸۹)</span>
                     </div>
                 </div>
-                <div class="flex space-x-3 space-x-reverse"><button class="flex-1 btn-primary text-white px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button> <button class="btn-secondary px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-eye"></i> </button>
+                <div class="flex space-x-3 space-x-reverse"><button class="flex-1 bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 px-4 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg"> <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button> <button class="bg-wood-200 hover:bg-wood-300 dark:bg-wood-700 dark:hover:bg-wood-600 text-wood-800 dark:text-wood-200 px-4 py-3 rounded-xl font-medium transition-all duration-300"> <i class="fas fa-eye"></i> </button>
                 </div>
             </div>
-        </div><!-- Product 3: کتابخانه چوب گردو -->
-        <div class="product-card bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-amber-200/50 overflow-hidden">
+        </div><!-- Product 3: Cedar Coffee Table -->
+        <div class="bg-white dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-xl border border-wood-200 dark:border-wood-700 overflow-hidden transition-all duration-300 hover:-translate-y-2">
             <div class="relative">
-                <div class="h-64 bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
-                    <div class="text-center text-amber-700"><i class="fas fa-book text-6xl mb-4"></i>
-                        <p class="text-sm font-medium">کتابخانه گردو</p>
+                <div class="h-64 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-800 dark:to-wood-700 flex items-center justify-center">
+                    <div class="text-center text-wood-700 dark:text-wood-300"><i class="fas fa-coffee text-6xl mb-4"></i>
+                        <p class="text-sm font-medium">Cedar Coffee Table</p>
                     </div>
                 </div>
-                <div class="absolute top-4 right-4 flex flex-col space-y-2"><span class="badge badge-bestseller"> <i class="fas fa-fire ml-1"></i>پرفروش </span> <span class="badge badge-sale"> <i class="fas fa-tag ml-1"></i>تخفیف ۱۲٪ </span>
+                <div class="absolute top-4 left-4 flex flex-col space-y-2"><span class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center"> <i class="fas fa-fire mr-1"></i>Popular </span> <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center"> <i class="fas fa-tag mr-1"></i>20% Off </span>
                 </div>
-                <div class="absolute bottom-4 left-4"><span class="badge wood-badge"> <i class="fas fa-tree ml-1"></i>چوب گردو </span>
+                <div class="absolute bottom-4 right-4"><span class="bg-wood-600 dark:bg-wood-400 text-wood-100 dark:text-wood-900 px-3 py-1 rounded-full text-xs font-medium flex items-center"> <i class="fas fa-tree mr-1"></i>Cedar </span>
                 </div>
             </div>
             <div class="p-6">
                 <div class="flex items-start justify-between mb-4">
-                    <h3 class="text-xl font-bold text-amber-900 leading-tight">کتابخانه چوب گردو</h3><button class="text-amber-400 hover:text-red-500 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
+                    <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100 leading-tight">Rustic Cedar Coffee Table</h3><button class="text-wood-400 hover:text-red-500 dark:text-wood-500 dark:hover:text-red-400 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
                 </div>
-                <p class="text-amber-700 mb-4 leading-relaxed">کتابخانه ۵ طبقه از چوب گردو با قفسه‌های قابل تنظیم</p>
+                <p class="text-wood-600 dark:text-wood-400 mb-4 leading-relaxed">Beautiful coffee table with natural cedar finish and minimalist design</p>
                 <div class="flex items-center justify-between mb-4">
-                    <div class="flex flex-col"><span class="text-2xl font-bold text-green-700">۵,۵۰۰,۰۰۰ تومان</span> <span class="text-sm text-amber-500 line-through">۶,۲۰۰,۰۰۰ تومان</span>
-                    </div><span class="bg-amber-200 text-amber-800 px-3 py-1 rounded-full text-sm font-medium">کابینت</span>
+                    <div class="flex flex-col"><span class="text-2xl font-bold text-green-600 dark:text-green-400">$459</span> <span class="text-sm text-wood-500 dark:text-wood-400 line-through">$574</span>
+                    </div><span class="bg-wood-200 dark:bg-wood-700 text-wood-800 dark:text-wood-200 px-3 py-1 rounded-full text-sm font-medium">Table</span>
                 </div>
-                <div class="flex items-center justify-between mb-6 text-sm text-amber-600">
-                    <div class="flex items-center space-x-2 space-x-reverse"><i class="fas fa-ruler-combined"></i> <span>۱۲۰×۴۰×۲۰۰ سم</span>
+                <div class="flex items-center justify-between mb-6 text-sm text-wood-600 dark:text-wood-400">
+                    <div class="flex items-center space-x-2"><i class="fas fa-ruler-combined"></i> <span>48" × 24" × 18"</span>
                     </div>
-                    <div class="flex items-center space-x-1 space-x-reverse">
-                        <div class="flex rating-stars"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                        </div><span class="text-amber-700 font-medium">(۱۵۶)</span>
+                    <div class="flex items-center space-x-1">
+                        <div class="flex text-yellow-400"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star text-gray-300"></i>
+                        </div><span class="text-wood-700 dark:text-wood-300 font-medium">(156)</span>
                     </div>
                 </div>
-                <div class="flex space-x-3 space-x-reverse"><button class="flex-1 btn-primary text-white px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button> <button class="btn-secondary px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-eye"></i> </button>
+                <div class="flex space-x-3"><button class="flex-1 bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 px-4 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg"> <i class="fas fa-shopping-cart mr-2"></i>Add to Cart </button> <button class="bg-wood-200 hover:bg-wood-300 dark:bg-wood-700 dark:hover:bg-wood-600 text-wood-800 dark:text-wood-200 px-4 py-3 rounded-xl font-medium transition-all duration-300"> <i class="fas fa-eye"></i> </button>
                 </div>
             </div>
-        </div><!-- Product 4: میز کار چوب توسکا -->
-        <div class="product-card bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-amber-200/50 overflow-hidden">
+        </div><!-- Product 4: Pine Office Desk -->
+        <div class="bg-white dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-xl border border-wood-200 dark:border-wood-700 overflow-hidden transition-all duration-300 hover:-translate-y-2">
             <div class="relative">
-                <div class="h-64 bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
-                    <div class="text-center text-amber-700"><i class="fas fa-desktop text-6xl mb-4"></i>
-                        <p class="text-sm font-medium">میز کار توسکا</p>
+                <div class="h-64 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-800 dark:to-wood-700 flex items-center justify-center">
+                    <div class="text-center text-wood-700 dark:text-wood-300"><i class="fas fa-desktop text-6xl mb-4"></i>
+                        <p class="text-sm font-medium">Pine Office Desk</p>
                     </div>
                 </div>
-                <div class="absolute top-4 right-4"><span class="badge badge-new"> <i class="fas fa-star ml-1"></i>جدید </span>
+                <div class="absolute top-4 left-4"><span class="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center"> <i class="fas fa-star mr-1"></i>New </span>
                 </div>
-                <div class="absolute bottom-4 left-4"><span class="badge wood-badge"> <i class="fas fa-tree ml-1"></i>چوب توسکا </span>
+                <div class="absolute bottom-4 right-4"><span class="bg-wood-600 dark:bg-wood-400 text-wood-100 dark:text-wood-900 px-3 py-1 rounded-full text-xs font-medium flex items-center"> <i class="fas fa-tree mr-1"></i>Pine </span>
                 </div>
             </div>
             <div class="p-6">
                 <div class="flex items-start justify-between mb-4">
-                    <h3 class="text-xl font-bold text-amber-900 leading-tight">میز کار چوب توسکا</h3><button class="text-amber-400 hover:text-red-500 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
+                    <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100 leading-tight">Modern Pine Office Desk</h3><button class="text-wood-400 hover:text-red-500 dark:text-wood-500 dark:hover:text-red-400 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
                 </div>
-                <p class="text-amber-700 mb-4 leading-relaxed">میز کار مدرن از چوب توسکا با کشوهای مخفی و سیستم مدیریت کابل</p>
+                <p class="text-wood-600 dark:text-wood-400 mb-4 leading-relaxed">Contemporary office desk with hidden drawers and cable management system</p>
                 <div class="flex items-center justify-between mb-4">
-                    <div class="flex flex-col"><span class="text-2xl font-bold text-amber-900">۳,۵۰۰,۰۰۰ تومان</span>
-                    </div><span class="bg-amber-200 text-amber-800 px-3 py-1 rounded-full text-sm font-medium">میز</span>
+                    <div class="flex flex-col"><span class="text-2xl font-bold text-wood-800 dark:text-wood-200">$729</span>
+                    </div><span class="bg-wood-200 dark:bg-wood-700 text-wood-800 dark:text-wood-200 px-3 py-1 rounded-full text-sm font-medium">Desk</span>
                 </div>
-                <div class="flex items-center justify-between mb-6 text-sm text-amber-600">
-                    <div class="flex items-center space-x-2 space-x-reverse"><i class="fas fa-ruler-combined"></i> <span>۱۴۰×۷۰×۷۵ سم</span>
+                <div class="flex items-center justify-between mb-6 text-sm text-wood-600 dark:text-wood-400">
+                    <div class="flex items-center space-x-2"><i class="fas fa-ruler-combined"></i> <span>55" × 28" × 30"</span>
                     </div>
-                    <div class="flex items-center space-x-1 space-x-reverse">
-                        <div class="flex rating-stars"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star text-gray-300"></i>
-                        </div><span class="text-amber-700 font-medium">(۷۴)</span>
+                    <div class="flex items-center space-x-1">
+                        <div class="flex text-yellow-400"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star text-gray-300"></i>
+                        </div><span class="text-wood-700 dark:text-wood-300 font-medium">(74)</span>
                     </div>
                 </div>
-                <div class="flex space-x-3 space-x-reverse"><button class="flex-1 btn-primary text-white px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button> <button class="btn-secondary px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-eye"></i> </button>
+                <div class="flex space-x-3"><button class="flex-1 bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 px-4 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg"> <i class="fas fa-shopping-cart mr-2"></i>Add to Cart </button> <button class="bg-wood-200 hover:bg-wood-300 dark:bg-wood-700 dark:hover:bg-wood-600 text-wood-800 dark:text-wood-200 px-4 py-3 rounded-xl font-medium transition-all duration-300"> <i class="fas fa-eye"></i> </button>
                 </div>
             </div>
-        </div><!-- Product 5: صندلی غذاخوری چوب راش -->
-        <div class="product-card bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-amber-200/50 overflow-hidden">
+        </div><!-- Product 5: Mahogany Dining Chair -->
+        <div class="bg-white dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-xl border border-wood-200 dark:border-wood-700 overflow-hidden transition-all duration-300 hover:-translate-y-2">
             <div class="relative">
-                <div class="h-64 bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
-                    <div class="text-center text-amber-700"><i class="fas fa-chair text-6xl mb-4"></i>
-                        <p class="text-sm font-medium">صندلی غذاخوری</p>
+                <div class="h-64 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-800 dark:to-wood-700 flex items-center justify-center">
+                    <div class="text-center text-wood-700 dark:text-wood-300"><i class="fas fa-chair text-6xl mb-4"></i>
+                        <p class="text-sm font-medium">Mahogany Chair</p>
                     </div>
                 </div>
-                <div class="absolute top-4 right-4"><span class="badge badge-sale"> <i class="fas fa-tag ml-1"></i>تخفیف ۱۸٪ </span>
+                <div class="absolute top-4 left-4"><span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center"> <i class="fas fa-tag mr-1"></i>25% Off </span>
                 </div>
-                <div class="absolute bottom-4 left-4"><span class="badge wood-badge"> <i class="fas fa-tree ml-1"></i>چوب راش </span>
+                <div class="absolute bottom-4 right-4"><span class="bg-wood-600 dark:bg-wood-400 text-wood-100 dark:text-wood-900 px-3 py-1 rounded-full text-xs font-medium flex items-center"> <i class="fas fa-tree mr-1"></i>Mahogany </span>
                 </div>
             </div>
             <div class="p-6">
                 <div class="flex items-start justify-between mb-4">
-                    <h3 class="text-xl font-bold text-amber-900 leading-tight">صندلی غذاخوری راش</h3><button class="text-amber-400 hover:text-red-500 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
+                    <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100 leading-tight">Elegant Mahogany Chair</h3><button class="text-wood-400 hover:text-red-500 dark:text-wood-500 dark:hover:text-red-400 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
                 </div>
-                <p class="text-amber-700 mb-4 leading-relaxed">صندلی غذاخوری راحت از چوب راش با نشیمن پارچه‌ای</p>
+                <p class="text-wood-600 dark:text-wood-400 mb-4 leading-relaxed">Comfortable dining chair crafted from rich mahogany with fabric cushion</p>
                 <div class="flex items-center justify-between mb-4">
-                    <div class="flex flex-col"><span class="text-2xl font-bold text-green-700">۹۸۰,۰۰۰ تومان</span> <span class="text-sm text-amber-500 line-through">۱,۲۰۰,۰۰۰ تومان</span>
-                    </div><span class="bg-amber-200 text-amber-800 px-3 py-1 rounded-full text-sm font-medium">صندلی</span>
+                    <div class="flex flex-col"><span class="text-2xl font-bold text-green-600 dark:text-green-400">$189</span> <span class="text-sm text-wood-500 dark:text-wood-400 line-through">$252</span>
+                    </div><span class="bg-wood-200 dark:bg-wood-700 text-wood-800 dark:text-wood-200 px-3 py-1 rounded-full text-sm font-medium">Chair</span>
                 </div>
-                <div class="flex items-center justify-between mb-6 text-sm text-amber-600">
-                    <div class="flex items-center space-x-2 space-x-reverse"><i class="fas fa-ruler-combined"></i> <span>۴۵×۵۰×۸۵ سم</span>
+                <div class="flex items-center justify-between mb-6 text-sm text-wood-600 dark:text-wood-400">
+                    <div class="flex items-center space-x-2"><i class="fas fa-ruler-combined"></i> <span>18" × 20" × 34"</span>
                     </div>
-                    <div class="flex items-center space-x-1 space-x-reverse">
-                        <div class="flex rating-stars"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star text-gray-300"></i>
-                        </div><span class="text-amber-700 font-medium">(۲۰۳)</span>
+                    <div class="flex items-center space-x-1">
+                        <div class="flex text-yellow-400"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star text-gray-300"></i>
+                        </div><span class="text-wood-700 dark:text-wood-300 font-medium">(203)</span>
                     </div>
                 </div>
-                <div class="flex space-x-3 space-x-reverse"><button class="flex-1 btn-primary text-white px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button> <button class="btn-secondary px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-eye"></i> </button>
+                <div class="flex space-x-3"><button class="flex-1 bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 px-4 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg"> <i class="fas fa-shopping-cart mr-2"></i>Add to Cart </button> <button class="bg-wood-200 hover:bg-wood-300 dark:bg-wood-700 dark:hover:bg-wood-600 text-wood-800 dark:text-wood-200 px-4 py-3 rounded-xl font-medium transition-all duration-300"> <i class="fas fa-eye"></i> </button>
                 </div>
             </div>
-        </div><!-- Product 6: کمد لباس چوب بلوط -->
-        <div class="product-card bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-amber-200/50 overflow-hidden">
+        </div><!-- Product 6: Birch Wall Shelf -->
+        <div class="bg-white dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-xl border border-wood-200 dark:border-wood-700 overflow-hidden transition-all duration-300 hover:-translate-y-2">
             <div class="relative">
-                <div class="h-64 bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
-                    <div class="text-center text-amber-700"><i class="fas fa-door-open text-6xl mb-4"></i>
-                        <p class="text-sm font-medium">کمد لباس بلوط</p>
+                <div class="h-64 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-800 dark:to-wood-700 flex items-center justify-center">
+                    <div class="text-center text-wood-700 dark:text-wood-300"><i class="fas fa-th-large text-6xl mb-4"></i>
+                        <p class="text-sm font-medium">Birch Wall Shelf</p>
                     </div>
                 </div>
-                <div class="absolute top-4 right-4"><span class="badge badge-new"> <i class="fas fa-star ml-1"></i>جدید </span>
+                <div class="absolute top-4 left-4"><span class="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center"> <i class="fas fa-star mr-1"></i>New </span>
                 </div>
-                <div class="absolute bottom-4 left-4"><span class="badge wood-badge"> <i class="fas fa-tree ml-1"></i>چوب بلوط </span>
+                <div class="absolute bottom-4 right-4"><span class="bg-wood-600 dark:bg-wood-400 text-wood-100 dark:text-wood-900 px-3 py-1 rounded-full text-xs font-medium flex items-center"> <i class="fas fa-tree mr-1"></i>Birch </span>
                 </div>
             </div>
             <div class="p-6">
                 <div class="flex items-start justify-between mb-4">
-                    <h3 class="text-xl font-bold text-amber-900 leading-tight">کمد لباس چوب بلوط</h3><button class="text-amber-400 hover:text-red-500 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
+                    <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100 leading-tight">Modern Birch Wall Shelf</h3><button class="text-wood-400 hover:text-red-500 dark:text-wood-500 dark:hover:text-red-400 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
                 </div>
-                <p class="text-amber-700 mb-4 leading-relaxed">کمد لباس ۳ درب از چوب بلوط با آینه و کشوهای داخلی</p>
+                <p class="text-wood-600 dark:text-wood-400 mb-4 leading-relaxed">Floating wall shelf made from birch wood perfect for displaying decorative items</p>
                 <div class="flex items-center justify-between mb-4">
-                    <div class="flex flex-col"><span class="text-2xl font-bold text-amber-900">۸,۵۰۰,۰۰۰ تومان</span>
-                    </div><span class="bg-amber-200 text-amber-800 px-3 py-1 rounded-full text-sm font-medium">کابینت</span>
+                    <div class="flex flex-col"><span class="text-2xl font-bold text-wood-800 dark:text-wood-200">$129</span>
+                    </div><span class="bg-wood-200 dark:bg-wood-700 text-wood-800 dark:text-wood-200 px-3 py-1 rounded-full text-sm font-medium">Decorative</span>
                 </div>
-                <div class="flex items-center justify-between mb-6 text-sm text-amber-600">
-                    <div class="flex items-center space-x-2 space-x-reverse"><i class="fas fa-ruler-combined"></i> <span>۱۸۰×۶۰×۲۲۰ سم</span>
+                <div class="flex items-center justify-between mb-6 text-sm text-wood-600 dark:text-wood-400">
+                    <div class="flex items-center space-x-2"><i class="fas fa-ruler-combined"></i> <span>36" × 8" × 6"</span>
                     </div>
-                    <div class="flex items-center space-x-1 space-x-reverse">
-                        <div class="flex rating-stars"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                        </div><span class="text-amber-700 font-medium">(۴۵)</span>
+                    <div class="flex items-center space-x-1">
+                        <div class="flex text-yellow-400"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star text-gray-300"></i>
+                        </div><span class="text-wood-700 dark:text-wood-300 font-medium">(67)</span>
                     </div>
                 </div>
-                <div class="flex space-x-3 space-x-reverse"><button class="flex-1 btn-primary text-white px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button> <button class="btn-secondary px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-eye"></i> </button>
+                <div class="flex space-x-3"><button class="flex-1 bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 px-4 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg"> <i class="fas fa-shopping-cart mr-2"></i>Add to Cart </button> <button class="bg-wood-200 hover:bg-wood-300 dark:bg-wood-700 dark:hover:bg-wood-600 text-wood-800 dark:text-wood-200 px-4 py-3 rounded-xl font-medium transition-all duration-300"> <i class="fas fa-eye"></i> </button>
                 </div>
             </div>
-        </div><!-- Product 7: میز جلو مبلی چوب گردو -->
-        <div class="product-card bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-amber-200/50 overflow-hidden">
+        </div><!-- Product 7: Teak Wardrobe -->
+        <div class="bg-white dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-xl border border-wood-200 dark:border-wood-700 overflow-hidden transition-all duration-300 hover:-translate-y-2">
             <div class="relative">
-                <div class="h-64 bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
-                    <div class="text-center text-amber-700"><i class="fas fa-coffee text-6xl mb-4"></i>
-                        <p class="text-sm font-medium">میز جلو مبلی</p>
+                <div class="h-64 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-800 dark:to-wood-700 flex items-center justify-center">
+                    <div class="text-center text-wood-700 dark:text-wood-300"><i class="fas fa-door-open text-6xl mb-4"></i>
+                        <p class="text-sm font-medium">Teak Wardrobe</p>
                     </div>
                 </div>
-                <div class="absolute top-4 right-4 flex flex-col space-y-2"><span class="badge badge-bestseller"> <i class="fas fa-fire ml-1"></i>پرفروش </span> <span class="badge badge-sale"> <i class="fas fa-tag ml-1"></i>تخفیف ۱۶٪ </span>
+                <div class="absolute top-4 left-4"><span class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center"> <i class="fas fa-fire mr-1"></i>Premium </span>
                 </div>
-                <div class="absolute bottom-4 left-4"><span class="badge wood-badge"> <i class="fas fa-tree ml-1"></i>چوب گردو </span>
+                <div class="absolute bottom-4 right-4"><span class="bg-wood-600 dark:bg-wood-400 text-wood-100 dark:text-wood-900 px-3 py-1 rounded-full text-xs font-medium flex items-center"> <i class="fas fa-tree mr-1"></i>Teak </span>
                 </div>
             </div>
             <div class="p-6">
                 <div class="flex items-start justify-between mb-4">
-                    <h3 class="text-xl font-bold text-amber-900 leading-tight">میز جلو مبلی گردو</h3><button class="text-amber-400 hover:text-red-500 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
+                    <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100 leading-tight">Luxury Teak Wardrobe</h3><button class="text-wood-400 hover:text-red-500 dark:text-wood-500 dark:hover:text-red-400 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
                 </div>
-                <p class="text-amber-700 mb-4 leading-relaxed">میز جلو مبلی شیک از چوب گردو با طراحی مینیمال</p>
+                <p class="text-wood-600 dark:text-wood-400 mb-4 leading-relaxed">3-door wardrobe made from premium teak wood with mirror and internal drawers</p>
                 <div class="flex items-center justify-between mb-4">
-                    <div class="flex flex-col"><span class="text-2xl font-bold text-green-700">۱,۸۵۰,۰۰۰ تومان</span> <span class="text-sm text-amber-500 line-through">۲,۲۰۰,۰۰۰ تومان</span>
-                    </div><span class="bg-amber-200 text-amber-800 px-3 py-1 rounded-full text-sm font-medium">میز</span>
+                    <div class="flex flex-col"><span class="text-2xl font-bold text-wood-800 dark:text-wood-200">$1,899</span>
+                    </div><span class="bg-wood-200 dark:bg-wood-700 text-wood-800 dark:text-wood-200 px-3 py-1 rounded-full text-sm font-medium">Storage</span>
                 </div>
-                <div class="flex items-center justify-between mb-6 text-sm text-amber-600">
-                    <div class="flex items-center space-x-2 space-x-reverse"><i class="fas fa-ruler-combined"></i> <span>۱۲۰×۶۰×۴۵ سم</span>
+                <div class="flex items-center justify-between mb-6 text-sm text-wood-600 dark:text-wood-400">
+                    <div class="flex items-center space-x-2"><i class="fas fa-ruler-combined"></i> <span>71" × 24" × 87"</span>
                     </div>
-                    <div class="flex items-center space-x-1 space-x-reverse">
-                        <div class="flex rating-stars"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star text-gray-300"></i>
-                        </div><span class="text-amber-700 font-medium">(۹۸)</span>
+                    <div class="flex items-center space-x-1">
+                        <div class="flex text-yellow-400"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
+                        </div><span class="text-wood-700 dark:text-wood-300 font-medium">(45)</span>
                     </div>
                 </div>
-                <div class="flex space-x-3 space-x-reverse"><button class="flex-1 btn-primary text-white px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button> <button class="btn-secondary px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-eye"></i> </button>
+                <div class="flex space-x-3"><button class="flex-1 bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 px-4 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg"> <i class="fas fa-shopping-cart mr-2"></i>Add to Cart </button> <button class="bg-wood-200 hover:bg-wood-300 dark:bg-wood-700 dark:hover:bg-wood-600 text-wood-800 dark:text-wood-200 px-4 py-3 rounded-xl font-medium transition-all duration-300"> <i class="fas fa-eye"></i> </button>
                 </div>
             </div>
-        </div><!-- Product 8: قفسه دیواری چوب توسکا -->
-        <div class="product-card bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-amber-200/50 overflow-hidden">
+        </div><!-- Product 8: Maple Side Table -->
+        <div class="bg-white dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-xl border border-wood-200 dark:border-wood-700 overflow-hidden transition-all duration-300 hover:-translate-y-2">
             <div class="relative">
-                <div class="h-64 bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center">
-                    <div class="text-center text-amber-700"><i class="fas fa-th-large text-6xl mb-4"></i>
-                        <p class="text-sm font-medium">قفسه دیواری</p>
+                <div class="h-64 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-800 dark:to-wood-700 flex items-center justify-center">
+                    <div class="text-center text-wood-700 dark:text-wood-300"><i class="fas fa-table text-6xl mb-4"></i>
+                        <p class="text-sm font-medium">Maple Side Table</p>
                     </div>
                 </div>
-                <div class="absolute top-4 right-4"><span class="badge badge-new"> <i class="fas fa-star ml-1"></i>جدید </span>
+                <div class="absolute top-4 left-4 flex flex-col space-y-2"><span class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center"> <i class="fas fa-fire mr-1"></i>Popular </span> <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center"> <i class="fas fa-tag mr-1"></i>10% Off </span>
                 </div>
-                <div class="absolute bottom-4 left-4"><span class="badge wood-badge"> <i class="fas fa-tree ml-1"></i>چوب توسکا </span>
+                <div class="absolute bottom-4 right-4"><span class="bg-wood-600 dark:bg-wood-400 text-wood-100 dark:text-wood-900 px-3 py-1 rounded-full text-xs font-medium flex items-center"> <i class="fas fa-tree mr-1"></i>Maple </span>
                 </div>
             </div>
             <div class="p-6">
                 <div class="flex items-start justify-between mb-4">
-                    <h3 class="text-xl font-bold text-amber-900 leading-tight">قفسه دیواری توسکا</h3><button class="text-amber-400 hover:text-red-500 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
+                    <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100 leading-tight">Classic Maple Side Table</h3><button class="text-wood-400 hover:text-red-500 dark:text-wood-500 dark:hover:text-red-400 transition-colors"> <i class="fas fa-heart text-xl"></i> </button>
                 </div>
-                <p class="text-amber-700 mb-4 leading-relaxed">قفسه دیواری مدرن از چوب توسکا برای نمایش اشیاء تزئینی</p>
+                <p class="text-wood-600 dark:text-wood-400 mb-4 leading-relaxed">Elegant side table crafted from maple wood with minimalist design</p>
                 <div class="flex items-center justify-between mb-4">
-                    <div class="flex flex-col"><span class="text-2xl font-bold text-amber-900">۱,۸۰۰,۰۰۰ تومان</span>
-                    </div><span class="bg-amber-200 text-amber-800 px-3 py-1 rounded-full text-sm font-medium">تزئینی</span>
+                    <div class="flex flex-col"><span class="text-2xl font-bold text-green-600 dark:text-green-400">$269</span> <span class="text-sm text-wood-500 dark:text-wood-400 line-through">$299</span>
+                    </div><span class="bg-wood-200 dark:bg-wood-700 text-wood-800 dark:text-wood-200 px-3 py-1 rounded-full text-sm font-medium">Table</span>
                 </div>
-                <div class="flex items-center justify-between mb-6 text-sm text-amber-600">
-                    <div class="flex items-center space-x-2 space-x-reverse"><i class="fas fa-ruler-combined"></i> <span>۱۰۰×۲۵×۱۵ سم</span>
+                <div class="flex items-center justify-between mb-6 text-sm text-wood-600 dark:text-wood-400">
+                    <div class="flex items-center space-x-2"><i class="fas fa-ruler-combined"></i> <span>20" × 16" × 24"</span>
                     </div>
-                    <div class="flex items-center space-x-1 space-x-reverse">
-                        <div class="flex rating-stars"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star text-gray-300"></i>
-                        </div><span class="text-amber-700 font-medium">(۶۷)</span>
+                    <div class="flex items-center space-x-1">
+                        <div class="flex text-yellow-400"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star text-gray-300"></i>
+                        </div><span class="text-wood-700 dark:text-wood-300 font-medium">(98)</span>
                     </div>
                 </div>
-                <div class="flex space-x-3 space-x-reverse"><button class="flex-1 btn-primary text-white px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button> <button class="btn-secondary px-4 py-3 rounded-2xl font-medium"> <i class="fas fa-eye"></i> </button>
+                <div class="flex space-x-3"><button class="flex-1 bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 px-4 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg"> <i class="fas fa-shopping-cart mr-2"></i>Add to Cart </button> <button class="bg-wood-200 hover:bg-wood-300 dark:bg-wood-700 dark:hover:bg-wood-600 text-wood-800 dark:text-wood-200 px-4 py-3 rounded-xl font-medium transition-all duration-300"> <i class="fas fa-eye"></i> </button>
                 </div>
             </div>
         </div>
     </div>
 </main><!-- Footer -->
-<footer class="bg-gradient-to-r from-amber-800 to-amber-900 text-amber-100 py-16 mt-16">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-        <div class="mb-8">
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-amber-700 rounded-full mb-4"><i class="fas fa-tree text-2xl"></i>
-            </div>
-            <h3 class="text-2xl font-bold mb-2">مجموعه چوبی خزر</h3>
-            <p class="text-amber-300">کیفیت برتر در هر محصول</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div>
-                <h4 class="font-bold mb-4">تماس با ما</h4>
-                <div class="space-y-2 text-amber-200">
-                    <p><i class="fas fa-phone ml-2"></i>۰۲۱-۱۲۳۴۵۶۷۸</p>
-                    <p><i class="fas fa-envelope ml-2"></i>info@xazarwood.ir</p>
-                    <p><i class="fas fa-map-marker-alt ml-2"></i>تهران، خیابان ولیعصر</p>
-                </div>
-            </div>
-            <div>
-                <h4 class="font-bold mb-4">خدمات</h4>
-                <div class="space-y-2 text-amber-200">
-                    <p>طراحی سفارشی</p>
-                    <p>ارسال رایگان</p>
-                    <p>نصب و راه‌اندازی</p>
-                    <p>خدمات پس از فروش</p>
-                </div>
-            </div>
-            <div>
-                <h4 class="font-bold mb-4">شبکه‌های اجتماعی</h4>
-                <div class="flex justify-center space-x-4 space-x-reverse"><button class="w-10 h-10 bg-amber-700 hover:bg-amber-600 rounded-full flex items-center justify-center transition-colors"> <i class="fab fa-instagram"></i> </button> <button class="w-10 h-10 bg-amber-700 hover:bg-amber-600 rounded-full flex items-center justify-center transition-colors"> <i class="fab fa-telegram"></i> </button> <button class="w-10 h-10 bg-amber-700 hover:bg-amber-600 rounded-full flex items-center justify-center transition-colors"> <i class="fab fa-whatsapp"></i> </button>
-                </div>
-            </div>
-        </div>
-        <div class="border-t border-amber-700 pt-8">
-            <p class="text-amber-300">© ۱۴۰۳ مجموعه چوبی خزر. تمامی حقوق محفوظ است.</p>
-        </div>
-    </div>
-</footer>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9971c233a59c49b7',t:'MTc2MTg5OTA5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
+
+</div>
+@endsection
+@push('scripts')
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.classList.contains('dark');
+
+            if (isDark) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            }
+        });
+
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('section button');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active state from all buttons
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-wood-600', 'text-white', 'dark:bg-wood-400', 'dark:text-wood-900');
+                        btn.classList.add('bg-wood-100', 'hover:bg-wood-200', 'dark:bg-wood-800', 'dark:hover:bg-wood-700', 'text-wood-800', 'dark:text-wood-200');
+                    });
+
+                    // Add active state to clicked button
+                    this.classList.remove('bg-wood-100', 'hover:bg-wood-200', 'dark:bg-wood-800', 'dark:hover:bg-wood-700', 'text-wood-800', 'dark:text-wood-200');
+                    this.classList.add('bg-wood-600', 'text-white', 'dark:bg-wood-400', 'dark:text-wood-900');
+                });
+            });
+        });
+    </script>
+@endpush
+

@@ -2,14 +2,15 @@
 
 namespace Modules\Shop\Models;
 
-use App\Models\Category;
+
 use App\Models\Course;
 use App\Models\Lesson;
-use App\Models\Product;
+
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Modules\File\Models\File;
 use Modules\LessonPlan\Models\LessonPlan;
+use Modules\Product\Models\Product;
 
 class Discount extends Model
 {
@@ -40,6 +41,10 @@ class Discount extends Model
     public function files()
     {
         return $this->morphedByMany(File::class, 'discountable');
+    }
+    public function products()
+    {
+        return $this->morphedByMany(Product::class, 'discountable');
     }
     public function users()
     {

@@ -123,27 +123,35 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Product 1 - Featured Rustic Table -->
+            @foreach($tables as $table)
             <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
                 <div class="relative overflow-hidden">
-                    <img src="https://picsum.photos/seed/rustictable1/400/300" alt="میز ناهارخوری روستیک" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <img src="{{asset($table->main_image)}}" alt="{{$table->name}}" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute top-4 right-4">
                             <span class="px-3 py-1 bg-gradient-to-r from-amber-600 to-orange-600 text-white text-xs font-semibold rounded-full">
-                                پرفروش‌ترین
+                                میز روستیک
                             </span>
                     </div>
                 </div>
                 <div class="p-4">
-                    <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">میز ناهارخوری روستیک</h3>
-                    <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">چوب گردو با طراحی کلاسیک</p>
+                    <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">{{$table->name}}</h3>
+                    <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">{{$table->description}}</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-xl font-bold text-amber-700 dark:text-amber-400">۱۲٬۵۰۰٬۰۰۰ تومان</span>
-                        <button class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
-                            خرید
+                        <span class="text-xl font-bold text-amber-700 dark:text-amber-400">{{number_format($table->price)}} تومان</span>
+
+                        <button id="btn-{{$table->id}}"
+                                onclick="addToCart('product','{{$table->id}}')"
+                                class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
+
+                            <i class="fas fa-cart-arrow-down"></i>
+                            <span>افزودن به سبد</span>
+                            <span class="spinner-{{$table->id}}  hidden"><i
+                                    class="fas fa-spinner fa-spin-pulse"></i></span>
                         </button>
                     </div>
                 </div>
             </div>
-
+            @endforeach
             <!-- Product 2 -->
             <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
                 <div class="relative overflow-hidden">

@@ -11,21 +11,28 @@ use Artesaos\SEOTools\SEOMeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Modules\Product\Models\Product;
 
 class HomeController extends Controller
 {
     public function index()
     {
-       // auth()->loginUsingId(1);
+        auth()->loginUsingId(1);
         $this->seo()
-            ->setTitle("آموزش به زبان شما!")
-            ->setDescription("آموزش فیزیک به شیوه‌ای ساده، جذاب و کاربردی که دانش‌آموزان را برای موفقیت در کنکور و ادامه تحصیل در رشته‌های مهندسی و علوم پایه آماده کند. ما معتقدیم هر دانش‌آموزی می‌تواند فیزیک را بیاموزد.")
+            ->setTitle("صنایع چوبی و روستیک")
+            ->setDescription("ما در خزر چوب، با عشق به چوب و احترام به محیط زیست، متخصص ساخت میزهای روستیک (Rustic) و ظروف چوبی دست‌ساز در شهرستان سلماس هستیم.")
             ;
         $sliders = Slider::where('is_active',1)->orderBy('order')->get();
-        $courses = Course::where('spotplayer_id','!=','')->where("status","active")->get();
-        $lessons = Lesson::latest()->take(6)->get();
+        //$courses = Course::where('spotplayer_id','!=','')->where("status","active")->get();
+        $products = Product::whereDoesntHave('categories',function($query){
+            $query->where('name','میز روستیک');
+        })->latest()->take(4)->get();
+        $tables = Product::whereHas('categories',function($query){
+            $query->where('name','میز روستیک');
+        })->latest()->take(4)->get();
 
-        return view('frontend.home.glm-index',compact('sliders','courses','lessons'));
+
+        return view('frontend.home.glm-index',compact('sliders','products','tables'));
     }
     public function play(Lesson $lesson)
     {

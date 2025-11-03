@@ -15,7 +15,7 @@
         <div class="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-sm">
             <a href="/" class="flex items-center gap-2 hover:scale-105 transition-transform duration-200">
                 <i class="fas fa-atom drop-shadow-sm"></i>
-                فیزیک بیست
+                XazarWood.ir
             </a>
         </div>
     </div>

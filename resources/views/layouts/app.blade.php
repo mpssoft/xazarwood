@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
 
-      x-data="{ dark: (localStorage.getItem('dark') ?? 'true') === 'true', cart: false, open: false }"
-      x-init="$watch('dark', value => localStorage.setItem('dark', value))"
-      :class="{ 'dark': dark, 'transition-colors duration-300': true }"
+
 >
     <head>
         <meta charset="utf-8">
@@ -31,7 +29,7 @@
                                 700: '#9c7a52',
                                 800: '#6b4e31',
                                 900: '#4a2f1f',
-                                950: '#2d1a0e',
+                                950: 'rgba(19, 10, 5, 0.95)',
                             }
                         }
                     }
@@ -396,12 +394,16 @@
         </div>
 
         <script>
-            function fetchCart() {
+             function fetchCart() {
                 fetch("{{ route('shop.cart.items') }}")
                     .then(res => res.text()) // 👈 since response is HTML
                     .then(html => {
+                        const cart = document.getElementById('cartItems');
+                        cart.innerHTML = html;
                         document.getElementById('cartItems').innerHTML = html;
-                        $("#itemsCount").html($("#count").val());
+                        const countInput = cart.querySelector("#count");
+                        const count = countInput ? countInput.value : 0;
+                        document.getElementById("itemsCount").textContent = count;
                     });
             }
             $(document).ready(function(){
@@ -444,7 +446,7 @@
                             timerProgressBar: true
                         });
 
-                        fetchCart();
+                         fetchCart();
                         $("#itemsCount").html(data.count).fadeOut('slow').fadeIn('slow');
 
                     } else {
@@ -683,64 +685,6 @@
 
 
 <script>
-    // Slider functionality
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const indicators = document.querySelectorAll('.indicator');
-    let autoSlideInterval;
-
-    function showSlide(index) {
-        // Hide all slides
-        slides.forEach((slide, i) => {
-            slide.classList.remove('slide-active', 'slide-prev', 'slide-next');
-            if (i === index) {
-                slide.classList.add('slide-active');
-            } else if (i < index) {
-                slide.classList.add('slide-prev');
-            } else {
-                slide.classList.add('slide-next');
-            }
-        });
-
-        // Update indicators
-        indicators.forEach((indicator, i) => {
-            if (i === index) {
-                indicator.classList.remove('bg-white/50');
-                indicator.classList.add('bg-white');
-            } else {
-                indicator.classList.remove('bg-white');
-                indicator.classList.add('bg-white/50');
-            }
-        });
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-        resetAutoSlide();
-    }
-
-    function previousSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-        resetAutoSlide();
-    }
-
-    function goToSlide(index) {
-        currentSlide = index;
-        showSlide(currentSlide);
-        resetAutoSlide();
-    }
-
-    function startAutoSlide() {
-        autoSlideInterval = setInterval(nextSlide, 5000);
-    }
-
-    function resetAutoSlide() {
-        clearInterval(autoSlideInterval);
-        startAutoSlide();
-    }
-
     // Theme Toggle
     function toggleTheme() {
         const html = document.documentElement;
@@ -793,13 +737,7 @@
             moonIcon.classList.remove('hidden');
         }
 
-        // Start auto slider
-        startAutoSlide();
 
-        // Pause auto slide on hover
-        const sliderContainer = document.querySelector('.relative.h-96');
-        sliderContainer.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
-        sliderContainer.addEventListener('mouseleave', startAutoSlide);
 
         // User dropdown functionality
         @if(auth()->check())

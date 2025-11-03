@@ -43,6 +43,7 @@ class ProductController extends Controller
             'main_image'  => 'nullable|string',  // file path from file manager
             'images'      => 'nullable|array',
             'gallery_images'    => 'nullable|string',  // multiple file paths
+            'categories'  => 'required'
         ]);
 
         DB::transaction(function () use ($data) {
@@ -56,7 +57,7 @@ class ProductController extends Controller
                 'stock'       => $data['stock'],
                 'main_image'  => $data['main_image'] ?? null,
             ]);
-
+            $product->categories()->sync($data['categories']);
             if (!empty($data['gallery_images'])) {
                 $images = json_decode($data['gallery_images'], true); // Decode JSON array to PHP array
 

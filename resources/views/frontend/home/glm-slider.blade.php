@@ -63,3 +63,73 @@
         <button onclick="goToSlide(2)" class="indicator w-3 h-3 bg-white/50 rounded-full transition-all duration-300" data-indicator="2"></button>
     </div>
 </section>
+@push('scripts')
+    <script>
+        // Slider functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.indicator');
+        let autoSlideInterval;
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach((slide, i) => {
+                slide.classList.remove('slide-active', 'slide-prev', 'slide-next');
+                if (i === index) {
+                    slide.classList.add('slide-active');
+                } else if (i < index) {
+                    slide.classList.add('slide-prev');
+                } else {
+                    slide.classList.add('slide-next');
+                }
+            });
+
+            // Update indicators
+            indicators.forEach((indicator, i) => {
+                if (i === index) {
+                    indicator.classList.remove('bg-white/50');
+                    indicator.classList.add('bg-white');
+                } else {
+                    indicator.classList.remove('bg-white');
+                    indicator.classList.add('bg-white/50');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+            resetAutoSlide();
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+            resetAutoSlide();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+            resetAutoSlide();
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+
+        // Start auto slider
+    startAutoSlide();
+
+    // Pause auto slide on hover
+    const sliderContainer = document.querySelector('.relative.h-96');
+    sliderContainer.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+    sliderContainer.addEventListener('mouseleave', startAutoSlide);
+    </script>
+@endpush

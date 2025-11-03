@@ -10,6 +10,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Cookie;
 use Modules\File\Models\File;
 use Modules\LessonPlan\Models\LessonPlan;
+use Modules\Product\Models\Product;
 use Modules\Shop\Services\CartService;
 use Modules\Shop\Models\Discount;
 
@@ -62,6 +63,7 @@ class CartController extends Controller
             'lesson'  => Lesson::class,
             'file'  => File::class,
             'lessonplan'  => LessonPlan::class,
+            'product'  => Product::class,
         ];
 
         if (!isset($modelClasses[$model])) {
@@ -156,6 +158,7 @@ class CartController extends Controller
     {
         $cart = $this->cartService->getCart();
         $count = count($cart);
+
         $cart =  collect($cart)->map(function ($item) {
 
             if (isset($item['item_type'], $item['item_id'])) {
@@ -174,6 +177,7 @@ class CartController extends Controller
             }
             return $item;
         })->filter();
+
         return view('shop::cart.cart-items', compact('cart','count'));
 
     }
