@@ -13,12 +13,12 @@ class FrontendProductController extends Controller
      */
     public function index()
     {
-        return view('product::frontend.canva-index');
+        return view('product::Frontend.canva-index');
     }
 
     public function showProduct(Product $product)
     {
-        return view('product::frontend.product',compact('product'));
+        return view('product::Frontend.product',compact('product'));
     }
 
 }
