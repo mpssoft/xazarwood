@@ -19,7 +19,7 @@ class HomeController extends Controller
     {
         auth()->loginUsingId(1);
         $this->seo()
-            ->setTitle("صنایع چوبی و روستیک")
+            ->setTitle("صنایع چوبی روستیک")
             ->setDescription("ما در خزر چوب، با عشق به چوب و احترام به محیط زیست، متخصص ساخت میزهای روستیک (Rustic) و ظروف چوبی دست‌ساز در شهرستان سلماس هستیم.")
             ;
         $sliders = Slider::where('is_active',1)->orderBy('order')->get();

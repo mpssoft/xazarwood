@@ -134,7 +134,9 @@
                     </div>
                 </div>
                 <div class="p-4">
+                    <a href="{{route('show.product',['product'=>$table->id,'name'=>$table->name])}}">
                     <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">{{$table->name}}</h3>
+                    </a>
                     <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">{{$table->description}}</p>
                     <div class="flex items-center justify-between">
                         <span class="text-xl font-bold text-amber-700 dark:text-amber-400">{{number_format($table->price)}} تومان</span>
@@ -152,62 +154,7 @@
                 </div>
             </div>
             @endforeach
-            <!-- Product 2 -->
-            <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                <div class="relative overflow-hidden">
-                    <img src="https://picsum.photos/seed/rustictable2/400/300" alt="میز قهوه‌خوری روستیک" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
-                    <span class="absolute top-4 right-4 px-3 py-1 bg-green-600 text-white text-xs font-semibold rounded-full">
-                            جدید
-                        </span>
-                </div>
-                <div class="p-4">
-                    <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">میز قهوه‌خوری روستیک</h3>
-                    <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">چوب بلوط با پایه‌های فلزی</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-xl font-bold text-amber-700 dark:text-amber-400">۸٬۹۰۰٬۰۰۰ تومان</span>
-                        <button class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
-                            خرید
-                        </button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Product 3 -->
-            <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                <div class="relative overflow-hidden">
-                    <img src="https://picsum.photos/seed/rustictable3/400/300" alt="میز تحریر روستیک" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
-                </div>
-                <div class="p-4">
-                    <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">میز تحریر روستیک</h3>
-                    <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">چوب افرا با کشوهای چوبی</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-xl font-bold text-amber-700 dark:text-amber-400">۱۰٬۲۰۰٬۰۰۰ تومان</span>
-                        <button class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
-                            خرید
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 4 -->
-            <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                <div class="relative overflow-hidden">
-                    <img src="https://picsum.photos/seed/rustictable4/400/300" alt="میز کنسول روستیک" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
-                    <span class="absolute top-4 right-4 px-3 py-1 bg-purple-600 text-white text-xs font-semibold rounded-full">
-                            محدود
-                        </span>
-                </div>
-                <div class="p-4">
-                    <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">میز کنسول روستیک</h3>
-                    <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">چوب گیلاس با طراحی هنری</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-xl font-bold text-amber-700 dark:text-amber-400">۶٬۸۰۰٬۰۰۰ تومان</span>
-                        <button class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
-                            خرید
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- Other Products Section -->

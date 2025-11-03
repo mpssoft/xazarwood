@@ -24,7 +24,7 @@ Route::get('/r',function(){
     echo Artisan::output();
 });
 
-Route::get('/product-list',[\Modules\Product\Http\Controllers\Frontend\FrontendController::class,'index'])->name('products-list');
+
 Route::get('/spot/{order}/{spot}',[\App\Http\Controllers\PaymentController::class,'paymentSuccess']);
 
 Route::middleware('auth')->group(function () {
