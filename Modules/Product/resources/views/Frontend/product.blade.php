@@ -5,7 +5,7 @@
 <div class="bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 min-h-full"><!-- Simple Header -->
 <header class="max-w-6xl mx-auto px-6 py-8">
     <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-3 space-x-reverse text-wood-600 dark:text-wood-400 text-sm"><span>خانه</span> <i class="fas fa-chevron-left text-xs"></i> <span class="text-wood-800 dark:text-wood-200">میز غذاخوری بلوط</span>
+        <div class="flex items-center space-x-3 space-x-reverse text-wood-600 dark:text-wood-400 text-sm"><span>خانه</span> <i class="fas fa-chevron-left text-xs"></i> <span class="text-wood-800 dark:text-wood-200">{{$product->name}}</span>
         </div>
     </div>
 </header><!-- Main Product Section -->
@@ -20,8 +20,7 @@
                             <p class="text-lg font-medium">{{$product->name}}</p>
                         </div>
                     </div><!-- Sale Badge -->
-                    <div class="absolute top-4 right-4"><span class="bg-red-500 text-white px-3 py-2 rounded-lg text-sm font-bold shadow-lg"> ۱۵٪ تخفیف </span>
-                    </div><!-- Zoom Icon -->
+                    <!-- Zoom Icon -->
                     <div class="absolute bottom-4 left-4 bg-black bg-opacity-50 text-white w-10 h-10 rounded-full flex items-center justify-center"><i class="fas fa-search-plus text-sm"></i>
                     </div>
                 </div>
@@ -49,13 +48,95 @@
                     </div><span class="text-wood-700 dark:text-wood-300 font-medium">۴.۹ (۱۲۷ نظر)</span> <span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium"> موجود در انبار </span>
                 </div>
             </div><!-- Price Section -->
-            <div class="bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
-                <div class="flex items-baseline space-x-3 space-x-reverse mb-2">
-                    <span class="text-3xl font-bold text-green-600 dark:text-green-400">{{number_format($product->price)}}</span> <span class="text-lg text-wood-600 dark:text-wood-400">تومان</span>
+
+            <div class="flex items-center justify-between mb-6 bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
+                <div class="flex flex-col w-full">
+                    @php
+                        // Check for active product discount
+                        $productDiscount = $product->discounts
+                            ->where('start_at', '<', now())
+                            ->where('end_at', '>', now())
+                            ->where('is_active', 1)
+                            ->first();
+
+                        // Initialize category discount
+                        $categoryDiscount = null;
+
+                        // If no product discount, check categories
+                        if (!$productDiscount && $product->categories && $product->categories->count() > 0) {
+                            foreach ($product->categories as $category) {
+                                $activeCatDiscount = $category->discounts
+                                    ->where('start_at', '<', now())
+                                    ->where('end_at', '>', now())
+                                    ->where('is_active', 1)
+                                    ->first();
+
+                                if ($activeCatDiscount) {
+                                    $categoryDiscount = $activeCatDiscount;
+                                    break; // stop at first found
+                                }
+                            }
+                        }
+
+                        // Determine which discount to use
+                        $activeDiscount = $productDiscount ?? $categoryDiscount;
+
+                        // Calculate discount amount if any
+                        if ($activeDiscount) {
+                            $disValue = $activeDiscount->value;
+                            $disType = $activeDiscount->type;
+
+                            if ($disType == 'percent') {
+                                $dis = $product->price * ($disValue / 100);
+                            } else {
+                                $dis = $disValue; // fixed amount
+                            }
+
+                            $finalPrice = max(0, $product->price - $dis);
+                        }
+                    @endphp
+
+                    @if($activeDiscount)
+                        <div class="flex justify-between items-center">
+                            <div class="flex flex-col text-right">
+                                <div class="flex items-center">
+                                <div class="text-center text-lg text-wood-500 dark:text-wood-400 line-through mb-1">
+                                    {{ number_format($product->price) }} تومان
+
+                                </div>
+                                    <!-- Discount Badge -->
+                                    <div class="flex bg-red-300 text-sm dark:bg-red-500 text-red-500 dark:text-white px-2 mr-2 py-1 rounded  font-bold shadow-sm">
+                                        {{ $activeDiscount->value }}{{ $activeDiscount->type == 'percent' ? '%' : ' تومان' }} تخفیف
+                                    </div>
+                                </div>
+                                <div class="font-bold text-gray-800 dark:text-slate-200 text-2xl">
+                                    {{ number_format($finalPrice) }} <span class="">تومان</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Countdown -->
+                        <div
+                            class="bg-gradient-to-br from-wood-700 via-wood-600 to-wood-500 dark:from-wood-800 dark:via-wood-700 dark:to-wood-600 justify-center mt-5 text-white p-4 rounded-xl flex items-center gap-3 shadow-2xl w-full"
+                            data-expire="{{ $activeDiscount->end_at }}"
+                            id="countdown-{{ $product->id }}">
+                            Loading timer...
+                        </div>
+                    @else
+                        <!-- Price Section -->
+                        <div class="text-right">
+                            <div class="font-bold text-gray-800 dark:text-wood-200 text-2xl">
+                                {{ number_format($product->price) }} تومان
+                            </div>
+                        </div>
+                    @endif
                 </div>
-                <div class="flex items-center space-x-3 space-x-reverse"><span class="text-lg text-wood-500 dark:text-wood-400 line-through">۱,۵۲۹,۰۰۰ تومان</span> <span class="bg-red-500 text-white px-2 py-1 rounded text-sm font-bold"> ۱۵٪ تخفیف </span>
-                </div>
-            </div><!-- Product Description -->
+
+            </div>
+
+
+            <!-- Product Description -->
             <div class="bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
                 <h3 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-3">توضیحات محصول</h3>
                 <p class="text-wood-700 dark:text-wood-300 leading-relaxed mb-4">این میز غذاخوری زیبا از چوب بلوط ممتاز ساخته شده و برای ۶ نفر طراحی شده است. با طراحی کلاسیک و مدرن، مناسب برای هر سبک دکوراسیون داخلی.</p>
@@ -171,9 +252,9 @@
         </div>
     </section>
 </main><!-- Lightbox Modal -->
-<div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4">
-    <div class="relative max-w-4xl max-h-full"><!-- Close Button --> <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white hover:text-gray-300 text-2xl z-10"> <i class="fas fa-times"></i> </button> <!-- Image Container -->
-        <div id="lightboxImage" class="rounded-2xl overflow-hidden relative" style="width: 800px; height: 600px;"><!-- Images will be loaded here -->
+<div id="lightbox" class="fixed max-w-full inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4">
+    <div class="relative max-w-full max-h-full"><!-- Close Button --> <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white hover:text-gray-300 text-2xl z-10"> <i class="fas fa-times"></i> </button> <!-- Image Container -->
+        <div id="lightboxImage" class="rounded-2xl max-w-full overflow-hidden relative" style="width: 800px; height: 600px;"><!-- Images will be loaded here -->
         </div><!-- Navigation Arrows --> <button onclick="previousImage()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all"> <i class="fas fa-chevron-left"></i> </button> <button onclick="nextImage()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all"> <i class="fas fa-chevron-right"></i> </button> <!-- Image Counter -->
         <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white px-4 py-2 rounded-full text-sm"><span id="imageCounter">1 از 4</span>
         </div>

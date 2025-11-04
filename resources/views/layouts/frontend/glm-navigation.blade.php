@@ -163,30 +163,132 @@
             </div>
         </div>
 
-        <!-- Mobile Navigation -->
-        <nav id="mobileMenu" class="hidden lg:hidden mt-4 pb-4 border-t border-wood-200 dark:border-wood-800">
-            <div class="flex flex-col space-y-3 pt-4">
-                <a href="#" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium py-2">
-                    <i class="fas fa-home ml-2"></i>
-                    خانه
-                </a>
-                <a href="#products" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium py-2">
-                    <i class="fas fa-table ml-2"></i>
-                    میزها
-                </a>
-                <a href="#categories" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium py-2">
-                    <i class="fas fa-clock ml-2"></i>
-                    ساعت‌ها
-                </a>
-                <a href="#about" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium py-2">
-                    <i class="fas fa-utensils ml-2"></i>
-                    ظروف آشپزخانه
-                </a>
-                <a href="#contact" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium py-2">
-                    <i class="fas fa-envelope ml-2"></i>
-                    تماس
-                </a>
+          <!-- Beautiful Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-80 bg-white dark:bg-wood-900/95 with-blur shadow-2xl z-50 lg:hidden ">
+
+            <!-- Header Section -->
+            <div class="bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100  shadow-[0_8px_32px_rgba(74,47,31,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] p-6 pt-0 relative overflow-hidden">
+                <div class="absolute inset-0 bg-black/10"></div>
+                <div class="relative z-10 ">
+
+                    <button onclick="toggleMobileMenu()" class=" float-left z-10 text-white/90 hover:text-white hover:bg-white/20 p-2 rounded-full transition-all duration-200">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                    <div class="">
+                        <div class="flex items-center text-center space-x-3 space-x-reverse">
+
+                            <div class="w-full">
+                                <div class="p-4  flex items-center justify-center">
+                                    <i class="fas fa-tree  text-7xl text-amber-500 dark:text-white "></i>
+                                </div>
+                                <div class="flex items-center justify-center space-x-3 space-x-reverse text-center">
+
+                                    <!-- 🪵 Brand Text -->
+                                     <div class="flex flex-col items-center leading-tight font-extrabold">
+
+        <span class="text-3xl bg-gradient-to-l from-wood-700 to-wood-400 dark:from-wood-300 dark:to-wood-100
+                     bg-clip-text text-transparent drop-shadow-sm tracking-tight">
+            XazarWood
+        </span>
+                                        <span class="text-xl text-wood-800 dark:text-wood-200 drop-shadow-sm tracking-tight">
+            خزر چوب
+        </span>
+                                    </div>
+
+
+                                </div>
+
+                                <p class="text-amber-600 dark:text-white/80 text-sm">زیبایی طبیعت در خانه شما</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </nav>
+
+            <!-- Menu Content -->
+            <div class="p-3  overflow-y-auto h-full pb-32">
+
+
+                <!-- Courses Section -->
+                <div class="space-y-1 ">
+                    <a href="{{ route('products-list','all') }}"  class="flex items-center space-x-422222 space-x-reverse  rounded-xl hover:bg-gradient-to-r hover:from-wood-300 hover:to-wood-50 dark:hover:from-wood-950/95 dark:hover:to-yellow-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                        <div class="flex items-center space-x-4 space-x-reverse p-4 text-gray-800 dark:text-gray-100">
+                            <div class="w-10 h-10 bg-gradient-to-br from-wood-500 to-wood-500 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-box-open text-white text-sm"></i>
+                            </div>
+                            <span class="font-semibold ">همه محصولات</span>
+                        </div>
+                    </a>
+                    <div class="mr-6 ">
+                        @foreach(\Modules\Blog\Models\Category::all() as $category)
+                            <a href="{{ route('products-list',$category->name) }}"  class="flex items-center space-x-3 space-x-reverse p-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-wood-300 hover:to-wood-50 dark:hover:from-wood-950/95 dark:hover:to-yellow-900/20 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                                <div class="w-8 h-8 bg-gradient-to-br from-wood-400 to-wood-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+                                    <i class="fas fa-chalkboard-teacher text-white text-xs"></i>
+                                </div>
+                                <span class="font-medium">{{$category->name}}</span>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+                <a href="{{ route('files') }}"  class="flex items-center space-x-4 space-x-reverse  rounded-xl hover:bg-gradient-to-r hover:from-wood-300 hover:to-wood-50 dark:hover:from-wood-950/95 dark:hover:to-yellow-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                    <div class="flex items-center space-x-4 space-x-reverse p-4 text-gray-800 dark:text-gray-100">
+                        <div class="w-10 h-10 bg-gradient-to-br from-wood-500 to-wood-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-file-archive text-white text-sm"></i>
+                        </div>
+                        <span class="font-semibold "> قبل از خرید </span>
+                    </div>
+                </a>
+
+
+                @if(auth()->check())
+                    <div id="mobileUserPanelLink" class="pt-4 border-t border-wood-200 dark:border-wood-700">
+                        <a href="{{auth()->user()->role=='admin'? route('admin.home'):route('user.home')}}" onclick="showUserDashboard(); toggleMobileMenu()" class="flex items-center space-x-4 space-x-reverse p-4 rounded-xl hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/20 dark:hover:to-purple-900/20 text-gray-700 dark:text-gray-200 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                            <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                                <i class="fas fa-user-cog text-white text-sm"></i>
+                            </div>
+                            <span class="font-medium dark:text-white">پنل کاربری</span>
+                        </a>
+                    </div>
+                @else
+                    <div class="pt-4 border-t border-wood-200 dark:border-wood-700">
+                        <button onclick="openLightbox()"
+                                class="w-full bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 hover:from-purple-700 hover:via-blue-700 hover:to-indigo-700 text-white py-4 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 flex items-center justify-center space-x-3 space-x-reverse">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>ورود / ثبت نام</span>
+                        </button>
+                    </div>
+                @endif
+            </div>
+
+
+        </div>
+
     </div>
 </header>
+@push('scripts')
+    <script>
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuButton = e.target.closest('button[onclick="toggleMobileMenu()"]');
+
+            if (!mobileMenu.contains(e.target) && !menuButton && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.toggle('active');
+                document.getElementById('menuIcon').classList.toggle('hidden');
+                document.getElementById('closeIcon').classList.toggle('hidden');
+            }
+        });
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+            const menuIcon = document.getElementById('menuIcon');
+            const closeIcon = document.getElementById('closeIcon');
+
+
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+
+        }
+    </script>
+@endpush

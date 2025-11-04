@@ -83,14 +83,14 @@
                                 <p class="mt-1 text-xs text-slate-500 dark:text-slate-300">اختیاری</p>
                             </div>
                         </div>
-                        <!-- NEW: Attach to Courses (multiple selection) -->
+                        <!-- NEW: Attach to Categories (multiple selection) -->
                         <div>
-                            <label for="courses" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">به کدام دوره(دوره ها) اعمال شود؟</label>
-                            <select id="courses" name="courses[]" multiple
+                            <label for="categories" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">به کدام دسته ها/محصولات اعمال شود؟</label>
+                            <select id="categories" name="categories[]" multiple
                                     class="w-full min-h-[9rem] rounded-lg border border-slate-300 dark:border-slate-500 bg-white dark:bg-slate-700/60 text-slate-800 dark:text-slate-100 px-3 py-2 focus-ring">
                                 <!-- Sample options; replace with your data -->
-                                @foreach(\App\Models\Course::all() as $course)
-                                    <option value="{{$course->id}}">{{$course->title}}</option>
+                                @foreach(\Modules\Blog\Models\Category::all() as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
                             </select>
                             <p class="mt-1 text-xs text-slate-500 dark:text-slate-300">کلید کنترل/کامند را نگه دارید و چند مورد را انتخاب کنید.</p>

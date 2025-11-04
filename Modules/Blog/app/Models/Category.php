@@ -5,6 +5,7 @@ namespace Modules\Blog\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Product\Models\Product;
+use Modules\Shop\Models\Discount;
 
 // use Modules\Blog\Database\Factories\CategoryFactory;
 
@@ -29,5 +30,11 @@ class Category extends Model
     {
         return $this->belongsToMany(Product::class, 'category_product', 'category_id', 'product_id');
     }
-
+    public function discounts()
+    {
+        return $this->morphToMany(Discount::class, 'discountable')
+            ->where('is_active', 1)
+            ->whereDate('start_at', '<=', now())
+            ->whereDate('end_at', '>=', now());
+    }
 }

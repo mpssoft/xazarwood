@@ -8,6 +8,7 @@ use App\Models\Lesson;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Blog\Models\Category;
 use Modules\File\Models\File;
 use Modules\LessonPlan\Models\LessonPlan;
 use Modules\Product\Models\Product;
@@ -45,6 +46,10 @@ class Discount extends Model
     public function products()
     {
         return $this->morphedByMany(Product::class, 'discountable');
+    }
+    public function categories()
+    {
+        return $this->morphedByMany(Category::class, 'discountable');
     }
     public function users()
     {

@@ -704,22 +704,6 @@
         }
     }
 
-    // Mobile Menu Toggle
-    function toggleMobileMenu() {
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuIcon = document.getElementById('menuIcon');
-        const closeIcon = document.getElementById('closeIcon');
-
-        if (mobileMenu.classList.contains('hidden')) {
-            mobileMenu.classList.remove('hidden');
-            menuIcon.classList.add('hidden');
-            closeIcon.classList.remove('hidden');
-        } else {
-            mobileMenu.classList.add('hidden');
-            menuIcon.classList.remove('hidden');
-            closeIcon.classList.add('hidden');
-        }
-    }
 
     // Dropdown functionality
     document.addEventListener('DOMContentLoaded', () => {
@@ -825,17 +809,7 @@
         });
     });
 
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuButton = e.target.closest('button[onclick="toggleMobileMenu()"]');
 
-        if (!mobileMenu.contains(e.target) && !menuButton) {
-            mobileMenu.classList.add('hidden');
-            document.getElementById('menuIcon').classList.remove('hidden');
-            document.getElementById('closeIcon').classList.add('hidden');
-        }
-    });
 </script>
 @include('sweetalert::alert')
 @yield('script')
