@@ -4,23 +4,21 @@
         <div class="flex items-center justify-between">
             <!-- Brand and Navigation -->
             <div class="flex items-center space-x-reverse space-x-8">
+                <a href="/">
                 <div class="flex items-center justify-center space-x-3 space-x-reverse text-center">
-                    <div class="inline-flex items-center justify-center relative top-6 right-11 w-8 h-8 bg-wood-600 dark:bg-wood-400 rounded mb-4 shadow-lg"><i class="fas fa-tree text-wood-100 dark:text-wood-900 "></i>
+                    <div class="flex items-center justify-center  w-10 h-10 bg-amber-600 dark:bg-amber-400 rounded-full  shadow-lg"><i class="fas fa-tree text-wood-100 dark:text-wood-900 "></i>
                     </div>
                     <!-- 🪵 Brand Text -->
                     <div class="flex flex-col items-center leading-tight font-extrabold">
-        <span class="text-3xl bg-gradient-to-l from-wood-700 to-wood-400 dark:from-wood-300 dark:to-wood-100
-                     bg-clip-text text-transparent drop-shadow-sm tracking-tight">
-            XazarWood
-        </span>
-                        <span class="text-xl text-wood-800 dark:text-wood-200 drop-shadow-sm tracking-tight">
+
+                        <span style="font-family:'Vazirmatn-bold' !important;" class=" text-2xl  font-bold  bg-gradient-to-r from-amber-600 via-yellow-400 to-amber-800  text-transparent bg-clip-text    tv-optimized-text-shadow">
             خزر چوب
         </span>
                     </div>
 
 
                 </div>
-
+                </a>
                 <!-- Desktop Navigation -->
 
                 <nav class="hidden lg:flex lg:items-center lg:justify-start space-x-reverse space-x-6">
@@ -64,7 +62,7 @@
                 <!-- Cart Dropdown -->
                 <div class="relative">
                     <a href="/cart" id="cartBtn" class="p-2 flex rounded-full bg-wood-100 dark:bg-wood-800 hover:bg-wood-200 dark:hover:bg-wood-700 transition-colors relative">
-                        <svg class="w-6 h-6 text-wood-700 dark:text-wood-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 text-wood-700 dark:text-wood-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
                         <span id="itemsCount" class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
@@ -83,7 +81,7 @@
                     </div>
                 </div>
                 <!-- User Profile Dropdown -->
-                <div class="relative">
+                <div class="relative hidden md:flex">
                     @if(auth()->check())
                         <button id="userMenuBtn" class="py-2 transition-colors">
 
@@ -94,7 +92,7 @@
                         </button>
 
                         <!-- User Dropdown Menu -->
-                        <div id="userDropdown" class="hidden absolute left-0 mt-3 w-72 max-w-[90vw] bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 rounded-2xl shadow-[0_8px_32px_rgba(74,47,31,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-5 space-y-4 with-blur border border-wood-300/50 dark:border-wood-700/50">
+                        <div id="userDropdown" class="hidden absolute left-0 mt-16 w-72 max-w-[90vw] bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 rounded-2xl shadow-[0_8px_32px_rgba(74,47,31,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-5 space-y-4 with-blur border border-wood-300/50 dark:border-wood-700/50">
                             <!-- User Info Section -->
                             <div class="flex items-center gap-4">
                                 <div class="w-14 h-14 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 p-0.5">
@@ -136,13 +134,15 @@
                             <div class="h-px bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
 
                             <!-- Logout Section -->
-                            <button class="w-full text-center bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 hover:from-red-100 hover:to-orange-100 dark:hover:from-red-900/30 dark:hover:to-orange-900/30 text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 py-3 rounded-xl transition-all duration-200 font-medium hover:scale-[0.98]">
+                            <form action="{{route('logout')}}" method="post" id="logout-form">@csrf</form>
+                            <button onclick="event.preventDefault();document.getElementById('logout-form').submit()"
+                             class="w-full text-center bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 hover:from-red-100 hover:to-orange-100 dark:hover:from-red-900/30 dark:hover:to-orange-900/30 text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 py-3 rounded-xl transition-all duration-200 font-medium hover:scale-[0.98]">
                                 <i class="fas fa-sign-out-alt ml-2"></i>
                                 خروج از حساب کاربری
                             </button>
                         </div>
                     @else
-                        <div id="authButtons">
+                        <div id="authButtons" class="hidden md:flex">
                             <a href="#" onclick="openLightbox()"
                                class="bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 px-6 py-2 rounded-lg font-medium hover:from-wood-100 hover:via-wood-200 hover:to-wood-300 dark:hover:from-wood-800 dark:hover:via-wood-700 dark:hover:to-wood-900 hover:shadow-md hover:-translate-y-0.5 transition-all ">
                                 ورود / ثبت نام
@@ -152,11 +152,11 @@
                 </div>
 
                 <!-- Mobile Menu Toggle -->
-                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg bg-wood-100 dark:bg-wood-800 hover:bg-wood-200 dark:hover:bg-wood-700 transition-colors">
-                    <svg id="menuIcon" class="w-6 h-6 text-wood-700 dark:text-wood-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-full bg-wood-100 dark:bg-wood-800 hover:bg-wood-200 dark:hover:bg-wood-700 transition-colors">
+                    <svg id="menuIcon" class="w-5 h-5 text-wood-700 dark:text-wood-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
-                    <svg id="closeIcon" class="w-6 h-6 text-wood-700 dark:text-wood-200 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg id="closeIcon" class="w-5 h-5 text-wood-700 dark:text-wood-200 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
@@ -164,7 +164,7 @@
         </div>
 
           <!-- Beautiful Mobile Menu -->
-        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-80 bg-white dark:bg-wood-900/95 with-blur shadow-2xl z-50 lg:hidden ">
+        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 min-h-full w-80 bg-white dark:bg-wood-900/95  shadow-2xl z-50 lg:hidden ">
 
             <!-- Header Section -->
             <div class="bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100  shadow-[0_8px_32px_rgba(74,47,31,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] p-6 pt-0 relative overflow-hidden">
@@ -220,7 +220,7 @@
                             <span class="font-semibold ">همه محصولات</span>
                         </div>
                     </a>
-                    <div class="mr-6 ">
+                    <div class="mr-6 space-y-1">
                         @foreach(\Modules\Blog\Models\Category::all() as $category)
                             <a href="{{ route('products-list',$category->name) }}"  class="flex items-center space-x-3 space-x-reverse p-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-wood-300 hover:to-wood-50 dark:hover:from-wood-950/95 dark:hover:to-yellow-900/20 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
                                 <div class="w-8 h-8 bg-gradient-to-br from-wood-400 to-wood-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
