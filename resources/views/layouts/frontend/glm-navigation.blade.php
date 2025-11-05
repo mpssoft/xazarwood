@@ -143,7 +143,7 @@
                         </div>
                     @else
                         <div id="authButtons" class="hidden md:flex">
-                            <a href="#" onclick="openLightbox()"
+                            <a href="#" onclick="openLoginBox()"
                                class="bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 px-6 py-2 rounded-lg font-medium hover:from-wood-100 hover:via-wood-200 hover:to-wood-300 dark:hover:from-wood-800 dark:hover:via-wood-700 dark:hover:to-wood-900 hover:shadow-md hover:-translate-y-0.5 transition-all ">
                                 ورود / ثبت نام
                             </a>
@@ -252,7 +252,7 @@
                     </div>
                 @else
                     <div class="pt-4 border-t border-wood-200 dark:border-wood-700">
-                        <button onclick="openLightbox()"
+                        <button onclick="openLoginBox()"
                                 class="w-full bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 hover:from-purple-700 hover:via-blue-700 hover:to-indigo-700 text-white py-4 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 flex items-center justify-center space-x-3 space-x-reverse">
                             <i class="fas fa-sign-in-alt"></i>
                             <span>ورود / ثبت نام</span>

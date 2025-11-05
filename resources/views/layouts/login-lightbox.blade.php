@@ -5,7 +5,7 @@
         <!-- Header -->
         <div class="p-8 pb-6">
             <div class="flex justify-end mb-4">
-                <button onclick="closeLightbox()" class="text-wood-600 dark:text-wood-400 hover:text-wood-800 dark:hover:text-wood-200 transition-colors">
+                <button onclick="closeLoginBox()" class="text-wood-600 dark:text-wood-400 hover:text-wood-800 dark:hover:text-wood-200 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
@@ -81,13 +81,13 @@
 </div>
 
 <script>
-    function openLightbox() {
+    function openLoginBox() {
         document.getElementById('lightboxOverlay').classList.remove('hidden');
         document.body.style.overflow = 'hidden';
         toggleMobileMenu();
     }
 
-    function closeLightbox() {
+    function closeLoginBox() {
         document.getElementById('lightboxOverlay').classList.add('hidden');
         document.body.style.overflow = 'auto';
     }
