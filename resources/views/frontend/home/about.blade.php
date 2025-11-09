@@ -1,111 +1,243 @@
 @extends('layouts.app')
 @section('content')
-<div class="  p-10  bg-slate-400">
 
-    <!-- Hero Section -->
-    <section class="py-20  ">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-5xl font-bold text-gray-900 mb-6">درباره فیزیک بیست</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                ما متخصصان آموزش فیزیک هستیم که به کمک دانش‌آموزان دبیرستان برای موفقیت در کنکور و درک عمیق‌تر فیزیک اختصاص داریم. هدف ما تبدیل فیزیک از درس سخت به علم جذاب و قابل فهم است.
-            </p>
+<div class="bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 min-h-full"><!-- Header -->
+<!-- Hero Section -->
+<section class="relative py-20 overflow-hidden min-h-[600px]"><!-- Background Image -->
+    <div class="absolute inset-0 z-0" style="background: url({{asset('/images/tables/big/xazarwood_ir_rustic_table_with_rustic_chairs.jpg')}});background-attachment:fixed;background-size: cover;">
+        <!-- Fallback background -->
+        <div class="w-full h-full bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-800 dark:to-wood-700" style="display: none;"></div>
+    </div><!-- Gradient Overlay (black from bottom to transparent top) -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
+    <div class="max-w-6xl mx-auto px-6 relative z-20">
+        <div class="text-center fade-in">
+            <div class="inline-block bg-wood-600 dark:bg-wood-500 text-white px-4 py-2 rounded-full text-sm font-medium mb-4"><i class="fas fa-hammer ml-2"></i> بیش از ۱۵ سال تجربه
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">درباره خزرچوب</h2>
+            <p class="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">ما با عشق و دقت، محصولات چوبی دست‌ساز از جنس گردو می‌سازیم که زیبایی و دوام را در خانه شما به ارمغان می‌آورد</p>
         </div>
-    </section>
-
-    <!-- Mission & Vision -->
-    <section class="py-16 m-10 rounded-3xl bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="text-center">
-                    <div class="bg-indigo-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-graduation-cap text-3xl text-indigo-600"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold text-gray-900 mb-4">ماموریت ما</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        آموزش فیزیک به شیوه‌ای ساده، جذاب و کاربردی که دانش‌آموزان را برای موفقیت در کنکور و ادامه تحصیل در رشته‌های مهندسی و علوم پایه آماده کند. ما معتقدیم هر دانش‌آموزی می‌تواند فیزیک را بیاموزد.
-                    </p>
+    </div><!-- Decorative Elements -->
+    <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-wood-50 dark:from-wood-900 to-transparent z-20"></div>
+</section>
+<main class="max-w-6xl mx-auto px-6 py-16"><!-- Story Section -->
+    <section class="mb-20 fade-in">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-6"><i class="fas fa-book-open text-wood-600 dark:text-wood-400 ml-3"></i> داستان ما</h3>
+                <div class="space-y-4 text-wood-700 dark:text-wood-300 leading-relaxed">
+                    <p>خزرچوب در شهر زیبای <strong>سلماس</strong> با هدف احیای هنر چوب‌کاری سنتی و ترکیب آن با طراحی مدرن تاسیس شد. ما معتقدیم که هر قطعه چوب داستانی دارد و وظیفه ما این است که آن داستان را به زیباترین شکل ممکن روایت کنیم.</p>
+                    <p>با استفاده از چوب گردو مرغوب و تکنیک‌های دست‌سازی، ما محصولاتی می‌سازیم که نه تنها زیبا هستند، بلکه برای نسل‌ها دوام خواهند آورد. هر محصول ما حاصل ساعت‌ها کار دقیق و عاشقانه است.</p>
+                    <p>فلسفه ما ساده است: <strong>کیفیت بی‌نظیر، طراحی منحصر به فرد، و رضایت کامل مشتری</strong>.</p>
                 </div>
-                <div class="text-center">
-                    <div class="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-atom text-3xl text-purple-600"></i>
+            </div>
+            <div class="bg-white dark:bg-wood-800 rounded-2xl shadow-lg p-8">
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="text-center p-6 bg-wood-50 dark:bg-wood-700 rounded-xl">
+                        <div class="text-4xl font-bold text-wood-600 dark:text-wood-400 mb-2">
+                            ۱۵+
+                        </div>
+                        <div class="text-sm text-wood-700 dark:text-wood-300">
+                            سال تجربه
+                        </div>
                     </div>
-                    <h3 class="text-3xl font-bold text-gray-900 mb-4">چشم‌انداز ما</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        تبدیل شدن به مرجع اصلی آموزش فیزیک دبیرستان در کشور و کمک به هزاران دانش‌آموز برای کسب رتبه‌های برتر در کنکور و ورود به دانشگاه‌های معتبر.
-                    </p>
+                    <div class="text-center p-6 bg-wood-50 dark:bg-wood-700 rounded-xl">
+                        <div class="text-4xl font-bold text-wood-600 dark:text-wood-400 mb-2">
+                            ۲
+                        </div>
+                        <div class="text-sm text-wood-700 dark:text-wood-300">
+                            هفته تحویل
+                        </div>
+                    </div>
+                    <div class="text-center p-6 bg-wood-50 dark:bg-wood-700 rounded-xl">
+                        <div class="text-4xl font-bold text-wood-600 dark:text-wood-400 mb-2">
+                            ۱۰۰٪
+                        </div>
+                        <div class="text-sm text-wood-700 dark:text-wood-300">
+                            دست‌ساز
+                        </div>
+                    </div>
+                    <div class="text-center p-6 bg-wood-50 dark:bg-wood-700 rounded-xl">
+                        <div class="text-4xl font-bold text-wood-600 dark:text-wood-400 mb-2">
+                            ۵۰۰+
+                        </div>
+                        <div class="text-sm text-wood-700 dark:text-wood-300">
+                            مشتری راضی
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- Founder Section -->
+    <section class="mb-20 fade-in">
+        <div class="bg-gradient-to-br from-wood-600 to-wood-700 dark:from-wood-700 dark:to-wood-800 rounded-2xl shadow-xl p-8 md:p-12 text-white">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div class="flex justify-center">
+                    <div class="w-40 h-40 bg-white dark:bg-wood-600 rounded-full flex items-center justify-center shadow-lg"><i class="fas fa-user-tie text-6xl text-wood-600 dark:text-wood-200"></i>
+                    </div>
+                </div>
+                <div class="md:col-span-2">
+                    <div class="inline-block bg-white/20 px-3 py-1 rounded-full text-sm mb-3"><i class="fas fa-star ml-1"></i> بنیانگذار و استاد چوب‌کار
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4">علیرضا حق نظری</h3>
+                    <p class="text-white/90 leading-relaxed mb-4">با بیش از ۱۵ سال تجربه در هنر چوب‌کاری، علیرضا حق نظری تمام عشق و تخصص خود را در ساخت محصولات چوبی منحصر به فرد به کار می‌گیرد. او معتقد است که چوب‌کاری فقط یک حرفه نیست، بلکه یک هنر و یک سبک زندگی است.</p>
+                    <div class="flex flex-wrap gap-3"><span class="bg-white/20 px-3 py-1 rounded-lg text-sm"> <i class="fas fa-award ml-1"></i> متخصص چوب گردو </span> <span class="bg-white/20 px-3 py-1 rounded-lg text-sm"> <i class="fas fa-palette ml-1"></i> طراح محصول </span> <span class="bg-white/20 px-3 py-1 rounded-lg text-sm"> <i class="fas fa-tools ml-1"></i> استاد کار دست‌ساز </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- Products Section -->
+    <section class="mb-20 fade-in">
+        <div class="text-center mb-12">
+            <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">محصولات ما</h3>
+            <p class="text-lg text-wood-700 dark:text-wood-300 max-w-2xl mx-auto">ما طیف متنوعی از محصولات چوبی دست‌ساز را با استفاده از چوب گردو مرغوب تولید می‌کنیم</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"><!-- Product 1 -->
+            <div class="bg-white dark:bg-wood-800 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+                <div class="w-20 h-20 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 rounded-full flex items-center justify-center mx-auto mb-4 product-icon"><i class="fas fa-table text-3xl text-wood-600 dark:text-wood-300"></i>
+                </div>
+                <h4 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-2">میزهای روستیک</h4>
+                <p class="text-sm text-wood-600 dark:text-wood-400">میزهای غذاخوری و جلو مبلی با طراحی روستیک و مدرن</p>
+            </div><!-- Product 2 -->
+            <div class="bg-white dark:bg-wood-800 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+                <div class="w-20 h-20 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 rounded-full flex items-center justify-center mx-auto mb-4 product-icon"><i class="fas fa-clock text-3xl text-wood-600 dark:text-wood-300"></i>
+                </div>
+                <h4 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-2">ساعت‌های دیواری</h4>
+                <p class="text-sm text-wood-600 dark:text-wood-400">ساعت‌های چوبی دست‌ساز با طراحی‌های منحصر به فرد</p>
+            </div><!-- Product 3 -->
+            <div class="bg-white dark:bg-wood-800 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+                <div class="w-20 h-20 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 rounded-full flex items-center justify-center mx-auto mb-4 product-icon"><i class="fas fa-utensils text-3xl text-wood-600 dark:text-wood-300"></i>
+                </div>
+                <h4 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-2">ظروف آشپزخانه</h4>
+                <p class="text-sm text-wood-600 dark:text-wood-400">کاسه، بشقاب و ظروف چوبی برای آشپزخانه شما</p>
+            </div><!-- Product 4 -->
+            <div class="bg-white dark:bg-wood-800 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
+                <div class="w-20 h-20 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 rounded-full flex items-center justify-center mx-auto mb-4 product-icon"><i class="fas fa-chair text-3xl text-wood-600 dark:text-wood-300"></i>
+                </div>
+                <h4 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-2">صندلی‌های چوبی</h4>
+                <p class="text-sm text-wood-600 dark:text-wood-400">صندلی‌های راحت و زیبا با کیفیت بی‌نظیر</p>
+            </div>
+        </div>
+    </section><!-- Why Choose Us Section -->
+    <section class="mb-20 fade-in">
+        <div class="text-center mb-12">
+            <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">چرا خزرچوب؟</h3>
+            <p class="text-lg text-wood-700 dark:text-wood-300 max-w-2xl mx-auto">ویژگی‌هایی که ما را از دیگران متمایز می‌کند</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white dark:bg-wood-800 rounded-xl shadow-sm p-6">
+                <div class="flex items-start space-x-4 space-x-reverse">
+                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fas fa-leaf text-green-600 dark:text-green-400 text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">چوب گردو مرغوب</h4>
+                        <p class="text-sm text-wood-600 dark:text-wood-400">استفاده از بهترین چوب گردو طبیعی با کیفیت عالی</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white dark:bg-wood-800 rounded-xl shadow-sm p-6">
+                <div class="flex items-start space-x-4 space-x-reverse">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fas fa-hands text-blue-600 dark:text-blue-400 text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">۱۰۰٪ دست‌ساز</h4>
+                        <p class="text-sm text-wood-600 dark:text-wood-400">تمام محصولات با دست و با دقت بالا ساخته می‌شوند</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white dark:bg-wood-800 rounded-xl shadow-sm p-6">
+                <div class="flex items-start space-x-4 space-x-reverse">
+                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fas fa-palette text-purple-600 dark:text-purple-400 text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">طراحی سفارشی</h4>
+                        <p class="text-sm text-wood-600 dark:text-wood-400">امکان سفارش محصول با طراحی دلخواه شما</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white dark:bg-wood-800 rounded-xl shadow-sm p-6">
+                <div class="flex items-start space-x-4 space-x-reverse">
+                    <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fas fa-clock text-orange-600 dark:text-orange-400 text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">تحویل ۲ هفته‌ای</h4>
+                        <p class="text-sm text-wood-600 dark:text-wood-400">آماده‌سازی و تحویل سفارش شما در کمتر از ۲ هفته</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white dark:bg-wood-800 rounded-xl shadow-sm p-6">
+                <div class="flex items-start space-x-4 space-x-reverse">
+                    <div class="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fas fa-heart text-red-600 dark:text-red-400 text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">ساخت با عشق</h4>
+                        <p class="text-sm text-wood-600 dark:text-wood-400">هر محصول با دقت و علاقه فراوان ساخته می‌شود</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white dark:bg-wood-800 rounded-xl shadow-sm p-6">
+                <div class="flex items-start space-x-4 space-x-reverse">
+                    <div class="w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fas fa-shield-alt text-yellow-600 dark:text-yellow-400 text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">ضمانت کیفیت</h4>
+                        <p class="text-sm text-wood-600 dark:text-wood-400">تضمین کیفیت و دوام بالای محصولات</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- Process Section -->
+    <section class="mb-20 fade-in">
+        <div class="text-center mb-12">
+            <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">فرآیند کار ما</h3>
+            <p class="text-lg text-wood-700 dark:text-wood-300 max-w-2xl mx-auto">از سفارش تا تحویل، مراحل ساخت محصول شما</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-wood-600 dark:bg-wood-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                    ۱
+                </div>
+                <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">مشاوره و سفارش</h4>
+                <p class="text-sm text-wood-600 dark:text-wood-400">دریافت سفارش و مشاوره رایگان درباره طراحی</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-wood-600 dark:bg-wood-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                    ۲
+                </div>
+                <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">طراحی و تایید</h4>
+                <p class="text-sm text-wood-600 dark:text-wood-400">ارائه طرح نهایی و دریافت تایید شما</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-wood-600 dark:bg-wood-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                    ۳
+                </div>
+                <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">ساخت دست‌ساز</h4>
+                <p class="text-sm text-wood-600 dark:text-wood-400">شروع ساخت محصول با دقت و کیفیت بالا</p>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 bg-wood-600 dark:bg-wood-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                    ۴
+                </div>
+                <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">تحویل محصول</h4>
+                <p class="text-sm text-wood-600 dark:text-wood-400">تحویل محصول آماده در کمتر از ۲ هفته</p>
+            </div>
+        </div>
+    </section><!-- Contact CTA Section -->
+    <section class="fade-in">
+        <div class="bg-gradient-to-br from-wood-600 to-wood-700 dark:from-wood-700 dark:to-wood-800 rounded-2xl shadow-xl p-8 md:p-12 text-center text-white"><i class="fas fa-map-marker-alt text-5xl mb-6 opacity-80"></i>
+            <h3 class="text-3xl font-bold mb-4">ما را پیدا کنید</h3>
+            <p class="text-xl mb-2">شهر سلماس، آذربایجان غربی</p>
+            <p class="text-white/80 mb-8 max-w-2xl mx-auto">برای سفارش محصولات چوبی دست‌ساز یا بازدید از کارگاه ما، با ما در تماس باشید</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <div class="bg-white/20 px-6 py-3 rounded-lg"><i class="fas fa-phone ml-2"></i> <span>تماس با ما</span>
+                </div>
+                <div class="bg-white/20 px-6 py-3 rounded-lg"><i class="fas fa-envelope ml-2"></i> <span>ارسال پیام</span>
+                </div>
+                <div class="bg-white/20 px-6 py-3 rounded-lg"><i class="fab fa-instagram ml-2"></i> <span>اینستاگرام</span>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Values Section -->
-    <section class="py-16 m-10 bg-gray-50 rounded-3xl ">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-4xl font-bold text-center text-gray-900 mb-12">ارزش‌های آموزشی ما</h3>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-book-open text-2xl text-green-600"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-4">آموزش ساده</h4>
-                    <p class="text-gray-600">پیچیده‌ترین مفاهیم فیزیک را به زبان ساده و با مثال‌های کاربردی آموزش می‌دهیم تا همه دانش‌آموزان بتوانند درک کنند.</p>
-                </div>
-                <div class="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-trophy text-2xl text-blue-600"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-4">موفقیت در کنکور</h4>
-                    <p class="text-gray-600">تمرکز اصلی ما بر روی آمادگی دانش‌آموزان برای کنکور و کسب بهترین نتایج در آزمون سراسری است.</p>
-                </div>
-                <div class="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-chalkboard-teacher text-2xl text-orange-600"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-4">پشتیبانی مستمر</h4>
-                    <p class="text-gray-600">همیشه در کنار دانش‌آموزان هستیم و سوالات آنها را پاسخ می‌دهیم تا مسیر یادگیری آنها هموار باشد.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="py-16 bg-slate-400">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-4xl font-bold text-center text-gray-900 mb-12">مدرس ما</h3>
-            <div class="flex justify-center">
-                <div class="text-center">
-                    <div class="bg-gradient-to-br from-indigo-400 to-purple-500 w-32 h-32 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <i class="fas fa-user text-4xl text-white"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2">حسین نژاداسد</h4>
-                    <p class="text-indigo-600 font-semibold mb-3">مدرس فیزیک و بنیان‌گذار</p>
-                    <p class="text-gray-600 text-sm">مدرس مجرب فیزیک دبیرستان با سال‌ها تجربه در آمادگی دانش‌آموزان برای کنکور و کسب رتبه‌های برتر در شهرستان سلماس.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- Contact CTA -->
-    <section class="py-20 bg-gray-900 m-10 rounded-3xl">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h3 class="text-4xl font-bold text-white mb-6">آماده شروع یادگیری هستید؟</h3>
-            <p class="text-xl text-gray-300 mb-8">
-                همین امروز به جمع هزاران دانش‌آموز موفق بپیوندید و مسیر خود را به سوی قبولی در کنکور آغاز کنید.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center">
-                    <i class="fas fa-play mr-2"></i>
-                    شروع دوره‌ها
-                </a>
-                <a href="#" class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center">
-                    <i class="fas fa-phone mr-2"></i>
-                    مشاوره رایگان
-                </a>
-            </div>
-        </div>
-    </section>
-
+</main><!-- Footer -->
 </div>
+
 @endsection
