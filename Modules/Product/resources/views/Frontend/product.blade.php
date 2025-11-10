@@ -26,13 +26,13 @@
                 </div>
             </div><!-- Thumbnail Images -->
             <div class="grid grid-cols-4 gap-3">
-                <div class="bg-white dark:bg-wood-800 rounded-lg shadow-sm border-2 border-wood-200 dark:border-wood-600 overflow-hidden cursor-pointer hover:border-wood-500 transition-colors" onclick="selectThumbnail(0, this)" data-image="{{asset($product->main_image)}}" data-title="جزئیات نزدیک" data-subtitle="کیفیت چوب و ساخت"><img src="{{asset($product->main_image)}}" alt="{{$product->name}}" class="w-full h-20 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="bg-white dark:bg-wood-800 rounded-lg shadow-sm border-2 border-wood-200 dark:border-wood-600 overflow-hidden cursor-pointer hover:border-wood-500 transition-colors" onclick="selectThumbnail(0, this)" data-image="{{asset($product->main_image)}}" data-big="{{str_replace(['small','500'],['big','1500'],asset($product->main_image))}}" data-title="جزئیات نزدیک" data-subtitle="کیفیت چوب و ساخت"><img src="{{asset($product->main_image)}}" alt="{{$product->name}}" class="w-full h-20 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="h-20 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 flex items-center justify-center" style="display: none;"><i class="fas fa-table text-xl text-wood-700 dark:text-wood-300"></i>
                     </div>
                 </div>
                 @php $i=1; @endphp
                 @foreach($product->images as $image)
-                <div class="bg-white dark:bg-wood-800 rounded-lg shadow-sm border-2 border-wood-200 dark:border-wood-600 overflow-hidden cursor-pointer hover:border-wood-500 transition-colors" onclick="selectThumbnail({{$i++}}, this)" data-image="{{asset($image->image)}}" data-title="جزئیات نزدیک" data-subtitle="کیفیت چوب و ساخت"><img src="{{asset($image->image)}}" alt="{{$product->name}}" class="w-full h-20 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="bg-white dark:bg-wood-800 rounded-lg shadow-sm border-2 border-wood-200 dark:border-wood-600 overflow-hidden cursor-pointer hover:border-wood-500 transition-colors" onclick="selectThumbnail({{$i++}}, this)" data-image="{{asset($image->image)}}" data-big="{{str_replace(['small','500'],['big','1500'],asset($image->image))}}"  data-title="جزئیات نزدیک" data-subtitle="کیفیت چوب و ساخت"><img src="{{asset($image->image)}}" alt="{{$product->name}}" class="w-full h-20 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="h-20 bg-gradient-to-br from-wood-200 to-wood-300 dark:from-wood-600 dark:to-wood-500 flex items-center justify-center" style="display: none;"><i class="fas fa-eye text-xl text-wood-700 dark:text-wood-300"></i>
                     </div>
                 </div>
@@ -344,7 +344,7 @@
 
             thumbnails.forEach(thumb => {
                 imageData.push({
-                    url: thumb.getAttribute('data-image'),
+                    url: thumb.getAttribute('data-big'),
                     title: thumb.getAttribute('data-title'),
                     subtitle: thumb.getAttribute('data-subtitle')
                 });
@@ -384,9 +384,9 @@
 
             lightboxImage.innerHTML = `
                 <img src="${currentImage.url}" alt="${currentImage.title}"
-                     class="w-full h-full object-cover"
+                     class=" object-cover"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                     style="width: 800px; height: 600px;">
+                     >
 
                 <!-- Fallback content if image fails to load -->
                 <div class="bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 w-full h-full flex items-center justify-center absolute inset-0" style="display: none;">

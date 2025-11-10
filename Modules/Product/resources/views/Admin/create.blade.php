@@ -52,7 +52,7 @@
                     <label for="product-name" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
                         نام محصول *
                     </label>
-                    <input type="text" id="product-name" name="name" required
+                    <input type="text" id="product-name" name="name" required value="{{old('name')}}"
                            class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
                            placeholder="نام محصول را وارد کنید...">
                 </div>
@@ -64,6 +64,8 @@
                     </label>
                     <div class="relative">
                         <input type="text" id="product-price" name="price" required
+
+                               value="{{old('price')}}"
                                class="w-full format_number px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
                                placeholder="0">
                         <span class="absolute left-3 top-3 text-gray-500 dark:text-slate-400">تومان</span>
@@ -75,7 +77,8 @@
                     <label for="product-stock" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
                         موجودی *
                     </label>
-                    <input type="text" id="product-stock" name="stock" required min="0"
+                    <input type="text" id="product-stock" name="stock" required
+                           value="{{old('stock')}}"
                            class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
                            placeholder="تعداد موجودی">
                 </div>
@@ -85,7 +88,7 @@
                     <label for="product-category" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
                         دسته‌بندی *
                     </label>
-                    <select id="product-category" name="category" required
+                    <select id="product-category" name="categories[]" multiple required
                             class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100">
                         <option value="">انتخاب دسته‌بندی</option>
                        @foreach(\Modules\Blog\Models\Category::all() as $category)
@@ -126,7 +129,7 @@
                     </label>
                     <textarea id="short-description" name="description" rows="3" required
                               class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
-                              placeholder="توضیح کوتاه محصول برای نمایش در لیست محصولات..."></textarea>
+                              placeholder="توضیح کوتاه محصول برای نمایش در لیست محصولات...">{{old('description')}}</textarea>
                     <p class="text-sm text-gray-500 dark:text-slate-400 mt-1">حداکثر ۱۵۰ کاراکتر</p>
                 </div>
 
@@ -147,7 +150,7 @@
                         </label>
 
                         <!-- TinyMCE Editor -->
-                        <textarea id="content" name="content" class="tinymce-editor">          </textarea>
+                        <textarea id="content" name="content" class="tinymce-editor">{{old('content')}}</textarea>
 
                         <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
                             <i class="fas fa-info-circle ml-1"></i>
@@ -254,6 +257,7 @@
                         برچسب‌ها
                     </label>
                     <input type="text" id="product-tags" name="keywords"
+                           value="{{old('keywords')}}"
                            class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
                            placeholder="چوب، دست‌ساز، مدرن (با کاما جدا کنید)">
                     <p class="text-sm text-gray-500 dark:text-slate-400 mt-1">برچسب‌ها را با کاما از هم جدا کنید</p>

@@ -1,20 +1,20 @@
 <!-- Hero Slider -->
 <section class="relative h-96 md:h-[650px]  overflow-hidden">
     <div class="relative w-full h-full" id="sliderContainer"><!-- Slides --> @foreach($sliders as $index => $slider)
-            <div class="slide {{ $loop->first ? 'slide-active' : '' }} absolute inset-0" data-slide="{{ $index }}" style="opacity: {{ $loop->first ? '1' : '0' }}; transition: opacity 0.8s ease-in-out; pointer-events: {{ $loop->first ? 'auto' : 'none' }};"><img src="{{asset($slider->image)}}" alt="{{$slider->title}}" class="w-full h-full object-cover object-center">
-                <div class="absolute inset-0 bg-gradient-to-l from-black/70 to-transparent flex items-center transition-all duration-700 ease-in-out">
-                    <div class="max-w-7xl mx-auto px-4 text-right">
-                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">{{$slider->title}}</h2>
-                        <p class="text-xl text-white/90 mb-6 max-w-2xl">{{$slider->subtitle}}</p><a href="{{$slider->link}}" class="px-8 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"> {{$slider->button_text}} </a>
+            <div class="slide {{ $loop->first ? 'slide-active' : '' }} absolute inset-0" data-slide="{{ $index }}" style="opacity: {{ $loop->first ? '1' : '0' }}; transition: opacity 0.8s ease-in-out; pointer-events: {{ $loop->first ? 'auto' : 'none' }};"><img src="{{asset($slider->image)}}" alt="{{$slider->title}}" class="w-full h-full object-cover ">
+                <div class="absolute  pt-32 flex inset-0 items-center  transition-all duration-700">
+                    <div class="max-w-7xl mx-auto px-4 text-center md:text-right">
+                        <h2 class="text-2xl md:text-5xl font-bold text-white mb-4">{{$slider->title}}</h2>
+                        <p class=" text-white/90 mb-6 max-w-2xl">{{$slider->subtitle}}</p><a href="{{$slider->link}}" class="p-2 md:px-8 md:py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"> {{$slider->button_text}} </a>
                     </div>
                 </div>
             </div> @endforeach
-    </div><!-- Navigation Arrows --> <button onclick="previousSlide()" class="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-white transition-all duration-300 z-10">
+    </div><!-- Navigation Arrows --> <button onclick="previousSlide()" class="absolute hidden md:flex left-4 top-1/2 transform -translate-y-1/2 p-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-white transition-all duration-300 z-10">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-        </svg></button> <button onclick="nextSlide()" class="absolute right-4 top-1/2 transform -translate-y-1/2 p-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-white transition-all duration-300 z-10">
+        </svg></button> <button onclick="nextSlide()" class="absolute hidden md:flex right-4 top-1/2 transform -translate-y-1/2 p-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-white transition-all duration-300 z-10">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg></button> <!-- Slider Indicators -->
-    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-reverse space-x-2 z-10">
+    <div class="absolute flex bottom-4 left-1/2 transform -translate-x-1/2  space-x-reverse space-x-2 z-10">
         @foreach($sliders as $index => $slider) <button onclick="goToSlide({{ $index }})" class="indicator w-3 h-3 {{ $loop->first ? 'bg-white' : 'bg-white/50' }} rounded-full transition-all duration-300" data-indicator="{{ $index }}"></button> @endforeach
     </div>
 </section>
