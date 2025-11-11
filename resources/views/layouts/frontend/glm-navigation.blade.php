@@ -22,27 +22,68 @@
                 <!-- Desktop Navigation -->
 
                 <nav class="hidden lg:flex lg:items-center lg:justify-start space-x-reverse space-x-6">
-                    <a href="#" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
-                        <i class="fas fa-home ml-2"></i>
-                        خانه
-                    </a>
+                    <!-- Products (Dining Table with custom path) -->
                     <a href="#products" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
-                        <i class="fas fa-table ml-2"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M4 10v10m16-10v10M8 10v10m8-10v10"/>
+                        </svg>
                         میزها
                     </a>
+
+                    <!-- Categories (Clock) -->
                     <a href="#categories" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
                         <i class="fas fa-clock ml-2"></i>
                         ساعت‌ها
                     </a>
+
+                    <!-- About (Kitchenware) -->
                     <a href="#about" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
-                        <i class="fas fa-utensils ml-2"></i>
+                        <i class="fas fa-mug-hot ml-2"></i>
                         ظروف آشپزخانه
                     </a>
-                    <a href="#contact" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
-                        <i class="fas fa-envelope ml-2"></i>
-                        تماس
-                    </a>
+
+                    <!-- Dropdown (Contact) -->
+                    <div class="relative group">
+                        <!-- Trigger -->
+                        <button class="flex items-center text-wood-700 dark:text-wood-200
+                 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
+                            <i class="fas fa-envelope ml-2"></i>
+                            تماس
+                            <i class="fas fa-chevron-down ml-1"></i>
+                        </button>
+
+                        <!-- Dropdown menu -->
+                        <div class="absolute overflow-hidden right-0 mt-6 w-72 p-5 bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 rounded-lg shadow-[0_8px_32px_rgba(74,47,31,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)]
+              transform scale-95 opacity-0 invisible
+              group-hover:visible group-hover:opacity-100 group-hover:scale-100
+              transition-all duration-200 ease-out">
+                            <nav class="space-y-1">
+                                <!-- Divider -->
+                                <div class="h-px bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
+                                <a href="/about" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
+                                    <i class="fas fa-info-circle text-amber-600 group-hover:text-amber-700 dark:text-amber-400 dark:group-hover:text-amber-300 transition-colors duration-200 w-4"></i>
+                                    <span class="font-medium">درباره خزرچوب</span>
+                                </a>
+
+                                <a href="/ask" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
+                                    <i class="fas fa-question-circle text-green-600 group-hover:text-green-700 dark:text-green-400 dark:group-hover:text-green-300 transition-colors duration-200 w-4"></i>
+                                    <span class="font-medium">سوالات متداول </span>
+                                </a>
+                                <a href="/contact" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fas fa-envelope text-amber-600 group-hover:text-amber-700 dark:text-amber-400 dark:group-hover:text-amber-300 transition-colors duration-200 w-4"></i>
+                                        <span class="font-medium">تماس با ما</span>
+                                    </div>
+                                </a>
+                            </nav>
+
+                            <!-- Divider -->
+                            <div class="h-px bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
+                        </div>
+                    </div>
+
                 </nav>
+
             </div>
 
             <!-- Right Side Actions -->

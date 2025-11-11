@@ -66,7 +66,7 @@
             </div>
         </div>
     </section><!-- Contact Form -->
-    <section class="mb-20 fade-in">
+    <section id="contact" class="mb-20 fade-in">
         <div class="bg-white dark:bg-wood-800 rounded-2xl shadow-lg p-8 md:p-12">
             <div class="text-center mb-8">
                 <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4"><i class="fas fa-envelope text-wood-600 dark:text-wood-400 ml-3"></i> ارسال پیام</h3>

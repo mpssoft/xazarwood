@@ -12,15 +12,20 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .faq-item {
-            transition: all 0.3s ease;
+            transition: all 0.8s ease;
+
         }
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.8s ease;
         }
         .faq-answer.active {
             max-height: 500px;
+            opacity: 1;
+            visibility: visible;
         }
         .faq-icon {
             transition: transform 0.3s ease;
@@ -42,8 +47,7 @@
              </div>
          <div class="max-w-6xl mx-auto px-6 relative z-20">
              <div class="text-center fade-in">
-                 <div class="inline-block bg-wood-600 dark:bg-wood-500 text-white px-4 py-2 rounded-full text-sm font-medium mb-4"><i class="fas fa-question-circle ml-2"></i> پاسخ به سوالات شما
-                 </div>
+                 <div class="inline-block bg-wood-600 dark:bg-wood-500 text-white px-4 py-2 rounded-full text-sm font-medium mb-4"><i class="fas fa-question-circle ml-2"></i> پاسخ به سوالات شما</div>
                  <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">سوالات متداول</h2>
                  <p class="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">پاسخ سوالات رایج درباره محصولات، سفارش‌گذاری و خدمات خزرچوب</p>
              </div>
@@ -62,7 +66,7 @@
              </div>
          </section><!-- FAQ Items -->
          <section class="space-y-4 fade-in"><!-- Product Questions -->
-             <div class="faq-item bg-white dark:bg-wood-800 rounded-xl shadow-sm overflow-hidden" data-category="product"><button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-wood-50 dark:hover:bg-wood-700 transition-colors">
+             <div class="faq-item  bg-white dark:bg-wood-800 rounded-xl shadow-sm overflow-hidden" data-category="product"><button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-right hover:bg-wood-50 dark:hover:bg-wood-700 transition-colors">
                      <div class="flex items-start space-x-4 space-x-reverse flex-1">
                          <div class="w-10 h-10 bg-wood-100 dark:bg-wood-700 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fas fa-box text-wood-600 dark:text-wood-400"></i>
                          </div>
@@ -263,7 +267,14 @@
              <div class="bg-gradient-to-br from-wood-600 to-wood-700 dark:from-wood-700 dark:to-wood-800 rounded-2xl shadow-xl p-8 md:p-12 text-center text-white"><i class="fas fa-question-circle text-5xl mb-6 opacity-80"></i>
                  <h3 class="text-3xl font-bold mb-4">سوال دیگری دارید؟</h3>
                  <p class="text-white/90 mb-8 max-w-2xl mx-auto">اگر پاسخ سوال خود را پیدا نکردید، خوشحال می‌شویم که به صورت مستقیم به شما کمک کنیم</p>
-                 <div class="flex flex-wrap justify-center gap-4"><a href="tel:+989144851033" class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg transition-colors inline-flex items-center"> <i class="fas fa-phone ml-2"></i> تماس با ما </a> <a href="#" class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg transition-colors inline-flex items-center"> <i class="fas fa-envelope ml-2"></i> ارسال پیام </a> <a href="#" target="_blank" rel="noopener noreferrer" class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg transition-colors inline-flex items-center"> <i class="fab fa-instagram ml-2"></i> اینستاگرام </a>
+                 <div class="flex flex-wrap justify-center gap-4">
+                     <a href="tel:+989144851033" class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg transition-colors inline-flex items-center">
+                         <i class="fas fa-phone ml-2"></i>
+                         تماس با ما </a>
+                     <a href="/contact#contact" class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg transition-colors inline-flex items-center">
+                         <i class="fas fa-envelope ml-2"></i> ارسال پیام </a>
+                     <a href="#" target="_blank" rel="noopener noreferrer" class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-lg transition-colors inline-flex items-center">
+                         <i class="fab fa-instagram ml-2"></i> اینستاگرام </a>
                  </div>
              </div>
          </section>
