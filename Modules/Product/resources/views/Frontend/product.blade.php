@@ -47,7 +47,8 @@
                     <div class="flex text-yellow-400"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
                     </div><span class="text-wood-700 dark:text-wood-300 font-medium">۴.۹ (۱۲۷ نظر)</span> <span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium"> موجود در انبار </span>
                 </div>
-            </div><!-- Price Section -->
+            </div>
+            <!-- Price Section -->
 
             <div class="flex items-center justify-between mb-6 bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
                 <div class="flex flex-col w-full">

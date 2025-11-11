@@ -23,7 +23,7 @@
 
                 <nav class="hidden lg:flex lg:items-center lg:justify-start space-x-reverse space-x-6">
                     <!-- Products (Dining Table with custom path) -->
-                    <a href="#products" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
+                    <a href="{{route('products-list','میز')}}" title="میزهای چوبی روستیک خززچوب" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M4 10v10m16-10v10M8 10v10m8-10v10"/>
                         </svg>
@@ -31,15 +31,20 @@
                     </a>
 
                     <!-- Categories (Clock) -->
-                    <a href="#categories" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
+                    <a href="{{route('products-list','ساعت')}}" title="ساعت های چوبی روستیک خزرچوب" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
                         <i class="fas fa-clock ml-2"></i>
                         ساعت‌ها
                     </a>
 
-                    <!-- About (Kitchenware) -->
-                    <a href="#about" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
-                        <i class="fas fa-mug-hot ml-2"></i>
-                        ظروف آشپزخانه
+                    <!-- categories (wooden dishes) -->
+                    <a href="{{route('products-list','ظروف')}}" title="ظروف چوبی روستیک خزرچوب" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
+                        <i class="fas fa-coffee ml-2"></i>
+                        ظروف چوبی
+                    </a>
+                    <!-- Categories (chairs) -->
+                    <a href="{{route('products-list','صندل')}}" title="صندل ها چوبی روستیک خزرچوب" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
+                        <i class="fas fa-chair ml-2"></i>
+                        صندلی چوبی
                     </a>
 
                     <!-- Dropdown (Contact) -->
@@ -49,7 +54,7 @@
                  hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
                             <i class="fas fa-envelope ml-2"></i>
                             تماس
-                            <i class="fas fa-chevron-down ml-1"></i>
+                            <i class="fas  text-sm fa-chevron-down mr-2"></i>
                         </button>
 
                         <!-- Dropdown menu -->
@@ -249,8 +254,6 @@
 
             <!-- Menu Content -->
             <div class="p-3  overflow-y-auto h-full pb-32">
-
-
                 <!-- Courses Section -->
                 <div class="space-y-1 ">
                     <a href="{{ route('products-list','all') }}"  class="flex items-center space-x-422222 space-x-reverse  rounded-xl hover:bg-gradient-to-r hover:from-wood-300 hover:to-wood-50 dark:hover:from-wood-950/95 dark:hover:to-yellow-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
