@@ -22,6 +22,7 @@ html, body {
     direction: rtl;
     /* force browser to use Persian digit glyphs if supported */
     font-feature-settings: "locl" 1;
+    overflow-x: hidden;
 }
 
 :lang(fa) {

@@ -48,24 +48,18 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Main Product - Rustic Tables -->
             <div class="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2">
-                <div class="absolute top-4 right-4 z-10">
-                        <span class="px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white text-sm font-bold rounded-full animate-pulse">
-                            محصول اصلی
-                        </span>
-                </div>
-                <img src="https://picsum.photos/seed/rustictablemain/400/300" alt="میزهای روستیک" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+
+                <img src="{{asset('/images/tables/big/xazarwood_ir_rustic_table_with_rustic_chairs_and_wooden_cup.jpg')}}" alt="میزهای روستیک" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end">
                     <div class="p-6 text-right w-full">
-                        <div class="flex items-center justify-center mb-4">
-                            <i class="fas fa-table text-white text-4xl icon-bounce"></i>
-                        </div>
+
                         <h3 class="text-2xl font-bold text-white mb-2">میزهای روستیک</h3>
                         <p class="text-white/90 text-sm mb-4">طراحی‌های منحصر به فرد با چوب طبیعی</p>
                         <div class="flex items-center justify-between">
                             <span class="text-white text-lg font-semibold">۱۵ محصول</span>
-                            <button class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
+                            <a href="{{route('products-list','میز روستیک')}}" title="میز های روستیک زیبا با طراحی منحصر به فرد " class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
                                 مشاهده
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -73,19 +67,17 @@
 
             <!-- Rustic Clocks -->
             <div class="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2">
-                <img src="https://picsum.photos/seed/rusticclockmain/400/300" alt="ساعت‌های چوبی" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                <img src="{{asset('/images/clocks/_0063ee4b-3d9a-4a8b-b49a-9697a8b00e12.jpg')}}" alt="ساعت‌های چوبی" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end">
                     <div class="p-6 text-right w-full">
-                        <div class="flex items-center justify-center mb-4">
-                            <i class="fas fa-clock text-white text-4xl icon-bounce"></i>
-                        </div>
+
                         <h3 class="text-2xl font-bold text-white mb-2">ساعت‌های چوبی روستیک</h3>
                         <p class="text-white/90 text-sm mb-4">زمان را با زیبایی طبیعت دنبال کنید</p>
                         <div class="flex items-center justify-between">
                             <span class="text-white text-lg font-semibold">۸ محصول</span>
-                            <button class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
+                            <a href="{{route('products-list','ساعت چوبی')}}" title="ساعت‌های چوبی روستیک" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
                                 مشاهده
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -93,19 +85,16 @@
 
             <!-- Wooden Kitchenware -->
             <div class="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2">
-                <img src="https://picsum.photos/seed/woodenkitchenmain/400/300" alt="ظروف چوبی" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                <img src="{{asset('/images/1760712938389.jpg')}}" alt="ظروف چوبی" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end">
                     <div class="p-6 text-right w-full">
-                        <div class="flex items-center justify-center mb-4">
-                            <i class="fas fa-utensils text-white text-4xl icon-bounce"></i>
-                        </div>
                         <h3 class="text-2xl font-bold text-white mb-2">ظروف چوبی آشپزخانه</h3>
                         <p class="text-white/90 text-sm mb-4">طعم طبیعت در غذای شما</p>
                         <div class="flex items-center justify-between">
                             <span class="text-white text-lg font-semibold">۱۲ محصول</span>
-                            <button class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
+                            <a href="{{route('products-list','ظروف چوبی')}}" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
                                 مشاهده
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -139,7 +139,7 @@
                 -webkit-backdrop-filter: blur(10px);
             }
         </style>
-        <link rel="stylesheet" href="/css/fizik_styles.css" />
+        <link rel="stylesheet" href="/css/xazarwood_style.css" />
     </head>
     <body dir="rtl" class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-wood-950 dark:to-wood-900 min-h-screen transition-colors duration-300">
         <div class="min-h-screen ">

@@ -35,6 +35,7 @@
 <!-- Main Content -->
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     @include('layouts.errors')
+    <div id="attributes" data-attributes="{{json_encode(\Modules\Product\Models\Attribute::all()->pluck('name'))}}"></div>
     <form id="product-form" class="space-y-8" method="post" action="{{route('admin.products.store')}}" onsubmit="removeCamas()">
 @csrf
         <!-- Basic Information -->
@@ -88,7 +89,7 @@
                     <label for="product-category" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
                         دسته‌بندی *
                     </label>
-                    <select id="product-category" name="categories[]" multiple required
+                    <select id="categories" name="categories[]" multiple required
                             class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100">
                         <option value="">انتخاب دسته‌بندی</option>
                        @foreach(\Modules\Blog\Models\Category::all() as $category)
@@ -96,7 +97,6 @@
                        @endforeach
                     </select>
                 </div>
-
                 <!-- Status -->
                 <div>
                     <label for="product-status" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
@@ -109,7 +109,18 @@
 
                     </select>
                 </div>
+
             </div>
+            <div>
+                <label for="product-category" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                    ویژگی محصول
+                </label>
+                <div id="attribute_section">
+
+                </div>
+                <button class="p-2 bg-red-600 dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-600 text-white rounded-lg font-medium transition-colors" type="button" id="add_product_attribute">ویژگی جدید</button>
+            </div>
+
         </div>
 
         <!-- Description -->
@@ -183,7 +194,7 @@
                     <button type="button" id="btn-main-image" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow">
                         انتخاب تصویر اصلی
                     </button>
-                    <input type="hidden" id="main_image" name="main_image">
+                    <input type="hidden" id="main-image-input" name="main_image">
                 </div>
                 <div id="main-image-preview" class="mt-4 hidden">
                     <img src="" class="rounded-lg shadow max-h-40" alt="Main Image">
@@ -374,7 +385,7 @@
     </script>
     <script>
         // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
+
         const html = document.documentElement;
 
         const currentTheme = localStorage.getItem('theme') || 'light';
@@ -382,11 +393,7 @@
             html.classList.add('dark');
         }
 
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            const isDark = html.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        });
+
 
         // Back Button
         document.getElementById('back-btn').addEventListener('click', () => {
@@ -475,8 +482,8 @@
         }
 
         // Setup image uploads
-        setupImageUpload(
-            document.getElementById('main-image-upload'),
+       /* setupImageUpload(
+            //document.getElementById('main-image-upload'),
             document.getElementById('main-image-input'),
             document.getElementById('main-image-preview'),
             false
@@ -487,7 +494,7 @@
             document.getElementById('gallery-input'),
             document.getElementById('gallery-preview'),
             true
-        );
+        );*/
 
         // Specifications Management
         document.getElementById('add-spec-btn').addEventListener('click', () => {
@@ -733,6 +740,128 @@
                 $(this).val($(this).val().replace(/,/g, "")); // Remove existing commas
             });
         }
+
+        $('#categories').select2({
+
+            'placeholder' : 'دسترسی مورد نظر را انتخاب کنید'
+        });
+
+
+        let changeAttributeValues = (event , id) => {
+            let valueBox = $(`select[name='attributes[${id}][value]']`);
+
+            $.ajaxSetup({
+                headers : {
+                    'X-CSRF-TOKEN' : document.head.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type' : 'application/json'
+                }
+            })
+
+            $.ajax({
+                type : 'POST',
+                url : '/admin/attribute/values',
+                data : JSON.stringify({
+                    name : event.target.value
+                }),
+                success : function(data) {
+                    valueBox.html(`
+                            <option selected>انتخاب کنید</option>
+                            ${
+                        data.data.map(function (item) {
+                            return `<option value="${item}">${item}</option>`
+                        })
+                    }
+                        `);
+
+                    $('.attribute-select').select2({ tags : true });
+                }
+            });
+        }
+
+        let createNewAttr = ({ attributes , id }) => {
+
+            return `
+        <div class="flex flex-wrap grid md:grid-cols-3 gap-4 mb-4" id="attribute-${id}">
+
+            <!-- col-5 -->
+            <div class="w-full ">
+            <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-gray-700 dark:text-slate-200">عنوان ویژگی</label>
+
+            <select
+            name="attributes[${id}][name]"
+            onchange="changeAttributeValues(event, ${id});"
+            id="attribute-name-${id}"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg
+                               focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                               bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+            >
+            <option value="">انتخاب کنید</option>
+            ${
+            attributes.map(item =>
+            `<option value="${item}">${item}</option>`
+            ).join("")
+            }
+            </select>
+            </div>
+            </div>
+
+                <!-- col-5 -->
+            <div class="w-full ">
+            <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-gray-700 dark:text-slate-200">مقدار ویژگی</label>
+
+            <select
+            name="attributes[${id}][value]"
+            id="attribute-value-${id}"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg
+                               focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                               bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+            >
+            <option value="">انتخاب کنید</option>
+            </select>
+            </div>
+            </div>
+
+                <!-- col-2 -->
+            <div class="w-full ">
+            <label class="text-sm font-medium text-gray-700 dark:text-slate-200">اقدامات</label>
+            <div class="mt-1">
+            <button
+            type="button"
+            onclick="document.getElementById('attribute-${id}').remove()"
+            class="px-3 py-2 text-sm rounded-lg
+                               bg-yellow-400 hover:bg-yellow-500
+                               text-gray-900 font-medium
+                               dark:bg-yellow-500 dark:hover:bg-yellow-600"
+            >
+            حذف
+            </button>
+            </div>
+            </div>
+
+            </div>
+            `
+}
+
+
+        $(document).on('click','#add_product_attribute',(function() {
+            let attributesSection = $('#attribute_section');
+            let id = attributesSection.children().length;
+            let attributes = $("#attributes").data('attributes')
+            attributesSection.append(
+                createNewAttr({
+                    attributes,
+                    id
+                })
+            );
+
+            $(`#attribute-name-${id}`).select2({ tags: true });
+            $(`#attribute-value-${id}`).select2({ tags: true });
+
+
+        }));
+
     </script>
 
 @endpush

@@ -26,7 +26,7 @@ class CartService
                 ->first();
 
             if ($existing) {
-                return "قبلا به سبد خرید اضافه شده !";
+                //return "قبلا به سبد خرید اضافه شده !";
                 $existing->qty += $qty;
                 $existing->code = $discount->code??'';
                 $existing->discount = $discount ? $discount : null;
@@ -48,7 +48,7 @@ class CartService
             $key = $type . '-' . $id;
 
             if ($cart->has($key)) {
-                return "قبلا به سبد خرید اضافه شده !";
+                //return "قبلا به سبد خرید اضافه شده !";
                 $item = $cart->get($key);
                 $item['qty'] += $qty;
                 $item['discount'] = $discount ? $discount : null;

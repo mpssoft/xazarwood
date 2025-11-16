@@ -5,7 +5,7 @@
 <div class="bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 min-h-full"><!-- Simple Header -->
 <header class="max-w-6xl mx-auto px-6 py-8">
     <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-3 space-x-reverse text-wood-600 dark:text-wood-400 text-sm"><span>خانه</span> <i class="fas fa-chevron-left text-xs"></i> <span class="text-wood-800 dark:text-wood-200">{{$product->name}}</span>
+        <div class="flex items-center space-x-3 space-x-reverse text-wood-600 dark:text-wood-400 text-sm"><span>خانه</span> <i class="fas fa-chevron-left text-xs"></i><a href="{{route('products-list',$product->categories()->first()->name)}}"> <span class="text-wood-800 dark:text-wood-200">{{$product->categories()->first()->name}}</span> </a><i class="fas fa-chevron-left text-xs"></i> <span class="text-wood-800 dark:text-wood-200">{{$product->name}}</span>
         </div>
     </div>
 </header><!-- Main Product Section -->
@@ -42,11 +42,12 @@
         <div class="space-y-6"><!-- Product Header -->
             <div>
                 <h1 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-2">{{$product->name}}</h1>
-
+                <p class="text-wood-700 dark:text-wood-300"> {{$product->description}}</p>
+{{--
                 <div class="flex items-center space-x-4 space-x-reverse mt-4">
                     <div class="flex text-yellow-400"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
                     </div><span class="text-wood-700 dark:text-wood-300 font-medium">۴.۹ (۱۲۷ نظر)</span> <span class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium"> موجود در انبار </span>
-                </div>
+                </div>--}}
             </div>
             <!-- Price Section -->
 
@@ -137,27 +138,19 @@
             </div>
 
 
-            <!-- Product Description -->
             <div class="bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
-                <h3 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-3">توضیحات محصول</h3>
-                <p class="text-wood-700 dark:text-wood-300 leading-relaxed mb-4">این میز غذاخوری زیبا از چوب بلوط ممتاز ساخته شده و برای ۶ نفر طراحی شده است. با طراحی کلاسیک و مدرن، مناسب برای هر سبک دکوراسیون داخلی.</p>
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="flex items-center p-3 bg-wood-50 dark:bg-wood-700 rounded-lg"><i class="fas fa-leaf text-green-500 ml-2"></i> <span class="text-sm font-medium">چوب بلوط طبیعی</span>
-                    </div>
-                    <div class="flex items-center p-3 bg-wood-50 dark:bg-wood-700 rounded-lg"><i class="fas fa-shield-alt text-blue-500 ml-2"></i> <span class="text-sm font-medium">ضمانت ۵ ساله</span>
-                    </div>
-                    <div class="flex items-center p-3 bg-wood-50 dark:bg-wood-700 rounded-lg"><i class="fas fa-hammer text-purple-500 ml-2"></i> <span class="text-sm font-medium">دست‌ساز</span>
-                    </div>
-                    <div class="flex items-center p-3 bg-wood-50 dark:bg-wood-700 rounded-lg"><i class="fas fa-truck text-orange-500 ml-2"></i> <span class="text-sm font-medium">ارسال رایگان</span>
-                    </div>
-                </div>
-            </div><!-- Purchase Section -->
-            <div class="bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
-                <div class="flex items-center justify-between mb-4"><label class="text-wood-800 dark:text-wood-200 font-medium">تعداد:</label>
+                {{--<div class="flex items-center justify-between mb-4"><label class="text-wood-800 dark:text-wood-200 font-medium">تعداد:</label>
                     <div class="flex items-center bg-wood-100 dark:bg-wood-700 rounded-lg"><button class="px-3 py-2 text-wood-600 dark:text-wood-400 hover:bg-wood-200 dark:hover:bg-wood-600 rounded-r-lg transition-colors" onclick="decreaseQuantity()"> <i class="fas fa-minus"></i> </button> <input type="number" id="quantity" value="1" min="1" max="10" class="w-16 text-center py-2 bg-transparent text-wood-800 dark:text-wood-200 border-none outline-none font-medium"> <button class="px-3 py-2 text-wood-600 dark:text-wood-400 hover:bg-wood-200 dark:hover:bg-wood-600 rounded-l-lg transition-colors" onclick="increaseQuantity()"> <i class="fas fa-plus"></i> </button>
                     </div>
-                </div>
-                <div class="space-y-3"><button class="w-full bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 px-6 py-3 rounded-lg font-medium transition-colors"> <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد خرید </button> <button class="w-full bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"> <i class="fas fa-bolt ml-2"></i>خرید فوری </button>
+                </div>--}}
+                <div class="space-y-3">
+                    <button id="btn-{{$product->id}}"
+                            onclick="addToCart('product','{{$product->id}}')"
+                     class=" bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 px-6 py-3 rounded-lg font-medium transition-colors">
+                        <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد خرید
+                        <span class="spinner-{{$product->id}}  hidden"><i
+                                class="fas fa-spinner fa-spin-pulse"></i></span>
+                    </button>
                 </div>
             </div>
         </div>

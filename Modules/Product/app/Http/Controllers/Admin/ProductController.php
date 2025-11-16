@@ -4,6 +4,8 @@ namespace Modules\Product\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Modules\Product\Models\Attribute;
+use Modules\Product\Models\AttributeValue;
 use Modules\Product\Models\Product;
 use Modules\Product\Models\ProductImage;
 use Illuminate\Support\Facades\DB;
@@ -43,7 +45,8 @@ class ProductController extends Controller
             'main_image'  => 'nullable|string',  // file path from file manager
             'images'      => 'nullable|array',
             'gallery_images'    => 'nullable|string',  // multiple file paths
-            'categories'  => 'required'
+            'categories'  => 'required',
+            'attributes'  => 'array'
         ]);
 
         DB::transaction(function () use ($data) {
@@ -69,6 +72,22 @@ class ProductController extends Controller
                     }
                 }
             }
+
+            $attributes = collect($data['attributes']);
+            $attributes->each(function($item) use($product){
+                if(is_null($item['name']) || is_null($item['value'])) return ;
+
+                $attr = Attribute::firstOrCreate(
+                    ['name'=> $item['name']]
+                );
+
+                $attr_value = $attr->values()->firstOrCreate(
+                    ['value' => $item['value']]
+
+                );
+                $product->attributes()->attach($attr->id,['value_id' => $attr_value->id]);
+
+            });
         });
 
         return redirect()->route('admin.products.index')->with('success', 'Product created successfully!');
@@ -101,7 +120,8 @@ class ProductController extends Controller
             'main_image'  => 'nullable|string',  // file path from file manager
             'images'      => 'nullable|array',
             'gallery_images'    => 'nullable|string',  // multiple file paths
-            'categories' => 'required'
+            'categories' => 'required',
+            'attributes' => 'array'
         ]);
 
         DB::transaction(function () use ($product, $data) {
@@ -130,6 +150,23 @@ class ProductController extends Controller
                     }
                 }
             }
+            $product->attributes()->detach();
+            $attributes = collect($data['attributes']);
+            $attributes->each(function($item) use($product){
+                if(is_null($item['name']) || is_null($item['value'])) return ;
+
+                $attr = Attribute::firstOrCreate(
+                    ['name'=> $item['name']]
+                );
+
+                $attr_value = $attr->values()->firstOrCreate(
+                    ['value' => $item['value']]
+
+                );
+                $product->attributes()->attach($attr->id,['value_id' => $attr_value->id]);
+
+            });
+
         });
 
         return redirect()->route('admin.products.index')->with('success', 'Product updated successfully!');

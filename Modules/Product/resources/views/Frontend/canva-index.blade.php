@@ -78,7 +78,7 @@
                     $finalPrice = max(0, $product->price - $dis);
                 }
             @endphp
-        <div class="flex flex-col bg-white h-[520px] dark:bg-wood-900  rounded-2xl shadow-lg hover:shadow-xl border border-wood-200 dark:border-wood-700 overflow-hidden transition-all duration-300 ">
+        <div class="flex flex-col bg-white dark:bg-wood-900  rounded-2xl shadow-lg hover:shadow-xl border border-wood-200 dark:border-wood-700 overflow-hidden transition-all duration-300 ">
             <div class="flex relative">
                 <div class="h-auto bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-800 dark:to-wood-700 flex items-center justify-center">
                     <div class="text-center w-full h-full text-wood-700 dark:text-wood-300" >

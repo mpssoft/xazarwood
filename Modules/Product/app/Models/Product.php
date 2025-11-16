@@ -30,4 +30,9 @@ class Product extends Model
     {
         return $this->morphToMany(Discount::class, 'discountable');
     }
+
+    public function attributes()
+    {
+        return $this->belongsToMany(Attribute::class)->withPivot(['value_id']);
+    }
 }

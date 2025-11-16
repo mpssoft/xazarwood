@@ -1,5 +1,5 @@
 <!-- Header -->
-<header class="bg-white/95 dark:bg-wood-950/95 backdrop-blur-sm shadow-lg sticky top-0 z-50 transition-colors duration-300">
+<header class="fixed w-full  bg-white/95 dark:bg-wood-950/95 backdrop-blur-sm shadow-lg  top-0 z-50 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 py-1">
         <div class="flex items-center justify-between">
             <!-- Brand and Navigation -->
@@ -318,7 +318,8 @@
             const menuButton = e.target.closest('button[onclick="toggleMobileMenu()"]');
 
             if (!mobileMenu.contains(e.target) && !menuButton && mobileMenu.classList.contains('active')) {
-                mobileMenu.classList.toggle('active');
+                mobileMenu.classList.remove('active');
+
                 document.getElementById('menuIcon').classList.toggle('hidden');
                 document.getElementById('closeIcon').classList.toggle('hidden');
             }

@@ -35,6 +35,7 @@
 <!-- Main Content -->
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     @include('layouts.errors')
+    <div id="attributes" data-attributes="{{json_encode(\Modules\Product\Models\Attribute::all()->pluck('name'))}}"></div>
     <form id="product-form" class="space-y-8" action="{{route('admin.products.update',$product->id)}}" method="post">
 @csrf
         @method('put')
@@ -89,7 +90,7 @@
                     <label for="product-category" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
                         دسته‌بندی *
                     </label>
-                    <select id="product-category" name="categories[]" multiple required
+                    <select id="categories" name="categories[]" multiple required
                             class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100">
                         <option value="">انتخاب دسته‌بندی</option>
                         @foreach(\Modules\Blog\Models\Category::all() as $category)
@@ -110,7 +111,80 @@
 
                     </select>
                 </div>
+
             </div>
+            <div>
+                <label for="product-category" class="block text-sm mt-6 font-medium text-gray-700 dark:text-slate-300 mb-2">
+                    ویژگی محصول
+                </label>
+                <div id="attribute_section">
+                    @foreach($product->attributes as $attribute)
+                        <div class="flex flex-wrap grid md:grid-cols-3 gap-4 mb-4" id="attribute-${id}">
+
+                            <!-- col-5 -->
+                            <div class="w-full ">
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-sm font-medium text-gray-700 dark:text-slate-200">عنوان ویژگی</label>
+
+                                    <select
+                                        name="attributes[{{$loop->index}}][name]"
+                                        onchange="changeAttributeValues(event, {{$loop->index}});"
+                                        id="attribute-name-{{$loop->index}}"
+                                        class="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg
+                               focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                               bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+                                    >
+                                        <option value="">انتخاب کنید</option>
+                                        @foreach(\Modules\Product\Models\Attribute::all() as $attr)
+                                            <option value="{{$attr->name}}" {{$attr->name == $attribute->name? 'selected':''}}>{{$attr->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- col-5 -->
+                            <div class="w-full ">
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-sm font-medium text-gray-700 dark:text-slate-200">مقدار ویژگی</label>
+
+                                    <select
+                                        name="attributes[{{$loop->index}}][value]"
+                                        id="attribute-value-{{$loop->index}}"
+                                        class="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg
+                               focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                               bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+                                    >
+                                        <option value="">انتخاب کنید</option>
+                                        @foreach($attribute->values as $value)
+                                            <option value="{{$value->value}}" {{ $value->id === $attribute->pivot->value_id ? 'selected':''}}> {{$value->value}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- col-2 -->
+                            <div class="w-full ">
+                                <label class="text-sm font-medium text-gray-700 dark:text-slate-200">اقدامات</label>
+                                <div class="mt-1">
+                                    <button
+                                        type="button"
+                                        onclick="document.getElementById('attribute-{{$loop->index}}').remove()"
+                                        class="px-3 py-2 text-sm rounded-lg
+                               bg-yellow-400 hover:bg-yellow-500
+                               text-gray-900 font-medium
+                               dark:bg-yellow-500 dark:hover:bg-yellow-600"
+                                    >
+                                        حذف
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    @endforeach
+                </div>
+                <button class="p-2 bg-red-600 dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-600 text-white rounded-lg font-medium transition-colors" type="button" id="add_product_attribute">ویژگی جدید</button>
+            </div>
+
         </div>
 
         <!-- Description -->
@@ -135,14 +209,37 @@
                 </div>
 
                 <!-- Full Description -->
-                <div>
-                    <label for="full-description" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
-                        توضیحات کامل
-                    </label>
-                    <textarea id="full-description" name="content" rows="6"
-                              class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
-                              placeholder="توضیحات کامل محصول، ویژگی‌ها، مواد استفاده شده و...">{{old('content',$product->content)}}</textarea>
+
+                <!-- TinyMCE Content Editor -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-edit text-green-600 dark:text-green-400"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-900 dark:text-white">محتوا </h2>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                            <i class="fas fa-paragraph ml-2 text-purple-600"></i>
+                            شرح کامل  *
+                        </label>
+
+                        <!-- TinyMCE Editor -->
+                        <textarea id="content" name="content" class="tinymce-editor">{{old('content')}}</textarea>
+
+                        <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-info-circle ml-1"></i>
+                            از ابزارهای ویرایشگر برای قالب‌بندی متن، افزودن تصاویر، جداول و لینک استفاده کنید
+                        </div>
+                    </div>
                 </div>
+
+                @error('content')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+
             </div>
         </div>
 
@@ -708,5 +805,128 @@
                 $(this).val($(this).val().replace(/,/g, "")); // Remove existing commas
             });
         }
+
+
+        $('#categories').select2({
+
+            'placeholder' : 'دسترسی مورد نظر را انتخاب کنید'
+        });
+
+
+        let changeAttributeValues = (event , id) => {
+            let valueBox = $(`select[name='attributes[${id}][value]']`);
+
+            $.ajaxSetup({
+                headers : {
+                    'X-CSRF-TOKEN' : document.head.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type' : 'application/json'
+                }
+            })
+
+            $.ajax({
+                type : 'POST',
+                url : '/admin/attribute/values',
+                data : JSON.stringify({
+                    name : event.target.value
+                }),
+                success : function(data) {
+                    valueBox.html(`
+                            <option selected>انتخاب کنید</option>
+                            ${
+                        data.data.map(function (item) {
+                            return `<option value="${item}">${item}</option>`
+                        })
+                    }
+                        `);
+
+                    $('.attribute-select').select2({ tags : true });
+                }
+            });
+        }
+
+        let createNewAttr = ({ attributes , id }) => {
+
+            return `
+        <div class="flex flex-wrap grid md:grid-cols-3 gap-4 mb-4" id="attribute-${id}">
+
+            <!-- col-5 -->
+            <div class="w-full ">
+            <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-gray-700 dark:text-slate-200">عنوان ویژگی</label>
+
+            <select
+            name="attributes[${id}][name]"
+            onchange="changeAttributeValues(event, ${id});"
+            id="attribute-name-${id}"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg
+                               focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                               bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+            >
+            <option value="">انتخاب کنید</option>
+            ${
+            attributes.map(item =>
+            `<option value="${item}">${item}</option>`
+            ).join("")
+            }
+            </select>
+            </div>
+            </div>
+
+                <!-- col-5 -->
+            <div class="w-full ">
+            <div class="flex flex-col gap-1">
+            <label class="text-sm font-medium text-gray-700 dark:text-slate-200">مقدار ویژگی</label>
+
+            <select
+            name="attributes[${id}][value]"
+            id="attribute-value-${id}"
+            class="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg
+                               focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                               bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+            >
+            <option value="">انتخاب کنید</option>
+            </select>
+            </div>
+            </div>
+
+                <!-- col-2 -->
+            <div class="w-full ">
+            <label class="text-sm font-medium text-gray-700 dark:text-slate-200">اقدامات</label>
+            <div class="mt-1">
+            <button
+            type="button"
+            onclick="document.getElementById('attribute-${id}').remove()"
+            class="px-3 py-2 text-sm rounded-lg
+                               bg-yellow-400 hover:bg-yellow-500
+                               text-gray-900 font-medium
+                               dark:bg-yellow-500 dark:hover:bg-yellow-600"
+            >
+            حذف
+            </button>
+            </div>
+            </div>
+
+            </div>
+            `
+}
+
+
+        $(document).on('click','#add_product_attribute',(function() {
+            let attributesSection = $('#attribute_section');
+            let id = attributesSection.children().length;
+            let attributes = $("#attributes").data('attributes')
+            attributesSection.append(
+                createNewAttr({
+                    attributes,
+                    id
+                })
+            );
+
+            $(`#attribute-name-${id}`).select2({ tags: true });
+            $(`#attribute-value-${id}`).select2({ tags: true });
+
+
+        }));
+
     </script>
 @endpush
