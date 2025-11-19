@@ -27,7 +27,7 @@ class SendOtpSms extends Notification
     {
         return [
             'to' => $this->mobile,
-            'message' => "کد احراز هویت شما: {$this->otp} \nfizikbist.ir"
+            'message' => " کد احراز هویت شما: {$this->otp}  \n xazarwood.ir"
         ];
     }
     public function toMeliPayamakSms($notifiable)

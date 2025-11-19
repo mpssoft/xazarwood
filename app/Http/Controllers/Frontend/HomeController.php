@@ -17,7 +17,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        auth()->loginUsingId(1);
+        //auth()->loginUsingId(1);
         $this->seo()
             ->setTitle("صنایع چوبی روستیک")
             ->setDescription("ما در خزر چوب، با عشق به چوب و احترام به محیط زیست، متخصص ساخت میزهای روستیک (Rustic) و ظروف چوبی دست‌ساز در شهرستان سلماس هستیم.")

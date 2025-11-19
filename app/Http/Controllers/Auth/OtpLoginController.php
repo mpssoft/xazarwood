@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Notifications\Channels\MelipayamakChannel;
+use App\Notifications\Channels\RayganSmsChannel;
 use App\Notifications\SendOtpSms;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -24,7 +25,7 @@ class OtpLoginController extends Controller
         $blockKey = 'otp_blocked_' . $mobile;
 
 
-        // اگر بلاک شده باشه (بعد از 3 بار ارسال)
+    /*    // اگر بلاک شده باشه (بعد از 3 بار ارسال)
         if (Cache::has($blockKey)) {
             return response()->json([
                 'status' => 'error',
@@ -51,28 +52,45 @@ class OtpLoginController extends Controller
             Cache::put($attemptKey, 1, now()->addHour());
         } else {
             Cache::increment($attemptKey);
-        }
+        }*/
 
         // تولید کد OTP
         $otp = rand(1000, 9999);
         Cache::put('otp_' . $mobile, $otp, now()->addMinutes(3));
 
         // ارسال پیامک
-        $channel = new MelipayamakChannel();
+        $channel = new RayganSmsChannel();
+        $c= "raygansms";
         $response = $channel->send(null, new SendOtpSms($otp, $mobile));
-
-        if ($response['StrRetStatus'] == "Ok") {
-            return response()->json([
-                'status' => 'ok',
-                'code' => $response['RetStatus'],
-            ]);
-        } else {
-            return response()->json([
-                'status' => $response['StrRetStatus'],
-                'code' => $response['RetStatus'],
-                'message' => 'خطا هنگام ارسال کد'
-            ]);
+        if($c= "raygansms"){
+           if($response > 1000 || $response == 2)
+           {
+               return response()->json([
+                   'status' => 'ok',
+                   'code' => $response,
+               ]);
+           }else{
+               return response()->json([
+                   'status' => $channel->errorCodes()[$response],
+                   'code' => $response,
+                   'message' =>  $channel->errorCodes()[$response]
+               ]);
+           }
+        }elseif($c=="melipayamak"){
+            if ($response['StrRetStatus'] == "Ok") {
+                return response()->json([
+                    'status' => 'ok',
+                    'code' => $response['RetStatus'],
+                ]);
+            } else {
+                return response()->json([
+                    'status' => $response['StrRetStatus'],
+                    'code' => $response['RetStatus'],
+                    'message' => 'خطا هنگام ارسال کد'
+                ]);
+            }
         }
+
     }
 
 

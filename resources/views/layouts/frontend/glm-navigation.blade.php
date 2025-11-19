@@ -188,7 +188,7 @@
                             </button>
                         </div>
                     @else
-                        <div id="authButtons" class="hidden md:flex">
+                        <div id="authButtons" class="hidden md:flex py-2">
                             <a href="#" onclick="openLoginBox()"
                                class="bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 px-6 py-2 rounded-lg font-medium hover:from-wood-100 hover:via-wood-200 hover:to-wood-300 dark:hover:from-wood-800 dark:hover:via-wood-700 dark:hover:to-wood-900 hover:shadow-md hover:-translate-y-0.5 transition-all ">
                                 ورود / ثبت نام

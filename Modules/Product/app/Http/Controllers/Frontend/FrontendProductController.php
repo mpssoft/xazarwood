@@ -20,7 +20,7 @@ class FrontendProductController extends Controller
             })->get();
         else
             $products  = Product::all();
-        return view('product::Frontend.canva-index',compact('products'));
+        return view('product::frontend.canva-index',compact('products'));
     }
 
     public function showProduct(Product $product)
@@ -30,7 +30,7 @@ class FrontendProductController extends Controller
             $query->whereIn('name',$product->categories()->pluck('name')->toArray());
         })->latest()->take(4)->get();
 
-        return view('product::Frontend.product',compact('product','relatedProducts'));
+        return view('product::frontend.product',compact('product','relatedProducts'));
     }
 
 }
