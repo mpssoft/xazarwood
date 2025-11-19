@@ -1,5 +1,5 @@
 <!-- Header -->
-<header class="fixed w-full  bg-white/95 dark:bg-wood-950/95 backdrop-blur-sm shadow-lg  top-0 z-50 transition-colors duration-300">
+<header class="fixed w-full py-2 bg-white/95 dark:bg-wood-950/95 backdrop-blur-sm shadow-lg  top-0 z-50 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 py-1">
         <div class="flex items-center justify-between">
             <!-- Brand and Navigation -->
@@ -129,7 +129,7 @@
                 <!-- User Profile Dropdown -->
                 <div class="relative hidden md:flex">
                     @if(auth()->check())
-                        <button id="userMenuBtn" class="py-2 transition-colors">
+                        <button id="userMenuBtn" class=" transition-colors">
 
                             <div class="w-10 h-10 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 p-0.5 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl">
                                 <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
@@ -188,7 +188,7 @@
                             </button>
                         </div>
                     @else
-                        <div id="authButtons" class="hidden md:flex py-2">
+                        <div id="authButtons" class="hidden md:flex ">
                             <a href="#" onclick="openLoginBox()"
                                class="bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 px-6 py-2 rounded-lg font-medium hover:from-wood-100 hover:via-wood-200 hover:to-wood-300 dark:hover:from-wood-800 dark:hover:via-wood-700 dark:hover:to-wood-900 hover:shadow-md hover:-translate-y-0.5 transition-all ">
                                 ورود / ثبت نام

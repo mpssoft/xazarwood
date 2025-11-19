@@ -17,8 +17,8 @@
         }
     </style>
 @endpush
-<div class="bg-wood-50 p-5 dark:bg-wood-900 text-wood-900 dark:text-wood-100 min-h-full"><!-- Simple Header -->
-<div class="container bg-slate-700/10 dark:bg-wood-950/50  rounded-2xl w-full md:w-[90%] mx-auto">
+<div class="bg-wood-50 md:p-5 dark:bg-wood-900 text-wood-900 dark:text-wood-100 min-h-full"><!-- Simple Header -->
+<div class="container bg-slate-700/10 dark:bg-wood-950/50  md:rounded-2xl w-full md:w-[90%] mx-auto">
     <header class="max-w-6xl mx-auto px-6 py-8">
     <div class="flex items-center justify-between">
         <div class="flex items-center space-x-3 space-x-reverse text-wood-600 dark:text-wood-400 text-sm"><span>خانه</span> <i class="fas fa-chevron-left text-xs"></i><a href="{{route('products-list',$product->categories()->first()->name)}}"> <span class="text-wood-800 dark:text-wood-200">{{$product->categories()->first()->name}}</span> </a><i class="fas fa-chevron-left text-xs"></i> <span class="text-wood-800 dark:text-wood-200">{{$product->name}}</span>
