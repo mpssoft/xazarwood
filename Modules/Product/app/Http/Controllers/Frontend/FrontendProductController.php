@@ -25,7 +25,12 @@ class FrontendProductController extends Controller
 
     public function showProduct(Product $product)
     {
-        return view('product::Frontend.product',compact('product'));
+
+        $relatedProducts = Product::where("id","!=",$product->id)->whereHas('categories',function($query) use($product){
+            $query->whereIn('name',$product->categories()->pluck('name')->toArray());
+        })->latest()->take(4)->get();
+
+        return view('product::Frontend.product',compact('product','relatedProducts'));
     }
 
 }

@@ -36,7 +36,7 @@
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     @include('layouts.errors')
     <div id="attributes" data-attributes="{{json_encode(\Modules\Product\Models\Attribute::all()->pluck('name'))}}"></div>
-    <form id="product-form" class="space-y-8" action="{{route('admin.products.update',$product->id)}}" method="post">
+    <form id="product-form" class="space-y-8" action="{{route('admin.products.update',$product->id)}}" method="post" onsubmit="removeComas()">
 @csrf
         @method('put')
         <!-- Basic Information -->
@@ -119,7 +119,7 @@
                 </label>
                 <div id="attribute_section">
                     @foreach($product->attributes as $attribute)
-                        <div class="flex flex-wrap grid md:grid-cols-3 gap-4 mb-4" id="attribute-${id}">
+                        <div class="flex flex-wrap grid md:grid-cols-3 gap-4 mb-4" id="attribute-{{$loop->index}}">
 
                             <!-- col-5 -->
                             <div class="w-full ">
@@ -130,7 +130,7 @@
                                         name="attributes[{{$loop->index}}][name]"
                                         onchange="changeAttributeValues(event, {{$loop->index}});"
                                         id="attribute-name-{{$loop->index}}"
-                                        class="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg
+                                        class="attribute-select w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg
                                focus:ring-2 focus:ring-blue-500 focus:border-blue-500
                                bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
                                     >
@@ -150,7 +150,7 @@
                                     <select
                                         name="attributes[{{$loop->index}}][value]"
                                         id="attribute-value-{{$loop->index}}"
-                                        class="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg
+                                        class="attribute-select w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg
                                focus:ring-2 focus:ring-blue-500 focus:border-blue-500
                                bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
                                     >
@@ -465,6 +465,7 @@
         });
     </script>
     <script>
+        // Image Upload Handling
         // Image Upload Handling
         function setupImageUpload(uploadElement, inputElement, previewElement, isMultiple = false) {
             uploadElement.addEventListener('click', () => {
@@ -800,7 +801,7 @@
         });
 
 
-        function removeCamas() {
+        function removeComas() {
             $('.format_number').each(function (index, element) {
                 $(this).val($(this).val().replace(/,/g, "")); // Remove existing commas
             });
@@ -809,7 +810,7 @@
 
         $('#categories').select2({
 
-            'placeholder' : 'دسترسی مورد نظر را انتخاب کنید'
+            'placeholder' : 'ویژگی مورد نظر را انتخاب کنید'
         });
 
 
@@ -843,7 +844,7 @@
                 }
             });
         }
-
+        $('.attribute-select').select2({ tags : true });
         let createNewAttr = ({ attributes , id }) => {
 
             return `

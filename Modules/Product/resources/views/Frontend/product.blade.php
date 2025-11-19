@@ -1,9 +1,25 @@
 @extends('layouts.app')
 
     @section('content')
+@push('styles')
 
-<div class="bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 min-h-full"><!-- Simple Header -->
-<header class="max-w-6xl mx-auto px-6 py-8">
+    <style>
+
+        #lightboxImage img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;     /* Keep whole photo visible */
+            display: block;
+            margin: auto;            /* Center horizontally */
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%); /* Center vertically */
+        }
+    </style>
+@endpush
+<div class="bg-wood-50 p-5 dark:bg-wood-900 text-wood-900 dark:text-wood-100 min-h-full"><!-- Simple Header -->
+<div class="container bg-slate-700/10 dark:bg-wood-950/50  rounded-2xl w-full md:w-[90%] mx-auto">
+    <header class="max-w-6xl mx-auto px-6 py-8">
     <div class="flex items-center justify-between">
         <div class="flex items-center space-x-3 space-x-reverse text-wood-600 dark:text-wood-400 text-sm"><span>خانه</span> <i class="fas fa-chevron-left text-xs"></i><a href="{{route('products-list',$product->categories()->first()->name)}}"> <span class="text-wood-800 dark:text-wood-200">{{$product->categories()->first()->name}}</span> </a><i class="fas fa-chevron-left text-xs"></i> <span class="text-wood-800 dark:text-wood-200">{{$product->name}}</span>
         </div>
@@ -13,7 +29,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16"><!-- Product Images -->
         <div class="space-y-4"><!-- Main Image -->
             <div class="bg-white dark:bg-wood-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="openLightbox()">
-                <div id="mainImage" class="h-96 relative hover:scale-105 transition-transform duration-300">
+                <div id="mainImage" class="h-96 relative  duration-300">
                     <img id="mainImageSrc" src="{{asset($product->main_image)}}" alt="{{$product->name}}" class="w-full h-96 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"> <!-- Fallback content if image fails to load -->
                     <div class="h-96 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 flex items-center justify-center absolute inset-0" style="display: none;">
                         <div class="text-center text-wood-700 dark:text-wood-300"><i class="fas fa-table text-8xl mb-4"></i>
@@ -26,13 +42,13 @@
                 </div>
             </div><!-- Thumbnail Images -->
             <div class="grid grid-cols-4 gap-3">
-                <div class="bg-white dark:bg-wood-800 rounded-lg shadow-sm border-2 border-wood-200 dark:border-wood-600 overflow-hidden cursor-pointer hover:border-wood-500 transition-colors" onclick="selectThumbnail(0, this)" data-image="{{asset($product->main_image)}}" data-big="{{str_replace(['small','500'],['big','1500'],asset($product->main_image))}}" data-title="جزئیات نزدیک" data-subtitle="کیفیت چوب و ساخت"><img src="{{asset($product->main_image)}}" alt="{{$product->name}}" class="w-full h-20 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="bg-white dark:bg-wood-800 rounded-lg shadow-sm border-2 border-wood-200 dark:border-wood-600 overflow-hidden cursor-pointer hover:border-wood-500 transition-colors" onclick="selectThumbnail(0, this)" data-image="{{asset($product->main_image)}}" data-big="{{str_replace(['small','500'],['big','1500'],asset($product->main_image))}}" data-title="{{$product->name}}" data-subtitle="{{$product->description}}"><img src="{{asset($product->main_image)}}" alt="{{$product->name}}" class="w-full h-20 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="h-20 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 flex items-center justify-center" style="display: none;"><i class="fas fa-table text-xl text-wood-700 dark:text-wood-300"></i>
                     </div>
                 </div>
                 @php $i=1; @endphp
                 @foreach($product->images as $image)
-                <div class="bg-white dark:bg-wood-800 rounded-lg shadow-sm border-2 border-wood-200 dark:border-wood-600 overflow-hidden cursor-pointer hover:border-wood-500 transition-colors" onclick="selectThumbnail({{$i++}}, this)" data-image="{{asset($image->image)}}" data-big="{{str_replace(['small','500'],['big','1500'],asset($image->image))}}"  data-title="جزئیات نزدیک" data-subtitle="کیفیت چوب و ساخت"><img src="{{asset($image->image)}}" alt="{{$product->name}}" class="w-full h-20 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="bg-white dark:bg-wood-800 rounded-lg shadow-sm border-2 border-wood-200 dark:border-wood-600 overflow-hidden cursor-pointer hover:border-wood-500 transition-colors" onclick="selectThumbnail({{$i++}}, this)" data-image="{{asset($image->image)}}" data-big="{{str_replace(['small','500'],['big','1500'],asset($image->image))}}" data-title="{{$product->name}}" data-subtitle="{{$product->description}}"><img src="{{asset($image->image)}}" alt="{{$product->name}}" class="w-full h-20 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="h-20 bg-gradient-to-br from-wood-200 to-wood-300 dark:from-wood-600 dark:to-wood-500 flex items-center justify-center" style="display: none;"><i class="fas fa-eye text-xl text-wood-700 dark:text-wood-300"></i>
                     </div>
                 </div>
@@ -157,18 +173,14 @@
     </div><!-- Specifications -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16"><!-- Technical Specs -->
         <div class="bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
-            <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-4 flex items-center"><i class="fas fa-ruler-combined text-wood-600 dark:text-wood-400 ml-3"></i> مشخصات فنی</h3>
+            <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-4 flex items-center"><i class="fas fa-ruler-combined text-wood-600 dark:text-wood-400 ml-3"></i> مشخصات محصول</h3>
             <div class="space-y-3">
-                <div class="flex justify-between py-2 border-b border-wood-100 dark:border-wood-700"><span class="text-wood-600 dark:text-wood-400">ابعاد</span> <span class="font-medium">۱۸۳ × ۹۱ × ۷۶ سانتی‌متر</span>
+                @foreach($product->attributes()->get() as $attribute)
+                <div class="flex justify-between py-2 border-b border-wood-100 dark:border-wood-700">
+                    <span class="text-wood-600 dark:text-wood-400">{{$attribute->name}}</span>
+                    <span class="font-medium">{{$attribute->pivot->value->value}}</span>
                 </div>
-                <div class="flex justify-between py-2 border-b border-wood-100 dark:border-wood-700"><span class="text-wood-600 dark:text-wood-400">وزن</span> <span class="font-medium">۴۵ کیلوگرم</span>
-                </div>
-                <div class="flex justify-between py-2 border-b border-wood-100 dark:border-wood-700"><span class="text-wood-600 dark:text-wood-400">جنس</span> <span class="font-medium">چوب بلوط طبیعی</span>
-                </div>
-                <div class="flex justify-between py-2 border-b border-wood-100 dark:border-wood-700"><span class="text-wood-600 dark:text-wood-400">ظرفیت</span> <span class="font-medium">۶ نفره</span>
-                </div>
-                <div class="flex justify-between py-2"><span class="text-wood-600 dark:text-wood-400">ضمانت</span> <span class="font-medium text-green-600 dark:text-green-400">۵ سال</span>
-                </div>
+                @endforeach
             </div>
         </div><!-- Care Instructions -->
         <div class="bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
@@ -187,62 +199,34 @@
     </div><!-- Related Products -->
     <section>
         <h2 class="text-2xl font-bold text-wood-800 dark:text-wood-100 mb-6">محصولات مرتبط</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"><!-- Related Product 1 -->
-            <div class="product-card bg-white dark:bg-wood-800 rounded-xl shadow-sm overflow-hidden">
-                <div class="h-48 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 flex items-center justify-center relative"><i class="fas fa-chair text-4xl text-wood-700 dark:text-wood-300"></i>
-                    <div class="absolute top-3 right-3"><span class="bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">جدید</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Related Product 1 -->
+            @foreach($relatedProducts as $product)
+                <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                    <div class="relative overflow-hidden">
+                        <img src="{{asset($product->main_image)}}" alt="{{$product->name}}" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-4">
+                        <a href="{{route('show.product',['product'=>$product->id,'name'=>$product->name])}}">
+                            <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">{{$product->name}}</h3>
+                            <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">{{$product->description}}</p>
+                        </a>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-bold text-amber-700 dark:text-amber-400">{{number_format($product->price)}}</span>
+                            <button id="btn-{{$product->id}}"
+                                    onclick="addToCart('product','{{$product->id}}')"
+                                    class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
+
+                                <i class="fas fa-cart-arrow-down"></i>
+                                <span>افزودن به سبد</span>
+                                <span class="spinner-{{$product->id}}  hidden"><i
+                                        class="fas fa-spinner fa-spin-pulse"></i></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="p-4">
-                    <h3 class="font-bold text-wood-800 dark:text-wood-100 mb-2">صندلی غذاخوری بلوط</h3>
-                    <div class="flex items-center justify-between mb-3"><span class="text-lg font-bold text-wood-800 dark:text-wood-200">۳۹۹,۰۰۰ تومان</span>
-                        <div class="flex text-yellow-400 text-sm"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star text-gray-300"></i>
-                        </div>
-                    </div><button class="w-full bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 py-2 rounded-lg font-medium transition-colors"> افزودن به سبد </button>
-                </div>
-            </div><!-- Related Product 2 -->
-            <div class="product-card bg-white dark:bg-wood-800 rounded-xl shadow-sm overflow-hidden">
-                <div class="h-48 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 flex items-center justify-center relative"><i class="fas fa-archive text-4xl text-wood-700 dark:text-wood-300"></i>
-                    <div class="absolute top-3 right-3"><span class="bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">۲۰٪ تخفیف</span>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <h3 class="font-bold text-wood-800 dark:text-wood-100 mb-2">بوفه نمایشی بلوط</h3>
-                    <div class="flex items-center justify-between mb-3">
-                        <div><span class="text-lg font-bold text-green-600 dark:text-green-400">۱,۵۹۹,۰۰۰ تومان</span>
-                            <div class="text-sm text-wood-500 dark:text-wood-400 line-through">
-                                ۱,۹۹۹,۰۰۰ تومان
-                            </div>
-                        </div>
-                        <div class="flex text-yellow-400 text-sm"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                        </div>
-                    </div><button class="w-full bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 py-2 rounded-lg font-medium transition-colors"> افزودن به سبد </button>
-                </div>
-            </div><!-- Related Product 3 -->
-            <div class="product-card bg-white dark:bg-wood-800 rounded-xl shadow-sm overflow-hidden">
-                <div class="h-48 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 flex items-center justify-center"><i class="fas fa-couch text-4xl text-wood-700 dark:text-wood-300"></i>
-                </div>
-                <div class="p-4">
-                    <h3 class="font-bold text-wood-800 dark:text-wood-100 mb-2">نیمکت غذاخوری</h3>
-                    <div class="flex items-center justify-between mb-3"><span class="text-lg font-bold text-wood-800 dark:text-wood-200">۶۹۹,۰۰۰ تومان</span>
-                        <div class="flex text-yellow-400 text-sm"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star text-gray-300"></i>
-                        </div>
-                    </div><button class="w-full bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 py-2 rounded-lg font-medium transition-colors"> افزودن به سبد </button>
-                </div>
-            </div><!-- Related Product 4 -->
-            <div class="product-card bg-white dark:bg-wood-800 rounded-xl shadow-sm overflow-hidden">
-                <div class="h-48 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 flex items-center justify-center relative"><i class="fas fa-lamp text-4xl text-wood-700 dark:text-wood-300"></i>
-                    <div class="absolute top-3 right-3"><span class="bg-orange-500 text-white px-2 py-1 rounded text-xs font-bold">پرفروش</span>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <h3 class="font-bold text-wood-800 dark:text-wood-100 mb-2">آباژور رومیزی</h3>
-                    <div class="flex items-center justify-between mb-3"><span class="text-lg font-bold text-wood-800 dark:text-wood-200">۲۴۹,۰۰۰ تومان</span>
-                        <div class="flex text-yellow-400 text-sm"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i>
-                        </div>
-                    </div><button class="w-full bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 py-2 rounded-lg font-medium transition-colors"> افزودن به سبد </button>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </section>
 </main><!-- Lightbox Modal -->
@@ -255,6 +239,7 @@
     </div>
 </div>
 
+</div>
 </div>
     @endsection
 @push('scripts')
@@ -397,11 +382,13 @@
                 </div>
 
                 <!-- Sale Badge -->
+                 @if($activeDiscount)
                 <div class="absolute top-6 right-6">
                     <span class="bg-red-500 text-white px-4 py-3 rounded-xl text-lg font-bold shadow-lg">
-                        ۱۵٪ تخفیف ویژه
+                        {{ $activeDiscount->value }}{{ $activeDiscount->type == 'percent' ? '%' : ' تومان' }} تخفیف
                     </span>
                 </div>
+                @endif
             `;
 
             imageCounter.textContent = `${currentImageIndex + 1} از ${imageData.length}`;

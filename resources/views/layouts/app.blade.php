@@ -9,7 +9,11 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
         {!! SEO::generate() !!}
-        <script src="https://cdn.tailwindcss.com"></script>
+
+
+
+            <script src="/js/modules/tailwind.js"></script>
+
         <!-- Typography plugin CSS (jsDelivr) -->
 
         <script>
@@ -154,7 +158,7 @@
                 </header>
             @endisset
             <!-- Page Content -->
-            <main>
+            <main class="!mt-[60px]">
                 @yield('content')
                 {{ $slot ?? '' }}
             </main>

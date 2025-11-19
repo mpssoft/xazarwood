@@ -179,57 +179,8 @@
                     </div>
                 </div>
                 @endforeach
-                <!-- Clock Product 2 -->
-                <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                    <div class="relative overflow-hidden">
-                        <img src="https://picsum.photos/seed/rusticclock2/400/300" alt="ساعت رومیزی روستیک" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">ساعت رومیزی روستیک</h3>
-                        <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">چوب بلوط با پایه فلزی</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xl font-bold text-amber-700 dark:text-amber-400">۱٬۸۰۰٬۰۰۰ تومان</span>
-                            <button class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
-                                خرید
-                            </button>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Kitchenware Product 1 -->
-                <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                    <div class="relative overflow-hidden">
-                        <img src="https://picsum.photos/seed/woodenbowl1/400/300" alt="کاسه چوبی" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">ست کاسه چوبی</h3>
-                        <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">چوب افرا، ست ۶ تایی</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xl font-bold text-amber-700 dark:text-amber-400">۸۵۰٬۰۰۰ تومان</span>
-                            <button class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
-                                خرید
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Kitchenware Product 2 -->
-                <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                    <div class="relative overflow-hidden">
-                        <img src="https://picsum.photos/seed/woodenboard1/400/300" alt="برش چوبی" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">برش آشپزخانه چوبی</h3>
-                        <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">چوب بامبو، ضد باکتری</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xl font-bold text-amber-700 dark:text-amber-400">۴۵۰٬۰۰۰ تومان</span>
-                            <button class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
-                                خرید
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+               </div>
         </div>
 
         <div class="text-center mt-8">
@@ -245,7 +196,7 @@
     <div class="max-w-7xl mx-auto px-4">
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div>
-                <img src="https://picsum.photos/seed/woodworkshop/600/400" alt="کارگاه چوب" class="rounded-2xl shadow-2xl">
+                <img src="{{asset('/images/kargah.jpg')}}" alt="کارگاه چوب" class="rounded-2xl shadow-2xl">
             </div>
             <div>
                 <h2 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-6">هنر میزهای روستیک</h2>

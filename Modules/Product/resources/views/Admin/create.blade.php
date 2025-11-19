@@ -36,7 +36,7 @@
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     @include('layouts.errors')
     <div id="attributes" data-attributes="{{json_encode(\Modules\Product\Models\Attribute::all()->pluck('name'))}}"></div>
-    <form id="product-form" class="space-y-8" method="post" action="{{route('admin.products.store')}}" onsubmit="removeCamas()">
+    <form id="product-form" class="space-y-8" method="post" action="{{route('admin.products.store')}}" onsubmit="removeComas()">
 @csrf
         <!-- Basic Information -->
         <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-6">
@@ -384,15 +384,6 @@
         });
     </script>
     <script>
-        // Theme Toggle
-
-        const html = document.documentElement;
-
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        if (currentTheme === 'dark') {
-            html.classList.add('dark');
-        }
-
 
 
         // Back Button
@@ -735,7 +726,7 @@
             console.log('Removed', url, 'remaining:', arr);
         });
 
-        function removeCamas() {
+        function removeComas() {
             $('.format_number').each(function (index, element) {
                 $(this).val($(this).val().replace(/,/g, "")); // Remove existing commas
             });

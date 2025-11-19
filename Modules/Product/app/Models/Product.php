@@ -5,6 +5,7 @@ namespace Modules\Product\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Blog\Models\Category;
+use Modules\Product\app\Models\ProductAttributeValue;
 use Modules\Shop\Models\Discount;
 
 // use Modules\Product\Database\Factories\ProductFactory;
@@ -33,6 +34,6 @@ class Product extends Model
 
     public function attributes()
     {
-        return $this->belongsToMany(Attribute::class)->withPivot(['value_id']);
+        return $this->belongsToMany(Attribute::class)->using(ProductAttributeValue::class)->withPivot(['value_id']);
     }
 }
