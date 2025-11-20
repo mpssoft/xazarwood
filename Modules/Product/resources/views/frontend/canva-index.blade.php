@@ -1,32 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-wood-50 dark:bg-wood-950 text-wood-900 dark:text-wood-100 min-h-full transition-colors duration-300" dir="rtl"><!-- Header -->
-<header class="bg-gradient-to-r from-wood-100 to-wood-200 dark:from-wood-900 dark:to-wood-800 py-8 px-4">
-    <div class="max-w-7xl mx-auto text-center">
+<div class="bg-wood-50  dark:bg-wood-950 text-wood-900 dark:text-wood-100 min-h-full transition-colors duration-300" dir="rtl"><!-- Header -->
+    <section class="max-w-7xl mx-auto px-4 pt-5">
 
-        <h1 class="text-3xl md:text-4xl font-bold text-wood-800 dark:text-wood-100 mb-3">مجموعه چوب دست‌ساز</h1>
-        <p class="text-lg text-wood-600 dark:text-wood-300 mb-6 max-w-xl mx-auto">قطعات مبلمان دست‌ساز که زیبایی طبیعی و ظرافت بی‌زمان را به خانه شما می‌آورد</p>
-        <div class="flex flex-wrap justify-center gap-4 text-wood-700 dark:text-wood-300">
-            <div class="flex items-center space-x-2 space-x-reverse">
-                <div class="w-8 h-8 bg-wood-300 dark:bg-wood-700 rounded-full flex items-center justify-center"><i class="fas fa-shipping-fast text-wood-700 dark:text-wood-300 text-sm"></i>
-                </div><span class="font-medium text-sm">ارسال رایگان</span>
-            </div>
-            <div class="flex items-center space-x-2 space-x-reverse">
-                <div class="w-8 h-8 bg-wood-300 dark:bg-wood-700 rounded-full flex items-center justify-center"><i class="fas fa-certificate text-wood-700 dark:text-wood-300 text-sm"></i>
-                </div><span class="font-medium text-sm">ضمانت کیفیت</span>
-            </div>
-            <div class="flex items-center space-x-2 space-x-reverse">
-                <div class="w-8 h-8 bg-wood-300 dark:bg-wood-700 rounded-full flex items-center justify-center"><i class="fas fa-hammer text-wood-700 dark:text-wood-300 text-sm"></i>
-                </div><span class="font-medium text-sm">دست‌ساز</span>
-            </div>
+    <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3 space-x-reverse text-wood-600 dark:text-wood-400 text-sm"><span>خانه</span> <i class="fas fa-chevron-left text-xs"></i><a href="{{route('products-list',$products[0]->categories()->first()->name)}}"> <span class="text-wood-800 dark:text-wood-200">{{$products[0]->categories()->first()->name}}</span> </a>
         </div>
     </div>
-</header><!-- Filter Section -->
-<section class="max-w-7xl mx-auto px-4 py-6">
-    <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg border border-wood-200 dark:border-wood-700 p-6">
-        <h2 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-4 text-center flex items-center justify-center"><i class="fas fa-filter ml-2 text-wood-600 dark:text-wood-400"></i> دسته‌بندی محصولات</h2>
-        <div class="flex flex-wrap justify-center gap-3"><button class="px-4 py-2 bg-wood-100 hover:bg-wood-200 dark:bg-wood-800 dark:hover:bg-wood-700 text-wood-800 dark:text-wood-200 rounded-lg font-medium transition-all duration-300 border border-wood-300 dark:border-wood-600 hover:shadow-md text-sm"> <i class="fas fa-th ml-2 text-wood-600 dark:text-wood-400"></i>همه محصولات </button> <button class="px-4 py-2 bg-wood-100 hover:bg-wood-200 dark:bg-wood-800 dark:hover:bg-wood-700 text-wood-800 dark:text-wood-200 rounded-lg font-medium transition-all duration-300 border border-wood-300 dark:border-wood-600 hover:shadow-md text-sm"> <i class="fas fa-table ml-2 text-wood-600 dark:text-wood-400"></i>میز و صندلی </button> <button class="px-4 py-2 bg-wood-100 hover:bg-wood-200 dark:bg-wood-800 dark:hover:bg-wood-700 text-wood-800 dark:text-wood-200 rounded-lg font-medium transition-all duration-300 border border-wood-300 dark:border-wood-600 hover:shadow-md text-sm"> <i class="fas fa-archive ml-2 text-wood-600 dark:text-wood-400"></i>کمد و قفسه </button> <button class="px-4 py-2 bg-wood-100 hover:bg-wood-200 dark:bg-wood-800 dark:hover:bg-wood-700 text-wood-800 dark:text-wood-200 rounded-lg font-medium transition-all duration-300 border border-wood-300 dark:border-wood-600 hover:shadow-md text-sm"> <i class="fas fa-couch ml-2 text-wood-600 dark:text-wood-400"></i>اتاق نشیمن </button> <button class="px-4 py-2 bg-wood-100 hover:bg-wood-200 dark:bg-wood-800 dark:hover:bg-wood-700 text-wood-800 dark:text-wood-200 rounded-lg font-medium transition-all duration-300 border border-wood-300 dark:border-wood-600 hover:shadow-md text-sm"> <i class="fas fa-star ml-2 text-wood-600 dark:text-wood-400"></i>تزئینی </button>
+
+    </section>
+<section class="grid md:grid-cols-4 max-w-7xl mx-auto px-4 py-2">
+    <div ></div>
+    <div class=" !sticky !top-50 self-start z-10 md:col-span-3  p-3  ">
+
+        <div class="  w-full flex-wrap justify-start gap-3">
+
+            <button class="px-4 py-2 bg-wood-100 hover:bg-wood-200 dark:bg-wood-800 dark:hover:bg-wood-700 text-wood-800 dark:text-wood-200 rounded-lg font-medium transition-all duration-300 border border-wood-300 dark:border-wood-600 hover:shadow-md text-sm"> <i class="fas fa-th ml-2 text-wood-600 dark:text-wood-400"></i>همه محصولات </button>
+            <button class="px-4 py-2 bg-wood-100 hover:bg-wood-200 dark:bg-wood-800 dark:hover:bg-wood-700 text-wood-800 dark:text-wood-200 rounded-lg font-medium transition-all duration-300 border border-wood-300 dark:border-wood-600 hover:shadow-md text-sm"> <i class="fas fa-table ml-2 text-wood-600 dark:text-wood-400"></i>میز و صندلی </button> <button class="px-4 py-2 bg-wood-100 hover:bg-wood-200 dark:bg-wood-800 dark:hover:bg-wood-700 text-wood-800 dark:text-wood-200 rounded-lg font-medium transition-all duration-300 border border-wood-300 dark:border-wood-600 hover:shadow-md text-sm"> <i class="fas fa-archive ml-2 text-wood-600 dark:text-wood-400"></i>کمد و قفسه </button> <button class="px-4 py-2 bg-wood-100 hover:bg-wood-200 dark:bg-wood-800 dark:hover:bg-wood-700 text-wood-800 dark:text-wood-200 rounded-lg font-medium transition-all duration-300 border border-wood-300 dark:border-wood-600 hover:shadow-md text-sm"> <i class="fas fa-couch ml-2 text-wood-600 dark:text-wood-400"></i>اتاق نشیمن </button> <button class="px-4 py-2 bg-wood-100 hover:bg-wood-200 dark:bg-wood-800 dark:hover:bg-wood-700 text-wood-800 dark:text-wood-200 rounded-lg font-medium transition-all duration-300 border border-wood-300 dark:border-wood-600 hover:shadow-md text-sm"> <i class="fas fa-star ml-2 text-wood-600 dark:text-wood-400"></i>تزئینی </button>
         </div>
     </div>
 </section><!-- Products Grid -->

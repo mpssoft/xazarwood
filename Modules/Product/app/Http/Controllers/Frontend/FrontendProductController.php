@@ -20,7 +20,7 @@ class FrontendProductController extends Controller
             })->get();
         else
             $products  = Product::all();
-        return view('product::frontend.canva-index',compact('products'));
+        return view('product::frontend.bing-index',compact('products'));
     }
 
     public function showProduct(Product $product)

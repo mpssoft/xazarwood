@@ -5,7 +5,7 @@
 <!-- Features Section -->
 <section class="py-12 bg-white dark:bg-wood-950 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="text-center">
                 <div class="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                     <i class="fas fa-tree text-2xl text-amber-600 dark:text-amber-400 icon-pulse"></i>
@@ -20,13 +20,13 @@
                 <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">ساخت دستی</h3>
                 <p class="text-sm text-wood-600 dark:text-wood-300">هر قطعه با دقت و عشق ساخته شده</p>
             </div>
-            <div class="text-center">
+           {{-- <div class="text-center">
                 <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                     <i class="fas fa-truck text-2xl text-blue-600 dark:text-blue-400 icon-pulse"></i>
                 </div>
                 <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">ارسال سریع</h3>
                 <p class="text-sm text-wood-600 dark:text-wood-300">تحویل در کمتر از ۴۸ ساعت</p>
-            </div>
+            </div>--}}
             <div class="text-center">
                 <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                     <i class="fas fa-award text-2xl text-purple-600 dark:text-purple-400 icon-pulse"></i>
@@ -184,9 +184,9 @@
         </div>
 
         <div class="text-center mt-8">
-            <button class="px-8 py-3 border-2 border-amber-600 text-amber-600 dark:text-amber-400 hover:bg-amber-600 hover:text-white rounded-lg font-semibold transition-all duration-300">
+            <a href="{{route('products-list','all')}}" class="px-8 py-3 border-2 border-amber-600 text-amber-600 dark:text-amber-400 hover:bg-amber-600 hover:text-white rounded-lg font-semibold transition-all duration-300">
                 مشاهده همه محصولات
-            </button>
+            </a>
         </div>
     </div>
 </section>
@@ -206,15 +206,15 @@
                 <p class="text-wood-600 dark:text-wood-300 mb-6">
                     تخصص اصلی ما ساخت میزهای روستیک است که هر کدام داستان خود را دارند. ما به استفاده از چوب‌های پایدار و روش‌های تولید دوست‌دار محیط زیست متعهد هستیم.
                 </p>
-                <div class="grid grid-cols-3 gap-4 text-center">
+                <div class="grid grid-cols-2 gap-4 text-center">
                     <div>
                         <div class="text-3xl font-bold text-amber-600 dark:text-amber-400">۲۰+</div>
                         <div class="text-sm text-wood-600 dark:text-wood-300">سال تجربه</div>
                     </div>
-                    <div>
+                    {{--<div>
                         <div class="text-3xl font-bold text-amber-600 dark:text-amber-400">۵۰۰۰+</div>
                         <div class="text-sm text-wood-600 dark:text-wood-300">میز فروخته شده</div>
-                    </div>
+                    </div>--}}
                     <div>
                         <div class="text-3xl font-bold text-amber-600 dark:text-amber-400">۱۰۰%</div>
                         <div class="text-sm text-wood-600 dark:text-wood-300">دست‌ساز</div>

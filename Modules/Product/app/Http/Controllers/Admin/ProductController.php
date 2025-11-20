@@ -151,21 +151,23 @@ class ProductController extends Controller
                 }
             }
             $product->attributes()->detach();
-            $attributes = collect($data['attributes']);
-            $attributes->each(function($item) use($product){
-                if(is_null($item['name']) || is_null($item['value'])) return ;
+            if(isset($data['attributes'])) {
+                $attributes = collect($data['attributes']);
+                $attributes->each(function ($item) use ($product) {
+                    if (is_null($item['name']) || is_null($item['value'])) return;
 
-                $attr = Attribute::firstOrCreate(
-                    ['name'=> $item['name']]
-                );
+                    $attr = Attribute::firstOrCreate(
+                        ['name' => $item['name']]
+                    );
 
-                $attr_value = $attr->values()->firstOrCreate(
-                    ['value' => $item['value']]
+                    $attr_value = $attr->values()->firstOrCreate(
+                        ['value' => $item['value']]
 
-                );
-                $product->attributes()->attach($attr->id,['value_id' => $attr_value->id]);
+                    );
+                    $product->attributes()->attach($attr->id, ['value_id' => $attr_value->id]);
 
-            });
+                });
+            }
 
         });
 

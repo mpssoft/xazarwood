@@ -1,5 +1,7 @@
 <!-- Header -->
-<header class="fixed w-full py-2 bg-white/95 dark:bg-wood-950/95 backdrop-blur-sm shadow-lg  top-0 z-50 transition-colors duration-300">
+<!-- Divider -->
+<div class="h-px bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
+<header class="fixed w-full py-2 border-b border-wood-400 dark:border-wood-900  bg-white/95 dark:bg-wood-950/95 backdrop-blur-sm shadow-lg  top-0 z-50 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 py-1">
         <div class="flex items-center justify-between">
             <!-- Brand and Navigation -->
@@ -309,7 +311,9 @@
         </div>
 
     </div>
+
 </header>
+
 @push('scripts')
     <script>
         // Close mobile menu when clicking outside

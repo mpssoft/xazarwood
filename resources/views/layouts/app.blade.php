@@ -41,6 +41,9 @@
             }
         </script>
         <style>
+            body{
+                overflow:visible !important;
+            }
             /* Custom scrollbar */
             ::-webkit-scrollbar {
                 width: 8px;
