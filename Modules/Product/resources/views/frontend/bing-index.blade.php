@@ -7,7 +7,7 @@
     <section class="max-w-7xl mx-auto px-4 pt-5 mb-2">
 
         <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-3 space-x-reverse text-wood-600 dark:text-wood-400 text-sm"><span>خانه</span> <i class="fas fa-chevron-left text-xs"></i><a href="{{route('products-list',$products[0]->categories()->first()->name)}}"> <span class="text-wood-800 dark:text-wood-200">{{$products[0]->categories()->first()->name}}</span> </a>
+            <div class="flex items-center space-x-3 space-x-reverse text-wood-600 dark:text-wood-400 text-sm"><span>خانه</span> <i class="fas fa-chevron-left text-xs"></i><a href="{{route('products-list', isset($products[0]) ?  $products[0]->categories()->first()->name : 'all')}}"> <span class="text-wood-800 dark:text-wood-200">{{ isset($products[0]) ?  $products[0]->categories()->first()->name:''}}</span> </a>
             </div>
         </div>
 
