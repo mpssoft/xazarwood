@@ -9,7 +9,7 @@
         <div class="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-sm">
             <a href="/" class="flex items-center gap-2 hover:scale-105 transition-transform duration-200">
                 <i class="fas fa-atom drop-shadow-sm"></i>
-                فیزیک بیست
+                خزرچوب
             </a>
         </div>
     </div>
@@ -23,7 +23,28 @@
             <i class="fas fa-home text-pink-500 group-hover:text-pink-600 transition-colors duration-200 w-5"></i>
             <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white"> داشبورد</span>
         </a>
-
+        <!-- اسلایدرها -->
+        <div class="treeview-item">
+            <button onclick="toggleTreeview(this)" class="flex items-center justify-between w-full gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-images text-orange-500 group-hover:text-orange-600 transition-colors duration-200 w-5"></i>
+                    <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">اسلایدرها</span>
+                </div>
+                <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 treeview-arrow"></i>
+            </button>
+            <div class="treeview-content hidden overflow-hidden transition-all duration-300 ease-in-out">
+                <div class="mr-8 mt-2 space-y-1">
+                    <a href="{{route('admin.sliders.index')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                        <i class="fas fa-list text-xs text-orange-300 w-3"></i>
+                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">مشاهده همه</span>
+                    </a>
+                    <a href="{{route('admin.sliders.create')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                        <i class="fas fa-plus text-xs text-orange-300 w-3"></i>
+                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">ایجاد اسلایدر جدید</span>
+                    </a>
+                </div>
+            </div>
+        </div>
         <!--محصولات-->
         <div class="treeview-item">
             <button onclick="toggleTreeview(this)" class="flex items-center justify-between w-full gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
@@ -46,80 +67,35 @@
                 </div>
             </div>
         </div>
-  <!-- پایه | مقطع | دسته -->
+        <!-- تخفیف ها -->
         <div class="treeview-item">
             <button onclick="toggleTreeview(this)" class="flex items-center justify-between w-full gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
                 <div class="flex items-center gap-3">
-                    <i class="fas fa-graduation-cap text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-5"></i>
-                    <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">پایه | مقطع | دسته</span>
+                    <i class="fas fa-percent text-red-500 group-hover:text-red-600 transition-colors duration-200 w-5"></i>
+                    <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">تخفیف ها</span>
                 </div>
                 <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 treeview-arrow"></i>
             </button>
             <div class="treeview-content hidden overflow-hidden transition-all duration-300 ease-in-out">
                 <div class="mr-8 mt-2 space-y-1">
-                    <a href="{{route('admin.grades.index')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-list text-xs text-purple-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-purple-600 dark:group-hover:text-purple-400">مشاهده همه</span>
+                    <a href="{{route('shop.admin.discounts.index')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                        <i class="fas fa-list text-xs text-red-300 w-3"></i>
+                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-red-600 dark:group-hover:text-red-400">مشاهده همه</span>
                     </a>
-                    <a href="{{route('admin.grades.create')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-plus text-xs text-purple-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-purple-600 dark:group-hover:text-purple-400">ایجاد پایه جدید</span>
+                    <a href="{{route('shop.admin.discounts.create')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                        <i class="fas fa-plus text-xs text-red-300 w-3"></i>
+                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-red-600 dark:group-hover:text-red-400">ایجاد تخفیف جدید</span>
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- دوره‌ها -->
-        <div class="treeview-item">
-            <button onclick="toggleTreeview(this)" class="flex items-center justify-between w-full gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-book-open text-blue-500 group-hover:text-blue-600 transition-colors duration-200 w-5"></i>
-                    <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">دوره‌ها</span>
-                </div>
-                <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 treeview-arrow"></i>
-            </button>
-            <div class="treeview-content hidden overflow-hidden transition-all duration-300 ease-in-out">
-                <div class="mr-8 mt-2 space-y-1">
-                    <a href="{{route('admin.courses.index')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-list text-xs text-blue-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">مشاهده همه</span>
-                    </a>
-                    <a href="{{route('admin.courses.create')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-plus text-xs text-blue-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">ایجاد دوره جدید</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- درس ها -->
-        <div class="treeview-item">
-            <button onclick="toggleTreeview(this)" class="flex items-center justify-between w-full gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-chalkboard-teacher text-green-500 group-hover:text-green-600 transition-colors duration-200 w-5"></i>
-                    <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">درس ها</span>
-                </div>
-                <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 treeview-arrow"></i>
-            </button>
-            <div class="treeview-content hidden overflow-hidden transition-all duration-300 ease-in-out">
-                <div class="mr-8 mt-2 space-y-1">
-                    <a href="{{route('admin.lessons.index')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-list text-xs text-green-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400">مشاهده همه</span>
-                    </a>
-                    <a href="{{route('admin.lessons.create')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-plus text-xs text-green-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-green-600 dark:group-hover:text-green-400">ایجاد درس جدید</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- درس نامه ها -->
+       <!-- سفارش ساخت -->
         <div class="treeview-item">
             <button onclick="toggleTreeview(this)" class="flex items-center justify-between w-full gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
                 <div class="flex items-center gap-3">
                     <i class="fas fa-file-archive text-pink-500 group-hover:text-pink-600 transition-colors duration-200 w-5"></i>
-                    <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">درسنامه ها</span>
+                    <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">سفارش ساخت</span>
                 </div>
                 <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 treeview-arrow"></i>
             </button>
@@ -156,28 +132,7 @@
                 </div>
             </div>
         </div>
-        <!-- اسلایدرها -->
-        <div class="treeview-item">
-            <button onclick="toggleTreeview(this)" class="flex items-center justify-between w-full gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-images text-orange-500 group-hover:text-orange-600 transition-colors duration-200 w-5"></i>
-                    <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">اسلایدرها</span>
-                </div>
-                <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 treeview-arrow"></i>
-            </button>
-            <div class="treeview-content hidden overflow-hidden transition-all duration-300 ease-in-out">
-                <div class="mr-8 mt-2 space-y-1">
-                    <a href="{{route('admin.sliders.index')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-list text-xs text-orange-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">مشاهده همه</span>
-                    </a>
-                    <a href="{{route('admin.sliders.create')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-plus text-xs text-orange-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-orange-600 dark:group-hover:text-orange-400">ایجاد اسلایدر جدید</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+
  <!-- اسپلش -->
         <div class="treeview-item">
             <button onclick="toggleTreeview(this)" class="flex items-center justify-between w-full gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
@@ -252,28 +207,7 @@
                 </div>
             </div>
         </div>
-        <!-- تخفیف ها -->
-        <div class="treeview-item">
-            <button onclick="toggleTreeview(this)" class="flex items-center justify-between w-full gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-percent text-red-500 group-hover:text-red-600 transition-colors duration-200 w-5"></i>
-                    <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">تخفیف ها</span>
-                </div>
-                <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 treeview-arrow"></i>
-            </button>
-            <div class="treeview-content hidden overflow-hidden transition-all duration-300 ease-in-out">
-                <div class="mr-8 mt-2 space-y-1">
-                    <a href="{{route('shop.admin.discounts.index')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-list text-xs text-red-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-red-600 dark:group-hover:text-red-400">مشاهده همه</span>
-                    </a>
-                    <a href="{{route('shop.admin.discounts.create')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-plus text-xs text-red-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-red-600 dark:group-hover:text-red-400">ایجاد تخفیف جدید</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+
 
         <!-- کاربران -->
         <div class="treeview-item">
@@ -325,49 +259,6 @@
                         <i class="fas fa-plus text-xs text-teal-300 w-3"></i>
                         <span class="text-gray-600 dark:text-gray-300 group-hover:text-teal-600 dark:group-hover:text-teal-400">ایجاد پیغام جدید</span>
                     </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- مدیریت لایسنس ها -->
-        <div class="treeview-item">
-            <button onclick="toggleTreeview(this)" class="flex items-center justify-between w-full gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-key text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200 w-5"></i>
-                    <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">مدیریت لایسنس ها</span>
-                </div>
-                <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 treeview-arrow"></i>
-            </button>
-            <div class="treeview-content hidden overflow-hidden transition-all duration-300 ease-in-out">
-                <div class="mr-8 mt-2 space-y-1">
-                    <a href="{{route('admin.licenses.index')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-list text-xs text-yellow-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-yellow-600 dark:group-hover:text-yellow-400">مشاهده همه</span>
-                    </a>
-                    <a href="{{route('admin.licenses.create')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-plus text-xs text-yellow-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-yellow-600 dark:group-hover:text-yellow-400">ایجاد لایسنس جدید</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- پرسش و پاسخ -->
-        <div class="treeview-item">
-            <button onclick="toggleTreeview(this)" class="flex items-center justify-between w-full gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-question-circle text-cyan-500 group-hover:text-cyan-600 transition-colors duration-200 w-5"></i>
-                    <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">پرسش و پاسخ</span>
-                </div>
-                <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 treeview-arrow"></i>
-            </button>
-            <div class="treeview-content hidden overflow-hidden transition-all duration-300 ease-in-out">
-                <div class="mr-8 mt-2 space-y-1">
-                    <a href="{{route('conversation.index')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-list text-xs text-cyan-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-cyan-600 dark:group-hover:text-cyan-400">مشاهده همه</span>
-                    </a>
-
                 </div>
             </div>
         </div>

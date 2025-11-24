@@ -37,8 +37,8 @@
                 <h4 class="font-semibold text-wood-800 dark:text-wood-100 mb-4">تماس با ما</h4>
                 <ul class="space-y-2 text-sm text-wood-600 dark:text-wood-300">
                     <li><i class="fas fa-map-marker-alt ml-2"></i>آذربیجانغربی، سلماس، خیابان شریعتی تقاطع خیابان فردوسی </li>
-                    <li><i class="fas fa-phone ml-2"></i>09144851033</li>
-                    <li><i class="fas fa-envelope ml-2"></i>info@xazarwood.ir</li>
+                    <li><i class="fas fa-phone ml-2"></i> 09144851033 - 09356042248</li>
+                    <li><i class="fas fa-envelope ml-2"></i>info@xazarwoods.com</li>
                     <li><i class="fas fa-clock ml-2"></i>شنبه تا پنجشنبه ۹-۱۷</li>
                 </ul>
             </div>

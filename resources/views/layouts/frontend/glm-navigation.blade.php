@@ -76,6 +76,10 @@
                                     <i class="fas fa-question-circle text-green-600 group-hover:text-green-700 dark:text-green-400 dark:group-hover:text-green-300 transition-colors duration-200 w-4"></i>
                                     <span class="font-medium">سوالات متداول </span>
                                 </a>
+                                <a href="/terms-of-service" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
+                                    <i class="fas fa-list-check text-red-600 group-hover:text-red-700 dark:text-red-400 dark:group-hover:text-red-300 transition-colors duration-200 w-4"></i>
+                                    <span class="font-medium">شرایط و ضوابط استفاده  </span>
+                                </a>
                                 <a href="/contact" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
                                     <div class="flex items-center gap-3">
                                         <i class="fas fa-envelope text-amber-600 group-hover:text-amber-700 dark:text-amber-400 dark:group-hover:text-amber-300 transition-colors duration-200 w-4"></i>
