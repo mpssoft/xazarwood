@@ -416,15 +416,16 @@
             $(document).ready(function(){
             fetchCart();
         });
-            function addToCart(model,id,cart=false)
+            function addToCart(model,id,qty=1,cart=false)
             {
+
                 let btn = document.getElementById('btn-'+id);
                 let spinner = btn.querySelector('.spinner-'+id);
 
                 spinner.classList.remove('hidden');
 
 
-                url = "/cart/add/"+model+"/"+id;
+                url = "/cart/add/"+model+"/"+id+"/"+qty;
             fetch(url, {
                 method: "GET",
                 headers: {
@@ -489,7 +490,7 @@
                     text: 'آیا این آیتم از سبد خرید حذف شود؟',
                     icon: 'warning',
                     showCancelButton: true,
-
+                    confirmButtonColor: '#f59e0b',
                     confirmButtonText: 'بله، حذف کن',
                     cancelButtonText: 'لغو'
                 }).then((result) => {

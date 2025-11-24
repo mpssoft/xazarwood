@@ -27,7 +27,7 @@ class CartService
 
             if ($existing) {
                 //return "قبلا به سبد خرید اضافه شده !";
-                $existing->qty += $qty;
+                $existing->qty = $qty;
                 $existing->code = $discount->code??'';
                 $existing->discount = $discount ? $discount : null;
                 $existing->save();
@@ -50,7 +50,7 @@ class CartService
             if ($cart->has($key)) {
                 //return "قبلا به سبد خرید اضافه شده !";
                 $item = $cart->get($key);
-                $item['qty'] += $qty;
+                $item['qty'] = $qty;
                 $item['discount'] = $discount ? $discount : null;
                 $cart->put($key, $item);
             } else {
@@ -66,16 +66,33 @@ class CartService
 
 
         }
-        return "به سبد خرید اضافه شد";
+        return "سبد خرید بروزرسانی شد!";
 
     }
     protected function getDiscountForItem($type, $id)
     {
         $now = now();
+
         if (class_exists($type)) {
             $tableName = (new $type)->getTable();
         }else
             return null;
+        $product = $type::find($id);
+
+        // check if product class has category and the category has discount
+        if ($product && $product->categories && $product->categories->count() > 0) {
+            foreach ($product->categories as $category) {
+                $activeCatDiscount = $category->discounts
+                    ->where('start_at', '<', now())
+                    ->where('end_at', '>', now())
+                    ->where('is_active', 1)
+                    ->first();
+
+                if ($activeCatDiscount) {
+                    return $activeCatDiscount;
+                }
+            }
+        }
         return Discount::where('is_active', true)
             ->where(function ($q) use ($now) {
                 $q->whereNull('start_at')->orWhere('start_at', '<=', $now);
@@ -223,8 +240,28 @@ class CartService
                     $item['discount'] = $discount;
 
                     $find = 1;
-                }/*else
-                    $item['discount'] = null;*/
+                }else
+                {
+
+                    // check product categories
+                    // check if product class has category and the category has discount
+                    $product = $itemClass::find($item['item_id'])->first();
+                    if ( $product->categories && $product->categories->count() > 0) {
+                        foreach ($product->categories as $category) {
+                            $activeCatDiscount = $category->discounts
+                                ->where('start_at', '<', now())
+                                ->where('end_at', '>', now())
+                                ->where('is_active', 1)
+                                ->first();
+
+                            if ($activeCatDiscount) {
+                                $find = 1;
+                                $item['discount'] =  $activeCatDiscount;
+                                break;
+                            }
+                        }
+                    }
+                }
                 return $item;
             });
         }
@@ -245,13 +282,34 @@ class CartService
                         $item->code = $discount->code;
                         $item->update();
                         $find = 1;
-                    }/*else{
-                        $item->discount = null;
-                        $item->update();
-                    }*/
+                    }else{
+
+                        // check product categories
+                        // check if product class has category and the category has discount
+                        $product = $item->item_type::find($item->item_id)->first();
+
+                        if ( $product->categories && $product->categories->count() > 0) {
+
+                            foreach ($product->categories as $category) {
+                                $activeCatDiscount = $category->discounts
+                                    ->where('start_at', '<', now())
+                                    ->where('end_at', '>', now())
+                                    ->where('is_active', 1)
+                                    ->first();
+
+                                if ($activeCatDiscount) {
+                                    $item->discount =  $activeCatDiscount;
+                                    $item->update();
+                                    $find=1;
+                                    break;
+                                }
+                            }
+                        }
+                    }
            }
             }
         }
+
         if($find)
             return ['success' => true, 'message' => 'تخفیف اعمال شد', 'discount' => $discount];
         else

@@ -70,6 +70,7 @@ class Discount extends Model
             ->merge($this->courses)
             ->merge($this->lessons)
             ->merge($this->lessonplans)
+            ->merge($this->categories)
             ->merge($this->files);
 
     }

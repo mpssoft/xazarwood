@@ -41,7 +41,6 @@ class CartController extends Controller
                     if (!$item['model']) {
                         $this->cartService->removeItem($item['item_type'], $item['item_id']);
                         return null;
-
                     }
                 }else
                     return null;
@@ -55,7 +54,7 @@ class CartController extends Controller
     /**
      * Add item to cart
      */
-    public function add($model, $id)
+    public function add($model, $id,$qty = 1)
     {
         // Map model name to actual class
         $modelClasses = [
@@ -77,7 +76,7 @@ class CartController extends Controller
         $id    = $item->id;
         $price = $item->price ?? 0;
 
-        $msg = $this->cartService->addItem($type, $id, 1, $price);
+        $msg = $this->cartService->addItem($type, $id, $qty, $price);
 
         return response()->json([
             'success' => true,
