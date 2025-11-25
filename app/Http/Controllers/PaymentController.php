@@ -34,33 +34,9 @@ use function PHPUnit\Framework\isEmpty;
             return redirect()->route('shop.cart.index');
         }
 
-        // Check for already purchased courses
-        $alreadyBought = [];
-        foreach ($cart as $cartItem) {
-            $itemClass = $cartItem['item_type'];
-            $itemId = $cartItem['item_id'];
-
-            $exists = OrderItem::where('item_type', $itemClass)
-                ->where('item_id', $itemId)
-                ->whereHas('order', function($query) use ($user) {
-                    $query->where('user_id', $user->id)
-                        ->where('status', 'paid');
-                })->exists();
-
-            if ($exists) {
-                $alreadyBought[] = $cartItem['item_name'] ?? $cartItem->item->title;
-            }
-        }
-
-        if (!empty($alreadyBought)) {
-            alert('پرداخت تکراری', ' شما قبلا این دوره(ها) را خریداری کرده‌اید: ' . implode(', ', $alreadyBought), 'success');
-            return redirect()->route('shop.cart.index');
-        }
-
-
         $totalPrice = $cart->sum(function ($item) {
             $i = json_decode($item->discount,true);
-            $price = $item['price'] ?? 0;
+            $price = $item['model']['price'] ?? 0;
             if (!is_null($item->discount)) {
                 if ($i['type'] === 'percent') {
                     $price -= $price * ($i['value'] / 100);

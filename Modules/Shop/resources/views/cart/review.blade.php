@@ -557,10 +557,10 @@
                         <h3 class="text-xl font-semibold text-wood-800 dark:text-wood-100 mb-2">سبد خرید شما خالی
                             است</h3>
                         <p class="text-wood-600 dark:text-wood-400 mb-6">هنوز محصولی به سبد خرید خود اضافه نکرده‌اید</p>
-                        <a href="{{route('products-list','all')}}"
+                        <button
                             class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200">
                             مشاهده محصولات
-                        </a>
+                        </button>
                     </div>
                 </div>
             @endif

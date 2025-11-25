@@ -4,11 +4,24 @@
         <div class="grid md:grid-cols-4 gap-8 mb-8">
             <div>
                 <div class="flex items-center space-x-reverse space-x-2 mb-4">
-                    <i class="fas fa-table text-2xl text-amber-600"></i>
-                    <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100">میزهای روستیک</h3>
+                    <div class="flex items-center justify-center space-x-3 space-x-reverse text-center">
+                        <div class="flex items-center justify-center  w-10 h-10 bg-amber-600 dark:bg-amber-400 rounded-full  shadow-lg">
+                            <i class="fas fa-tree text-wood-100 dark:text-wood-900 "></i>
+                        </div>
+                        <!-- 🪵 Brand Text -->
+                        <div class="flex flex-col items-center leading-tight font-extrabold">
+
+                        <span style="font-family:'Vazirmatn-bold' !important;" class=" text-2xl  font-bold  bg-gradient-to-r from-amber-600 via-yellow-400 to-amber-800  text-transparent bg-clip-text    tv-optimized-text-shadow">
+            خزرچوب
+        </span>
+                        </div>
+
+
+                    </div>
                 </div>
-                <p class="text-wood-600 dark:text-wood-300 text-sm">
-                    تخصصی‌ترین مرکز تولید میزهای روستیک دست‌ساز در ایران
+                <p class="text-wood-600 dark:text-wood-300 text-sm"><a href="/about">
+                    خزرچوب در شهر زیبای سلماس با هدف احیای هنر چوب‌کاری سنتی و ترکیب آن با طراحی مدرن تاسیس شد ...
+                    </a>
                 </p>
             </div>
             <div>
@@ -36,7 +49,7 @@
             <div>
                 <h4 class="font-semibold text-wood-800 dark:text-wood-100 mb-4">تماس با ما</h4>
                 <ul class="space-y-2 text-sm text-wood-600 dark:text-wood-300">
-                    <li><i class="fas fa-map-marker-alt ml-2"></i>آذربیجانغربی، سلماس، خیابان شریعتی تقاطع خیابان فردوسی </li>
+                    <li><i class="fas fa-map-marker-alt ml-2"></i> آذربیجانغربی، سلماس، خیابان شریعتی تقاطع خیابان فردوسی </li>
                     <li><i class="fas fa-phone ml-2"></i> 09144851033 - 09356042248</li>
                     <li><i class="fas fa-envelope ml-2"></i>info@xazarwoods.com</li>
                     <li><i class="fas fa-clock ml-2"></i>شنبه تا پنجشنبه ۹-۱۷</li>

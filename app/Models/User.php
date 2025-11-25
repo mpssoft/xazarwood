@@ -119,4 +119,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(LessonPlan::class);
     }
+    public function addresses()
+    {
+        return $this->hasMany(UserAddress::class);
+    }
 }

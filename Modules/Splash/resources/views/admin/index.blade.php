@@ -14,7 +14,7 @@
                     <p class="text-sm text-slate-600 dark:text-slate-400">مدیریت: عنوان، تصویر، لینک، و وضعیت فعال (0/1)</p>
                 </div>
             </div>
-            <a href="#create-splash" id="addNewBtn"
+            <a href="{{route('admin.spalshes.create')}}" id="addNewBtn"
                class="inline-flex items-center gap-2 px-4 py-2 rounded-xl font-bold bg-sky-600 hover:bg-sky-700 text-white shadow transition">
                 <i class="fa-solid fa-plus"></i>
                 افزودن اسپلش
@@ -86,7 +86,7 @@
             <div class="col-span-full">
                 <div class="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 p-10 text-center">
                     <p class="text-slate-600 dark:text-slate-400">هیچ اسپلشی ثبت نشده است.</p>
-                    <a href="{{ route('splashes.create') }}" class="mt-3 inline-flex items-center gap-2 px-4 py-2 rounded-xl font-bold bg-sky-600 hover:bg-sky-700 text-white shadow transition">
+                    <a href="{{ route('admin.splashes.create') }}" class="mt-3 inline-flex items-center gap-2 px-4 py-2 rounded-xl font-bold bg-sky-600 hover:bg-sky-700 text-white shadow transition">
                         <i class="fa-solid fa-plus"></i>
                         ایجاد اولین اسپلش
                     </a>
