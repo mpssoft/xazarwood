@@ -36,25 +36,28 @@ use function PHPUnit\Framework\isEmpty;
 
         $totalPrice = $cart->sum(function ($item) {
             $i = json_decode($item->discount,true);
-            $price = $item['model']['price'] ?? 0;
+
+            $price = $item->price ?? 0;
             if (!is_null($item->discount)) {
                 if ($i['type'] === 'percent') {
                     $price -= $price * ($i['value'] / 100);
+
                 } else  {
                     $price -= $i['value'];
                 }
             }
-
+            $price = $price* $item->qty ?? 0;
             return max($price, 0); // never below zero
         });
-
+        $totalPrice +=session('shipping_cost');
 // Create the Order
         $order = Order::create([
             'user_id' => $user->id,
             'status'  => 'pending',
             'price'   => $totalPrice,
+            'shipping_price'   => session('shipping_cost'),
+            'user_address_id'   => session('checkout.address'),
         ]);
-
 
         // Create OrderItems
         foreach ($cart as $cartItem) {

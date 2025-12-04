@@ -11,7 +11,9 @@ class OrderItem extends Model
         'item_id',
         'item_type',
         'quantity',
-        'price'
+        'price',
+
+
     ];
 
     // Polymorphic relation to the actual item (Course, Lesson, etc.)

@@ -25,7 +25,7 @@ class OtpLoginController extends Controller
         $blockKey = 'otp_blocked_' . $mobile;
 
 
-    /*    // اگر بلاک شده باشه (بعد از 3 بار ارسال)
+       // اگر بلاک شده باشه (بعد از 3 بار ارسال)
         if (Cache::has($blockKey)) {
             return response()->json([
                 'status' => 'error',
@@ -52,7 +52,7 @@ class OtpLoginController extends Controller
             Cache::put($attemptKey, 1, now()->addHour());
         } else {
             Cache::increment($attemptKey);
-        }*/
+        }
 
         // تولید کد OTP
         $otp = rand(1000, 9999);

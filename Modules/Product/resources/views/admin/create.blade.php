@@ -194,7 +194,7 @@
                     <button type="button" id="btn-main-image" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow">
                         انتخاب تصویر اصلی
                     </button>
-                    <input type="hidden" id="main-image-input" name="main_image">
+                    <input type="hidden" id="main_image" name="main_image">
                 </div>
                 <div id="main-image-preview" class="mt-4 hidden">
                     <img src="" class="rounded-lg shadow max-h-40" alt="Main Image">

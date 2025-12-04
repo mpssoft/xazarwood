@@ -129,7 +129,7 @@ class CartService
             $cart = $cart->keyBy(function ($item) {
                 return $item['item_type'] . '-' . $item['item_id'];
             });
-
+            $cart->address = "hg";
             return $cart;
         } else {
             $cart = json_decode(Cookie::get($this->cookieName, '[]'), true) ?: [];

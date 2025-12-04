@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\panel\UserController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\User\ChatController;
 use App\Http\Controllers\User\panel\UserCourseController;
@@ -12,7 +13,7 @@ Route::get("/",[UserPanelController::class,'home'])->name('home');
 
 Route::get('courses/',[UserCourseController::class,'courses'])->name('courses.index');
 Route::get('courses/bought',[UserCourseController::class,'boughtCourses'])->name('courses.bought');
-
+Route::post('/addAddress',[UserController::class,'addAddress']);
 Route::get('/checkout', [PaymentController::class, 'createOrder'])->name('cart.checkout');
 Route::get('/payment/zarinpalCallback',[PaymentController::class,'zarinpalCallback'])->name('payment.zarinpalCallback');
 Route::get('/payment/success/{orderId}', [PaymentController::class, 'paymentSuccess'])->name('payment.success');

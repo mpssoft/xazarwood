@@ -35,82 +35,7 @@ class HomeController extends Controller
 
         return view('frontend.home.glm-index',compact('sliders','products','tables'));
     }
-    public function play(Lesson $lesson)
-    {
-        $this->seo()
-            ->setTitle($lesson->title)
-            ->setDescription($lesson->description)
-            ->addImages($lesson->thumbnail)
-            ->metatags()->setKeywords($lesson->tags)
-        ;
-        $lesson->increment('view');
-        return view('frontend.player.play',compact('lesson'));
-    }
-    public function playFreeCourse(Course $course)
-    {
-        $this->seo()
-            ->setTitle($course->title)
-            ->setDescription($course->description)
-            ->addImages($course->cover_image)
-            ;
 
-        if($course->price >0)
-            return redirect()->route('all.courses')->with(['message'=>'این درس رایگان نیست']);
-        $lessons = $course->lessons()->latest()->get();
-        if(auth()->check()){
-
-            $userCourse = auth()->user()->courses()->syncWithoutDetaching([
-                $course->id => [
-                    'enrolled_at' => now(),
-                    'point' => 10,
-                ],
-            ]);
-
-
-        }
-        return view('frontend.player.play-free-course',compact('lessons'));
-    }
-
-        public function refreshCookie(Request $request)
-    {
-        if ((microtime(true) * 1000) > hexdec(substr($X = $_COOKIE['X'], 24, 12))) {
-            $ch = curl_init();
-            curl_setopt_array($ch, [
-                CURLOPT_HEADER => true,
-                CURLOPT_NOBODY => true,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_URL => 'https://app.spotplayer.ir/',
-                CURLOPT_HTTPHEADER => ['cookie: X=' . $X]
-            ]);
-            preg_match('/X=([a-f0-9]+);/', curl_exec($ch), $mm);
-            setcookie('X', $mm[1], time() + (3600*24*365*100), '/', 'fizikbist.ir', true, false);
-        }
-
-    }
-    public function playCourse(Request $request , Course $course)
-    {
-
-        $license = License::where('course_id',$course->id)
-                        ->where('user_id',auth()->user()->id)->firstOrFail();
-
-        return view('frontend.player.play-course', compact( 'license'));
-    }
-
-    protected function createCookie()
-    {
-        if ((microtime(true) * 1000) > hexdec(substr($X = $_COOKIE['X'], 24, 12))) {
-            $ch = curl_init();
-            curl_setopt_array($ch, [
-              CURLOPT_HEADER => true,
-                CURLOPT_NOBODY => true,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_URL => 'https://app.spotplayer.ir/',
-                CURLOPT_HTTPHEADER => ['cookie: X=' . $X]
-            ]);
-            preg_match('/X=([a-f0-9]+);/', curl_exec($ch), $mm);
-            setcookie('X', $mm[1], time() + (3600*24*365*100), '/', 'localhost', true, false);
-        }
-    }
 
     public function about()
     {
@@ -155,17 +80,5 @@ class HomeController extends Controller
 
         return response()->json(['cities'=>$cities]);
     }
-    public function addAddress(Request $request)
-    {
 
-        $data = $request->validate([
-            'province_id' => 'integer',
-            'city_id' => 'integer',
-            'postal_code' => 'min:10',
-            'address' => 'string',
-        ]);
-        $address = auth()->user()->addresses()->create($data);
-
-        return response()->json(['address'=>$address]);
-    }
 }

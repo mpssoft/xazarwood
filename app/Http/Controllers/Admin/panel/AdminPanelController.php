@@ -12,8 +12,8 @@ class AdminPanelController extends Controller
     public function home()
     {
         $user = Auth::user();
-        $activeCourses = Course::where("status","active")->get();
-        $courses = Course::withCount([
+       // $activeCourses = Course::where("status","active")->get();
+       /* $courses = Course::withCount([
             'raters as ratings_count',
             'students as students_count',
 
@@ -25,10 +25,10 @@ class AdminPanelController extends Controller
                 },
                 'teacher','grade'
             ])
-            ->paginate(10);
+            ->paginate(10);*/
 
 
-        return view('admin.home', compact('courses', 'user','activeCourses'));
+        return view('admin.home', compact( 'user',));
 
     }
 }

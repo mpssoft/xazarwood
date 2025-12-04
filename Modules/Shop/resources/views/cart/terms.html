@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سبد خرید</title>
+    <title>بررسی نهایی سفارش</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="/_sdk/element_sdk.js"></script>
     <style>
@@ -22,6 +22,15 @@
 
         .animate-fade-in {
             animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.5s ease-out;
         }
     </style>
     <script>
@@ -55,28 +64,599 @@
 <div class="w-full min-h-full bg-wood-50 dark:bg-wood-950 smooth-transition">
     <div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8"><!-- Header -->
         <div class="flex items-center justify-between mb-8">
-            <h1 id="page-title" class="text-3xl font-bold text-wood-900 dark:text-wood-100">سبد خرید</h1><button id="theme-toggle" class="p-2 rounded-lg bg-wood-200 dark:bg-wood-800 text-wood-800 dark:text-wood-200 hover:bg-wood-300 dark:hover:bg-wood-700 smooth-transition" aria-label="Toggle dark mode">
+            <div class="flex items-center gap-4">
+                <h1 id="page-title" class="text-3xl font-bold text-wood-900 dark:text-wood-100">��ررسی نهایی سفارش</h1>
+            </div><button id="theme-toggle" class="p-2 rounded-lg bg-wood-200 dark:bg-wood-800 text-wood-800 dark:text-wood-200 hover:bg-wood-300 dark:hover:bg-wood-700 smooth-transition" aria-label="Toggle dark mode">
             <svg id="sun-icon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
             <svg id="moon-icon" class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
             </svg></button>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8"><!-- Cart Items Section -->
-            <div class="lg:col-span-2">
-                <h2 id="cart-section-title" class="text-2xl font-semibold text-wood-900 dark:text-wood-100 mb-6">محصولات شما</h2>
-                <div id="cart-items" class="space-y-4"><!-- Cart items will be rendered here -->
+        </div><!-- Progress Steps -->
+        <div class="mb-8">
+            <div class="flex items-center justify-center gap-4">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-wood-600 text-white flex items-center justify-center font-bold">
+                        ✓
+                    </div><span class="text-sm font-medium text-wood-900 dark:text-wood-100">سبد خرید</span>
+                </div>
+                <div class="w-16 h-1 bg-wood-600"></div>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-wood-600 text-white flex items-center justify-center font-bold">
+                        2
+                    </div><span class="text-sm font-medium text-wood-900 dark:text-wood-100">بررسی و پرداخت</span>
+                </div>
+                <div class="w-16 h-1 bg-wood-300 dark:bg-wood-700"></div>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-wood-300 dark:bg-wood-700 text-wood-600 dark:text-wood-400 flex items-center justify-center font-bold">
+                        3
+                    </div><span class="text-sm font-medium text-wood-500 dark:text-wood-500">تکمیل</span>
                 </div>
             </div>
-            <!-- Address Section -->
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8"><!-- Left Column - Order Review -->
+            <div class="lg:col-span-2 space-y-6"><!-- Cart Items Review -->
+                <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 animate-fade-in">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-semibold text-wood-900 dark:text-wood-100">محصولات سفارش</h2><span class="text-sm text-wood-600 dark:text-wood-400" id="item-count">۴ محصول</span>
+                    </div>
+                    <div id="review-items" class="space-y-4"><!-- Review items will be rendered here -->
+                    </div>
+                </div><!-- Delivery Address Review -->
+                <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 animate-fade-in">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-semibold text-wood-900 dark:text-wood-100">آدرس تحویل</h2><button id="edit-address-btn" class="text-wood-600 dark:text-wood-400 hover:text-wood-800 dark:hover:text-wood-200 text-sm font-medium smooth-transition"> ویرایش </button>
+                    </div>
+                    <div id="address-display" class="bg-wood-50 dark:bg-wood-800 rounded-lg p-4">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-wood-600 dark:text-wood-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-semibold text-wood-900 dark:text-wood-100 mb-2">منزل</p>
+                                <p class="text-wood-700 dark:text-wood-300 text-sm leading-relaxed">تهران، خیابان ولیعصر، نرسیده به میدان ونک، پلاک ۱۲۳، واحد ۴</p>
+                                <p class="text-wood-600 dark:text-wood-400 text-sm mt-2">کد پستی: ۱۲۳۴۵۶۷۸۹۰</p>
+                            </div>
+                        </div>
+                    </div><!-- Edit Address Form (Hidden by default) -->
+                    <div id="address-edit-form" class="hidden mt-4 space-y-4">
+                        <div><label for="edit-address" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-2">آدرس کامل</label> <textarea id="edit-address" rows="3" class="w-full px-4 py-3 rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition resize-none">تهران، خیابان ولیعصر، نرسیده به میدان ونک، پلاک ۱۲۳، واحد ۴</textarea>
+                        </div>
+                        <div class="flex gap-2"><button id="save-address-btn" class="px-6 py-2 bg-wood-600 hover:bg-wood-700 text-white font-medium rounded-lg smooth-transition"> ذخیره </button> <button id="cancel-address-btn" class="px-6 py-2 bg-wood-200 dark:bg-wood-800 hover:bg-wood-300 dark:hover:bg-wood-700 text-wood-900 dark:text-wood-100 font-medium rounded-lg smooth-transition"> انصراف </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Shipping Method -->
+                <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 animate-fade-in">
+                    <h2 class="text-2xl font-semibold text-wood-900 dark:text-wood-100 mb-6">روش ارسال</h2>
+                    <div class="space-y-3"><label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800"> <input type="radio" name="shipping" value="express" checked class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg><span class="font-semibold text-wood-900 dark:text-wood-100">ارسال فوری</span>
+                                </div><span class="font-bold text-wood-600 dark:text-wood-400">۱۵۰,۰۰۰ تومان</span>
+                            </div>
+                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">تحویل در کمتر از ۲۴ ساعت</p>
+                        </div></label> <label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800"> <input type="radio" name="shipping" value="normal" class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                                    </svg><span class="font-semibold text-wood-900 dark:text-wood-100">ارسال عادی</span>
+                                </div><span class="font-bold text-green-600 dark:text-green-400">رایگان</span>
+                            </div>
+                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">تحویل در ۳ تا ۵ روز کاری</p>
+                        </div></label> <label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800"> <input type="radio" name="shipping" value="post" class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg><span class="font-semibold text-wood-900 dark:text-wood-100">پست پیشتاز</span>
+                                </div><span class="font-bold text-wood-600 dark:text-wood-400">۷۵,۰۰۰ تومان</span>
+                            </div>
+                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">تحویل در ۵ تا ۷ روز کاری</p>
+                        </div></label>
+                    </div>
+                </div>
+                <!-- Payment Method -->
+                <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 animate-fade-in">
+                    <h2 class="text-2xl font-semibold text-wood-900 dark:text-wood-100 mb-6">روش پرداخت</h2>
+                    <div class="space-y-3"><label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800"> <input type="radio" name="payment" value="online" checked class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                </svg><span class="font-semibold text-wood-900 dark:text-wood-100">پرداخت آنلاین</span>
+                            </div>
+                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">پرداخت از طریق درگاه بانکی</p>
+                        </div></label> <label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800"> <input type="radio" name="payment" value="cod" class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg><span class="font-semibold text-wood-900 dark:text-wood-100">پرداخت در محل</span>
+                            </div>
+                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">پرداخت نقدی هنگام تحویل</p>
+                        </div></label> <label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800"> <input type="radio" name="payment" value="wallet" class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
+                                </svg><span class="font-semibold text-wood-900 dark:text-wood-100">کیف پول</span>
+                            </div>
+                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">موجودی: ۱۵,۰۰۰,۰۰۰ تومان</p>
+                        </div></label>
+                    </div>
+                </div>
+            </div><!-- Right Column - Order Summary -->
             <div class="lg:col-span-1">
-                <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 sticky top-8">
-                    <h2 id="address-section-title" class="text-2xl font-semibold text-wood-900 dark:text-wood-100 mb-6">آدرس تحویل</h2><!-- Saved Addresses -->
+                <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 sticky top-8 animate-slide-in">
+                    <h2 class="text-2xl font-semibold text-wood-900 dark:text-wood-100 mb-6">خلاصه سفارش</h2>
+                    <div class="space-y-4 mb-6">
+                        <div class="flex justify-between text-wood-700 dark:text-wood-300"><span id="subtotal-label">جمع جزء (۴ محصول)</span> <span id="summary-subtotal">۰ تومان</span>
+                        </div>
+                        <div class="flex justify-between text-wood-700 dark:text-wood-300"><span>هزینه ارسال</span> <span id="shipping-cost" class="font-semibold">۱۵۰,۰۰۰ تومان</span>
+                        </div>
+                        <div class="flex justify-between text-wood-700 dark:text-wood-300"><span>تخفیف</span> <span id="discount-amount" class="text-red-600 dark:text-red-400">۰ تومان</span>
+                        </div>
+                        <div class="pt-4 border-t-2 border-wood-300 dark:border-wood-700">
+                            <div class="flex justify-between items-center"><span class="text-lg font-bold text-wood-900 dark:text-wood-100">مبلغ قابل پرداخت</span> <span id="summary-total" class="text-2xl font-bold text-wood-600 dark:text-wood-400">۰ تومان</span>
+                            </div>
+                        </div>
+                    </div><!-- Discount Code -->
+                    <div class="mb-6"><label for="discount-code" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-2">کد تخفیف</label>
+                        <div class="flex gap-2"><input type="text" id="discount-code" placeholder="کد تخفیف را وارد کنید" class="flex-1 px-4 py-3 rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 placeholder-wood-400 dark:placeholder-wood-600 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition"> <button type="button" id="apply-discount" class="px-6 py-3 bg-wood-500 hover:bg-wood-600 text-white font-medium rounded-lg smooth-transition whitespace-nowrap"> اعمال </button>
+                        </div>
+                        <div id="discount-message" class="mt-2 text-sm hidden"></div>
+                    </div><button type="button" id="final-payment-btn" class="w-full py-4 px-6 bg-wood-600 hover:bg-wood-700 text-white font-bold text-lg rounded-lg smooth-transition shadow-lg hover:shadow-xl"> تکمیل خرید و پرداخت </button>
+                    <p class="text-xs text-center text-wood-500 dark:text-wood-500 mt-4">با کلیک بر روی دکمه، شما <a href="#" class="underline hover:text-wood-700 dark:hover:text-wood-300 smooth-transition">قوانین و مقررات</a> را می‌پذ��رید</p>
+                </div>
+            </div>
+        </div>
+    </div><!-- Success Toast -->
+    <div id="toast" class="fixed top-4 right-4 bg-wood-700 text-white px-6 py-4 rounded-lg shadow-xl hidden animate-fade-in z-50">
+        <p id="toast-message">عملیات با موفقیت انجام شد!</p>
+    </div>
+</div>
+<script>
+    const defaultConfig = {
+        page_title: 'بررسی نهایی سفارش',
+        complete_button: 'تکمیل خرید و پرداخت',
+        background_color: '#fdf8f3',
+        surface_color: '#ffffff',
+        text_color: '#4a2f1f',
+        primary_action_color: '#b8935f',
+        secondary_action_color: '#9c7a52',
+        font_family: 'Tahoma, Arial, sans-serif',
+        font_size: 16
+    };
+
+    let config = {};
+    let discountApplied = 0;
+    let shippingCost = 150000; // Default to express shipping
+
+    // Sample cart data
+    const cartItems = [
+        { id: 1, name: 'میز جلو مبلی چوبی', price: 12500000, quantity: 1, image: '🪑' },
+        { id: 2, name: 'قفسه کتاب دست‌ساز', price: 18900000, quantity: 1, image: '📚' },
+        { id: 3, name: 'صندلی غذاخوری بلوط', price: 6750000, quantity: 2, image: '🪑' }
+    ];
+
+    function formatPrice(price) {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function renderReviewItems() {
+        const container = document.getElementById('review-items');
+        container.innerHTML = cartItems.map(item => `
+                <div class="flex items-center gap-4 pb-4 border-b border-wood-200 dark:border-wood-700">
+                    <div class="text-3xl">${item.image}</div>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-wood-900 dark:text-wood-100">${item.name}</h3>
+                        <p class="text-sm text-wood-600 dark:text-wood-400 mt-1">تعداد: ${item.quantity}</p>
+                    </div>
+                    <div class="text-left">
+                        <p class="font-bold text-wood-900 dark:text-wood-100">${formatPrice(item.price * item.quantity)} تومان</p>
+                    </div>
+                </div>
+            `).join('');
+        updateSummary();
+    }
+
+    function updateSummary() {
+        const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+        const total = subtotal + shippingCost - discountApplied;
+
+        document.getElementById('item-count').textContent = `${totalItems} محصول`;
+        document.getElementById('subtotal-label').textContent = `جمع جزء (${totalItems} محصول)`;
+        document.getElementById('summary-subtotal').textContent = `${formatPrice(subtotal)} تومان`;
+        document.getElementById('summary-total').textContent = `${formatPrice(total)} تومان`;
+
+        // Update shipping cost display
+        const shippingEl = document.getElementById('shipping-cost');
+        if (shippingCost === 0) {
+            shippingEl.textContent = 'رایگان';
+            shippingEl.className = 'font-semibold text-green-600 dark:text-green-400';
+        } else {
+            shippingEl.textContent = `${formatPrice(shippingCost)} تومان`;
+            shippingEl.className = 'font-semibold text-wood-700 dark:text-wood-300';
+        }
+
+        if (discountApplied > 0) {
+            document.getElementById('discount-amount').textContent = `${formatPrice(discountApplied)} تومان -`;
+        } else {
+            document.getElementById('discount-amount').textContent = '۰ تومان';
+        }
+    }
+
+    // Theme toggle
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // Load saved theme
+    if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+    }
+
+    // Edit address functionality
+    document.getElementById('edit-address-btn').addEventListener('click', () => {
+        document.getElementById('address-display').classList.add('hidden');
+        document.getElementById('address-edit-form').classList.remove('hidden');
+    });
+
+    document.getElementById('save-address-btn').addEventListener('click', () => {
+        const newAddress = document.getElementById('edit-address').value;
+        document.getElementById('address-display').classList.remove('hidden');
+        document.getElementById('address-edit-form').classList.add('hidden');
+        showToast('آدرس با موفقیت ذخیره شد');
+    });
+
+    document.getElementById('cancel-address-btn').addEventListener('click', () => {
+        document.getElementById('address-display').classList.remove('hidden');
+        document.getElementById('address-edit-form').classList.add('hidden');
+    });
+
+    // Discount code functionality
+    document.getElementById('apply-discount').addEventListener('click', () => {
+        const code = document.getElementById('discount-code').value.trim();
+        const messageEl = document.getElementById('discount-message');
+
+        if (!code) {
+            messageEl.textContent = 'لطفاً کد تخفیف را وارد کنید';
+            messageEl.className = 'mt-2 text-sm text-red-600 dark:text-red-400';
+            messageEl.classList.remove('hidden');
+            return;
+        }
+
+        // Sample discount codes
+        if (code === 'SUMMER20') {
+            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            discountApplied = Math.floor(subtotal * 0.2);
+            messageEl.textContent = '��� کد تخفیف ۲۰٪ اعمال شد';
+            messageEl.className = 'mt-2 text-sm text-green-600 dark:text-green-400';
+            messageEl.classList.remove('hidden');
+            updateSummary();
+        } else if (code === 'WELCOME10') {
+            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            discountApplied = Math.floor(subtotal * 0.1);
+            messageEl.textContent = '✓ کد تخفیف ۱۰٪ اعمال شد';
+            messageEl.className = 'mt-2 text-sm text-green-600 dark:text-green-400';
+            messageEl.classList.remove('hidden');
+            updateSummary();
+        } else {
+            messageEl.textContent = '✗ کد تخفیف نامعتبر است';
+            messageEl.className = 'mt-2 text-sm text-red-600 dark:text-red-400';
+            messageEl.classList.remove('hidden');
+        }
+    });
+
+    // Shipping method change
+    document.querySelectorAll('input[name="shipping"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            const method = e.target.value;
+            if (method === 'express') {
+                shippingCost = 150000;
+            } else if (method === 'normal') {
+                shippingCost = 0;
+            } else if (method === 'post') {
+                shippingCost = 75000;
+            }
+            updateSummary();
+            showToast('روش ارسال تغییر کرد');
+        });
+    });
+
+    // Final payment button
+    document.getElementById('final-payment-btn').addEventListener('click', () => {
+        const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+        const shippingMethod = document.querySelector('input[name="shipping"]:checked').value;
+        let paymentText = '';
+
+        if (paymentMethod === 'online') {
+            paymentText = 'در حال انتقال به درگاه پرداخت...';
+        } else if (paymentMethod === 'cod') {
+            paymentText = 'سفارش شما ثبت شد! پرداخت در محل';
+        } else {
+            paymentText = 'پرداخت از کیف پول با موفقیت انجام شد';
+        }
+
+        showToast(paymentText + ' 🎉');
+    });
+
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        toastMessage.textContent = message;
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+            toast.classList.add('hidden');
+        }, 3000);
+    }
+
+    async function onConfigChange(config) {
+        const baseSize = config.font_size || defaultConfig.font_size;
+        const fontFamily = config.font_family || defaultConfig.font_family;
+
+        document.getElementById('page-title').textContent = config.page_title || defaultConfig.page_title;
+        document.getElementById('final-payment-btn').textContent = config.complete_button || defaultConfig.complete_button;
+
+        // Apply font family
+        document.body.style.fontFamily = `${fontFamily}, Tahoma, Arial, sans-serif`;
+
+        // Apply font sizes
+        document.getElementById('page-title').style.fontSize = `${baseSize * 1.875}px`;
+        document.body.style.fontSize = `${baseSize}px`;
+    }
+
+    if (window.elementSdk) {
+        window.elementSdk.init({
+            defaultConfig,
+            onConfigChange,
+            mapToCapabilities: (config) => ({
+                recolorables: [
+                    {
+                        get: () => config.background_color || defaultConfig.background_color,
+                        set: (value) => {
+                            config.background_color = value;
+                            window.elementSdk.setConfig({ background_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.surface_color || defaultConfig.surface_color,
+                        set: (value) => {
+                            config.surface_color = value;
+                            window.elementSdk.setConfig({ surface_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.text_color || defaultConfig.text_color,
+                        set: (value) => {
+                            config.text_color = value;
+                            window.elementSdk.setConfig({ text_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                        set: (value) => {
+                            config.primary_action_color = value;
+                            window.elementSdk.setConfig({ primary_action_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                        set: (value) => {
+                            config.secondary_action_color = value;
+                            window.elementSdk.setConfig({ secondary_action_color: value });
+                        }
+                    }
+                ],
+                borderables: [],
+                fontEditable: {
+                    get: () => config.font_family || defaultConfig.font_family,
+                    set: (value) => {
+                        config.font_family = value;
+                        window.elementSdk.setConfig({ font_family: value });
+                    }
+                },
+                fontSizeable: {
+                    get: () => config.font_size || defaultConfig.font_size,
+                    set: (value) => {
+                        config.font_size = value;
+                        window.elementSdk.setConfig({ font_size: value });
+                    }
+                }
+            }),
+            mapToEditPanelValues: (config) => new Map([
+                ['page_title', config.page_title || defaultConfig.page_title],
+                ['complete_button', config.complete_button || defaultConfig.complete_button]
+            ])
+        });
+        config = window.elementSdk.config;
+    }
+
+    // Initialize
+    renderReviewItems();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بررسی نهایی سفارش</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="/_sdk/element_sdk.js"></script>
+<style>
+    body {
+        box-sizing: border-box;
+    }
+
+    .smooth-transition {
+        transition: all 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 0.4s ease-out;
+    }
+
+    @keyframes slideIn {
+        from { transform: translateX(50px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+
+    .animate-slide-in {
+        animation: slideIn 0.5s ease-out;
+    }
+</style>
+<script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                colors: {
+                    wood: {
+                        50: '#fdf8f3',
+                        100: '#faf2e8',
+                        200: '#f5e6d4',
+                        300: '#edd4b3',
+                        400: '#e2b88d',
+                        500: '#d4a574',
+                        600: '#b8935f',
+                        700: '#9c7a52',
+                        800: '#6b4e31',
+                        900: '#4a2f1f',
+                        950: 'rgba(19, 10, 5, 0.95)',
+                    }
+                }
+            }
+        }
+    }
+</script>
+<div class="w-full min-h-full bg-wood-50 dark:bg-wood-950 smooth-transition">
+    <div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8"><!-- Header -->
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-4">
+                <h1 id="page-title" class="text-3xl font-bold text-wood-900 dark:text-wood-100">بررسی نهایی سفارش</h1>
+            </div><button id="theme-toggle" class="p-2 rounded-lg bg-wood-200 dark:bg-wood-800 text-wood-800 dark:text-wood-200 hover:bg-wood-300 dark:hover:bg-wood-700 smooth-transition" aria-label="Toggle dark mode">
+            <svg id="sun-icon" class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <svg id="moon-icon" class="w-6 h-6 block dark:hidden" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg></button>
+        </div><!-- Progress Steps -->
+        <div class="mb-8">
+            <div class="flex items-center justify-center gap-4">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-wood-600 text-white flex items-center justify-center font-bold">
+                        ✓
+                    </div><span class="text-sm font-medium text-wood-900 dark:text-wood-100">سبد خرید</span>
+                </div>
+                <div class="w-16 h-1 bg-wood-600"></div>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-wood-600 text-white flex items-center justify-center font-bold">
+                        2
+                    </div><span class="text-sm font-medium text-wood-900 dark:text-wood-100">بررسی و پرداخت</span>
+                </div>
+                <div class="w-16 h-1 bg-wood-300 dark:bg-wood-700"></div>
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-wood-300 dark:bg-wood-700 text-wood-600 dark:text-wood-400 flex items-center justify-center font-bold">
+                        3
+                    </div><span class="text-sm font-medium text-wood-500 dark:text-wood-500">تکمیل</span>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8"><!-- Left Column - Order Review -->
+            <div class="lg:col-span-2 space-y-6"><!-- Cart Items Review -->
+                <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 animate-fade-in">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-semibold text-wood-900 dark:text-wood-100">محصولات سفارش</h2><span class="text-sm text-wood-600 dark:text-wood-400" id="item-count">۴ محصول</span>
+                    </div>
+                    <div id="review-items" class="space-y-4"><!-- Review items will be rendered here -->
+                    </div>
+                </div><!-- Delivery Address Review -->
+                <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 animate-fade-in">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-semibold text-wood-900 dark:text-wood-100">آدرس تحویل</h2><button id="edit-address-btn" class="text-wood-600 dark:text-wood-400 hover:text-wood-800 dark:hover:text-wood-200 text-sm font-medium smooth-transition"> ویرایش </button>
+                    </div>
+                    <div class="bg-wood-50 dark:bg-wood-800 rounded-lg p-4">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-wood-600 dark:text-wood-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-semibold text-wood-900 dark:text-wood-100 mb-2">منزل</p>
+                                <p class="text-wood-700 dark:text-wood-300 text-sm leading-relaxed">تهران، خیابان ولیعصر، نرسیده به میدان ونک، پلاک ۱۲۳، واحد ۴</p>
+                                <p class="text-wood-600 dark:text-wood-400 text-sm mt-2">کد پستی: ۱۲۳۴۵۶۷۸۹۰</p>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Shipping Method -->
+                <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 animate-fade-in">
+                    <h2 class="text-2xl font-semibold text-wood-900 dark:text-wood-100 mb-6">روش ارسال</h2>
+                    <div class="space-y-3"><label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800"> <input type="radio" name="shipping" value="express" checked class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg><span class="font-semibold text-wood-900 dark:text-wood-100">ارسال فوری</span>
+                                </div><span class="font-bold text-wood-600 dark:text-wood-400">۱۵۰,۰۰۰ تومان</span>
+                            </div>
+                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">تحویل در کمتر از ۲۴ ساعت</p>
+                        </div></label> <label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800"> <input type="radio" name="shipping" value="normal" class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                                    </svg><span class="font-semibold text-wood-900 dark:text-wood-100">ارسال عادی</span>
+                                </div><span class="font-bold text-green-600 dark:text-green-400">رایگان</span>
+                            </div>
+                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">تحویل در ۳ تا ۵ روز کاری</p>
+                        </div></label> <label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800"> <input type="radio" name="shipping" value="post" class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg><span class="font-semibold text-wood-900 dark:text-wood-100">پست پیشتاز</span>
+                                </div><span class="font-bold text-wood-600 dark:text-wood-400">۷۵,۰۰۰ تومان</span>
+                            </div>
+                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">تحویل در ۵ تا ۷ روز کاری</p>
+                        </div></label>
+                    </div>
+                </div><!-- Payment Method -->
+                <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 animate-fade-in">
+                    <h2 class="text-2xl font-semibold text-wood-900 dark:text-wood-100 mb-6">روش پرداخت</h2>
+                    <div class="space-y-3"><label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800"> <input type="radio" name="payment" value="online" checked class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                </svg><span class="font-semibold text-wood-900 dark:text-wood-100">پرداخت آنلاین</span>
+                            </div>
+                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">پرداخت از طریق درگاه بانکی</p>
+                        </div></label> <label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800"> <input type="radio" name="payment" value="cod" class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg><span class="font-semibold text-wood-900 dark:text-wood-100">پرداخت در محل</span>
+                            </div>
+                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">پرداخت نقدی هنگام تحویل</p>
+                        </div></label> <label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800"> <input type="radio" name="payment" value="wallet" class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
+                                </svg><span class="font-semibold text-wood-900 dark:text-wood-100">کیف پول</span>
+                            </div>
+                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">موجودی: ۱۵,۰۰۰,۰۰۰ تومان</p>
+                        </div></label>
+                    </div>
+                </div>
+            </div><!-- Right Column - Order Summary -->
+            <div class="lg:col-span-1">
+                <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 sticky top-8 animate-slide-in">
+                    <h2 class="text-2xl font-semibold text-wood-900 dark:text-wood-100 mb-6">خلاصه سفارش</h2><!-- Saved Addresses -->
                     <div class="mb-6"><label for="saved-addresses" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-2">انتخاب آدرس ذخیره شده</label> <select id="saved-addresses" class="w-full px-4 py-3 rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition"> <option value="">انتخاب آدرس...</option> <option value="home">منزل - تهران، خیابان ولیعصر، پلاک ۱۲۳</option> <option value="work">محل کار - تهران، میدان ونک، برج سپهر، طبقه ۱۰</option> </select>
                     </div><button type="button" id="new-address-toggle" class="w-full py-3 px-4 bg-wood-100 dark:bg-wood-800 text-wood-700 dark:text-wood-300 rounded-lg hover:bg-wood-200 dark:hover:bg-wood-700 smooth-transition flex items-center justify-between mb-6"> <span>آدرس جدید وارد کنید</span>
                     <svg id="toggle-icon" class="w-5 h-5 smooth-transition" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg></button> <!-- Address Form -->
                     <form id="address-form" class="space-y-4 hidden overflow-hidden" style="max-height: 0; opacity: 0; transition: max-height 0.4s ease, opacity 0.3s ease;">
-                        <div><label for="province" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-2">استان</label> <select id="province" class="w-full px-4 py-3 rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition"> <option value="">انتخاب استان...</option> <option value="تهران">تهران</option> <option value="ا����فهان">اصفهان</option> <option value="فارس">فارس</option> <option value="خراسان رضوی">خراسان رضوی</option> <option value="آذربایجان شرقی">آذربایجان شرقی</option> <option value="مازندران">مازندران</option> <option value="گیلان">گیلان</option> <option value="کرمان">کرمان</option> <option value="یزد">یزد</option> <option value="قم">قم</option> </select>
+                        <div><label for="province" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-2">استان</label> <select id="province" class="w-full px-4 py-3 rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition"> <option value="">انتخاب استان...</option> <option value="تهران">تهران</option> <option value="ا����فهان">اصفهان</option> <option value="فارس">فارس</option> <option value="خراسان رضوی">خراسان رضوی</option> <option value="آذ��بایجان شرقی">آذربایجان شرقی</option> <option value="مازندران">مازندران</option> <option value="گیلان">گیلان</option> <option value="کرمان">کرمان</option> <option value="یزد">یزد</option> <option value="قم">قم</option> </select>
                         </div>
                         <div><label for="city" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-2">شهر</label> <input type="text" id="city" placeholder="نام شهر را وارد کنید" class="w-full px-4 py-3 rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 placeholder-wood-400 dark:placeholder-wood-600 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition">
                         </div>
@@ -122,7 +702,7 @@
     const cartItems = [
         { id: 1, name: 'میز جلو مبلی چوبی', price: 12500000, quantity: 1, image: '🪑' },
         { id: 2, name: 'قفسه کتاب دست‌ساز', price: 18900000, quantity: 1, image: '📚' },
-        { id: 3, name: 'صند��ی غذاخوری بلوط', price: 6750000, quantity: 2, image: '🪑' }
+        { id: 3, name: 'صند���� غذاخوری بلوط', price: 6750000, quantity: 2, image: '🪑' }
     ];
 
     function formatPrice(price) {
@@ -246,7 +826,7 @@
         const address = document.getElementById('address').value;
 
         if (!province || !city || !postalCode || !address) {
-            showToast('لطفاً تمام فیلدهای آدرس را پر کنید');
+            showToast('لطفاً تمام فیلدهای آدرس را ��ر کنید');
             return;
         }
 
@@ -357,5 +937,5 @@
     // Initialize
     renderCartItems();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a3fdd92c7d6198c',t:'MTc2NDA2MDI4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a535d6be4629dbc',t:'MTc2NDI2NDc0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

@@ -22,7 +22,7 @@ Route::get('/r',function(){
 });
 
 Route::post('/getCities',[HomeController::class,'getCities']);
-Route::post('/addAddress',[HomeController::class,'addAddress']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

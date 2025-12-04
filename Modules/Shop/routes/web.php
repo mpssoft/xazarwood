@@ -14,8 +14,10 @@ Route::prefix('cart')->name('shop.cart.')->group(function () {
     Route::get('/add/{model}/{id}/{qty}', [CartController::class, 'add'])->name('add');
     Route::delete('/remove', [CartController::class, 'remove'])->name('remove');
     Route::post('/removeDiscount', [CartController::class, 'removeDiscount'])->name('removeDiscount');
+    Route::post('/saveAddress', [CartController::class, 'saveAddress'])->name('saveAddress');
     Route::post('/apply-discount', [CartController::class, 'applyDiscount'])->name('applyDiscount');
     Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+    Route::get('/review', [CartController::class, 'review'])->name('review');
     Route::post('/place-order', [CartController::class, 'placeOrder'])->name('placeOrder');
     Route::get('/items',[CartController::class,'cartItems'])->name('items');
 });

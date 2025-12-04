@@ -50,7 +50,38 @@ class CartController extends Controller
         //dd($cart);
         return view('shop::cart.index', compact('cart'));
     }
+    public function review()
+    {
+        if(!session()->has('checkout.address'))
+            return back()->withErrors(['message'=>'آدرس انتخاب نشده است']);
+        $cart = $this->cartService->getCart();
 
+        $cart =  collect($cart)->map(function ($item) {
+
+            if (isset($item['item_type'], $item['item_id'])) {
+                $modelClass = $item['item_type'];
+
+                if (class_exists($modelClass)) {
+                    $item['model'] = $modelClass::find($item['item_id']); // Eloquent model
+                    // If model not found → return null
+                    if (!$item['model']) {
+                        $this->cartService->removeItem($item['item_type'], $item['item_id']);
+                        return null;
+                    }
+                }else
+                    return null;
+            }
+            return $item;
+        })->filter();
+        //dd($cart);
+        return view('shop::cart.review', compact('cart'));
+    }
+    public function saveAddress(Request $request){
+        $request->validate(['address_id' => 'integer']);
+       session()->put('checkout.address',$request->address_id);
+
+       return response()->json(['data' => ['status'=>true]]);
+    }
     /**
      * Add item to cart
      */

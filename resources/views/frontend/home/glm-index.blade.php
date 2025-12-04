@@ -56,7 +56,7 @@
                         <h3 class="text-2xl font-bold text-white mb-2">میزهای روستیک</h3>
                         <p class="text-white/90 text-sm mb-4">طراحی‌های منحصر به فرد با چوب طبیعی</p>
                         <div class="flex items-center justify-between">
-                            <span class="text-white text-lg font-semibold">۱۵ محصول</span>
+
                             <a href="{{route('products-list','میز روستیک')}}" title="میز های روستیک زیبا با طراحی منحصر به فرد " class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
                                 مشاهده
                             </a>
@@ -74,7 +74,7 @@
                         <h3 class="text-2xl font-bold text-white mb-2">ساعت‌های چوبی روستیک</h3>
                         <p class="text-white/90 text-sm mb-4">زمان را با زیبایی طبیعت دنبال کنید</p>
                         <div class="flex items-center justify-between">
-                            <span class="text-white text-lg font-semibold">۸ محصول</span>
+
                             <a href="{{route('products-list','ساعت چوبی')}}" title="ساعت‌های چوبی روستیک" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
                                 مشاهده
                             </a>
@@ -85,13 +85,14 @@
 
             <!-- Wooden Kitchenware -->
             <div class="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2">
+
                 <img src="{{asset('/images/1760712938389.jpg')}}" alt="ظروف چوبی" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end">
                     <div class="p-6 text-right w-full">
                         <h3 class="text-2xl font-bold text-white mb-2">ظروف چوبی آشپزخانه</h3>
                         <p class="text-white/90 text-sm mb-4">طعم طبیعت در غذای شما</p>
                         <div class="flex items-center justify-between">
-                            <span class="text-white text-lg font-semibold">۱۲ محصول</span>
+
                             <a href="{{route('products-list','ظروف چوبی')}}" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
                                 مشاهده
                             </a>
@@ -208,7 +209,7 @@
                 </p>
                 <div class="grid grid-cols-2 gap-4 text-center">
                     <div>
-                        <div class="text-3xl font-bold text-amber-600 dark:text-amber-400">۲۰+</div>
+                        <div class="text-3xl font-bold text-amber-600 dark:text-amber-400">15+</div>
                         <div class="text-sm text-wood-600 dark:text-wood-300">سال تجربه</div>
                     </div>
                     {{--<div>

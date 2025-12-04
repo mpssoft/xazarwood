@@ -10,10 +10,19 @@ class UserAddress extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->with(['province','city']);
     }
     public function orders()
     {
         return $this->hasMany(Order::class);
     }
+    public function province()
+    {
+        return $this->belongsTo(ProvinceCity::class,'province_id');
+    }
+    public function city()
+    {
+        return $this->belongsTo(ProvinceCity::class,'city_id');
+    }
+
 }

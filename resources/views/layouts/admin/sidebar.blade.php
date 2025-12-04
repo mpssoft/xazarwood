@@ -228,15 +228,7 @@
                         <i class="fas fa-plus text-xs text-indigo-300 w-3"></i>
                         <span class="text-gray-600 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">ایجاد کاربر جدید</span>
                     </a>--}}
-                    <a href="{{route('admin.groups.index')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-users text-xs text-indigo-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">گروه ها</span>
-                    </a>
-                    <a href="{{route('admin.groups.create')}}" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 group">
-                        <i class="fas fa-user-group text-xs text-indigo-300 w-3"></i>
-                        <span class="text-gray-600 dark:text-gray-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400"> ایجاد گروه جدید</span>
-                    </a>
-                </div>
+              </div>
             </div>
         </div>
 

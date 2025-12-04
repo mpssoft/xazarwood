@@ -61,6 +61,11 @@
 
                                         <tr class="hover:bg-wood-50 dark:hover:bg-wood-700/30 transition-colors duration-200">
                                             <td class="py-4 px-6">
+                                                <div class="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-600 rounded-lg overflow-hidden flex items-center justify-center flex-shrink-0">
+                                                    <a class="h-full" href="{{route('show.product',['product'=>$item['item_id'],'name'=>$item['model']->name])}}" >
+                                                        <img src="{{asset($item['model']->main_image)}}" class="h-full object-cover" />
+                                                    </a>
+                                                </div>
                                                 <div class="flex items-center">
 
                                                     <span
@@ -424,15 +429,22 @@
                                 <div
                                     class="bg-white dark:bg-wood-800 rounded-2xl shadow-lg border border-wood-200 dark:border-wood-700 p-6 sticky top-8">
                                     <h2 id="address-section-title" class=" font-semibold text-wood-900 dark:text-wood-100 mb-2">آدرس تحویل</h2><!-- Saved Addresses -->
-
+                                    <div id="addresses" data-addresses="{{json_encode(auth()->user()->addresses->keyBy('id'))}}"></div>
                                     <div class="mb-6 ">
                                         <div class="grid md:grid-cols-2 gap-6 mb-4 w-full">
 
                                         <select id="saved-addresses" class=" h-auto  text-sm px-4   rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition">
                                             <option value="" class="w-full ">انتخاب آدرس...</option>
-                                            @foreach(\App\Models\UserAddress::all() as $address)
-                                                <option value="{{$address->id}}">{{$address->address}}</option>
-                                            @endforeach
+                                            @if(session('checkout.address'))
+
+                                                @foreach(auth()->user()->addresses as $address)
+                                                    <option value="{{$address->id}}" {{(session('checkout.address')==$address->id) ? 'selected':''}} >{{$address->address}}</option>
+                                                @endforeach
+                                            @else
+                                                @foreach(auth()->user()->addresses as $address)
+                                                    <option value="{{$address->id}}" >{{$address->address}}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
 
                                     <button type="button" id="new-address-toggle" class="py-3 h-full px-4 border-2 border-wood-300 dark:border-wood-700 bg-wood-100 dark:bg-wood-800 text-wood-700 dark:text-wood-300 rounded-lg hover:bg-wood-200 dark:hover:bg-wood-700 smooth-transition flex items-center justify-between "> <span>آدرس جدید وارد کنید</span>
@@ -468,7 +480,7 @@
                                         </div>
                                         <div class="grid md:grid-cols-4">
                                        <div>
-                                        <button class="col-span-1 px-10 h-12  bg-wood-500 hover:bg-wood-600 text-white font-medium rounded-lg transition-colors duration-200 hover:shadow-lg">
+                                        <button class="address-form-btn col-span-1 px-10 h-12  bg-wood-500 hover:bg-wood-600 text-white font-medium rounded-lg transition-colors duration-200 hover:shadow-lg">
                                             ثبت آدرس
                                         </button>
                                        </div>
@@ -509,13 +521,13 @@
                                         </div>
                                     </div>
 
-                                    <a id="enabledPaymentButton" href="{{route('user.cart.checkout')}}"
+                                    <a id="pay-btn"   href="{{route('shop.cart.review')}}"
                                        class=" w-full bg-green-800 hover:from-wood-600 hover:to-wood-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center">
                                         <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                   d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
                                         </svg>
-                                        ادامه پرداخت
+                                          ادامه پرداخت
                                     </a>
                                     <a href="{{route('products-list','all')}}"
                                        class="mt-5 w-full bg-gradient-to-r from-wood-500 to-wood-800 hover:from-wood-600 hover:to-wood-950 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center">
@@ -598,9 +610,9 @@
 
 
             });
-            $("#province").on('change',function(){
+            $("#province").on('change',async function(e){
 
-                $.ajax({
+                const res = await $.ajax({
                     url: '/getCities',
                     type: 'POST',
                     data: {
@@ -618,7 +630,8 @@
                     error:function(xhr){
                         //alert(xhr.responseText)
                     }
-                })
+                });
+
             });
 
             $("#address-form").on('submit',function(e){
@@ -626,7 +639,7 @@
                 formData = $(this).serialize();
 
                 $.ajax({
-                    url: '/addAddress',
+                    url: '/user/addAddress',
                     type: 'POST',
                     data:formData,
                     headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -636,10 +649,46 @@
                         savedSelect.append(`<option value="${res.address.id}" selected >${res.address.address}</option>`);
                         $(".address-alert").toggleClass('hidden');
                         $('#new-address-toggle').click();
+                        setAddress($("#saved-addresses").val());
                     },
+                    error:function(xhr){
+                        if (xhr.status === 422) {
+                            let errors = xhr.responseJSON.errors;
+
+                            // Example: Show first validation error
+                            str ="";
+                            for (let field in errors) {
+                                str += errors[field][0]+"<br>";
+                                // You can show it on page:
+                            }
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'error',
+                                title:str ?? "Something went wrong!",
+                                showConfirmButton: false,
+                                timer: 5000
+                            });
+                        }
+
+                    }
 
                 });
             });
+
+            $("#pay-btn").on('click',function(e){
+                if ($("#saved-addresses").val()) {
+
+                } else {
+                    e.preventDefault();
+                    Swal.fire({
+                        icon: 'error',
+                        text:"لطفا یک آدرس انتخاب کنید",
+                        confirmButtonColor: "green"
+                    });
+                }
+            });
+
         });
 
         function changeQuantity(model,id,qty,cart=true)
@@ -728,6 +777,11 @@
             if (isFormVisible) {
                 form.classList.remove('hidden');
                 savedAddresses.classList.add('hidden')
+                $('#province').prop('disabled',false);
+                $('#city').prop('disabled',false);
+                $('#postal-code').prop('disabled',false);
+                $('#address').prop('disabled',false);
+                $(".address-form-btn").removeClass("hidden");
                 setTimeout(() => {
                     form.style.maxHeight = '1000px';
                     form.style.opacity = '1';
@@ -747,22 +801,62 @@
         // Saved address selection
         document.getElementById('saved-addresses').addEventListener('change', (e) => {
             const form = document.getElementById('address-form');
-            if (e.target.value === 'home') {
-                document.getElementById('province').value = 'تهران';
-                document.getElementById('city').value = 'تهران';
-                document.getElementById('postal-code').value = '1234567890';
-                document.getElementById('address').value = 'خیابان ولیعصر، نرسیده به میدان ونک، پلاک ۱۲۳، واحد ۴';
-            } else if (e.target.value === 'work') {
-                document.getElementById('province').value = 'تهران';
-                document.getElementById('city').value = 'تهران';
-                document.getElementById('postal-code').value = '9876543210';
-                document.getElementById('address').value = 'میدان ونک، برج سپهر، طبقه ۱۰، واحد ۲۰۰';
-            } else {
-                form.reset();
-            }
+            addresses = $('#addresses').data('addresses');
+
+                document.getElementById('province').value = addresses[e.target.value].province_id;
+                $("#province").change();
+                $('#province').prop('disabled',true);
+                $('#city').prop('disabled',true);
+                $('#postal-code').prop('disabled',true);
+                $('#address').prop('disabled',true);
+                setTimeout(function(){
+                    document.getElementById('city').value = addresses[e.target.value].city_id;
+                },2000)
+
+                document.getElementById('postal-code').value = addresses[e.target.value].postal_code;
+                document.getElementById('address').value = addresses[e.target.value].address;
+                setAddress(e.target.value);
+               // form.reset();
+
         });
 
-
+        function setAddress(id){
+            $.ajax({
+                url: '/cart/saveAddress',
+                data: {address_id: id },
+                type: 'POST',
+                headers: {'X-CSRF-TOKEN' : "{{csrf_token()}}"},
+                success: function(res){
+                    if(res.data.status){
+                        $("#address-form").removeClass("hidden");
+                        $(".address-form-btn").addClass("hidden");
+                        $("#address-form").css({maxHeight:'1000px'});
+                        $("#address-form").css({opacity: '1'});
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'آدرس مورد نظر انتخاب شد.',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true
+                        });
+                    }else{
+                        $("#address-form").addClass("hidden");
+                        $(".address-form-btn").addClass("hidden");
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'warning',
+                            title: 'خطا در انتخاب آدرس',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true
+                        });
+                    }
+                }
+            });
+        }
 
         async function onConfigChange(config) {
             const baseSize = config.font_size || defaultConfig.font_size;

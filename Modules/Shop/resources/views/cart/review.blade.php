@@ -15,27 +15,48 @@
                         </svg>
                     </div>
                     <h1 class="text-4xl font-bold bg-gradient-to-r from-wood-800 to-wood-600 dark:from-wood-100 dark:to-wood-300 bg-clip-text text-transparent mb-2">
-                        سبد خرید شما
+                        بررسی نهایی سفارش
                     </h1>
-                    <p class="text-wood-600 dark:text-wood-400">محصولات انتخابی شما برای خرید</p>
-                </div>
 
+                </div>
+                <!-- Progress Steps -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-center gap-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-wood-600 text-white flex items-center justify-center font-bold">
+                                ✓
+                            </div><span class="text-sm font-medium text-wood-900 dark:text-wood-100">سبد خرید</span>
+                        </div>
+                        <div class="w-16 h-1 bg-wood-600"></div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-wood-600 text-white flex items-center justify-center font-bold">
+                                2
+                            </div><span class="text-sm font-medium text-wood-900 dark:text-wood-100">بررسی و پرداخت</span>
+                        </div>
+                        <div class="w-16 h-1 bg-wood-300 dark:bg-wood-700"></div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-wood-300 dark:bg-wood-700 text-wood-600 dark:text-wood-400 flex items-center justify-center font-bold">
+                                3
+                            </div><span class="text-sm font-medium text-wood-500 dark:text-wood-500">تکمیل</span>
+                        </div>
+                    </div>
+                </div>
                 @if( count($cart))
 
                     <!-- Sample Cart Data -->
                     <div id="cart-content">
                         <!-- Cart Items -->
                         <div
-                            class="bg-white dark:bg-wood-800 rounded-2xl shadow-xl border border-wood-200 dark:border-wood-700 overflow-hidden mb-8">
+                            class="bg-white dark:bg-wood-900 rounded-2xl shadow-xl border border-wood-200 dark:border-wood-700 overflow-hidden mb-8">
                             <div
-                                class="bg-gradient-to-r from-wood-50 to-wood-100 dark:from-wood-700 dark:to-wood-800 px-6 py-4 border-b border-wood-200 dark:border-wood-600">
+                                class="bg-gradient-to-r from-wood-50 to-wood-100 dark:from-wood-700 dark:to-wood-900 px-6 py-4 border-b border-wood-200 dark:border-wood-600">
                                 <h2 class="text-lg font-semibold text-wood-800 dark:text-wood-100 flex items-center">
                                     <svg class="w-5 h-5 ml-2 text-blue-500" fill="none" stroke="currentColor"
                                          viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                               d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
                                     </svg>
-                                    آیتم‌های سبد خرید
+                                    محصولات سفارش
                                 </h2>
                             </div>
 
@@ -49,7 +70,7 @@
                                         <th class="py-4 px-6 text-right font-medium">تعداد</th>
                                         <th class="py-4 px-6 text-right font-medium">قیمت کل</th>
                                         <th class="py-4 px-6 text-right font-medium">تخفیف</th>
-                                        <th class="py-4 px-6 text-right font-medium">عملیات</th>
+
                                     </tr>
                                     </thead>
                                     <tbody class="divide-y divide-wood-200 dark:divide-wood-700">
@@ -100,42 +121,17 @@
                                                 <div class="flex items-center gap-2 select-none"
                                                      data-product-id="{{$item['item_id']}}"
                                                      data-product-model="{{strtolower(class_basename($item['item_type']))}}">
-                                                    <!-- Plus Button -->
-                                                    <button
-                                                        type="button"
-                                                        class="plus-btn w-9 h-9 flex items-center justify-center
-               rounded-lg border border-wood-300 dark:border-wood-600
-               bg-white dark:bg-wood-800
-               text-wood-700 dark:text-wood-200
-               hover:bg-wood-100 dark:hover:bg-wood-700 transition">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
 
                                                     <!-- Quantity Input -->
-                                                    <input
-                                                        type="number"
-                                                        value="{{$item['qty']}}"
-                                                        min="1"
+                                                    <label
                                                         class="quantity-input w-16 h-9 text-center
-               rounded-lg border border-wood-300 dark:border-wood-600
-               bg-white dark:bg-wood-800
-               text-wood-900 dark:text-wood-100
-               focus:ring-2 focus:ring-blue-500 outline-none transition
-               [appearance:textfield]
-               [&::-webkit-inner-spin-button]:appearance-none
-               [&::-webkit-outer-spin-button]:appearance-none"
-                                                    />
 
-                                                    <!-- Minus Button -->
-                                                    <button
-                                                        type="button"
-                                                        class="minus-btn w-9 h-9 flex items-center justify-center
-               rounded-lg border border-wood-300 dark:border-wood-600
-               bg-white dark:bg-wood-800
-               text-wood-700 dark:text-wood-200
-               hover:bg-wood-100 dark:hover:bg-wood-700 transition">
-                                                        <i class="fas fa-minus"></i>
-                                                    </button>
+               text-wood-900 dark:text-wood-100
+
+               "
+                                                    >{{$item['qty']}}</label>
+
+
                                                 </div>
 
                                             </td>
@@ -158,19 +154,7 @@
                                             @endif
                                         </span>
                                             </td>
-                                            <td class="py-4 px-6">
-                                                <button
-                                                    onclick="removeItem('{{addslashes($item['item_type'])}}',{{$item['item_id']}})"
-                                                    class="flex  items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-lg text-white bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 dark:focus:ring-offset-wood-800 transition-all duration-200 hover:shadow-lg">
-                                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor"
-                                                         viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2"
-                                                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                                    </svg>
-                                                    حذف
-                                                </button>
-                                            </td>
+
                                         </tr>
 
                                     @endforeach
@@ -179,9 +163,34 @@
                             </div>
 
                             <!-- Mobile Card View -->
+                            @php $shipping_cost=0; $barbary_cost=0; $post_cost=0; session()->put('shipping_cost',0);  @endphp
                             <div class="md:hidden space-y-4 p-4">
                                 @foreach($cart as $item)
+                                    @php
+                                        $record = $item['model']->attributes->where('name','وزن')->first();
+                                        // calculate shipping cost
+                                        if(!is_null($record)){
+                                            if($record->pivot->value->value<10){
+                                                //post
 
+                                                $shipping_cost +=250000 * $item['qty'];
+                                                $post_cost +=250000 * $item['qty'];
+                                                session()->put('shipping_cost',$shipping_cost);
+                                            }else{
+                                                //barbary
+
+                                                $shipping_cost += 1500000 * $item['qty'];
+                                                $barbary_cost += 1500000 * $item['qty'];
+                                                session()->put('shipping_cost',$shipping_cost);
+
+                                            }
+                                        }else{
+                                        $shipping_cost += 150000 * $item['qty'];
+                                        $post_cost += 150000 * $item['qty'];
+                                        session()->put('shipping_cost',$shipping_cost);
+                                    }
+
+                                    @endphp
                                     <div
                                         class="bg-wood-50 dark:bg-wood-700 rounded-xl p-4 border border-wood-200 dark:border-wood-600 transition-colors duration-300">
                                         <div class="flex items-start justify-between mb-3">
@@ -250,293 +259,174 @@
                                             <div class="flex flex-col items-center select-none"
                                                  data-product-id="{{$item['item_id']}}"
                                                  data-product-model="{{strtolower(class_basename($item['item_type']))}}">
-                                                <!-- Plus Button -->
-                                                <button
-                                                    type="button"
-                                                    class="plus-btn w-9 h-9 flex items-center justify-center
-               rounded-lg sticky t-4 z-20 border  border-wood-300 dark:border-wood-600
-               bg-white dark:bg-wood-800
-               text-wood-700 dark:text-wood-200
-               hover:bg-wood-100 dark:hover:bg-wood-700 transition">
-                                                    <i class="fas fa-plus"></i>
-                                                </button>
 
                                                 <!-- Quantity Input -->
-                                                <input
-                                                    type="number"
-                                                    value="{{$item['qty']}}"
-                                                    min="1"
-                                                    class="quantity-input w-16 h-9 text-center
-               rounded-lg border border-wood-300 dark:border-wood-600
-               bg-white dark:bg-wood-800
-               text-wood-900 dark:text-wood-100
-               focus:ring-2 focus:ring-blue-500 outline-none transition
-               [appearance:textfield]
-               [&::-webkit-inner-spin-button]:appearance-none
-               [&::-webkit-outer-spin-button]:appearance-none"
-                                                />
-
-                                                <!-- Minus Button -->
-                                                <button
-                                                    type="button"
-                                                    class="minus-btn w-9 h-9 flex items-center justify-center
-               rounded-lg border border-wood-300 dark:border-wood-600
-               bg-white dark:bg-wood-800
-               text-wood-700 dark:text-wood-200
-               hover:bg-wood-100 dark:hover:bg-wood-700 transition">
-                                                    <i class="fas fa-minus"></i>
-                                                </button>
+                                                <label class="text-wood-800 dark:text-wood-100">تعداد: {{$item['qty']}}</label>
                                             </div>
-                                            <button
-                                                onclick="removeItem('{{addslashes($item['item_type'])}}',{{$item['item_id']}})"
-                                                class="flex  items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-lg text-white bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 dark:focus:ring-offset-wood-800 transition-all duration-200 hover:shadow-lg">
-                                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor"
-                                                     viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          stroke-width="2"
-                                                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                                </svg>
-                                                حذف
-                                            </button>
+
                                         </div>
                                     </div>
                                 @endforeach
 
                             </div>
                         </div>
+                        <div class="grid md:grid-cols-2 gap-3 mb-3">
+                        <!-- Delivery Address Review -->
+                        <div class="bg-white  dark:bg-wood-900 rounded-xl shadow-lg p-6 animate-fade-in">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class=" font-semibold text-wood-900 dark:text-wood-100">آدرس تحویل</h2>
 
-                        <!-- Order Summary -->
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                            </div>
+                            <!-- Divider -->
+                            <div class="h-px mb-3 bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
+                            <div id="address-display" class="bg-wood-50 dark:bg-wood-800 rounded-lg p-4">
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-6 h-6 text-wood-600 dark:text-wood-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    <div>
+                                        @php $address = auth()->user()->addresses()->where('id',session('checkout.address'))->first();  @endphp
 
-                            <div class="lg:col-span-1">
-                                <!-- Coupon Section -->
-                                <!-- Alerts (validation errors) -->
-                                @if(session('result'))
-
-                                    <span
-                                        class="inline-flex items-center gap-1 rounded-full bg-emerald-100 text-emerald-700 px-2.5 py-1 text-xs font-medium">
-                              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path
-                                    d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm-1 14-4-4 1.414-1.414L11 12.172l5.586-5.586L18 8l-7 8Z"/>
-                              </svg>
-                              {{ session('result')['message'] }}
-                            </span>
-
-                                @else
-                                    @if ($errors->any())
-                                        <div
-                                            class="mb-6 rounded-xl border border-rose-300/60 bg-rose-50/80 text-rose-700 dark:border-rose-500/40 dark:bg-rose-900/30 dark:text-rose-200 p-4">
-
-                                            <ul class="list-disc pr-5 text-sm space-y-1">
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
-                                @endif
-                                @if(isset($hasDiscount))
-                                    <div class=" mb-4">
-                                        <div
-                                            class="flex items-start justify-between rounded-xl border border-green-300 bg-green-50 dark:bg-green-900/30 dark:border-green-700 p-4">
-                                            <div class="flex items-center gap-3">
-                                                <!-- Success icon -->
-                                                <span
-                                                    class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-green-500 text-white">
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-        </svg>
-      </span>
-
-                                                <div class="leading-relaxed">
-                                                    <p class="text-sm font-semibold text-green-800 dark:text-green-200">
-                                                        کد تخفیف اعمال شده
-                                                    </p>
-                                                    @php
-
-                                                        $discounts = array_map(null,$discountCode,$discountPrice,$discountType);
-                                                        $result = array_values(array_reduce($discounts, function ($carry, $item) {
-                                                            $carry[$item[0]] = $item; // item[0] = code
-                                                            return $carry;
-                                                        }, []));
-
-                                                    @endphp
-                                                    @foreach($result as [$code,$price,$type])
-                                                        <p class="mt-1 text-sm text-green-700 dark:text-green-300 inline-flex">
-                                                            کد: <span
-                                                                class="font-bold tracking-wide text-green-900 dark:text-green-100">{{$code ?? ''}}</span>
-                                                            <span class="mx-2 text-green-600/60">|</span>
-                                                            مقدار تخفیف:
-                                                            <span
-                                                                class="font-bold text-green-900 dark:text-green-100">{{$price ?? ''}} {{$type ?? ''}}</span>
-                                                        </p>
-                                                        <form action="{{route('shop.cart.removeDiscount')}}"
-                                                              method="post" class="inline-block ">
-                                                            <input type="hidden" value="{{$code??''}}" name="code">
-                                                            @csrf
-                                                            <button
-                                                                class="p-2 sm:p-3 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors duration-200"
-                                                                title="حذف">
-                                                                <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none"
-                                                                     stroke="currentColor" viewBox="0 0 24 24">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                          stroke-width="2"
-                                                                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                                                </svg>
-                                                            </button>
-                                                        </form>
-                                                        <br>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                @endif
-                                <div
-                                    class="bg-white dark:bg-wood-800 rounded-2xl shadow-lg border border-wood-200 dark:border-wood-700 p-6 mb-6">
-                                    <h3 class="text-lg font-semibold text-wood-800 dark:text-wood-100 mb-4 flex items-center">
-                                        <svg class="w-5 h-5 ml-2 text-green-500" fill="none" stroke="currentColor"
-                                             viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                                        </svg>
-                                        کد تخفیف
-                                    </h3>
-                                    <div class="flex space-x-3 space-x-reverse">
-                                        <form action="{{route('shop.cart.applyDiscount')}}" method="post"
-                                              class="w-full flex flex-col  space-x-3 space-x-reverse">
-                                            @csrf
-                                            <input type="text" name="code" placeholder="کد تخفیف خود را وارد کنید"
-                                                   class="flex-1 mb-2 px-4 py-3 border border-wood-300 dark:border-wood-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-wood-700 text-wood-900 dark:text-wood-400 placeholder-wood-500 dark:placeholder-wood-400">
-                                            <button
-                                                class="px-10 h-12 py-0  bg-wood-500 hover:bg-wood-600 text-white font-medium rounded-lg transition-colors duration-200 hover:shadow-lg">
-                                                اعمال
-                                            </button>
-                                        </form>
+                                        <p class="text-wood-700 dark:text-wood-300 text-sm leading-relaxed">{{$address->province->title}},{{$address->city->title}}</p>
+                                        <p class="text-wood-700 dark:text-wood-300 text-sm leading-relaxed">{{$address->address}}</p>
+                                        <p class="text-wood-600 dark:text-wood-400 text-sm mt-2">کد پستی: {{$address->postal_code}}</p>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                            <!-- Payment Method -->
+                            <div class="  bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 animate-fade-in">
+                                <h2 class=" font-semibold text-wood-900 dark:text-wood-100 mb-6">روش پرداخت</h2>
+                                <!-- Divider -->
+                                <div class="h-px mb-3 bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
+                                <div class=""><label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800"> <input type="radio" name="payment" value="online" checked class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                                        <div class="flex-1">
+                                            <div class="flex items-center gap-2">
+                                                <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                                </svg><span class="text-sm text-wood-900 dark:text-wood-100">پرداخت آنلاین</span>
+                                            </div>
+                                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">زرین پال</p>
+                                        </div></label>
+                                </div>
+                            </div>
+                        </div>
+                            <!-- Order Summary -->
+
+                        <div class="grid md:grid-cols-2 gap-4 w-full  ">
+                            <!-- Shipping Method -->
+                            <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 animate-fade-in">
+                                <h2 class=" font-semibold text-wood-900 dark:text-wood-100 mb-6">روش ارسال</h2>
+                                <!-- Divider -->
+                                <div class="h-px mb-3 bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
+                                <div class="space-y-3">
+
+                                    @if($barbary_cost)
+                                    <label class="flex items-center gap-4 py-2 px-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800">
+                                        <input type="radio" name="shipping_barbary" value="express" checked class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                                        <div class="flex-1">
+                                            <div class="flex items-center justify-between">
+                                                <div class="flex items-center gap-2">
+                                                    <i  class="w-6 h-6 text-wood-600 dark:text-wood-400 fa fa-truck"></i>
+                                                    <span class="text-sm text-wood-900 dark:text-wood-100 ">محصولات سنگین</span>
+                                                    <span class="text-sm text-wood-900 dark:text-wood-100">ارسال با باربری</span>
+                                                </div><span class="text-sm text-wood-600 dark:text-wood-400">{{number_format($barbary_cost)}} تومان</span>
+                                            </div>
+                                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">تحویل در 2 تا 4 روز کاری</p>
+                                        </div></label>
+
+                                    @endif
+                                        @if($post_cost)
+                                        <label class="flex items-center gap-4 py-2 px-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800">
+                                            <input type="radio" name="shipping_post" checked value="post" class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                                        <div class="flex-1">
+                                            <div class="flex items-center justify-between">
+                                                <div class="flex items-center gap-2">
+                                                    <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                                    </svg><span class="text-sm text-wood-900 dark:text-wood-100">پست پیشتاز</span>
+                                                </div><span class="text-sm text-wood-600 dark:text-wood-400">{{number_format($post_cost)}} تومان</span>
+                                            </div>
+                                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">تحویل در ۵ تا ۷ روز کاری</p>
+                                        </div></label>
+                                            @endif
+                                        <div id="address-display" class="bg-wood-50 dark:bg-wood-800 rounded-lg p-4">
+                                            <div class="flex items-start gap-3">
+                                                <i class="fa fa-truck w-6 h-6 text-wood-600 dark:text-wood-400 mt-1 flex-shrink-0" >
+                                                </i>
+                                                <div>
+
+                                                    <p class="text-wood-700 dark:text-wood-300 text-sm leading-relaxed">محصولات سنگین با باربری ارسال خواهد شد.</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+
                             <!-- Order Summary Card -->
-                            <div class="lg:col-span-2">
+                            <div class=" bg-white  dark:bg-wood-900 rounded-xl shadow-lg p-6 animate-fade-in">
 
-                                <div
-                                    class="bg-white dark:bg-wood-800 rounded-2xl shadow-lg border border-wood-200 dark:border-wood-700 p-6 sticky top-8">
-                                    <h2 id="address-section-title" class=" font-semibold text-wood-900 dark:text-wood-100 mb-2">آدرس تحویل</h2><!-- Saved Addresses -->
 
-                                    <div class="mb-6 ">
-                                        <div class="grid md:grid-cols-2 gap-6 mb-4 w-full">
-
-                                        <select id="saved-addresses" class=" h-auto  text-sm px-4   rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition">
-                                            <option value="" class="w-full ">انتخاب آدرس...</option>
-                                            @foreach(\App\Models\UserAddress::all() as $address)
-                                                <option value="{{$address->id}}">{{$address->address}}</option>
-                                            @endforeach
-                                        </select>
-
-                                    <button type="button" id="new-address-toggle" class="py-3 h-full px-4 border-2 border-wood-300 dark:border-wood-700 bg-wood-100 dark:bg-wood-800 text-wood-700 dark:text-wood-300 rounded-lg hover:bg-wood-200 dark:hover:bg-wood-700 smooth-transition flex items-center justify-between "> <span>آدرس جدید وارد کنید</span>
-                                        <svg id="toggle-icon" class="w-5 h-5 smooth-transition" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                        </svg>
-                                    </button>
+                                <h3 class=" text-wood-800 dark:text-wood-100 mb-3 mt-3 flex items-center">
+                                    <svg class="w-5 h-5 ml-2 text-blue-500" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                    </svg>
+                                    خلاصه سفارش
+                                </h3>
+                                <!-- Divider -->
+                                <div class="h-px mb-3 bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
+                                <div class="space-y-4 mb-6">
+                                    <div class="flex justify-between text-wood-600 dark:text-wood-300">
+                                        <span>جمع کل محصولات:</span>
+                                        <span>{{ number_format($wholePrice) }} تومان</span>
                                     </div>
-                                        <!-- Address Form -->
-                                    <form id="address-form" class=" space-y-4 mb-3 hidden overflow-hidden" style="max-height: 0; opacity: 0; transition: max-height 0.4s ease, opacity 0.3s ease;">
-                                        <div class="grid md:grid-cols-2 gap-6">
-                                        <div class="mb-2">
-                                            <label for="province" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-2">استان</label>
-                                            <select id="province" name="province_id" class=" px-4 py-3 w-[250px] rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition">
-                                                <option value="">انتخاب استان...</option>
-                                               @foreach(\App\Models\ProvinceCity::where('parent',0)->get() as $item)
-                                                    <option value="{{$item->id}}">{{$item->title}}</option>
-                                               @endforeach
-                                            </select>
-                                        </div>
-                                        <div class=""><label for="city" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-2">شهر</label>
-                                            <select id="city" name="city_id" class=" px-4 py-3 w-[250px] rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition">
-                                                <option value="">انتخاب شهر...</option>
+                                    <div class="flex justify-between text-wood-600 dark:text-wood-300">
+                                        <span>هزینه ارسال:</span>
+                                        <span>{{ number_format($shipping_cost) }} تومان</span>
+                                    </div>
+                                    <div class="flex justify-between text-green-600 dark:text-green-400">
+                                        <span>تخفیف:</span>
+                                        <span>{{ number_format($wholeDiscount) }} تومان</span>
+                                    </div>
 
-                                            </select>
-
-                                        </div>
-                                        <div><label for="postal-code" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-2">کد پستی</label>
-                                            <input type="text" name="postal_code" id="postal-code" placeholder="۱۲۳۴۵۶۷۸۹۰" class="w-[250px] px-4 py-3 rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 placeholder-wood-400 dark:placeholder-wood-600 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition">
-                                        </div>
-                                        <div><label for="address" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-2">آدرس کامل</label>
-                                            <textarea id="address" name="address" rows="3" placeholder="آدرس کامل خود را وارد کنید" class="w-full px-4 py-3 rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 placeholder-wood-400 dark:placeholder-wood-600 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition resize-none"></textarea>
-                                        </div>
-                                        </div>
-                                        <div class="grid md:grid-cols-4">
-                                       <div>
-                                        <button class="col-span-1 px-10 h-12  bg-wood-500 hover:bg-wood-600 text-white font-medium rounded-lg transition-colors duration-200 hover:shadow-lg">
-                                            ثبت آدرس
-                                        </button>
-                                       </div>
-                                        <div class="hidden address-alert rounded-xl border border-green-300 bg-green-50 dark:bg-green-900/30 dark:border-green-700 p-3 ">
-                                            <p class="text-sm font-semibold text-green-800 dark:text-green-200 ">
-                                                آدرس جدید ثبت شد
-                                            </p>
-                                        </div>
-                                        </div>
-                                    </form>
                                     <!-- Divider -->
                                     <div class="h-px bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
-                                    <h3 class="text-lg font-semibold text-wood-800 dark:text-wood-100 mb-3 mt-3 flex items-center">
-                                        <svg class="w-5 h-5 ml-2 text-blue-500" fill="none" stroke="currentColor"
+                                    <div
+                                        class="flex justify-between text-lg font-bold text-wood-800 dark:text-wood-100">
+                                        <span>مبلغ قابل پرداخت:</span>
+                                        <span class="text-blue-600 dark:text-blue-400">{{ number_format($wholePrice-$wholeDiscount+$shipping_cost) }} تومان</span>
+                                    </div>
+                                </div>
+
+                                <a id="enabledPaymentButton" href="{{route('user.cart.checkout')}}"
+                                   class=" w-full bg-green-800 hover:from-wood-600 hover:to-wood-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center">
+                                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                                    </svg>
+                                    ادامه پرداخت
+                                </a>
+                                <a href="/cart"
+                                   class="mt-5 w-full bg-gradient-to-r from-wood-500 to-wood-800 hover:from-wood-600 hover:to-wood-950 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center">
+                                    <span class="fas fa-arrow-right ml-3"> </span>
+                                    برگشت
+                                </a>
+
+                                <div class="mt-4 text-center">
+                                    <p class="text-sm text-wood-500 dark:text-wood-400 flex items-center justify-center">
+                                        <svg class="w-4 h-4 ml-1 text-green-500" fill="none" stroke="currentColor"
                                              viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                                         </svg>
-                                        خلاصه سفارش
-                                    </h3>
-
-                                    <div class="space-y-4 mb-6">
-                                        <div class="flex justify-between text-wood-600 dark:text-wood-300">
-                                            <span>جمع کل محصولات:</span>
-                                            <span>{{ number_format($wholePrice) }} تومان</span>
-                                        </div>
-                                        <div class="flex justify-between text-green-600 dark:text-green-400">
-                                            <span>تخفیف:</span>
-                                            <span>{{ number_format($wholeDiscount) }} تومان</span>
-                                        </div>
-
-                                        <!-- Divider -->
-                                        <div class="h-px bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
-                                        <div
-                                            class="flex justify-between text-lg font-bold text-wood-800 dark:text-wood-100">
-                                            <span>مبلغ نهایی:</span>
-                                            <span class="text-blue-600 dark:text-blue-400">{{ number_format($wholePrice-$wholeDiscount) }} تومان</span>
-                                        </div>
-                                    </div>
-
-                                    <a id="enabledPaymentButton" href="{{route('user.cart.checkout')}}"
-                                       class=" w-full bg-green-800 hover:from-wood-600 hover:to-wood-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center">
-                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
-                                        </svg>
-                                        ادامه پرداخت
-                                    </a>
-                                    <a href="{{route('products-list','all')}}"
-                                       class="mt-5 w-full bg-gradient-to-r from-wood-500 to-wood-800 hover:from-wood-600 hover:to-wood-950 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center">
-                                        <span class="fas fa-plus ml-3"> </span>
-                                        افزودن محصولات بیشتر
-                                    </a>
-
-                                    <div class="mt-4 text-center">
-                                        <p class="text-sm text-wood-500 dark:text-wood-400 flex items-center justify-center">
-                                            <svg class="w-4 h-4 ml-1 text-green-500" fill="none" stroke="currentColor"
-                                                 viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                                            </svg>
-                                            پرداخت امن و محفوظ
-                                        </p>
-                                    </div>
+                                        پرداخت امن و محفوظ
+                                    </p>
                                 </div>
                             </div>
 
                         </div>
+
+
 
 
                     </div>

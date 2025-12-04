@@ -180,7 +180,7 @@
                 @foreach($product->attributes()->get() as $attribute)
                 <div class="flex justify-between py-2 border-b border-wood-100 dark:border-wood-700">
                     <span class="text-wood-600 dark:text-wood-400">{{$attribute->name}}</span>
-                    <span class="font-medium">{{$attribute->pivot->value->value}}</span>
+                    <span class="font-medium">{{$attribute->pivot->value->value}} {{$attribute->name=='وزن' ? 'کیلو':''}}</span>
                 </div>
                 @endforeach
             </div>

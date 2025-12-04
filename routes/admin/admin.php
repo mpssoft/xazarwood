@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 Route::get("/",[AdminPanelController::class,'home'])->name('home');
 
 
-Route::resource('courses', \App\Http\Controllers\Admin\panel\AdminCourseController::class)->names('courses');
+
 Route::resource('sliders', \App\Http\Controllers\Admin\panel\SliderController::class)->names('sliders');
-Route::resource('lessons', \App\Http\Controllers\Admin\panel\AdminLessonController::class)->names('lessons');
-Route::resource('grades', GradeController::class);
+
+
 Route::resource('users', UserController::class);
 Route::post('users/search', [UserController::class,'search'])->name('users.search');
 
@@ -35,7 +35,7 @@ Route::get('/edit',[AdminProfileController::class,'edit'])->name('profile.edit')
 Route::put('/update',[AdminProfileController::class,'update'])->name('profile.update');
 
 
-Route::get('edit-license/{course}',[AdminCourseController::class,'editUserCourseLicense'])->name('edit-license');
 
-Route::resource('groups', GroupController::class);
+
+
 

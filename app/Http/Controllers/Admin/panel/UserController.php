@@ -82,4 +82,20 @@ class UserController extends Controller
 
         return response()->json(['users'=>$users]);
     }
+    public function addAddress(Request $request)
+    {
+
+        $data = $request->validate([
+            'province_id' => 'integer',
+            'city_id' => 'integer',
+            'postal_code' => 'min:10',
+            'address' => 'string',
+        ],[
+            'postal_code.min' => 'کد پستی نباید از 10 رقم کمتر باشد',
+
+        ]);
+        $address = auth()->user()->addresses()->create($data);
+
+        return response()->json(['address'=>$address]);
+    }
 }
