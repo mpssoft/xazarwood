@@ -429,7 +429,9 @@
                                 <div
                                     class="bg-white dark:bg-wood-800 rounded-2xl shadow-lg border border-wood-200 dark:border-wood-700 p-6 sticky top-8">
                                     <h2 id="address-section-title" class=" font-semibold text-wood-900 dark:text-wood-100 mb-2">آدرس تحویل</h2><!-- Saved Addresses -->
+                                    @if(auth()->check())
                                     <div id="addresses" data-addresses="{{json_encode(auth()->user()->addresses->keyBy('id'))}}"></div>
+
                                     <div class="mb-6 ">
                                         <div class="grid md:grid-cols-2 gap-6 mb-4 w-full">
 
@@ -441,9 +443,11 @@
                                                     <option value="{{$address->id}}" {{(session('checkout.address')==$address->id) ? 'selected':''}} >{{$address->address}}</option>
                                                 @endforeach
                                             @else
-                                                @foreach(auth()->user()->addresses as $address)
-                                                    <option value="{{$address->id}}" >{{$address->address}}</option>
-                                                @endforeach
+                                                @auth()
+                                                    @foreach(auth()->user()->addresses as $address)
+                                                        <option value="{{$address->id}}" >{{$address->address}}</option>
+                                                    @endforeach
+                                                @endauth
                                             @endif
                                         </select>
 
@@ -546,6 +550,22 @@
                                         </p>
                                     </div>
                                 </div>
+                                    @else
+                                        <div id="address-display" class="bg-wood-50 dark:bg-wood-700 rounded-lg p-4">
+                                            <div class="flex items-start gap-3">
+                                                <svg class="w-6 h-6 text-wood-600 dark:text-wood-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                </svg>
+                                                <div>
+                                                    <p class="text-wood-700 dark:text-wood-300 text-sm leading-relaxed">
+                                                    برای ادامه خرید لطفا به وبسایت وارد یا ثبت نام کنید.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button onclick="openLoginBox()" class=" mt-2 col-span-1 px-10 h-12  bg-wood-500 hover:bg-wood-600 text-white font-medium rounded-lg transition-colors duration-200 hover:shadow-lg">
+                                            ثبت نام / ورود
+                                        </button>
+                                    @endif
                             </div>
 
                         </div>
@@ -767,37 +787,39 @@
 
         // New address toggle
         let isFormVisible = false;
-        document.getElementById('new-address-toggle').addEventListener('click', () => {
-            const form = document.getElementById('address-form');
-            const icon = document.getElementById('toggle-icon');
-            const savedAddresses = document.getElementById('saved-addresses');
+        el = document.getElementById('new-address-toggle');
+        if(el) {
+            document.getElementById('new-address-toggle').addEventListener('click', () => {
+                const form = document.getElementById('address-form');
+                const icon = document.getElementById('toggle-icon');
+                const savedAddresses = document.getElementById('saved-addresses');
 
-            isFormVisible = !isFormVisible;
+                isFormVisible = !isFormVisible;
 
-            if (isFormVisible) {
-                form.classList.remove('hidden');
-                savedAddresses.classList.add('hidden')
-                $('#province').prop('disabled',false);
-                $('#city').prop('disabled',false);
-                $('#postal-code').prop('disabled',false);
-                $('#address').prop('disabled',false);
-                $(".address-form-btn").removeClass("hidden");
-                setTimeout(() => {
-                    form.style.maxHeight = '1000px';
-                    form.style.opacity = '1';
-                }, 10);
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                savedAddresses.classList.remove('hidden')
-                form.style.maxHeight = '0';
-                form.style.opacity = '0';
-                setTimeout(() => {
-                    form.classList.add('hidden');
-                }, 400);
-                icon.style.transform = 'rotate(0deg)';
-            }
-        });
-
+                if (isFormVisible) {
+                    form.classList.remove('hidden');
+                    savedAddresses.classList.add('hidden')
+                    $('#province').prop('disabled', false);
+                    $('#city').prop('disabled', false);
+                    $('#postal-code').prop('disabled', false);
+                    $('#address').prop('disabled', false);
+                    $(".address-form-btn").removeClass("hidden");
+                    setTimeout(() => {
+                        form.style.maxHeight = '1000px';
+                        form.style.opacity = '1';
+                    }, 10);
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    savedAddresses.classList.remove('hidden')
+                    form.style.maxHeight = '0';
+                    form.style.opacity = '0';
+                    setTimeout(() => {
+                        form.classList.add('hidden');
+                    }, 400);
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        }
         // Saved address selection
         document.getElementById('saved-addresses').addEventListener('change', (e) => {
             const form = document.getElementById('address-form');

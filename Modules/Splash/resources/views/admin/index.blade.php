@@ -14,7 +14,7 @@
                     <p class="text-sm text-slate-600 dark:text-slate-400">مدیریت: عنوان، تصویر، لینک، و وضعیت فعال (0/1)</p>
                 </div>
             </div>
-            <a href="{{route('admin.spalshes.create')}}" id="addNewBtn"
+            <a href="{{route('admin.splashes.create')}}" id="addNewBtn"
                class="inline-flex items-center gap-2 px-4 py-2 rounded-xl font-bold bg-sky-600 hover:bg-sky-700 text-white shadow transition">
                 <i class="fa-solid fa-plus"></i>
                 افزودن اسپلش

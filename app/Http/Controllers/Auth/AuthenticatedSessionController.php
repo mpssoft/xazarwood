@@ -33,13 +33,13 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         if ($this->loggedIn($request, $request->user())) {
             return $this->loggedIn($request, $request->user()) ?? redirect()->intended(
-                $request->user()->role === 'admin' ? '/admin' : '/user'
+                $request->user()->role === 'admin' ? '/admin' : '/cart'
             );
         }
 
 // Redirect to intended URL or fallback based on role
         return redirect()->intended(
-            $request->user()->role === 'admin' ? '/admin' : '/user'
+            $request->user()->role === 'admin' ? '/admin' : '/cart'
         );
 
 

@@ -23,6 +23,7 @@
                     خزرچوب در شهر زیبای سلماس با هدف احیای هنر چوب‌کاری سنتی و ترکیب آن با طراحی مدرن تاسیس شد ...
                     </a>
                 </p>
+                <a class="mx-auto w-20" referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=681990&Code=0aW8D3gy2qQdF9QAPpxTv8BdcywJBvSW'><img class="w-20 " referrerpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=681990&Code=0aW8D3gy2qQdF9QAPpxTv8BdcywJBvSW' alt='' style='cursor:pointer' code='0aW8D3gy2qQdF9QAPpxTv8BdcywJBvSW'></a>
             </div>
             <div>
                 <h4 class="font-semibold text-wood-800 dark:text-wood-100 mb-4">محصولات</h4>

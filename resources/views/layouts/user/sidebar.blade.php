@@ -8,7 +8,7 @@
         <div class="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-sm">
             <a href="/" class="flex items-center gap-2 hover:scale-105 transition-transform duration-200">
                 <i class="fas fa-atom drop-shadow-sm"></i>
-                فیزیک بیست
+                خزرچوب
             </a>
         </div>
     </div>
@@ -20,24 +20,13 @@
             <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">صفحه اصلی</span>
         </a>
 
-        <a href="{{route('user.courses.index')}}" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
+        <a href="#" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
             <i class="fas fa-graduation-cap text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-5"></i>
-            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">دوره‌ها</span>
+            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">خرید ها</span>
         </a>
         <a href="{{route('user.lessonplans.index')}}" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
             <i class="fas fa-chalkboard-user text-green-500 group-hover:text-green-600 transition-colors duration-200 w-5"></i>
-            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">درسنامه های من</span>
-        </a>
-
-
-
-        <a href="{{route('user.courses.bought')}}" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
-            <i class="fas fa-wallet text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200 w-5"></i>
-            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white"> لایسنس ها</span>
-        </a>
-<a href="{{route('user.files.index')}}" class="flex items-center gap-3 px-5 py-3 rounded-xl hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 dark:hover:from-pink-900/20 dark:hover:to-purple-900/20 hover:-translate-x-1 transition-all duration-300 group">
-            <i class="fas fa-file-download text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200 w-5"></i>
-            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white"> فایل ها</span>
+            <span class="font-medium text-gray-700 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white">سفارش ها</span>
         </a>
 
 

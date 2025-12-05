@@ -104,21 +104,17 @@
                 @if(auth()->user()->role =='user')
                     <!-- Navigation Menu -->
                     <nav class="space-y-1">
-                        <a href="{{route('user.courses.index')}}"
+                        <a href="#"
                            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 transition-all duration-200 group hover:-translate-x-1">
                             <i class="fas fa-video text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-4"></i>
-                            <span class="font-medium">دوره ها</span>
+                            <span class="font-medium">سفارش ها</span>
                         </a>
                         <a href="{{route('user.messages.index')}}"
                            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-900/20 dark:hover:to-cyan-900/20 transition-all duration-200 group hover:-translate-x-1">
                             <i class="fas fa-paper-plane text-blue-500 group-hover:text-blue-600 transition-colors duration-200 w-4"></i>
                             <span class="font-medium">پیام ها</span>
                         </a>
-                        <a href="{{route('user.courses.bought')}}"
-                           class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20 transition-all duration-200 group hover:-translate-x-1">
-                            <i class="fas fa-credit-card-alt text-green-500 group-hover:text-green-600 transition-colors duration-200 w-4"></i>
-                            <span class="font-medium"> لایسنس ها</span>
-                        </a>
+
                         <a href="{{route('user.profile.edit')}}"
                            class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50 dark:hover:from-yellow-900/20 dark:hover:to-orange-900/20 transition-all duration-200 group hover:-translate-x-1">
                             <div class="flex items-center gap-3">
@@ -132,21 +128,17 @@
                 @else
                     <!-- Navigation Menu -->
                     <nav class="space-y-1">
-                        <a href="{{route('admin.courses.index')}}"
+                        <a href="#"
                            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 transition-all duration-200 group hover:-translate-x-1">
                             <i class="fas fa-video text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-4"></i>
-                            <span class="font-medium">دوره ها</span>
+                            <span class="font-medium">سفارش ها</span>
                         </a>
                         <a href="{{route('admin.messages.index')}}"
                            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-900/20 dark:hover:to-cyan-900/20 transition-all duration-200 group hover:-translate-x-1">
                             <i class="fas fa-paper-plane text-blue-500 group-hover:text-blue-600 transition-colors duration-200 w-4"></i>
                             <span class="font-medium">پیام ها</span>
                         </a>
-                        <a href="{{route('admin.licenses.index')}}"
-                           class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20 transition-all duration-200 group hover:-translate-x-1">
-                            <i class="fas fa-credit-card-alt text-green-500 group-hover:text-green-600 transition-colors duration-200 w-4"></i>
-                            <span class="font-medium"> مدیریت لایسنس ها</span>
-                        </a>
+
                         <a href="{{route('admin.profile.edit')}}"
                            class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50 dark:hover:from-yellow-900/20 dark:hover:to-orange-900/20 transition-all duration-200 group hover:-translate-x-1">
                             <div class="flex items-center gap-3">
