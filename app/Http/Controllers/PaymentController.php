@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use AllowDynamicProperties;
+use App\Helpers\BitPay;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
@@ -14,6 +15,8 @@ use App\Services\SpotPlayerService;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
 use Modules\File\Models\File;
 use Modules\LessonPlan\Models\LessonPlan;
 use Modules\Shop\Models\CartItem;
@@ -77,6 +80,44 @@ use function PHPUnit\Framework\isEmpty;
             'status' => 'initiated',
         ]);
 
+
+        $response = $this->pay($totalPrice,$order);
+        return ($response);
+
+    }
+
+    private function pay(mixed $totalPrice, $order)
+    {
+        switch (session('checkout.gateway'))
+        {
+            case 'zarinpal':
+                return $this->zarinpal($totalPrice,$order);
+            case 'bitpay':
+                return $this->bitpay($totalPrice,$order);
+        }
+    }
+    public function bitpay($totalPrice,$order)
+    {
+        $amount      = $totalPrice;
+        $orderId    = $order->id;
+        $redirectUrl = env('BITPAY_CALLBACK_URL');
+        $name        = "Test";
+        $email       = "test@test.com";
+        $description = "Test payment";
+
+        $bitPay = new BitPay(env('BITPAY_TOKEN'), env('BITPAY_IS_TEST'));
+
+        $result = $bitPay->Send($amount, $orderId, $redirectUrl, $name, $email, $description);
+
+        if ($result->status > 0)
+            return Redirect::away($result->redirectUrl);
+
+        alert("",$result->getMessage(),'error');
+        return back()->with('error', $result->GetMessage());
+    }
+
+    private function zarinpal($totalPrice,$order)
+    {
         $response = zarinpal()
             ->merchantId(config('zarinpal.merchant_id'))
             ->amount($totalPrice)
@@ -87,7 +128,6 @@ use function PHPUnit\Framework\isEmpty;
                 'price' => $totalPrice
             ]))
             ->send();
-
         if (!$response->success()) {
             alert('', $response->error()->message(), 'toast');
             return redirect()->route('shop.cart.index');
@@ -96,7 +136,31 @@ use function PHPUnit\Framework\isEmpty;
         return $response->redirect();
     }
 
-    public function zarinpalCallback()
+
+
+    public function bitpayCallback(Request $request)
+    {
+        $transId = $request->trans_id;
+        $idGet   = $request->id_get;
+        $factor  = $request->factorId;
+
+        $bitPay = new BitPay(env('BITPAY_TOKEN'), env('BITPAY_IS_TEST'));
+
+        $result = $bitPay->Get($transId, $idGet);
+
+        if ($result->status == 1) {
+            // TODO: return to user orders and show success message
+           // return response()->redirectTo('/user')->with()
+            return view('success', [
+                'status'=>'success','msg'=>"تشکر از اعتماد شما به خزرچوب، سفارش شما با موفقیت ثبت و بزودی بررسی خواهد شد. با تشکر" . $factor
+            ]);
+        }
+
+        return view('error', ['msg' => $result->GetMessage()]);
+    }
+
+
+public function zarinpalCallback()
     {
         $authority = request()->query('Authority'); // دریافت کوئری استرینگ ارسال شده توسط زرین پال
         $status = request()->query('Status'); // دریافت کوئری استرینگ ارسال شده توسط زرین پال
@@ -250,25 +314,6 @@ use function PHPUnit\Framework\isEmpty;
         }
     }
 
-    protected function generateLicense($user, Order $order, $model, SpotPlayerService $spotPlayer)
-    {
-        Log::info("Generating SpotPlayer license for user {$user->id}, item {$model->id}");
 
-        $spotplayerCourseId = $model->spotplayer_id;
-
-        $licenseResponse = $spotPlayer->createLicenseForUser($user, $order, $spotplayerCourseId,$model);
-
-        if (!$licenseResponse || empty($licenseResponse['spotplayer_key'])) {
-            Log::error("Failed to generate SpotPlayer license for item {$model->id}");
-            return false;
-        }
-
-       // Log::info("SpotPlayer license generated successfully". $licenseResponse);
-
-        return ['license' => $licenseResponse->spotplayer_key,
-            'course'=>$licenseResponse->course->title,
-            'teacher'=>$licenseResponse->course->teacher->name
-            ];
-    }
 
 }

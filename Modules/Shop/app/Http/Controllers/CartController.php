@@ -211,4 +211,26 @@ class CartController extends Controller
         return view('shop::cart.cart-items', compact('cart','count'));
 
     }
+
+    public function gateway(Request $request)
+    {
+        session()->put('checkout.gateway',$request->gateway);
+
+    }
+    public function addAddress(Request $request)
+    {
+
+        $data = $request->validate([
+            'province_id' => 'integer',
+            'city_id' => 'integer',
+            'postal_code' => 'min:10',
+            'address' => 'string',
+        ],[
+            'postal_code.min' => 'کد پستی نباید از 10 رقم کمتر باشد',
+
+        ]);
+        $address = auth()->user()->addresses()->create($data);
+
+        return response()->json(['address'=>$address]);
+    }
 }

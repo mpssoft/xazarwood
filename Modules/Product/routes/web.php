@@ -10,4 +10,5 @@ Route::middleware(['auth', 'admin.auth'])->group(function () {
 });
 
 Route::get('/product-list/{cat}',[FrontendProductController::class,'index'])->name('products-list');
+Route::get('/sort-list/{cat}',[FrontendProductController::class,'sortIndex'])->name('sorted-products-list');
 Route::get('/product/{product}/{name}',[FrontendProductController::class,'showProduct'])->name('show.product');

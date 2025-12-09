@@ -14,15 +14,63 @@ class FrontendProductController extends Controller
      */
     public function index( Request $request)
     {
-        if($request->cat != 'all')
-            $products = Product::whereHas('categories',function($query) use($request){
-                $query->where('name','like',"%{$request->cat}%");
-            })->get();
-        else
-            $products  = Product::all();
+
+        $sort = $request->sort ?? 'newest'; // default sort
+
+        $query = Product::query();
+
+        if ($request->cat != 'all') {
+            $query->whereHas('categories', function($q) use ($request) {
+                $q->where('name', 'like', "%{$request->cat}%");
+            });
+        }
+
+        switch ($sort) {
+            case 'price_low':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price_high':
+                $query->orderBy('price', 'desc');
+                break;
+
+            default: // newest
+                $query->orderBy('created_at', 'desc');
+        }
+
+        $products = $query->get();
 
 
         return view('product::frontend.bing-index',compact('products'));
+    }
+public function sortIndex( Request $request)
+    {
+
+        $sort = $request->sort ?? 'newest'; // default sort
+
+        $query = Product::query();
+
+        if ($request->cat != 'all') {
+            $query->whereHas('categories', function($q) use ($request) {
+                $q->where('name', 'like', "%{$request->cat}%");
+            });
+        }
+
+        switch ($sort) {
+            case 'price-low':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price-high':
+                $query->orderBy('price', 'desc');
+                break;
+
+            default: // newest
+                $query->orderBy('created_at', 'desc');
+        }
+
+        $products = $query->get();
+
+
+        return view('product::frontend.sort-index',compact('products'));
     }
 
     public function showProduct(Product $product)

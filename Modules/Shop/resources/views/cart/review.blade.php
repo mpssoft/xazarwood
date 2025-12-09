@@ -298,13 +298,24 @@
                                 <h2 class=" font-semibold text-wood-900 dark:text-wood-100 mb-6">روش پرداخت</h2>
                                 <!-- Divider -->
                                 <div class="h-px mb-3 bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
-                                <div class=""><label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800"> <input type="radio" name="payment" value="online" checked class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                                <div class="mb-2"><label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800">
+                                        <input type="radio"  name="payment" value="zarinpal"  class="w-5 h-5 text-wood-600 focus:ring-wood-500">
                                         <div class="flex-1">
                                             <div class="flex items-center gap-2">
                                                 <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                                                 </svg><span class="text-sm text-wood-900 dark:text-wood-100">پرداخت آنلاین</span>
                                             </div>
                                             <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">زرین پال</p>
+                                        </div></label>
+                                </div>
+                                <div class="mb-2"><label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800">
+                                        <input type="radio"  name="payment" value="bitpay" checked class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+                                        <div class="flex-1">
+                                            <div class="flex items-center gap-2">
+                                                <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                                </svg><span class="text-sm text-wood-900 dark:text-wood-100">پرداخت آنلاین</span>
+                                            </div>
+                                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1"> BitPay</p>
                                         </div></label>
                                 </div>
                             </div>
@@ -398,7 +409,7 @@
                                     </div>
                                 </div>
 
-                                <a id="enabledPaymentButton" href="{{route('user.cart.checkout')}}"
+                                <a id="enabledPaymentButton" href="{{route('shop.cart.checkout')}}"
                                    class=" w-full bg-green-800 hover:from-wood-600 hover:to-wood-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center justify-center">
                                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -458,289 +469,146 @@
     </div>
     </div>
 @endsection
-
 @push('scripts')
-    <script>
-        $(document).ready(function () {
-            $(".plus-btn").on("click", function () {
-                let container = $(this).closest("div[data-product-id]");
-                let input = container.find(".quantity-input");
+<script>
+    $(document).ready(function () {
+        $(".plus-btn").on("click", function () {
+            let container = $(this).closest("div[data-product-id]");
+            let input = container.find(".quantity-input");
 
-                let val = parseInt(input.val()) || 1;
+            let val = parseInt(input.val()) || 1;
 
-                input.val(val + 1).trigger("change");
-            });
-
-            $(".minus-btn").on("click", function () {
-                let container = $(this).closest("div[data-product-id]");
-                let input = container.find(".quantity-input");
-                let val = parseInt(input.val()) || 1;
-
-                if (val > 1) input.val(val - 1).trigger("change");
-            });
-
-            $(".quantity-input").on("change", function () {
-                let container = $(this).closest("div[data-product-id]");
-                let productId = container.data("product-id");
-                let model = container.data("product-model");
-                let quantity = $(this).val();
-                changeQuantity(model,productId,quantity);
-
-
-            });
-            $("#province").on('change',function(){
-
-                $.ajax({
-                    url: '/getCities',
-                    type: 'POST',
-                    data: {
-                        province_id:$(this).val()
-                    },
-                    headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    success: function(res){
-                        citySelect = $("#city");
-                        citySelect.empty();
-                        citySelect.append('<option value="">انتخاب شهر...</option>');
-                        res.cities.forEach(function(city){
-                            citySelect.append(`<option value="${city.id}">${city.title}</option>`)
-                        });
-                    },
-                    error:function(xhr){
-                        //alert(xhr.responseText)
-                    }
-                })
-            });
-
-            $("#address-form").on('submit',function(e){
-                e.preventDefault();
-                formData = $(this).serialize();
-
-                $.ajax({
-                    url: '/addAddress',
-                    type: 'POST',
-                    data:formData,
-                    headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                    success: function(res){
-
-                        savedSelect = $("#saved-addresses");
-                        savedSelect.append(`<option value="${res.address.id}" selected >${res.address.address}</option>`);
-                        $(".address-alert").toggleClass('hidden');
-                        $('#new-address-toggle').click();
-                    },
-
-                });
-            });
+            input.val(val + 1).trigger("change");
         });
 
-        function changeQuantity(model,id,qty,cart=true)
-        {
-            url = "/cart/add/"+model+"/"+id+"/"+qty;
-            fetch(url, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        $(".minus-btn").on("click", function () {
+            let container = $(this).closest("div[data-product-id]");
+            let input = container.find(".quantity-input");
+            let val = parseInt(input.val()) || 1;
+
+            if (val > 1) input.val(val - 1).trigger("change");
+        });
+
+        $(".quantity-input").on("change", function () {
+            let container = $(this).closest("div[data-product-id]");
+            let productId = container.data("product-id");
+            let model = container.data("product-model");
+            let quantity = $(this).val();
+            changeQuantity(model,productId,quantity);
+
+
+        });
+        $("#province").on('change',function(){
+
+            $.ajax({
+                url: '/getCities',
+                type: 'POST',
+                data: {
+                    province_id:$(this).val()
+                },
+                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success: function(res){
+                    citySelect = $("#city");
+                    citySelect.empty();
+                    citySelect.append('<option value="">انتخاب شهر...</option>');
+                    res.cities.forEach(function(city){
+                        citySelect.append(`<option value="${city.id}">${city.title}</option>`)
+                    });
+                },
+                error:function(xhr){
+                    //alert(xhr.responseText)
+                }
+            })
+        });
+
+        $("#address-form").on('submit',function(e){
+            e.preventDefault();
+            formData = $(this).serialize();
+
+            $.ajax({
+                url: '/addAddress',
+                type: 'POST',
+                data:formData,
+                headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success: function(res){
+
+                    savedSelect = $("#saved-addresses");
+                    savedSelect.append(`<option value="${res.address.id}" selected >${res.address.address}</option>`);
+                    $(".address-alert").toggleClass('hidden');
+                    $('#new-address-toggle').click();
                 },
 
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (window.location.pathname === "/cart") {
-                        window.location.reload();
-                    }
-                    if (cart) {
-                        window.location.href = "/cart";
-                    }
-                    if (data.success) {
+            });
+        });
+        $('[name="payment"]').on('click',function(){
+            let gate = $(this).val();
+            $.ajax({
+                url:'/cart/gateway',
+                data: {gateway : gate},
+                type:'post',
+                headers : {'X-CSRF-TOKEN':'{{csrf_token()}}'},
 
-                        Swal.fire({
-                            toast: true,
-                            position: 'top-end',
-                            icon: 'success',
-                            title: data.message,
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true
-                        });
+            });
+        });
+    });
 
-                    } else {
+    function changeQuantity(model,id,qty,cart=true)
+    {
+        url = "/cart/add/"+model+"/"+id+"/"+qty;
+        fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
 
-                        Swal.fire({
-                            toast: true,
-                            position: 'top-end',
-                            icon: 'error',
-                            title:data.message ?? "Something went wrong!",
-                            showConfirmButton: false,
-                            timer: 3000
-                        });
-                    }
-                })
-                .catch((data) => {
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (window.location.pathname === "/cart") {
+                    window.location.reload();
+                }
+                if (cart) {
+                    window.location.href = "/cart";
+                }
+                if (data.success) {
+
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: data.message,
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+
+                } else {
 
                     Swal.fire({
                         toast: true,
                         position: 'top-end',
                         icon: 'error',
-                        title: "Server error!",
+                        title:data.message ?? "Something went wrong!",
                         showConfirmButton: false,
                         timer: 3000
                     });
-                })
-        }
-    </script>
-    <script>
-        const defaultConfig = {
-            page_title: 'سبد خرید',
-            cart_section_title: 'محصولات شما',
-            address_section_title: 'آدرس تحویل',
-            button_text: 'ادامه فرآیند خرید',
-            background_color: '#fdf8f3',
-            surface_color: '#ffffff',
-            text_color: '#4a2f1f',
-            primary_action_color: '#b8935f',
-            secondary_action_color: '#9c7a52',
-            font_family: 'Tahoma, Arial, sans-serif',
-            font_size: 16
-        };
+                }
+            })
+            .catch((data) => {
 
-        let config = {};
-
-
-        // New address toggle
-        let isFormVisible = false;
-        document.getElementById('new-address-toggle').addEventListener('click', () => {
-            const form = document.getElementById('address-form');
-            const icon = document.getElementById('toggle-icon');
-            const savedAddresses = document.getElementById('saved-addresses');
-
-            isFormVisible = !isFormVisible;
-
-            if (isFormVisible) {
-                form.classList.remove('hidden');
-                savedAddresses.classList.add('hidden')
-                setTimeout(() => {
-                    form.style.maxHeight = '1000px';
-                    form.style.opacity = '1';
-                }, 10);
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                savedAddresses.classList.remove('hidden')
-                form.style.maxHeight = '0';
-                form.style.opacity = '0';
-                setTimeout(() => {
-                    form.classList.add('hidden');
-                }, 400);
-                icon.style.transform = 'rotate(0deg)';
-            }
-        });
-
-        // Saved address selection
-        document.getElementById('saved-addresses').addEventListener('change', (e) => {
-            const form = document.getElementById('address-form');
-            if (e.target.value === 'home') {
-                document.getElementById('province').value = 'تهران';
-                document.getElementById('city').value = 'تهران';
-                document.getElementById('postal-code').value = '1234567890';
-                document.getElementById('address').value = 'خیابان ولیعصر، نرسیده به میدان ونک، پلاک ۱۲۳، واحد ۴';
-            } else if (e.target.value === 'work') {
-                document.getElementById('province').value = 'تهران';
-                document.getElementById('city').value = 'تهران';
-                document.getElementById('postal-code').value = '9876543210';
-                document.getElementById('address').value = 'میدان ونک، برج سپهر، طبقه ۱۰، واحد ۲۰۰';
-            } else {
-                form.reset();
-            }
-        });
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'error',
+                    title: "Server error!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            })
+    }
+</script>
 
 
 
-        async function onConfigChange(config) {
-            const baseSize = config.font_size || defaultConfig.font_size;
-            const fontFamily = config.font_family || defaultConfig.font_family;
-
-            document.getElementById('page-title').textContent = config.page_title || defaultConfig.page_title;
-            document.getElementById('cart-section-title').textContent = config.cart_section_title || defaultConfig.cart_section_title;
-            document.getElementById('address-section-title').textContent = config.address_section_title || defaultConfig.address_section_title;
-            document.getElementById('checkout-button').textContent = config.button_text || defaultConfig.button_text;
-
-            // Apply font family
-            document.body.style.fontFamily = `${fontFamily}, Tahoma, Arial, sans-serif`;
-
-            // Apply font sizes
-            document.getElementById('page-title').style.fontSize = `${baseSize * 1.875}px`;
-            document.getElementById('cart-section-title').style.fontSize = `${baseSize * 1.5}px`;
-            document.getElementById('address-section-title').style.fontSize = `${baseSize * 1.5}px`;
-            document.body.style.fontSize = `${baseSize}px`;
-        }
-
-        if (window.elementSdk) {
-            window.elementSdk.init({
-                defaultConfig,
-                onConfigChange,
-                mapToCapabilities: (config) => ({
-                    recolorables: [
-                        {
-                            get: () => config.background_color || defaultConfig.background_color,
-                            set: (value) => {
-                                config.background_color = value;
-                                window.elementSdk.setConfig({ background_color: value });
-                            }
-                        },
-                        {
-                            get: () => config.surface_color || defaultConfig.surface_color,
-                            set: (value) => {
-                                config.surface_color = value;
-                                window.elementSdk.setConfig({ surface_color: value });
-                            }
-                        },
-                        {
-                            get: () => config.text_color || defaultConfig.text_color,
-                            set: (value) => {
-                                config.text_color = value;
-                                window.elementSdk.setConfig({ text_color: value });
-                            }
-                        },
-                        {
-                            get: () => config.primary_action_color || defaultConfig.primary_action_color,
-                            set: (value) => {
-                                config.primary_action_color = value;
-                                window.elementSdk.setConfig({ primary_action_color: value });
-                            }
-                        },
-                        {
-                            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
-                            set: (value) => {
-                                config.secondary_action_color = value;
-                                window.elementSdk.setConfig({ secondary_action_color: value });
-                            }
-                        }
-                    ],
-                    borderables: [],
-                    fontEditable: {
-                        get: () => config.font_family || defaultConfig.font_family,
-                        set: (value) => {
-                            config.font_family = value;
-                            window.elementSdk.setConfig({ font_family: value });
-                        }
-                    },
-                    fontSizeable: {
-                        get: () => config.font_size || defaultConfig.font_size,
-                        set: (value) => {
-                            config.font_size = value;
-                            window.elementSdk.setConfig({ font_size: value });
-                        }
-                    }
-                }),
-                mapToEditPanelValues: (config) => new Map([
-                    ['page_title', config.page_title || defaultConfig.page_title],
-                    ['cart_section_title', config.cart_section_title || defaultConfig.cart_section_title],
-                    ['address_section_title', config.address_section_title || defaultConfig.address_section_title],
-                    ['button_text', config.button_text || defaultConfig.button_text]
-                ])
-            });
-            config = window.elementSdk.config;
-        }
-
-
-    </script>
 @endpush
