@@ -60,7 +60,7 @@ class OtpLoginController extends Controller
 
         // ارسال پیامک
         $channel = new RayganSmsChannel();
-        $c= "raygansms";
+        $c= "melipayamak";
         $response = $channel->send(null, new SendOtpSms($otp, $mobile));
         if($c= "raygansms"){
            if($response > 1000 || $response == 2)

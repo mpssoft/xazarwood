@@ -35,7 +35,7 @@ class SendOtpSms extends Notification
         return [
             'to' => $this->mobile,
             'text' => $this->otp,
-            'bodyId' => 352289,
+            'bodyId' => env('MELIPAYAMAK_OTP_CODE'),
         ];
     }
 }

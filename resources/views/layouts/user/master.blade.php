@@ -13,16 +13,35 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {!! SEO::generate() !!}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link href="/css/fizik_styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="/fontawesome-6.0.0-web/css/all.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="/js/modules/tailwind.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
-        };
-
+            theme: {
+                extend: {
+                    colors: {
+                        wood: {
+                            50: '#fdf8f3',
+                            100: '#faf2e8',
+                            200: '#f5e6d4',
+                            300: '#edd4b3',
+                            400: '#e2b88d',
+                            500: '#d4a574',
+                            600: '#b8935f',
+                            700: '#9c7a52',
+                            800: '#6b4e31',
+                            900: '#4a2f1f',
+                            950: 'rgba(19, 10, 5, 0.95)',
+                        }
+                    }
+                }
+            }
+        }
     </script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="/css/xazarwood_style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/fontawesome-6.0.0-web/css/all.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
 
     <style>
@@ -31,6 +50,9 @@
         }
         body.sidebar-open {
             overflow: hidden;
+        }
+        body{
+            overflow:visible !important;
         }
     </style>
 </head>
@@ -103,158 +125,7 @@
 @stack('scripts')
 
 <script src="/js/modules/sweetalert2.js"></script>
-<script>
-    function fetchCart() {
-        fetch("{{ route('shop.cart.items') }}")
-            .then(res => res.text()) // 👈 since response is HTML
-            .then(html => {
-                document.getElementById('cartItems').innerHTML = html;
-                $("#itemsCount").html($("#count").val());
-            });
-    }
-    $(document).ready(function(){
-        fetchCart();
-    });
 
-    function addToCart(model,id,cart) {
-        let btn = document.getElementById('btn-' + id);
-        let spinner = btn.querySelector('.spinner-' + id);
-
-        spinner.classList.remove('hidden');
-
-
-        url = "/cart/add/" + model + "/" + id;
-        fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            },
-
-        })
-            .then(res => res.json())
-            .then(data => {
-                if(cart){
-                    window.location.href = "/cart";
-                }
-                if (window.location.pathname === "/cart") {
-                    window.location.reload();
-                }
-                if (data.success) {
-
-                    Swal.fire({
-                        toast: true,
-                        position: 'top-end',
-                        icon: 'success',
-                        title: data.message,
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true
-                    });
-
-                    fetchCart();
-                    $("#itemsCount").html(data.count).fadeOut('slow').fadeIn('slow');
-
-                } else {
-
-                    Swal.fire({
-                        toast: true,
-                        position: 'top-end',
-                        icon: 'error',
-                        title: data.message ?? "Something went wrong!",
-                        showConfirmButton: false,
-                        timer: 3000
-                    });
-                }
-            })
-            .catch((data) => {
-
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'error',
-                    title: "Server error!" + data,
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-            })
-            .finally(() => spinner.classList.add('hidden'));
-    }
-    function removeItem(model,id)
-    {
-
-        Swal.fire({
-            title: 'حذف !',
-            text: 'آیا این آیتم از سبد خرید حذف شود؟',
-            icon: 'warning',
-            showCancelButton: true,
-
-            confirmButtonText: 'بله، حذف کن',
-            cancelButtonText: 'لغو'
-        }).then((result) => {
-            if (result.isConfirmed) {
-
-                url = "/cart/remove/";
-                $("#spin-"+id).removeClass('!hidden');
-
-                fetch(url, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                    },
-                    body: JSON.stringify({ _method: 'DELETE', type: model ,id : id})
-
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (window.location.pathname === "/cart") {
-                            window.location.reload();
-                        }
-                        if (data.success) {
-
-                            Swal.fire({
-                                toast: true,
-                                position: 'top-end',
-                                icon: 'success',
-                                title: data.message,
-                                showConfirmButton: false,
-                                timer: 3000,
-                                timerProgressBar: true
-                            });
-                            fetchCart();
-                            $("#itemsCount").html(data.count).fadeOut('slow').fadeIn('slow');
-                        } else {
-
-                            Swal.fire({
-                                toast: true,
-                                position: 'top-end',
-                                icon: 'error',
-                                title: "Something went wrong!",
-                                showConfirmButton: false,
-                                timer: 3000
-                            });
-                        }
-                    })
-                    .catch((data) => {
-
-                        Swal.fire({
-                            toast: true,
-                            position: 'top-end',
-                            icon: 'error',
-                            title: "Server error!",
-                            showConfirmButton: false,
-                            timer: 3000
-                        });
-                    }).finally(()=>{
-                    $("#spin-"+id).addClass('!hidden');
-                });
-
-            }
-        });
-    }
-
-</script>
 <script>
     document.querySelectorAll('[data-expire]').forEach(function (el) {
         let expireDate = new Date(el.getAttribute('data-expire')).getTime();

@@ -26,6 +26,14 @@ class RouteServiceProvider extends ServiceProvider
             ->name('shop.admin.')
             ->group(base_path('Modules/Shop/routes/admin.php'));
     }
+    protected function mapUserRoutes(): void
+    {
+        Route::prefix('shop/user')
+            ->middleware(['web','auth'])
+            ->namespace($this->namespace)
+            ->name('shop.user.')
+            ->group(base_path('Modules/Shop/routes/user.php'));
+    }
     /**
      * Define the routes for the application.
      */
@@ -34,6 +42,7 @@ class RouteServiceProvider extends ServiceProvider
         //$this->mapApiRoutes();
         $this->mapWebRoutes();
         $this->mapAdminRoutes();
+        $this->mapUserRoutes();
     }
 
     /**

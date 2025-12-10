@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Modules\File\Models\File;
 use Modules\LessonPlan\Models\LessonPlan;
 use Modules\Shop\Models\CartItem;
@@ -57,7 +57,7 @@ use function PHPUnit\Framework\isEmpty;
         $order = Order::create([
             'user_id' => $user->id,
             'status'  => 'pending',
-            'price'   => $totalPrice,
+            'price'   => 2000,//$totalPrice,
             'shipping_price'   => session('shipping_cost'),
             'user_address_id'   => session('checkout.address'),
         ]);
@@ -81,7 +81,7 @@ use function PHPUnit\Framework\isEmpty;
         ]);
 
 
-        $response = $this->pay($totalPrice,$order);
+        $response = $this->pay(20000,$order);
         return ($response);
 
     }
@@ -101,9 +101,9 @@ use function PHPUnit\Framework\isEmpty;
         $amount      = $totalPrice;
         $orderId    = $order->id;
         $redirectUrl = env('BITPAY_CALLBACK_URL');
-        $name        = "Test";
-        $email       = "test@test.com";
-        $description = "Test payment";
+        $name        = auth()->user()->name;
+        $email       = auth()->user()->email;
+        $description = "شماره خرید :".$orderId;
 
         $bitPay = new BitPay(env('BITPAY_TOKEN'), env('BITPAY_IS_TEST'));
 
@@ -123,10 +123,10 @@ use function PHPUnit\Framework\isEmpty;
             ->amount($totalPrice)
             ->request()
             ->description('پرداخت سفارش #' . $order->id)
-            ->callbackUrl(route('user.payment.zarinpalCallback', [
+            ->callbackUrl(env('ZARINPAL_CALLBACK_URL'), [
                 'order_id' => $order->id,
                 'price' => $totalPrice
-            ]))
+            ])
             ->send();
         if (!$response->success()) {
             alert('', $response->error()->message(), 'toast');
@@ -150,13 +150,28 @@ use function PHPUnit\Framework\isEmpty;
 
         if ($result->status == 1) {
             // TODO: return to user orders and show success message
-           // return response()->redirectTo('/user')->with()
-            return view('success', [
+            $payment = Payment::with('order')->where('order_id',request('factorId'))->firstOrFail();
+            $payment->update([
+                'status' => "success",
+                'resnumber' => $result->get_id,
+                'transaction_id' => $request->trans_id,
+            ]);
+
+
+            $payment->order->update([
+                'status' => 'paid',
+            ]);
+
+            // if item hase file
+            $this->paymentSuccess($payment->order);
+
+            // return response()->redirectTo('/user')->with()
+            return view('shop::user.order.show', [
                 'status'=>'success','msg'=>"تشکر از اعتماد شما به خزرچوب، سفارش شما با موفقیت ثبت و بزودی بررسی خواهد شد. با تشکر" . $factor
             ]);
         }
 
-        return view('error', ['msg' => $result->GetMessage()]);
+        return view('shop::error', ['msg' => $result->GetMessage()]);
     }
 
 
@@ -178,14 +193,7 @@ public function zarinpalCallback()
 
         }
 
-// دریافت هش شماره کارتی که مشتری برای پرداخت استفاده کرده است
-// $response->cardHash();
 
-// دریافت شماره کارتی که مشتری برای پرداخت استفاده کرده است (بصورت ماسک شده)
-// $response->cardPan();
-
-// پرداخت موفقیت آمیز بود
-// دریافت شماره پیگیری تراکنش و انجام امور مربوط به دیتابیس
         $payment = Payment::with('order')->where('order_id',request('order_id'))->firstOrFail();
         $payment->update([
             'status' => "success",
@@ -225,7 +233,7 @@ public function zarinpalCallback()
 }
 
 // STEP 2: Simulate payment success
-    public function paymentSuccess(Order $order, SpotPlayerService $spotPlayer)
+    public function paymentSuccess(Order $order)
     {
         DB::beginTransaction();
 
@@ -233,77 +241,15 @@ public function zarinpalCallback()
             $order->load('items.item'); // eager load order items + related models
             $user = auth()->user();
             Log::info("Reached paymentSuccess for order {$order->id}");
-            $licenses=[];
-            $this->file = false;
-            $this->lessonplan = false;
-            foreach ($order->items as $item) {
-                $model = $item->item; // e.g., Course, Product, etc.
-                Log::info("model  is: ". $model->title);
-                // Attach course to user
-                if ($model instanceof \App\Models\Course) {
-                    $user->courses()->syncWithoutDetaching([$model->id]);
-                    //Log::info("Attached course {$model->id} to user {$user->id}");
-                }elseif($model instanceof LessonPlan) {
-                    $model->update([
-                        'status' => 'paid'
-                    ]);
-                    $this->lessonplan = true;
-                }
-
-                // Generate SpotPlayer license if available
-                if (!empty($model->spotplayer_id)) {
-                    $licenses[] = $this->generateLicense($user, $order, $model, $spotPlayer);
-
-                }
-            }
-
-            DB::commit();
-            $this->licenses = $licenses ;
 
             CartItem::where('user_id', auth()->id())->delete();
             Cookie::queue(Cookie::forget('shop_cart'));
-            // send sms
-              // ارسال پیامک
 
-            if (!empty($licenses)) {
+            // TODO : ارسال پیامک
+            DB::commit();
+           // $channel = new MelipayamakChannel();
+           // $response = $channel->send(auth()->user(), new NotifyUserLicense(auth()->user()->mobile, $licenses[0]['course'] ?? 'درس مورد نظر'));
 
-                $channel = new MelipayamakChannel();
-                $response = $channel->send(auth()->user(), new NotifyUserLicense(auth()->user()->mobile, $licenses[0]['course'] ?? 'درس مورد نظر'));
-
-                if ($response['StrRetStatus'] == "Ok") {
-                    if($this->file) {
-                        alert('پرداخت موفق','پرداخت برای فایل های مورد نظر با موفقیت انجام شد.','success');
-                        Log::info('File + licence');
-
-                        return redirect(route('user.courses.bought'))->with(['licenses' => $this->licenses, 'file' => true]);
-
-                    }else
-                        return redirect(route('user.courses.bought'))->with(['licenses' => $this->licenses]);
-                } else {
-                    return redirect(route('user.courses'))->with([
-                        'status' => $response['StrRetStatus'],
-                        'code' => $response['RetStatus'],
-                        'message' => 'خطا هنگام ارسال کد'
-                    ]);
-                }
-            }elseif($this->file){
-                alert('پرداخت موفق','پرداخت برای فایل های مورد نظر با موفقیت انجام شد.','success');
-                return redirect(route('user.files.index'))->with([
-                    'file' => true,
-                    'message' => 'پرداخت برای فایل های مورد نظر یا موفقیت انجام شد.'
-                ]);
-            }elseif($this->lessonplan){
-                Log::info('got lesson class: ');
-                $model = $order->items()->first()->item_type;
-                $lessonplan = $model::find($order->items()->first()->item_id);
-
-                $channel = new MelipayamakChannel();
-                $response = $channel->send(auth()->user(), new LessonPlanPaidNotification(auth()->user()->mobile, $lessonplan->title));
-                return redirect(route('user.lessonplans.index'))->with([
-                    'lessonplan' => true,
-                    'message' => 'پرداخت با موفقیت انجام شد.'
-                ]);
-            }
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Payment error', [
