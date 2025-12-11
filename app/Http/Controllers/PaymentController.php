@@ -123,7 +123,7 @@ use function PHPUnit\Framework\isEmpty;
             ->amount($totalPrice)
             ->request()
             ->description('پرداخت سفارش #' . $order->id)
-            ->callbackUrl(env('ZARINPAL_CALLBACK_URL').'/?price='.$totalPrice, [
+            ->callbackUrl(env('ZARINPAL_CALLBACK_URL') ."/?price=".$totalPrice, [
                 'order_id' => $order->id,
                 'price' => $totalPrice
             ])
