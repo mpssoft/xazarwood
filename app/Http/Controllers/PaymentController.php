@@ -81,7 +81,7 @@ use function PHPUnit\Framework\isEmpty;
         ]);
 
 
-        $response = $this->pay(20000,$order);
+        $response = $this->pay(2000,$order);
         return ($response);
 
     }
@@ -98,7 +98,7 @@ use function PHPUnit\Framework\isEmpty;
     }
     public function bitpay($totalPrice,$order)
     {
-        $amount      = $totalPrice;
+        $amount      = $totalPrice*10;
         $orderId    = $order->id;
         $redirectUrl = env('BITPAY_CALLBACK_URL');
         $name        = auth()->user()->name;
@@ -123,7 +123,7 @@ use function PHPUnit\Framework\isEmpty;
             ->amount($totalPrice)
             ->request()
             ->description('پرداخت سفارش #' . $order->id)
-            ->callbackUrl(env('ZARINPAL_CALLBACK_URL'), [
+            ->callbackUrl(env('ZARINPAL_CALLBACK_URL').'/?price='.$totalPrice, [
                 'order_id' => $order->id,
                 'price' => $totalPrice
             ])
@@ -169,9 +169,13 @@ use function PHPUnit\Framework\isEmpty;
             return view('shop::user.order.show', [
                 'status'=>'success','msg'=>"تشکر از اعتماد شما به خزرچوب، سفارش شما با موفقیت ثبت و بزودی بررسی خواهد شد. با تشکر" . $factor
             ]);
+        }else{
+
+            alert("",$result->getMessage(),'error');
+            return redirect('/cart');
+
         }
 
-        return view('shop::error', ['msg' => $result->GetMessage()]);
     }
 
 

@@ -26,17 +26,17 @@ class OtpLoginController extends Controller
 
 
        // اگر بلاک شده باشه (بعد از 3 بار ارسال)
-        if (Cache::has($blockKey)) {
+       /* if (Cache::has($blockKey)) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'شما بیش از حد مجاز درخواست داده‌اید. لطفاً یک ساعت دیگر تلاش کنید.'
             ], 429);
-        }
+        }*/
 
         // گرفتن تعداد تلاش‌ها از کش
         $attempts = Cache::get($attemptKey, 0);
 
-        if ($attempts >= 3) {
+  /*      if ($attempts >= 3) {
             // بلاک کردن برای یک ساعت
             Cache::put($blockKey, true, now()->addHour());
             Cache::forget($attemptKey);
@@ -45,7 +45,7 @@ class OtpLoginController extends Controller
                 'status' => 'error',
                 'message' => 'به دلیل درخواست‌های مکرر، ارسال کد برای شما به مدت 1 ساعت غیرفعال شده است.'
             ], 429);
-        }
+        }*/
 
         // افزایش تعداد تلاش‌ها و ذخیره با انقضا 1 ساعت (از اولین تلاش)
         if ($attempts == 0) {
@@ -59,10 +59,11 @@ class OtpLoginController extends Controller
         Cache::put('otp_' . $mobile, $otp, now()->addMinutes(3));
 
         // ارسال پیامک
-        $channel = new RayganSmsChannel();
+        $channel = new MelipayamakChannel();
         $c= "melipayamak";
         $response = $channel->send(null, new SendOtpSms($otp, $mobile));
-        if($c= "raygansms"){
+
+        if($c== "raygansms"){
            if($response > 1000 || $response == 2)
            {
                return response()->json([
@@ -77,6 +78,7 @@ class OtpLoginController extends Controller
                ]);
            }
         }elseif($c=="melipayamak"){
+
             if ($response['StrRetStatus'] == "Ok") {
                 return response()->json([
                     'status' => 'ok',
