@@ -153,6 +153,7 @@ use function PHPUnit\Framework\isEmpty;
             $payment = Payment::with('order')->where('order_id',request('factorId'))->firstOrFail();
             $payment->update([
                 'status' => "success",
+                'gateway' => session('checkout.gateway') ?? 'bitpay',
                 'resnumber' => $request->id_get,
                 'transaction_id' => $request->trans_id,
             ]);
@@ -201,6 +202,7 @@ public function zarinpalCallback()
         $payment = Payment::with('order')->where('order_id',request('order_id'))->firstOrFail();
         $payment->update([
             'status' => "success",
+            'gateway' => session('checkout.gateway') ?? 'zarinpal',
             'resnumber' =>  $response->referenceId(),
             'transaction_id' => 'MANUAL-' . now()->timestamp,
         ]);
@@ -231,7 +233,7 @@ public function zarinpalCallback()
             $orderDetail ="";
             foreach ($items as $item)
             {
-                $orderDetail .= $item['product']->name. '\n';
+                $orderDetail .= $item['product']->name. "\n";
             }
             $channel = new MelipayamakChannel();
             $response = $channel->send(auth()->user(), new NotifyUserBuy(auth()->user()->mobile, $order->id,$orderDetail));
