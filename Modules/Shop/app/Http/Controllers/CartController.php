@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Cookie;
 use Modules\File\Models\File;
 use Modules\LessonPlan\Models\LessonPlan;
 use Modules\Product\Models\Product;
+use Modules\Shop\Models\CartItem;
 use Modules\Shop\Services\CartService;
 use Modules\Shop\Models\Discount;
 

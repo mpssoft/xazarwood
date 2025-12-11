@@ -9,7 +9,7 @@ use App\Models\OrderItem;
 use App\Models\Payment;
 use App\Notifications\Channels\MelipayamakChannel;
 use App\Notifications\LessonPlanPaidNotification;
-use App\Notifications\NotifyUserLicense;
+use App\Notifications\NotifyUserBuy;
 use App\Notifications\SendOtpSms;
 use App\Services\SpotPlayerService;
 use Illuminate\Support\Facades\Cookie;
@@ -153,7 +153,7 @@ use function PHPUnit\Framework\isEmpty;
             $payment = Payment::with('order')->where('order_id',request('factorId'))->firstOrFail();
             $payment->update([
                 'status' => "success",
-                'resnumber' => $result->get_id,
+                'resnumber' => $request->id_get,
                 'transaction_id' => $request->trans_id,
             ]);
 
@@ -165,7 +165,7 @@ use function PHPUnit\Framework\isEmpty;
             // if item hase file
             $this->paymentSuccess($payment->order);
 
-            // return response()->redirectTo('/user')->with()
+
             return view('shop::user.order.show', [
                 'status'=>'success','msg'=>"تشکر از اعتماد شما به خزرچوب، سفارش شما با موفقیت ثبت و بزودی بررسی خواهد شد. با تشکر" . $factor
             ]);
@@ -211,27 +211,9 @@ public function zarinpalCallback()
         ]);
 
         // if item hase file
-        $this->paymentSuccess($payment->order, new SpotPlayerService());
+        $this->paymentSuccess($payment->order);
 
-        //alert('', 'پرداخت موفق', 'toast');
-        // clear cart items
 
-        if($this->file && !is_null($this->licenses))
-        {
-            return redirect(route('user.courses.bought'))->with(['licenses' => $this->licenses, 'file' => true]);
-        }elseif($this->file) {
-            return redirect(route('user.files.index'))->with([
-                'file' => true,
-                'message' => 'پرداخت با موفقیت انجام شد.'
-            ]);
-        }elseif($this->lessonplan) {
-            return redirect(route('user.lessonplans.index'))->with([
-                'lessonplan' => true,
-                'message' => 'پرداخت با موفقیت انجام شد.'
-            ]);
-        }else{
-            return redirect(route('user.courses.bought'))->with(['licenses' => $this->licenses]);
-        }
 
 
 }
@@ -245,14 +227,20 @@ public function zarinpalCallback()
             $order->load('items.item'); // eager load order items + related models
             $user = auth()->user();
             Log::info("Reached paymentSuccess for order {$order->id}");
+            $items = CartItem::where('user_id', auth()->id())->with('product')->get();
+            $orderDetail ="";
+            foreach ($items as $item)
+            {
+                $orderDetail .= $item['product']->name. '\n';
+            }
+            $channel = new MelipayamakChannel();
+            $response = $channel->send(auth()->user(), new NotifyUserBuy(auth()->user()->mobile, $order->id,$orderDetail));
 
             CartItem::where('user_id', auth()->id())->delete();
             Cookie::queue(Cookie::forget('shop_cart'));
-
-            // TODO : ارسال پیامک
             DB::commit();
-           // $channel = new MelipayamakChannel();
-           // $response = $channel->send(auth()->user(), new NotifyUserLicense(auth()->user()->mobile, $licenses[0]['course'] ?? 'درس مورد نظر'));
+
+
 
         } catch (\Exception $e) {
             DB::rollBack();

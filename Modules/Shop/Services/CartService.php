@@ -161,13 +161,11 @@ class CartService
     }
     private function withRelationshipIfExist($item)
     {
-
         $modelClass = $item['item_type'];
-
         if (class_exists($modelClass)) {
-            $item['model'] = $modelClass::find($item['id']); // Eloquent model
-        }
 
+            $item['model'] = $modelClass::find($item['item_id']); // Eloquent model
+        }
         return $item;
 
     }

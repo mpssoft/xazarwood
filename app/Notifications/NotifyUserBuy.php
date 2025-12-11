@@ -7,18 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NotifyUserLicense extends Notification
+class NotifyUserBuy extends Notification
 {
     use Queueable;
     protected $mobile;
-    protected $course;
+    protected $orderDitail;
+    protected $orderId;
     /**
      * Create a new notification instance.
      */
-    public function __construct($mobile,$course)
+    public function __construct($mobile,$orderId,$orderDitail)
     {
         $this->mobile = $mobile;
-        $this->course = $course;
+        $this->orderDitail = $orderDitail;
+        $this->orderId = $orderId;
     }
 
     /**
@@ -47,8 +49,8 @@ class NotifyUserLicense extends Notification
     {
         return [
             'to' => $this->mobile,
-            'bodyId' => 360935,
-            'text' => "$notifiable->name;$this->course"
+            'bodyId' => 404950,
+            'text' => "$notifiable->name;$this->orderId;$this->orderDitail"
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace Modules\Shop\Models;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Product\Models\Product;
 
 class CartItem extends Model
 {
@@ -27,5 +28,9 @@ class CartItem extends Model
     public function item()
     {
         return $this->morphTo();
+    }
+    public function product()
+    {
+        return $this->hasOne(Product::class,'id','item_id');
     }
 }
