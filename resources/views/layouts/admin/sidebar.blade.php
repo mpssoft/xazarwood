@@ -1,6 +1,6 @@
 
 <aside style="top:0px"
-    class="fixed  md:relative md:w-[300px] z-50 md:z-40 overflow-auto bottom-0 right-0  bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 shadow-[-8px_0_24px_rgba(0,0,0,0.15)] dark:shadow-[-8px_0_24px_rgba(0,0,0,0.4)]  transform transition-all duration-300 ease-in-out md:translate-x-0 translate-x-full"
+    class="fixed  md:relative md:w-[300px] z-50 md:z-40 overflow-auto bottom-0 right-0  bg-gradient-to-br from-white via-wood-50 to-wood-100 dark:from-wood-800 dark:to-wood-950 shadow-[-8px_0_24px_rgba(0,0,0,0.15)] dark:shadow-[-8px_0_24px_rgba(0,0,0,0.4)]  transform transition-all duration-300 ease-in-out md:translate-x-0 translate-x-full"
     :class="sidebarOpen ? 'translate-x-0' : 'translate-x-full md:translate-x-0'"
     @click.away=" !toggleButton ? sidebarOpen = false : toggleButton = false"
 >

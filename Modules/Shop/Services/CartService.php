@@ -2,6 +2,7 @@
 
 namespace Modules\Shop\Services;
 
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Modules\Shop\Models\Discount;
@@ -129,7 +130,7 @@ class CartService
             $cart = $cart->keyBy(function ($item) {
                 return $item['item_type'] . '-' . $item['item_id'];
             });
-            $cart->address = "hg";
+            $cart->address = "";
             return $cart;
         } else {
             $cart = json_decode(Cookie::get($this->cookieName, '[]'), true) ?: [];
@@ -180,6 +181,11 @@ class CartService
                 ->where('item_type', $type)
                 ->where('item_id', $id)
                 ->delete();
+            if(session('orderId')) {
+                OrderItem::where('order_id', session('orderId'))
+                    ->where('item_id', $id)
+                    ->delete();
+            }
         } else {
             $cart = $this->getCart();
             $key = $type . '-' . $id;
@@ -386,6 +392,11 @@ class CartService
      */
     public function clearCart()
     {
-        Cookie::queue(Cookie::forget($this->cookieName));
+        if (Auth::check()) {
+            CartItem::where('user_id', Auth::id())->delete();
+        } else {
+            Cookie::queue(Cookie::forget($this->cookieName));
+        }
+
     }
 }

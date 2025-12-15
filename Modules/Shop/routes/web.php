@@ -23,6 +23,7 @@ Route::prefix('cart')->name('shop.cart.')->group(function () {
     Route::get('/review', [CartController::class, 'review'])->name('review');
     Route::post('/place-order', [CartController::class, 'placeOrder'])->name('placeOrder');
     Route::get('/items',[CartController::class,'cartItems'])->name('items');
+    Route::get('/create/{order}',[CartController::class,'create'])->name('create');
 
     Route::post('/addAddress',[CartController::class,'addAddress']);
     Route::get('/checkout', [PaymentController::class, 'createOrder'])->name('checkout');

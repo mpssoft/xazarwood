@@ -1,6 +1,6 @@
 <!-- Beautiful Header -->
 
-<header class="flex w-full justify-between items-center px-6 py-4  bg-gradient-to-l from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 shadow-[0_4px_12px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.4)] sticky top-0 z-50 backdrop-blur-sm">
+<header class="flex w-full justify-between items-center px-6 py-4  bg-gradient-to-b from-white  to-wood-100 dark:from-wood-800  dark:to-wood-900 shadow-[0_4px_12px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.4)] sticky top-0 z-50 backdrop-blur-sm">
     <!-- Toggle Button (Mobile) -->
 
     <div class="md:hidden ">
@@ -11,32 +11,42 @@
 
     <!-- Branding section - hidden on small screens, visible on medium+ -->
     <div class="flex items-center gap-20">
-    <div class="hidden md:flex items-center ">
-        <div class="text-2xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-sm">
+        <div class="hidden md:flex items-center ">
             <a href="/" class="flex items-center gap-2 hover:scale-105 transition-transform duration-200">
-                <i class="fas fa-atom drop-shadow-sm"></i>
-                XazarWood.ir
+            <div class="flex items-center justify-center space-x-3 space-x-reverse text-center">
+                <div class="flex items-center justify-center  w-10 h-10 bg-amber-600 dark:bg-amber-400 rounded-full  shadow-lg">
+                    <i class="fas fa-tree text-wood-100 dark:text-wood-900 "></i>
+                </div>
+                <!-- 🪵 Brand Text -->
+                <div class="flex flex-col items-center leading-tight font-extrabold">
+
+                        <span style="font-family:'Vazirmatn-bold' !important;" class=" text-2xl  font-bold  bg-gradient-to-r from-amber-600 via-yellow-400 to-amber-800  text-transparent bg-clip-text    tv-optimized-text-shadow">
+            صنایع خزرچوب
+        </span>
+                </div>
+
+
+            </div>
             </a>
         </div>
-    </div>
 
 
 
-    <div class="hidden text-gray-500 dark:text-gray-300 sm:block  text-sm  float-right md:text-lg  truncate    ">
-        <span class="">👋</span> {{auth()->user()->name}} عزیز؛ خوش اومدی
-    </div>
+        <div class="hidden text-gray-500 dark:text-gray-300 sm:block  text-sm  float-right md:text-lg  truncate    ">
+            <span class="">👋</span> {{auth()->user()->name}} عزیز؛ خوش اومدی
+        </div>
     </div>
     <div class="flex items-center gap-3">
-       {{-- <!-- Notification Bell -->
-        <button class="w-10 h-10 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-orange-900/30 dark:to-orange-800/30 hover:from-orange-200 hover:to-orange-300 dark:hover:from-orange-800/40 dark:hover:to-orange-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group">
-            <i class="fas fa-bell text-orange-500 group-hover:text-orange-600 transition-colors duration-200"></i>
-        </button>
+        {{-- <!-- Notification Bell -->
+         <button class="w-10 h-10 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-orange-900/30 dark:to-orange-800/30 hover:from-orange-200 hover:to-orange-300 dark:hover:from-orange-800/40 dark:hover:to-orange-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group">
+             <i class="fas fa-bell text-orange-500 group-hover:text-orange-600 transition-colors duration-200"></i>
+         </button>
 
-        <!-- Lock Icon -->
-        <button class="w-10 h-10 bg-gradient-to-r from-green-100 to-green-200 dark:from-green-900/30 dark:to-green-800/30 hover:from-green-200 hover:to-green-300 dark:hover:from-green-800/40 dark:hover:to-green-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group">
-            <i class="fas fa-lock text-green-500 group-hover:text-green-600 transition-colors duration-200"></i>
-        </button>
---}}
+         <!-- Lock Icon -->
+         <button class="w-10 h-10 bg-gradient-to-r from-green-100 to-green-200 dark:from-green-900/30 dark:to-green-800/30 hover:from-green-200 hover:to-green-300 dark:hover:from-green-800/40 dark:hover:to-green-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group">
+             <i class="fas fa-lock text-green-500 group-hover:text-green-600 transition-colors duration-200"></i>
+         </button>
+ --}}
         <!-- Theme Toggle -->
         <button @click="dark = !dark" class="w-10 h-10 bg-gradient-to-r from-blue-100 to-purple-200 dark:from-blue-900/30 dark:to-purple-800/30 hover:from-blue-200 hover:to-purple-300 dark:hover:from-blue-800/40 dark:hover:to-purple-700/40 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md group">
             <i x-show="!dark" class="fas fa-moon text-blue-500 group-hover:text-blue-600 transition-colors duration-200"></i>
@@ -46,7 +56,7 @@
             <button @mouseenter="open = !open" class="flex items-center focus:outline-none group mt-2">
                 <span class="text-xs text-gray-200 ml-3">{{auth()->user()->name}}</span>
                 <div class="w-10 h-10 rounded-full bg-gradient-to-r from-pink-400 to-purple-500 p-0.5 hover:from-pink-500 hover:to-purple-600 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl">
-                    <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
+                    <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-wood-700"
                          alt="avatar">
                 </div>
             </button>
@@ -60,12 +70,12 @@
                 x-transition:leave="transition ease-in duration-150"
                 x-transition:leave-start="opacity-100 scale-100"
                 x-transition:leave-end="opacity-0 scale-95"
-                class="absolute left-0 mt-3 w-72 max-w-[90vw] bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-slate-800 dark:via-slate-700 dark:to-slate-600 text-gray-800 dark:text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-5 space-y-4 backdrop-blur-sm border border-white/20 dark:border-slate-600/20"
+                class="absolute left-0 mt-3 w-72 max-w-[90vw] bg-gradient-to-br from-white via-wood-50 to-wood-100 dark:from-wood-800 dark:via-wood-700 dark:to-wood-600 text-gray-800 dark:text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-5 space-y-4 backdrop-blur-sm border border-white/20 dark:border-wood-600/20"
             >
                 <!-- User Info Section -->
                 <div class="flex items-center gap-4">
                     <div class="w-14 h-14 rounded-full bg-gradient-to-r  from-pink-400 to-purple-500 p-0.5">
-                        <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
+                        <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-wood-700"
                              alt="avatar">
                     </div>
                     <div>

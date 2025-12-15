@@ -1,12 +1,14 @@
 <input type="hidden" id="count" value="{{$count}}" />
+
 @if( count($cart))
     @php
         $wholePrice = 0;
         $wholeDiscount = 0;
     @endphp
+    <div class="max-h-96 overflow-auto">
     @foreach($cart as $item)
         <!-- Cart Item 1 -->
-        <div class="cart-item flex items-center gap-3 p-3 border border-wood-300 dark:border-wood-600 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200">
+        <div class="cart-item  overflow-auto flex items-center gap-3 p-3 border border-wood-300 dark:border-wood-600 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200">
             <div class="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-600 rounded-lg overflow-hidden flex items-center justify-center flex-shrink-0">
                 <a class="h-full" href="{{route('show.product',['product'=>$item['item_id'],'name'=>$item['model']['name']])}}" >
                 <img src="{{asset($item['model']['main_image'])}}" class="h-full object-cover" />
@@ -55,7 +57,7 @@
             </button>
         </div>
     @endforeach
-
+    </div>
     <!-- Divider -->
     <div class="h-px bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
 

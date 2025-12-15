@@ -18,16 +18,35 @@
     <link href="/css/xazarwood_style.css" rel="stylesheet">
     <link href="/js/modules/select2.css" rel="stylesheet">
     <link rel="stylesheet" href="/fontawesome-6.0.0-web/css/all.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <script>
         tailwind.config = {
             darkMode: 'class',
-        };
-
+            theme: {
+                extend: {
+                    colors: {
+                        wood: {
+                            50: '#fdf8f3',
+                            100: '#faf2e8',
+                            200: '#f5e6d4',
+                            300: '#edd4b3',
+                            400: '#e2b88d',
+                            500: '#d4a574',
+                            600: '#b8935f',
+                            700: '#9c7a52',
+                            800: '#6b4e31',
+                            900: '#4a2f1f',
+                            950: 'rgba(19, 10, 5, 0.95)',
+                        }
+                    }
+                }
+            }
+        }
     </script>
 
 
 </head>
-<body class="bg-white dark:bg-slate-900 text-black dark:text-white transition-colors duration-300" x-init="$watch('sidebarOpen', value => document.body.classList.toggle('sidebar-open', value))">
+<body class="overflow-visible bg-white dark:bg-wood-900 text-black dark:text-white transition-colors duration-300" x-init="$watch('sidebarOpen', value => document.body.classList.toggle('sidebar-open', value))">
 <div class="flex min-h-screen max-w-[2620px] mx-auto">
     <!-- Sidebar -->
 

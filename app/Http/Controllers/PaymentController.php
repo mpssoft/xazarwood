@@ -52,36 +52,54 @@ use function PHPUnit\Framework\isEmpty;
             $price = $price* $item->qty ?? 0;
             return max($price, 0); // never below zero
         });
-        $totalPrice +=session('shipping_cost');
-// Create the Order
-        $order = Order::create([
-            'user_id' => $user->id,
-            'status'  => 'pending',
-            'price'   => 2000,//$totalPrice,
-            'shipping_price'   => session('shipping_cost'),
-            'user_address_id'   => session('checkout.address'),
-        ]);
 
-        // Create OrderItems
-        foreach ($cart as $cartItem) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'item_id' => $cartItem['item_id'],
-                'item_type' => $cartItem['item_type'],
-                'price' => $cartItem['price'],
-                'discount' => $cartItem['discount'] ?? null
+        // if order exists then continue and update with new items
+        if(session('orderId')){
+            // update order with new price and shipping price and user address id
+
+            $order = Order::whereId(session('orderId'))->first();
+            $order->update([
+                'status' => 'pending',
+                'price' => $totalPrice,
+                'shipping_price' => session('shipping_cost'),
+                'user_address_id' => session('checkout.address'),
             ]);
+            $order->items()->delete();
+            foreach ($cart as $cartItem) {
+                $order->items()->create([
+                    'order_id' => $order->id,
+                    'item_id' => $cartItem['item_id'],
+                    'item_type' => $cartItem['item_type'],
+                    'price' => $cartItem['price'],
+                    'discount' => $cartItem['discount'] ?? null
+                ]);
+            }
+        }else {
+            // Create the Order
+            $order = Order::create([
+                'user_id' => $user->id,
+                'status' => 'pending',
+                'price' => $totalPrice,
+                'shipping_price' => session('shipping_cost'),
+                'user_address_id' => session('checkout.address'),
+            ]);
+
+            // Create OrderItems
+            foreach ($cart as $cartItem) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'item_id' => $cartItem['item_id'],
+                    'item_type' => $cartItem['item_type'],
+                    'price' => $cartItem['price'],
+                    'discount' => $cartItem['discount'] ?? null
+                ]);
+            }
         }
 
-        // Payment creation & redirect (same as before)
-        $payment = Payment::create([
-            'order_id' => $order->id,
-            'gateway' => 'zarinpal',
-            'status' => 'initiated',
-        ]);
 
+        $totalPrice += session('shipping_cost');
 
-        $response = $this->pay(2000,$order);
+        $response = $this->pay($totalPrice,$order);
         return ($response);
 
     }
@@ -91,14 +109,28 @@ use function PHPUnit\Framework\isEmpty;
         switch (session('checkout.gateway'))
         {
             case 'zarinpal':
+                // Payment creation & redirect (same as before)
+               Payment::create([
+                    'order_id' => $order->id,
+                    'gateway' => 'zarinpal',
+                    'status' => 'initiated',
+                ]);
                 return $this->zarinpal($totalPrice,$order);
             case 'bitpay':
+                // Payment creation & redirect (same as before)
+                Payment::create([
+                    'order_id' => $order->id,
+                    'gateway' => 'bitpay',
+                    'status' => 'initiated',
+                ]);
                 return $this->bitpay($totalPrice,$order);
         }
     }
     public function bitpay($totalPrice,$order)
     {
+
         $amount      = $totalPrice*10;
+
         $orderId    = $order->id;
         $redirectUrl = env('BITPAY_CALLBACK_URL');
         $name        = auth()->user()->name;
@@ -106,7 +138,7 @@ use function PHPUnit\Framework\isEmpty;
         $description = "شماره خرید :".$orderId;
 
         $bitPay = new BitPay(env('BITPAY_TOKEN'), env('BITPAY_IS_TEST'));
-
+        //dd($amount);
         $result = $bitPay->Send($amount, $orderId, $redirectUrl, $name, $email, $description);
 
         if ($result->status > 0)
@@ -118,16 +150,18 @@ use function PHPUnit\Framework\isEmpty;
 
     private function zarinpal($totalPrice,$order)
     {
+
         $response = zarinpal()
             ->merchantId(config('zarinpal.merchant_id'))
             ->amount($totalPrice)
             ->request()
             ->description('پرداخت سفارش #' . $order->id)
-            ->callbackUrl(env('ZARINPAL_CALLBACK_URL') ."/?price=".$totalPrice, [
+            ->callbackUrl(route('shop.cart.payment.zarinpalCallback',[
                 'order_id' => $order->id,
-                'price' => $totalPrice
-            ])
+                'price' => $totalPrice,
+            ]))
             ->send();
+        dd($response);
         if (!$response->success()) {
             alert('', $response->error()->message(), 'toast');
             return redirect()->route('shop.cart.index');
@@ -198,7 +232,6 @@ public function zarinpalCallback()
 
         }
 
-
         $payment = Payment::with('order')->where('order_id',request('order_id'))->firstOrFail();
         $payment->update([
             'status' => "success",
@@ -216,7 +249,11 @@ public function zarinpalCallback()
         $this->paymentSuccess($payment->order);
 
 
-
+        return view('shop::user.order.show', [
+            'status'=>'success',
+            'msg'=>"تشکر از اعتماد شما به خزرچوب، سفارش شما با موفقیت ثبت و بزودی بررسی خواهد شد. با تشکر"  ,
+            'order_id' => request('order_id')
+        ]);
 
 }
 

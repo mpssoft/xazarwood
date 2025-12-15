@@ -77,6 +77,7 @@
                                     @php
                                         $wholePrice = 0;
                                         $wholeDiscount = 0;
+                                        $shipping_cost=0; $barbary_cost=0; $post_cost=0; session()->put('shipping_cost',0);
                                     @endphp
                                     @foreach($cart as $item)
 
@@ -163,7 +164,7 @@
                             </div>
 
                             <!-- Mobile Card View -->
-                            @php $shipping_cost=0; $barbary_cost=0; $post_cost=0; session()->put('shipping_cost',0);  @endphp
+
                             <div class="md:hidden space-y-4 p-4">
                                 @foreach($cart as $item)
                                     @php
@@ -393,6 +394,7 @@
                                     </div>
                                     <div class="flex justify-between text-wood-600 dark:text-wood-300">
                                         <span>هزینه ارسال:</span>
+                                        @php session()->put('shipping_cost',$shipping_cost); @endphp
                                         <span>{{ number_format($shipping_cost) }} تومان</span>
                                     </div>
                                     <div class="flex justify-between text-green-600 dark:text-green-400">

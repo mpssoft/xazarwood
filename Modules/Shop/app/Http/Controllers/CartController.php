@@ -4,6 +4,7 @@ namespace Modules\Shop\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -233,5 +234,18 @@ class CartController extends Controller
         $address = auth()->user()->addresses()->create($data);
 
         return response()->json(['address'=>$address]);
+    }
+
+    public function create(Order $order)
+    {
+        $this->cartService->clearCart();
+        $items = $order->items()->get();
+        foreach ($items as $item){
+
+            $this->add(strtolower( class_basename($item->item_type)),$item->item_id,$item->quantity);
+        }
+        // to remember order save order id in session
+        session()->put('orderId',$order->id);
+        return redirect("/cart");
     }
 }

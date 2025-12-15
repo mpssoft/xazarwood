@@ -2,6 +2,7 @@
 
 namespace Modules\Product\Models;
 
+use App\Models\OrderItem;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Blog\Models\Category;
@@ -31,7 +32,10 @@ class Product extends Model
     {
         return $this->morphToMany(Discount::class, 'discountable');
     }
-
+    public function orderItems()
+    {
+        return $this->morphMany(OrderItem::class, 'item');
+    }
     public function attributes()
     {
         return $this->belongsToMany(Attribute::class)->using(ProductAttributeValue::class)->withPivot(['value_id']);
