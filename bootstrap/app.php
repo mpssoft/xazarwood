@@ -31,6 +31,7 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withCommands([
         \App\Console\Commands\SmsQueueRun::class,
+        \App\Console\Commands\EmailQueueRun::class,
 
 
     ])

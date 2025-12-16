@@ -168,7 +168,7 @@
 
                             @foreach($order->items as $item)
 
-                            <span class="px-3 py-1 bg-wood-100 dark:bg-wood-800 text-wood-700 dark:text-wood-300 rounded-full text-sm"> {{$item->item->name}} </span>
+                            <span class="px-3 py-1 bg-wood-100 dark:bg-wood-800 text-wood-700 dark:text-wood-300 rounded-full text-sm"> {{$item->item->name ?? ''}} </span>
                             @endforeach
 
                         </div>
@@ -189,9 +189,13 @@
                         <a href="{{route('shop.user.order.show',['order_id'=>$order->id])}}" class="w-full lg:w-auto px-2 py-1 bg-wood-600 hover:bg-wood-700 text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm ">مشاهده جزئیات</span> </a>
                        @if($order->status == 'pending')
                                 <a href="{{route('shop.cart.create',$order->id)}}" class="w-full lg:w-auto px-2 py-1 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm ">پرداخت </span> </a>
+                                <form action="{{ route('shop.user.order.delete',$order->id) }}" onsubmit="event.preventDefault();confirmDelete(event);" method="post" id="{{'delete-'.$order->id}}">@csrf @method('delete')
+                                    @csrf
+                                    @method('DELETE')
 
-                        <button class="w-full lg:w-auto px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium smooth-transition"> <span id="view-details-button" class="text-sm">لغو سفارش</span> </button>
-                           @endif
+                                <button type="submit" class="w-full lg:w-auto px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm ">پرداخت </span> </button>
+                                </form>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -204,3 +208,24 @@
 
 
 @endsection
+@push('scripts')
+    <script>
+        function confirmDelete(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'حذف سفارش ',
+                text: 'آیا مطمئن هستید که می‌خواهید این سفارش  را لغو کنید؟',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor:'red',
+                confirmButtonText: 'بله، حذف کن',
+                cancelButtonText: 'لغو'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    e.target.submit();
+                }
+            });
+            return false;
+        }
+    </script>
+@endpush

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\ActiveCode;
 use App\Notifications\ActiveCode as ActiveCodeNotification;
+use App\Notifications\LoginToWebsite;
 use App\Notifications\LoginToWebsite as LoginToWebsiteNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 trait TwoFactorAuthenticate
 {
@@ -17,6 +19,7 @@ trait TwoFactorAuthenticate
         }
         try {
             $user->notify(new LoginToWebsiteNotification());
+
         }catch(\Exception $e){
             throw $e;
         }

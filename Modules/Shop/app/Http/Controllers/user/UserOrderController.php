@@ -3,6 +3,7 @@
 namespace Modules\Shop\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class UserOrderController extends Controller
@@ -25,6 +26,11 @@ class UserOrderController extends Controller
         return view('shop::user.order.show');
     }
 
-
+    public function delete(Order $order)
+    {
+        auth()->user()->orders()->whereId($order->id)->delete();
+        alert("","سفارش مورد نظر شما حذف شد!","success");
+        return back();
+    }
 
 }

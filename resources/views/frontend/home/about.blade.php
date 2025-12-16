@@ -40,14 +40,7 @@
                             سال تجربه
                         </div>
                     </div>
-                    <div class="text-center p-6 bg-wood-50 dark:bg-wood-700 rounded-xl">
-                        <div class="text-4xl font-bold text-wood-600 dark:text-wood-400 mb-2">
-                            ۲
-                        </div>
-                        <div class="text-sm text-wood-700 dark:text-wood-300">
-                            هفته تحویل
-                        </div>
-                    </div>
+
                     <div class="text-center p-6 bg-wood-50 dark:bg-wood-700 rounded-xl">
                         <div class="text-4xl font-bold text-wood-600 dark:text-wood-400 mb-2">
                             ۱۰۰٪
@@ -58,7 +51,7 @@
                     </div>
                     <div class="text-center p-6 bg-wood-50 dark:bg-wood-700 rounded-xl">
                         <div class="text-4xl font-bold text-wood-600 dark:text-wood-400 mb-2">
-                            ۵۰۰+
+                            100+
                         </div>
                         <div class="text-sm text-wood-700 dark:text-wood-300">
                             مشتری راضی
@@ -76,11 +69,10 @@
                     </div>
                 </div>
                 <div class="md:col-span-2">
-                    <div class="inline-block bg-white/20 px-3 py-1 rounded-full text-sm mb-3"><i class="fas fa-star ml-1"></i> بنیانگذار و استاد چوب‌کار
-                    </div>
+
                     <h3 class="text-3xl font-bold mb-4">علیرضا حق نظری</h3>
                     <p class="text-white/90 leading-relaxed mb-4">با بیش از ۱۵ سال تجربه در هنر چوب‌کاری، علیرضا حق نظری تمام عشق و تخصص خود را در ساخت محصولات چوبی منحصر به فرد به کار می‌گیرد. او معتقد است که چوب‌کاری فقط یک حرفه نیست، بلکه یک هنر و یک سبک زندگی است.</p>
-                    <div class="flex flex-wrap gap-3"><span class="bg-white/20 px-3 py-1 rounded-lg text-sm"> <i class="fas fa-award ml-1"></i> متخصص چوب گردو </span> <span class="bg-white/20 px-3 py-1 rounded-lg text-sm"> <i class="fas fa-palette ml-1"></i> طراح محصول </span> <span class="bg-white/20 px-3 py-1 rounded-lg text-sm"> <i class="fas fa-tools ml-1"></i> استاد کار دست‌ساز </span>
+                    <div class="flex flex-wrap gap-3"> <span class="bg-white/20 px-3 py-1 rounded-lg text-sm"> <i class="fas fa-palette ml-1"></i> طراح محصول </span> <span class="bg-white/20 px-3 py-1 rounded-lg text-sm"> <i class="fas fa-tools ml-1"></i> استاد کار دست‌ساز </span>
                     </div>
                 </div>
             </div>
@@ -154,16 +146,7 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-white dark:bg-wood-800 rounded-xl shadow-sm p-6">
-                <div class="flex items-start space-x-4 space-x-reverse">
-                    <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fas fa-clock text-orange-600 dark:text-orange-400 text-xl"></i>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">تحویل ۲ هفته‌ای</h4>
-                        <p class="text-sm text-wood-600 dark:text-wood-400">آماده‌سازی و تحویل سفارش شما در کمتر از ۲ هفته</p>
-                    </div>
-                </div>
-            </div>
+
             <div class="bg-white dark:bg-wood-800 rounded-xl shadow-sm p-6">
                 <div class="flex items-start space-x-4 space-x-reverse">
                     <div class="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fas fa-heart text-red-600 dark:text-red-400 text-xl"></i>
@@ -213,27 +196,32 @@
                 <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">ساخت دست‌ساز</h4>
                 <p class="text-sm text-wood-600 dark:text-wood-400">شروع ساخت محصول با دقت و کیفیت بالا</p>
             </div>
-            <div class="text-center">
-                <div class="w-16 h-16 bg-wood-600 dark:bg-wood-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                    ۴
-                </div>
-                <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">تحویل محصول</h4>
-                <p class="text-sm text-wood-600 dark:text-wood-400">تحویل محصول آماده در کمتر از ۲ هفته</p>
-            </div>
+
         </div>
     </section><!-- Contact CTA Section -->
     <section class="fade-in">
         <div class="bg-gradient-to-br from-wood-600 to-wood-700 dark:from-wood-700 dark:to-wood-800 rounded-2xl shadow-xl p-8 md:p-12 text-center text-white"><i class="fas fa-map-marker-alt text-5xl mb-6 opacity-80"></i>
             <h3 class="text-3xl font-bold mb-4">ما را پیدا کنید</h3>
             <p class="text-xl mb-2">شهر سلماس، آذربایجان غربی</p>
-            <p class="text-white/80 mb-8 max-w-2xl mx-auto">برای سفارش محصولات چوبی دست‌ساز یا بازدید از کارگاه ما، با ما در تماس باشید</p>
+
+            <section class="mb-20 fade-in">
+                <div class="bg-white dark:bg-wood-800 rounded-2xl shadow-lg p-8">
+                    <div class="text-center mb-8">
+                        <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4"><i class="fas fa-map text-wood-600 dark:text-wood-400 ml-3"></i> موقعیت کارگاه</h3>
+                        <p class="text-wood-700 dark:text-wood-300">سلماس، خیابان شریعتی، تقاطع خیابان فردوسی - صنایع چوبی خزرچوب</p>
+                    </div>
+                    <div class="bg-wood-100 dark:bg-wood-700 rounded-xl h-96 flex items-center justify-center">
+                        <div class="text-center w-full h-full ">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d783.9248787387371!2d44.759149199999996!3d38.193653399999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4011af00343ba77d%3A0x5eaf2462f575c259!2sXazarwood!5e0!3m2!1sen!2s!4v1762699283415!5m2!1sen!2s" class="w-full h-full" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <div class="flex flex-wrap justify-center gap-4">
+                <a href="/contact" >
                 <div class="bg-white/20 px-6 py-3 rounded-lg"><i class="fas fa-phone ml-2"></i> <span>تماس با ما</span>
                 </div>
-                <div class="bg-white/20 px-6 py-3 rounded-lg"><i class="fas fa-envelope ml-2"></i> <span>ارسال پیام</span>
-                </div>
-                <div class="bg-white/20 px-6 py-3 rounded-lg"><i class="fab fa-instagram ml-2"></i> <span>اینستاگرام</span>
-                </div>
+                </a>
             </div>
         </div>
     </section>

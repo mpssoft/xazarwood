@@ -7,8 +7,10 @@ use App\Helpers\BitPay;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
+use App\Models\User;
 use App\Notifications\Channels\MelipayamakChannel;
 use App\Notifications\LessonPlanPaidNotification;
+use App\Notifications\NotifyAdminBuy;
 use App\Notifications\NotifyUserBuy;
 use App\Notifications\SendOtpSms;
 use App\Services\SpotPlayerService;
@@ -161,7 +163,7 @@ use function PHPUnit\Framework\isEmpty;
                 'price' => $totalPrice,
             ]))
             ->send();
-        dd($response);
+
         if (!$response->success()) {
             alert('', $response->error()->message(), 'toast');
             return redirect()->route('shop.cart.index');
@@ -197,7 +199,7 @@ use function PHPUnit\Framework\isEmpty;
                 'status' => 'paid',
             ]);
 
-            // if item hase file
+
             $this->paymentSuccess($payment->order);
 
 
@@ -272,8 +274,13 @@ public function zarinpalCallback()
             {
                 $orderDetail .= $item['product']->name. "\n";
             }
-            $channel = new MelipayamakChannel();
-            $response = $channel->send(auth()->user(), new NotifyUserBuy(auth()->user()->mobile, $order->id,$orderDetail));
+
+
+            $admin = User::where('mobile','09384056563')->first();
+
+            $user->notify(new NotifyUserBuy($order,$orderDetail));
+            $admin->notify(new NotifyAdminBuy($user,$order,$orderDetail));
+
 
             CartItem::where('user_id', auth()->id())->delete();
             Cookie::queue(Cookie::forget('shop_cart'));

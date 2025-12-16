@@ -23,8 +23,11 @@ class UserProfileController extends Controller
         $user = auth()->user();
         $data = $request->validate([
             'name' => 'required|string',
+            'family' => 'required|string',
+            'default_address' => 'integer',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048', // optional photo
         ]);
+
         if(isset($request->email)){
             $email = $request->validate([
                 'email' => 'email'

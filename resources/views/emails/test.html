@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="fa" dir="rtl" class="page-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تایید خرید</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+
+        .page-html {
+            height: 100%;
+        }
+
+        .page-body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Vazirmatn', Arial, sans-serif;
+            background: linear-gradient(135deg, #EBF4FF 0%, #E8D8F5 50%, #FFE8F0 100%);
+        }
+
+        .main-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            padding: 32px 16px;
+        }
+
+        .email-container {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* Shop Name Section */
+        .shop-header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .shop-badge {
+            display: inline-block;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 16px 32px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .shop-badge-inner {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .shop-icon {
+            width: 40px;
+            height: 40px;
+            color: #92400e;
+        }
+
+        .shop-name {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+            color: #78350f;
+        }
+
+        /* Success Icon Section */
+        .success-section {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .success-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .success-checkmark {
+            width: 48px;
+            height: 48px;
+            color: white;
+        }
+
+        .email-title {
+            margin: 0 0 8px 0;
+            font-size: 30px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .email-subtitle {
+            margin: 0;
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        /* Card Styles */
+        .email-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        }
+
+        .card-center {
+            text-align: center;
+        }
+
+        .greeting-text {
+            margin: 0 0 12px 0;
+            font-size: 18px;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .thank-you-text {
+            margin: 0;
+            color: #6b7280;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+        }
+
+        .section-header-blue {
+            border-bottom: 2px solid #DBEAFE;
+        }
+
+        .section-header-green {
+            border-bottom: 2px solid #D1FAE5;
+        }
+
+        .section-header-purple {
+            border-bottom: 2px solid #E9D5FF;
+        }
+
+        .section-header-orange {
+            border-bottom: 2px solid #FED7AA;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-icon-blue {
+            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+        }
+
+        .section-icon-green {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .section-icon-purple {
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+        }
+
+        .section-icon-orange {
+            background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+        }
+
+        .section-icon svg {
+            width: 20px;
+            height: 20px;
+            color: white;
+        }
+
+        .section-title {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        /* Info Rows */
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        .info-value {
+            color: #111827;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        /* Product Items */
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-details {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .product-icon-wrapper {
+            width: 64px;
+            height: 64px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .product-icon-blue {
+            background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%);
+        }
+
+        .product-icon-green {
+            background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+        }
+
+        .product-icon-purple {
+            background: linear-gradient(135deg, #E9D5FF 0%, #DDD6FE 100%);
+        }
+
+        .product-icon-wrapper svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .product-icon-blue svg {
+            color: #2563eb;
+        }
+
+        .product-icon-green svg {
+            color: #10b981;
+        }
+
+        .product-icon-purple svg {
+            color: #a855f7;
+        }
+
+        .product-name {
+            margin: 0 0 4px 0;
+            font-weight: 700;
+            color: #111827;
+            font-size: 16px;
+        }
+
+        .product-quantity-wrapper {
+            margin: 0;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .product-quantity {
+            font-weight: 600;
+        }
+
+        .price-badge {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            white-space: nowrap;
+            margin-right: 12px;
+        }
+
+        /* Summary Section */
+        .total-row {
+            background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .total-row-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .total-label {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .total-amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        /* Tracking Section */
+        .tracking-card {
+            background: linear-gradient(135deg, #EBF8FF 0%, #E0E7FF 100%);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        }
+
+        .tracking-content {
+            display: flex;
+            gap: 16px;
+        }
+
+        .tracking-icon-wrapper {
+            flex-shrink: 0;
+        }
+
+        .tracking-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tracking-icon svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+
+        .tracking-text {
+            flex: 1;
+        }
+
+        .tracking-title {
+            margin: 0 0 8px 0;
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .tracking-message {
+            margin: 0;
+            color: #374151;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        .footer-card {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+        }
+
+        .footer-content {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .help-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .help-icon {
+            width: 24px;
+            height: 24px;
+            color: #2563eb;
+        }
+
+        .help-title {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .support-text {
+            margin: 0 0 16px 0;
+            color: #6b7280;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .action-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            color: white;
+        }
+
+        .action-button-green {
+            background: #16a34a;
+        }
+
+        .action-button-blue {
+            background: #2563eb;
+        }
+
+        .action-button svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .footer-divider {
+            border-top: 1px solid #d1d5db;
+            padding-top: 16px;
+        }
+
+        .footer-thanks {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            margin: 0 0 8px 0;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            font-size: 12px;
+            color: #9ca3af;
+            margin: 0 0 16px 0;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .footer-link {
+            font-size: 12px;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .footer-separator {
+            color: #9ca3af;
+        }
+    </style>
+    <style>@view-transition { navigation: auto; }</style>
+
+    <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+</head>
+<body class="page-body">
+<div class="main-wrapper">
+    <div class="email-container"><!-- Shop Name -->
+        <div class="shop-header">
+            <div class="shop-badge">
+                <div class="shop-badge-inner">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#fbc200" d="M320 32C327 32 333.7 35.1 338.3 40.5L474.3 200.5C480.4 207.6 481.7 217.6 477.8 226.1C473.9 234.6 465.4 240 456 240L431.1 240L506.3 328.5C512.4 335.6 513.7 345.6 509.8 354.1C505.9 362.6 497.4 368 488 368L449.5 368L538.3 472.5C544.4 479.6 545.7 489.6 541.8 498.1C537.9 506.6 529.4 512 520 512L352 512L352 576C352 593.7 337.7 608 320 608C302.3 608 288 593.7 288 576L288 512L120 512C110.6 512 102.1 506.6 98.2 498.1C94.3 489.6 95.6 479.6 101.7 472.5L190.5 368L152 368C142.6 368 134.1 362.6 130.2 354.1C126.3 345.6 127.6 335.6 133.7 328.5L208.9 240L184 240C174.6 240 166.1 234.6 162.2 226.1C158.3 217.6 159.6 207.6 165.7 200.5L301.7 40.5C306.3 35.1 313 32 320 32z"/></svg>
+                    <a href="/" >
+                    <h2 id="shop-name" class="shop-name">صنایع چوبی خزرچوب</h2>
+                    </a>
+                </div>
+            </div>
+        </div><!-- Success Icon -->
+        <div class="success-section">
+            <div class="success-icon-wrapper">
+                <svg class="success-checkmark" fill="none" stroke="currentColor" viewbox="0 0 24 24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h1 id="email-subject" class="email-title">خرید شما با موفقیت انجام شد!</h1>
+            <p class="email-subtitle">از خرید شما سپاسگزاریم</p>
+        </div><!-- Greeting Message -->
+        <div class="email-card card-center">
+            <p id="greeting" class="greeting-text">سلام،  <b>{{$user->name }} {{$user->family}} </b>   عزیز</p>
+            <p id="thank-you-message" class="thank-you-text">از اینکه فروشگاه ما را برای خرید انتخاب کردید صمیمانه سپاسگزاریم. سفارش شما با موفقیت ثبت شد و در اسرع وقت برای ارسال آماده خواهد شد.</p>
+        </div><!-- Order Information -->
+        <div class="email-card">
+            <div class="section-header section-header-blue">
+                <div class="section-icon section-icon-blue">
+                    <svg fill="currentColor" viewbox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" /> <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" />
+                    </svg>
+                </div>
+                <h2 class="section-title">اطلاعات سفارش</h2>
+            </div>
+            <div>
+                <div class="info-row"><span id="order-number-label" class="info-label">شماره سفارش:</span> <span id="order-number" class="info-value">#ORD-2024-8956</span>
+                </div>
+                <div class="info-row"><span id="order-date-label" class="info-label">تاریخ سفارش:</span> <span id="order-date" class="info-value">۸ دی ۱۴۰۳ - ساعت ۱۵:۳۰</span>
+                </div>
+                <div class="info-row"><span id="payment-method-label" class="info-label">روش پرداخت:</span> <span id="payment-method" class="info-value">پرداخت آنلاین</span>
+                </div>
+            </div>
+        </div><!-- Products List -->
+        <div class="email-card">
+            <div class="section-header section-header-purple">
+                <div class="section-icon section-icon-purple">
+                    <svg fill="currentColor" viewbox="0 0 20 20"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                    </svg>
+                </div>
+                <h2 id="products-title" class="section-title">محصولات خریداری شده</h2>
+            </div>
+            <div><!-- Product 1 -->
+                <div class="product-item">
+                    <div class="product-details">
+                        <div class="product-icon-wrapper product-icon-blue">
+                            <svg fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 id="product1-name" class="product-name">گوشی موبایل سامسونگ مدل Galaxy S23</h3>
+                            <p class="product-quantity-wrapper">تعداد: <span id="product1-quantity" class="product-quantity">۱ عدد</span></p>
+                        </div>
+                    </div>
+                    <div class="price-badge"><span id="product1-price">۳۵,۰۰۰,۰۰۰</span> تومان
+                    </div>
+                </div><!-- Product 2 -->
+                <div class="product-item">
+                    <div class="product-details">
+                        <div class="product-icon-wrapper product-icon-green">
+                            <svg fill="currentColor" viewbox="0 0 20 20"><path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 id="product2-name" class="product-name">هدفون بلوتوثی سونی WH-1000XM5</h3>
+                            <p class="product-quantity-wrapper">تعداد: <span id="product2-quantity" class="product-quantity">۱ عدد</span></p>
+                        </div>
+                    </div>
+                    <div class="price-badge"><span id="product2-price">۸,۵۰۰,۰۰۰</span> تومان
+                    </div>
+                </div><!-- Product 3 -->
+                <div class="product-item">
+                    <div class="product-details">
+                        <div class="product-icon-wrapper product-icon-purple">
+                            <svg fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 id="product3-name" class="product-name">کاور محافظ گوشی سیلیکونی</h3>
+                            <p class="product-quantity-wrapper">تعداد: <span id="product3-quantity" class="product-quantity">۲ عدد</span></p>
+                        </div>
+                    </div>
+                    <div class="price-badge"><span id="product3-price">۳۵۰,۰۰۰</span> تومان
+                    </div>
+                </div>
+            </div>
+        </div><!-- Order Summary -->
+        <div class="email-card">
+            <div class="section-header section-header-orange">
+                <div class="section-icon section-icon-orange">
+                    <svg fill="currentColor" viewbox="0 0 20 20"><path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" /> <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" />
+                    </svg>
+                </div>
+                <h2 class="section-title">خلاصه مالی</h2>
+            </div>
+            <div>
+                <div class="info-row"><span id="subtotal-label" class="info-label">جمع جزء:</span> <span id="subtotal" class="info-value">۴۳,۸۵۰,۰۰۰ تومان</span>
+                </div>
+                <div class="info-row"><span id="shipping-label" class="info-label">هزینه ارسال:</span> <span id="shipping-cost" class="info-value">۱۵۰,۰۰۰ تومان</span>
+                </div>
+                <div class="info-row"><span id="tax-label" class="info-label">مالیات بر ارزش افزوده (۹٪):</span> <span id="tax-amount" class="info-value">۳,۹۴۶,۵۰۰ تومان</span>
+                </div>
+                <div class="total-row">
+                    <div class="total-row-inner"><span id="total-label" class="total-label">جمع کل:</span> <span class="total-amount"> <span id="total-amount">۴۷,۹۴۶,۵۰۰</span> تومان </span>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Tracking Info -->
+        <div class="tracking-card">
+            <div class="tracking-content">
+                <div class="tracking-icon-wrapper">
+                    <div class="tracking-icon">
+                        <svg fill="currentColor" viewbox="0 0 20 20"><path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" /> <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="tracking-text">
+                    <h3 class="tracking-title">پیگیری سفارش</h3>
+                    <p id="tracking-message" class="tracking-message">سفارش شما به زودی آماده ارسال می‌شود. کد رهگیری مرسوله از طریق پیامک و ایمیل برای شما ارسال خواهد شد. می‌توانید با مراجعه به وب‌سایت ما و وارد کردن کد رهگیری، وضعیت سفارش خود را پیگیری کنید.</p>
+                </div>
+            </div>
+        </div><!-- Footer -->
+        <div class="footer-card">
+            <div class="footer-content">
+                <div class="help-header">
+                    <svg class="help-icon" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" />
+                    </svg>
+                    <h3 class="help-title">نیاز به کمک دارید؟</h3>
+                </div>
+                <p id="support-message" class="support-text">تیم پشتیبانی ما آماده پاسخگویی به سوالات شماست. می‌توانید از طریق ایمیل، تلفن یا چت آنلاین با ما در ارتباط باشید.</p>
+                <div class="action-buttons"><a href="tel:02112345678" target="_blank" rel="noopener noreferrer" class="action-button action-button-green">
+                    <svg fill="currentColor" viewbox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                    </svg> تماس تلفنی </a> <a href="mailto:support@example.com" target="_blank" rel="noopener noreferrer" class="action-button action-button-blue">
+                    <svg fill="currentColor" viewbox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /> <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg> ارسال ایمیل </a>
+                </div>
+            </div>
+            <div class="footer-divider">
+                <p class="footer-thanks">از حمایت و اعتماد شما سپاسگزاریم</p>
+                <p class="footer-copyright">© ۱۴۰۳ <span id="company-name">فروشگاه آنلاین ما</span> - تمامی حقوق محفوظ است</p>
+                <div class="footer-links"><a href="#" class="footer-link">سیاست حفظ حریم خصوصی</a> <span class="footer-separator">|</span> <a href="#" class="footer-link">شرایط و قوانین</a> <span class="footer-separator">|</span> <a href="#" class="footer-link">پشتیبانی</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

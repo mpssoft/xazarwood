@@ -125,10 +125,10 @@
 @include('sweetalert::alert')
 @yield('script')
 
-@stack('scripts')
+
 
 <script src="/js/modules/sweetalert2.js"></script>
-
+@stack('scripts')
 <script>
     document.querySelectorAll('[data-expire]').forEach(function (el) {
         let expireDate = new Date(el.getAttribute('data-expire')).getTime();

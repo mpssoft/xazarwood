@@ -6,13 +6,7 @@
     <!-- Header -->
     <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-2xl shadow-xl border border-indigo-100 dark:border-gray-700 overflow-hidden">
         <div class="p-8">
-            <nav class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-6 gap-2" aria-label="Breadcrumb">
-                <a href="{{route('user.home')}}" class="hover:text-gray-700 dark:hover:text-gray-200 transition-colors">داشبورد</a>
-                <span class="text-gray-300">/</span>
-                <a href="{{route('user.messages.index')}}" class="hover:text-gray-700 dark:hover:text-gray-200 transition-colors">پیام‌ها</a>
-                <span class="text-gray-300">/</span>
-                <span class="text-gray-700 dark:text-gray-300 font-medium">نمایش پیام</span>
-            </nav>
+
 
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div class="flex items-start gap-4">

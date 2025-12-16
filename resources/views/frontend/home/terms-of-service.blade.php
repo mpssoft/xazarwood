@@ -260,30 +260,6 @@
                 </div>
             </div>
 
-            <!-- Contact Section -->
-            <div class="bg-gradient-to-r from-wood-600 to-wood-800 rounded-2xl shadow-lg text-wood-50 p-8 text-center">
-                <div class="w-16 h-16 bg-wood-50 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-headset text-2xl"></i>
-                </div>
-                <h2 class="text-2xl font-bold mb-4">تماس با ما</h2>
-                <p class="text-lg opacity-90 mb-6">
-                    برای ثبت سفارش، پیگیری یا طرح هرگونه سؤال می‌توانید با پشتیبانی خزرچوب در ارتباط باشید.
-                </p>
-                <div class="flex items-center justify-center gap-6 text-sm">
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-phone"></i>
-                        <span>09144851033</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-phone"></i>
-                        <span>09356042248</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-globe"></i>
-                        <span>XazarWoods.com</span>
-                    </div>
-                </div>
-            </div>
 
             <!-- Back to Top Button -->
             <div class="fixed bottom-8 left-8">

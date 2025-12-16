@@ -23,6 +23,7 @@ class ContactMessageController extends Controller
 
         ContactMessage::create($validated);
 
+
         return response()->json([
             'success' => true,
             'message' => 'پیام شما با موفقیت ثبت شد.',

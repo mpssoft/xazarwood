@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Notifications\Channels\MelipayamakChannel;
 use App\Notifications\Channels\RayganSmsChannel;
+use App\Notifications\LoginToWebsite;
 use App\Notifications\SendOtpSms;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use App\Models\User;
 
@@ -66,6 +68,7 @@ class OtpLoginController extends Controller
         if($c== "raygansms"){
            if($response > 1000 || $response == 2)
            {
+
                return response()->json([
                    'status' => 'ok',
                    'code' => $response,
@@ -80,6 +83,8 @@ class OtpLoginController extends Controller
         }elseif($c=="melipayamak"){
 
             if ($response['StrRetStatus'] == "Ok") {
+
+
                 return response()->json([
                     'status' => 'ok',
                     'code' => $response['RetStatus'],
@@ -118,7 +123,7 @@ class OtpLoginController extends Controller
 
             Auth::login($user, $request->remember == 1);
             Cache::forget('otp_' . $request->mobile);
-
+            Notification::route('mail','afshin.khalilzadeh@gmail.com')->notify(new LoginToWebsite(auth()->user()));
             return response()->json(['status' => 'ok', 'role' => $user->role]);
 
         }

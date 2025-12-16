@@ -266,7 +266,7 @@
                     $('#timerBox').addClass('hidden'); // ✅ hide timer
 
                     if (response.role == 'user')
-                    window.location.href = '{{ route('user.home') }}'; // ✅ redirect
+                    window.location.href = '{{ route('shop.user.orders.index') }}'; // ✅ redirect
                     else
                     window.location.href = '{{ route('admin.home') }}'; // ✅ redirect
 

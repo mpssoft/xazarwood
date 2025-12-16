@@ -6,13 +6,8 @@
     <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-2xl shadow-xl border border-indigo-100 dark:border-gray-700 overflow-hidden">
         <div class="p-8">
             <nav class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-6 gap-2" aria-label="Breadcrumb">
-                <a href="{{route('user.home')}}" class="hover:text-gray-700 dark:hover:text-gray-200 transition-colors">داشبورد</a>
-                <span class="text-gray-300">/</span>
-                <a href="{{route('user.messages.index')}}" class="hover:text-gray-700 dark:hover:text-gray-200 transition-colors">پیام‌ها</a>
-                <span class="text-gray-300">/</span>
                 <span class="text-gray-700 dark:text-gray-300 font-medium">ارسال پیام به مدیریت سایت</span>
             </nav>
-
             <div class="flex items-center gap-4">
                 <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 shadow-lg flex items-center justify-center">
                     <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">

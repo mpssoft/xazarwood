@@ -1,15 +1,11 @@
 @extends('layouts.user.master')
 @section('content')
-<div class="bg-gradient-to-br from-indigo-50 to-sky-50 dark:from-gray-900 dark:to-slate-900 min-h-screen py-8 px-4">
+<div class="bg-gradient-to-br from-indigo-50 to-sky-50 dark:from-wood-800 dark:to-wood-900 min-h-screen py-8 px-4">
 <div class="max-w-6xl mx-auto space-y-8">
     <!-- Header -->
-    <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-2xl shadow-xl border border-indigo-100 dark:border-gray-700 overflow-hidden">
+    <div class="bg-white/90 dark:bg-wood-800/90 backdrop-blur rounded-2xl shadow-xl border border-indigo-100 dark:border-wood-700 overflow-hidden">
         <div class="p-8">
-            <nav class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-6 gap-2" aria-label="Breadcrumb">
-                <a href="{{route('user.home')}}" class="hover:text-gray-700 dark:hover:text-gray-200 transition-colors">داشبورد</a>
-                <span class="text-gray-300">/</span>
-                <span class="text-gray-700 dark:text-gray-300 font-medium">پیام‌های من</span>
-            </nav>
+
 
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div class="flex items-center gap-4">
@@ -20,8 +16,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">پیام‌های من</h1>
-                        <p class="text-gray-600 dark:text-gray-300">مشاهده، پاسخ و مدیریت پیام‌ها</p>
+                        <h1 class="text-3xl font-extrabold text-wood-900 dark:text-white">پیام‌های من</h1>
+                        <p class="text-wood-600 dark:text-wood-300">مشاهده، پاسخ و مدیریت پیام‌ها</p>
                     </div>
                 </div>
 
@@ -44,7 +40,7 @@
     <div class="space-y-5">
         <!-- Message Card 1 (Unread) -->
         @foreach($messages as $message)
-        <article class="bg-white dark:bg-gray-800 rounded-2xl border border-indigo-100 dark:border-gray-700 shadow-lg overflow-hidden">
+        <article class="bg-white dark:bg-wood-800 rounded-2xl border border-indigo-100 dark:border-wood-700 shadow-lg overflow-hidden">
             <div class="p-6">
                 <div class="flex flex-col md:flex-row md:items-start gap-4">
                     <!-- Icon + from -->
@@ -64,13 +60,18 @@
 
                     <!-- Main -->
                     <div class="flex-1 min-w-0">
-                        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                            <h3 class="text-lg md:flex  font-bold text-gray-900 dark:text-white truncate ">{{ $message->subject }}</h3>
+                        @if($message->sender_id == auth()->user()->id)
+                        <div  class="text-xs text-wood-500 dark:text-wood-400">به: {{$message->receiver->name}} {{$message->receiver->family}}</div>
+                        @else
+                        <div  class="text-xs text-wood-500 dark:text-wood-400">از: {{$message->sender->name}} {{$message->sender->family}}</div>
+                        @endif
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                            <h3 class="text-lg md:flex  font-bold text-wood-900 dark:text-white truncate ">{{ $message->subject }}</h3>
                             <div class=" md:flex-1  ">
-                                <time class="text-xs text-gray-500 dark:text-gray-400">{{ \Morilog\Jalali\Jalalian::forge($message->created_at)->ago() }}</time>
+                                <time class="text-xs text-wood-500 dark:text-wood-400">{{ \Morilog\Jalali\Jalalian::forge($message->created_at)->ago() }}</time>
                             </div>
                         </div>
-                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-300 truncate w-80">{{ $message->body }}</p>
+                        <p class="mt-1 text-sm text-wood-600 dark:text-wood-300 truncate w-80">{{ $message->body }}</p>
 
                     </div>
 
@@ -78,11 +79,11 @@
                     <div class="flex items-center gap-2 md:self-stretch">
                         <!-- View -->
                         <a href="{{route('user.messages.show',$message->id)}}"
-                           class="p-2 rounded-xl border-2 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition"
+                           class="p-2 rounded-xl border-2 border-wood-200 dark:border-wood-600 text-wood-700 dark:text-wood-300 hover:bg-wood-50 dark:hover:bg-wood-700 transition"
                            title="مشاهده">
                             <i class="fas fa-eye"></i>
                         </a>
-
+                        @if($message->sender_id != auth()->user()->id)
                         <!-- Mark as read -->
                         <form method="POST" action="{{route('user.messages.mark-as-read',$message->id)}}">
                             @csrf
@@ -93,7 +94,7 @@
                                 <i class="fas fa-envelope-open"></i>
                             </button>
                         </form>
-
+                        @endif
                         <!-- Archive -->
                      {{--   <form method="POST" action="/admin/messages/1/archive">
                             <button type="submit"
@@ -125,11 +126,12 @@
         @endforeach
     </div>
 
-
+    @if($messages->count() > 10)
     <!-- Pagination -->
-    <div class="flex items-center justify-between bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-indigo-100 dark:border-gray-700 px-6 py-4">
+    <div class="flex items-center justify-between bg-white dark:bg-wood-800 rounded-2xl shadow-xl border border-indigo-100 dark:border-wood-700 px-6 py-4">
         {{$messages->render() }}
     </div>
+        @endif
 </div>
 </div>
 {{-- SweetAlert Confirmation --}}

@@ -119,14 +119,14 @@ class UserMessageController extends Controller
 
         Message::create([
             'sender_id' => auth()->id(),
-            'receiver_id' => User::where('mobile','09141879767')->first()->id,
+            'receiver_id' => User::where('mobile','09384056563')->first()->id,
             'subject' => $request->subject,
             'body' => $request->body,
             'parent_id' => null, // new message, not reply
         ]);
 
         toast('پیام با موفقیت ارسال شد', 'success', 'center');
-        return redirect()->back()->with('success', 'Reply sent successfully.');
+        return redirect()->route('user.messages.index')->with('success', 'Reply sent successfully.');
     }
 
 

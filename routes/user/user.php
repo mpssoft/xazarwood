@@ -8,9 +8,10 @@ use App\Http\Controllers\User\panel\UserMessageController;
 use App\Http\Controllers\User\panel\UserPanelController;
 use App\Http\Controllers\User\panel\UserProfileController;
 use Illuminate\Support\Facades\Route;
+use Modules\Shop\Http\Controllers\User\UserOrderController;
 
-Route::get("/",[UserPanelController::class,'home'])->name('home');
 
+Route::get('/',[UserOrderController::class,'index'])->name('orders.index');
 
 Route::resource('messages',UserMessageController::class);
 

@@ -2,26 +2,27 @@
 
 namespace App\Notifications;
 
-use App\Models\User;
-use App\Notifications\Channels\RayganSmsChannel;
+use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class LoginToWebsite extends Notification implements ShouldQueue
+class NotifyAdminBuy extends Notification implements shouldQueue
 {
     use Queueable;
-
-    public $tries =3 ;
-    public $user ;
+    protected $orderDitail;
+    protected $order;
+    protected $user;
     /**
      * Create a new notification instance.
      */
-    public function __construct($user)
+    public function __construct($user,$order,$orderDitail)
     {
-       $this->user = $user;
         $this->onQueue('email');
+        $this->user = $user;
+        $this->orderDitail = $orderDitail;
+        $this->order = $order;
     }
 
     /**
@@ -31,19 +32,29 @@ class LoginToWebsite extends Notification implements ShouldQueue
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['melipayamak','mail'];
     }
 
     /**
      * Get the mail representation of the notification.
      */
+
+    public function toMeliPayamakSms($notifiable)
+    {
+        $oid = $this->order->id;
+        return [
+            'to' => $notifiable->mobile,
+            'text' => "$oid;$this->orderDitail",
+            'bodyId' => env('MELIPAYAMAK_INFORM_ADMIN_NEW_BUY'),
+        ];
+    }
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage)->markdown('emails.login-to-website', [
-            'user' => $this->user
+        return (new MailMessage)->markdown('emails.inform-user-purchase', [
+            'user' => $this->user,
+            'order'=> $this->order
         ]);
     }
-
     /**
      * Get the array representation of the notification.
      *

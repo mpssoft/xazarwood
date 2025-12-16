@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Notifications\LoginToWebsite;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
@@ -31,6 +33,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->authenticate();
         $request->session()->regenerate();
+
         if ($this->loggedIn($request, $request->user())) {
             return $this->loggedIn($request, $request->user()) ?? redirect()->intended(
                 $request->user()->role === 'admin' ? '/admin' : '/cart'

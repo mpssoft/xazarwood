@@ -139,7 +139,7 @@
                         <button id="userMenuBtn" class=" transition-colors">
 
                             <div class="w-10 h-10 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 p-0.5 transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl">
-                                <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
+                                <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man2.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
                                      alt="avatar">
                             </div>
                         </button>
@@ -149,11 +149,12 @@
                             <!-- User Info Section -->
                             <div class="flex items-center gap-4">
                                 <div class="w-14 h-14 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 p-0.5">
-                                    <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
+                                    <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man2.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
                                          alt="avatar">
                                 </div>
                                 <div>
-                                    <p class="font-bold text-lg bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">اکبر</p>
+                                    <p class="font-bold text-lg bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                                        {{auth()->user()->name}}</p>
                                     <a href="/{{auth()->user()->role}}" class="text-sm text-amber-600 hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300 hover:underline transition-colors duration-200">مشاهده پنل کاربری</a>
                                 </div>
                             </div>
@@ -171,11 +172,8 @@
                                     <i class="fas fa-heart text-red-500 group-hover:text-red-600 dark:text-red-400 dark:group-hover:text-red-300 transition-colors duration-200 w-4"></i>
                                     <span class="font-medium">علاقه‌مندی‌ها</span>
                                 </a>
-                                <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
-                                    <i class="fas fa-credit-card text-green-600 group-hover:text-green-700 dark:text-green-400 dark:group-hover:text-green-300 transition-colors duration-200 w-4"></i>
-                                    <span class="font-medium">روش‌های پرداخت</span>
-                                </a>
-                                <a href="#" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
+
+                                <a href="{{route('user.profile.edit')}}" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
                                     <div class="flex items-center gap-3">
                                         <i class="fas fa-user-edit text-amber-600 group-hover:text-amber-700 dark:text-amber-400 dark:group-hover:text-amber-300 transition-colors duration-200 w-4"></i>
                                         <span class="font-medium">ویرایش پروفایل</span>
@@ -275,26 +273,26 @@
                         @foreach(\Modules\Blog\Models\Category::all() as $category)
                             <a href="{{ route('products-list',$category->name) }}"  class="flex items-center space-x-3 space-x-reverse p-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-wood-300 hover:to-wood-50 dark:hover:from-wood-950/95 dark:hover:to-yellow-900/20 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
                                 <div class="w-8 h-8 bg-gradient-to-br from-wood-400 to-wood-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-                                    <i class="fas fa-chalkboard-teacher text-white text-xs"></i>
+                                    <i class="fas fa-box text-white text-xs"></i>
                                 </div>
                                 <span class="font-medium">{{$category->name}}</span>
                             </a>
                         @endforeach
                     </div>
                 </div>
-                <a href="{{ route('files') }}"  class="flex items-center space-x-4 space-x-reverse  rounded-xl hover:bg-gradient-to-r hover:from-wood-300 hover:to-wood-50 dark:hover:from-wood-950/95 dark:hover:to-yellow-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
+               {{-- <a href="{{ route('files') }}"  class="flex items-center space-x-4 space-x-reverse  rounded-xl hover:bg-gradient-to-r hover:from-wood-300 hover:to-wood-50 dark:hover:from-wood-950/95 dark:hover:to-yellow-900/20 text-gray-700 dark:text-gray-700 group transition-all duration-200 hover:transform hover:-translate-x-1">
                     <div class="flex items-center space-x-4 space-x-reverse p-4 text-gray-800 dark:text-gray-100">
                         <div class="w-10 h-10 bg-gradient-to-br from-wood-500 to-wood-500 rounded-lg flex items-center justify-center">
                             <i class="fas fa-file-archive text-white text-sm"></i>
                         </div>
                         <span class="font-semibold "> قبل از خرید </span>
                     </div>
-                </a>
+                </a>--}}
 
 
                 @if(auth()->check())
                     <div id="mobileUserPanelLink" class="pt-4 border-t border-wood-200 dark:border-wood-700">
-                        <a href="{{auth()->user()->role=='admin'? route('admin.home'):route('user.home')}}" onclick="showUserDashboard(); toggleMobileMenu()" class="flex items-center space-x-4 space-x-reverse p-4 rounded-xl hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/20 dark:hover:to-purple-900/20 text-gray-700 dark:text-gray-200 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                        <a href="{{auth()->user()->role=='admin'? route('admin.home'):route('shop.user.orders.index')}}" onclick="showUserDashboard(); toggleMobileMenu()" class="flex items-center space-x-4 space-x-reverse p-4 rounded-xl hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/20 dark:hover:to-purple-900/20 text-gray-700 dark:text-gray-200 group transition-all duration-200 hover:transform hover:-translate-x-1">
                             <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
                                 <i class="fas fa-user-cog text-white text-sm"></i>
                             </div>
