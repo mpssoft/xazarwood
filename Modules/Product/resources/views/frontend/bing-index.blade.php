@@ -101,6 +101,7 @@
                     }
                 @endphp
                 <div class="flex flex-col bg-white dark:bg-wood-900   rounded-2xl shadow-lg hover:shadow-xl border border-wood-200 dark:border-wood-700 overflow-hidden transition-all duration-300 ">
+                    <a href="{{route('show.product',['product'=>$product->id,'name'=>$product->name])}}">
                     <div class="flex relative">
                         <div class="h-auto bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-800 dark:to-wood-700 flex items-center justify-center">
                             <div class="text-center w-full h-full text-wood-700 dark:text-wood-300" >
@@ -117,12 +118,15 @@
                         </div>
 
                     </div>
+                    </a>
                     <div class="flex flex-col h-full  p-3">
+                        <a href="{{route('show.product',['product'=>$product->id,'name'=>$product->name])}}">
                         <div class="flex items-start justify-between mb-2">
                             <h3 class=" font-bold text-wood-800 dark:text-wood-100 leading-tight">{{$product->name}}</h3>
                         </div>
                         <p class="flex text-wood-600 text-sm dark:text-wood-400 mb-4 leading-relaxed">{{$product->description}}</p>
-                        <!-- Price Section -->
+                        </a>
+                            <!-- Price Section -->
                         <div class=" flex flex-1" ></div>
                         <div class="flex items-center border dark:border-0 justify-between mb-3 bg-white dark:bg-wood-800 rounded-xl p-3 shadow-sm">
                             <div class="flex flex-col h-full w-full">
@@ -172,7 +176,7 @@
                         <span class="spinner-{{$product->id}}  hidden"><i
                                 class="fas fa-spinner fa-spin-pulse"></i></span>
                                 <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button>
-                            <a href="{{route('show.product',['product'=>$product->id,'name'=>$product->name])}}" class="bg-wood-200 hover:bg-wood-300 dark:bg-wood-700 dark:hover:bg-wood-600 text-wood-800 dark:text-wood-200 px-4 py-3 rounded-xl font-medium transition-all duration-300"> <i class="fas fa-eye"></i> </a>
+
                         </div>
                     </div>
                 </div>
@@ -187,15 +191,20 @@
 @endsection
 @push('scripts')
     <script>
+        let cat = [];
         $(document).ready(function(){
-            $('#sort').on('change',function(){
-                let val = $(this).val();
+            $('#sort,.cat').on('change',function(){
+                let val = $('#sort').val();
+                let cats = $('.cat:checked')
+                    .map(function () {
+                        return this.value;
+                    }).get();
 
                 $.ajax({
                     url:'/sort-list/all',
                     type:'get',
                     headers: {'X-CSRF-TOKEN': "{{csrf_token()}}" },
-                    data:{sort:val},
+                    data:{sort:val,cat:cats},
                     success:function(res){
 
                         $("#product-list-container").html(res);

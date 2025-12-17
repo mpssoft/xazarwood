@@ -5,7 +5,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\User\ChatController;
 use App\Http\Controllers\User\panel\UserCourseController;
 use App\Http\Controllers\User\panel\UserMessageController;
-use App\Http\Controllers\User\panel\UserPanelController;
+use App\Http\Controllers\User\panel\UserAddressController;
 use App\Http\Controllers\User\panel\UserProfileController;
 use Illuminate\Support\Facades\Route;
 use Modules\Shop\Http\Controllers\User\UserOrderController;
@@ -14,7 +14,8 @@ use Modules\Shop\Http\Controllers\User\UserOrderController;
 Route::get('/',[UserOrderController::class,'index'])->name('orders.index');
 
 Route::resource('messages',UserMessageController::class);
-
+Route::resource('addresses',UserAddressController::class);
+Route::put('/set-default-address',[UserAddressController::class,'setDefaultAddress'])->name('set.default.address');
 Route::get('/messages/create/{user?}', [UserMessageController::class,'create'])->name('messages.create');
 
 Route::get('/edit',[UserProfileController::class,'edit'])->name('profile.edit');

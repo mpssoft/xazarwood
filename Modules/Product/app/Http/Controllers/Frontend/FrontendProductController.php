@@ -18,8 +18,11 @@ class FrontendProductController extends Controller
         $sort = $request->sort ?? 'newest'; // default sort
 
         $query = Product::query();
-
-        if ($request->cat != 'all') {
+        if(is_array($request->cat)){
+            $query->whereHas('categories', function($q) use ($request) {
+                $q->whereIn('name',$request->cat);
+            });
+        }elseif ($request->cat != 'all') {
             $query->whereHas('categories', function($q) use ($request) {
                 $q->where('name', 'like', "%{$request->cat}%");
             });
@@ -49,7 +52,12 @@ public function sortIndex( Request $request)
 
         $query = Product::query();
 
-        if ($request->cat != 'all') {
+        if(is_array($request->cat)){
+
+            $query->whereHas('categories', function($q) use ($request) {
+                $q->whereIn('categories.id',$request->cat);
+            });
+        }elseif ($request->cat != 'all') {
             $query->whereHas('categories', function($q) use ($request) {
                 $q->where('name', 'like', "%{$request->cat}%");
             });

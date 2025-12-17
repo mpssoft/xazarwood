@@ -104,8 +104,12 @@
                         @endif
                         <div class="flex-1 md:mt-4">
                             <h3 class="text-lg font-semibold text-wood-900 dark:text-wood-100 mb-1">سفارش ثبت شد</h3>
-                            <p class="text-sm text-wood-600 dark:text-wood-400 mb-2">سفارش شما در انتظار پرداخت می باشد</p>
-                            <p class="text-xs text-wood-500 dark:text-wood-500">{{$order->created_at}}</p>
+                            @if( $status[$order->status] > 33)
+                                <p class="text-sm text-wood-600 dark:text-wood-400 mb-2">سفارش پرداخت شده </p>
+                            @else
+                                <p class="text-sm text-wood-600 dark:text-wood-400 mb-2">سفارش شما در انتظار پرداخت می باشد</p>
+                            @endif
+                                <p class="text-xs text-wood-500 dark:text-wood-500">{{$order->updated_at}}</p>
 
                         </div>
                     </div>
@@ -227,19 +231,8 @@
                     <div class="bg-wood-50 dark:bg-wood-800 rounded-lg p-4">
                         <p class="text-sm text-wood-700 dark:text-wood-300">سفارش شما پس از تایید و بسته‌بندی، از طریق <span class="font-semibold">ارسال فوری</span> به آدرس شما ارسال خواهد شد.</p>
                     </div>
-                </div><!-- Support Contact -->
-                <div class="bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-800 dark:to-wood-900 rounded-xl shadow-lg p-6 animate-slide-in">
-                    <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-full bg-wood-600 flex items-center justify-center flex-shrink-0">
-                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-wood-900 dark:text-wood-100 mb-2">نیاز به پشتیبانی دارید؟</h3>
-                            <p class="text-sm text-wood-700 dark:text-wood-300 mb-3">تیم پشتیبانی ما آماده پاسخگویی به سوالات شما است</p><button class="px-4 py-2 bg-wood-600 hover:bg-wood-700 text-white rounded-lg text-sm font-medium smooth-transition"> تماس با پشتیبانی </button>
-                        </div>
-                    </div>
                 </div>
+
             </div>
         </div>
     </div>
