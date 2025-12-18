@@ -46,6 +46,7 @@ class ProductController extends Controller
             'images'      => 'nullable|array',
             'gallery_images'    => 'nullable|string',  // multiple file paths
             'categories'  => 'required',
+            'status'  => 'in:active,inactive',
             'attributes'  => 'array'
         ]);
 
@@ -121,6 +122,7 @@ class ProductController extends Controller
             'images'      => 'nullable|array',
             'gallery_images'    => 'nullable|string',  // multiple file paths
             'categories' => 'required',
+            'status'  => 'in:active,inactive',
             'attributes' => 'array'
         ]);
 
@@ -133,6 +135,7 @@ class ProductController extends Controller
                 'video' => $data['video'] ?? null,
                 'keywords'    => $data['keywords'] ?? null,
                 'stock'       => $data['stock'],
+                'status'       => $data['status'],
                 'main_image'  => $data['main_image'] ?? null,
             ]);
 

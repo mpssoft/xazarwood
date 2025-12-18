@@ -105,13 +105,17 @@
                     <div class="flex relative">
                         <div class="h-auto bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-800 dark:to-wood-700 flex items-center justify-center">
                             <div class="text-center w-full h-full text-wood-700 dark:text-wood-300" >
+
                                 <img src="{{asset($product->main_image)}}" class="h-full w-full "/>
                             </div>
+                            @if($product->stock==0 || $product->status == 'inactive')
+                            <div class="badge-unavailable absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full shadow-lg z-10 flex items-center space-x-2 space-x-reverse"> <span class="font-bold text-sm">ناموجود</span> </div>
+                            @endif
                         </div>
                         <div class="absolute top-4 right-4 flex flex-col space-y-2">
                             {{-- <span class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
                                  <i class="fas fa-fire ml-1"></i>پرفروش </span>--}}
-                            @if($activeDiscount)
+                            @if($activeDiscount && $product->stock > 0 && $product->status == 'active')
                                 <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
                         <i class="fas fa-tag ml-1"></i>{{ $activeDiscount->value }}{{ $activeDiscount->type == 'percent' ? '%' : ' تومان' }} تخفیف </span>
                             @endif
@@ -128,6 +132,23 @@
                         </a>
                             <!-- Price Section -->
                         <div class=" flex flex-1" ></div>
+                        @if($product->stock == 0 || $product->status == 'inactive')
+                            <div class="bg-red-50 mb-3 dark:bg-red-900/20 text-red-600 dark:text-red-400 px-3 py-1 rounded-lg text-sm font-bold">
+                                موجود نیست
+                            </div>
+                            <div class="flex space-x-3 space-x-reverse">
+
+                                <button
+                                    id="btn-{{$product->id}}"
+                                    disabled="true"
+                                    class="flex-1 bg-wood-600  dark:bg-gray-500  text-white dark:text-gray-900 px-4 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg">
+                        <span class="spinner-{{$product->id}}  hidden"><i
+                                class="fas fa-spinner fa-spin-pulse"></i></span>
+                                    <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button>
+
+                            </div>
+                        @else
+
                         <div class="flex items-center border dark:border-0 justify-between mb-3 bg-white dark:bg-wood-800 rounded-xl p-3 shadow-sm">
                             <div class="flex flex-col h-full w-full">
 
@@ -166,9 +187,8 @@
                             </div>
 
                         </div>
-
-
                         <div class="flex space-x-3 space-x-reverse">
+
                             <button
                                 id="btn-{{$product->id}}"
                                 onclick="addToCart('product','{{$product->id}}')"
@@ -178,6 +198,7 @@
                                 <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button>
 
                         </div>
+                            @endif
                     </div>
                 </div>
             @endforeach

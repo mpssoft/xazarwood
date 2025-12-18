@@ -32,6 +32,9 @@
             <div class="bg-white dark:bg-wood-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer" onclick="openLightbox()">
                 <div id="mainImage" class="h-[352px] relative bg-white duration-300">
                     <img id="mainImageSrc" src="{{asset($product->main_image)}}" alt="{{$product->name}}" class="w-full h-96 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"> <!-- Fallback content if image fails to load -->
+                    @if($product->stock==0 || $product->status == 'inactive')
+                        <div class="badge-unavailable absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full shadow-lg z-10 flex items-center space-x-2 space-x-reverse"><span class="font-bold text-sm">ناموجود</span> </div>
+                    @endif
                     <div class="h-96 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 flex items-center justify-center absolute inset-0" style="display: none;">
                         <div class="text-center text-wood-700 dark:text-wood-300"><i class="fas fa-table text-8xl mb-4"></i>
                             <p class="text-lg font-medium">{{$product->name}}</p>
@@ -68,7 +71,23 @@
                 </div>--}}
             </div>
             <!-- Price Section -->
+            @if($product->stock == 0 || $product->status == 'inactive')
+                <div class="bg-red-50 mb-3 dark:bg-red-900/20 text-red-600 dark:text-red-400 px-3 py-1 rounded-lg text-sm font-bold">
+                    موجود نیست
+                </div>
+                <div class="bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
 
+                    <div class="space-y-3">
+                        <button id="btn-{{$product->id}}"
+                                disabled="true"
+                                class=" bg-gray-600  dark:bg-gray-500  text-white dark:text-gray-900 px-6 py-3 rounded-lg font-medium transition-colors">
+                            <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد خرید
+                            <span class="spinner-{{$product->id}}  hidden"><i
+                                    class="fas fa-spinner fa-spin-pulse"></i></span>
+                        </button>
+                    </div>
+                </div>
+            @else
             <div class="flex items-center justify-between mb-6 bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
                 <div class="flex flex-col w-full">
                     @php
@@ -171,6 +190,7 @@
                     </button>
                 </div>
             </div>
+                @endif
         </div>
     </div><!-- Specifications -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16"><!-- Technical Specs -->
@@ -248,87 +268,109 @@
                         $finalPrice = max(0, $product->price - $dis);
                     }
                 @endphp
-                <div class="flex flex-col bg-white dark:bg-wood-900  rounded-2xl shadow-lg hover:shadow-xl border border-wood-200 dark:border-wood-700 overflow-hidden transition-all duration-300 ">
+                <div class="flex flex-col bg-white dark:bg-wood-900   rounded-2xl shadow-lg hover:shadow-xl border border-wood-200 dark:border-wood-700 overflow-hidden transition-all duration-300 ">
                     <a href="{{route('show.product',['product'=>$product->id,'name'=>$product->name])}}">
-                    <div class="flex relative">
-                        <div class="h-auto bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-800 dark:to-wood-700 flex items-center justify-center">
-                            <div class="text-center w-full h-full text-wood-700 dark:text-wood-300" >
-                                <img src="{{asset($product->main_image)}}" class="h-full w-full "/>
+                        <div class="flex relative">
+                            <div class="h-auto bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-800 dark:to-wood-700 flex items-center justify-center">
+                                <div class="text-center w-full h-full text-wood-700 dark:text-wood-300" >
+
+                                    <img src="{{asset($product->main_image)}}" class="h-full w-full "/>
+                                </div>
+                                @if($product->stock==0 || $product->status == 'inactive')
+                                    <div class="badge-unavailable absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full shadow-lg z-10 flex items-center space-x-2 space-x-reverse"> <span class="font-bold text-sm">ناموجود</span> </div>
+                                @endif
                             </div>
-                        </div>
-                        <div class="absolute top-4 right-4 flex flex-col space-y-2">
-                            {{-- <span class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
-                                 <i class="fas fa-fire ml-1"></i>پرفروش </span>--}}
-                            @if($activeDiscount)
-                                <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
+                            <div class="absolute top-4 right-4 flex flex-col space-y-2">
+                                {{-- <span class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
+                                     <i class="fas fa-fire ml-1"></i>پرفروش </span>--}}
+                                @if($activeDiscount && $product->stock > 0 && $product->status == 'active')
+                                    <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
                         <i class="fas fa-tag ml-1"></i>{{ $activeDiscount->value }}{{ $activeDiscount->type == 'percent' ? '%' : ' تومان' }} تخفیف </span>
-                            @endif
-                        </div>
-
-                    </div>
-                    </a>
-                    <div class="flex flex-col h-full  p-3">
-                        <a href="{{route('show.product',['product'=>$product->id,'name'=>$product->name])}}">
-                        <div class="flex items-start justify-between mb-2">
-                            <h3 class=" font-bold text-wood-800 dark:text-wood-100 leading-tight">{{$product->name}}</h3>
-                        </div>
-                        <p class="flex text-wood-600 text-sm dark:text-wood-400 mb-4 leading-relaxed">{{$product->description}}</p>
-                        </a>
-                        <!-- Price Section -->
-                        <div class=" flex flex-1" ></div>
-                        <div class="flex items-center border dark:border-0 justify-between mb-3 bg-white dark:bg-wood-800 rounded-xl p-3 shadow-sm">
-                            <div class="flex flex-col h-full w-full">
-
-                                @if($activeDiscount)
-                                    <div class="flex justify-between items-center">
-                                        <div class="flex flex-col text-right">
-                                            <div class="flex items-center">
-                                                <div class="text-center text text-wood-500 dark:text-wood-400 line-through mb-1">
-                                                    {{ number_format($product->price) }} تومان
-
-                                                </div>
-
-                                            </div>
-                                            <div class="font-bold text-gray-800 dark:text-slate-200 text-xl">
-                                                {{ number_format($finalPrice) }} <span class="">تومان</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Countdown -->
-                                    <div
-                                        class=" justify-center  p-2 rounded-xl flex items-center gap-3 shadow-2xl w-full"
-                                        data-expire="{{ $activeDiscount->end_at }}"
-                                        id="countdown-{{ $product->id }}">
-                                        Loading timer...
-                                    </div>
-                                @else
-                                    <!-- Price Section -->
-                                    <div class="text-right">
-                                        <div class="font-bold text-gray-800 dark:text-wood-200 text-xl">
-                                            {{ number_format($product->price) }} تومان
-                                        </div>
-                                    </div>
                                 @endif
                             </div>
 
                         </div>
+                    </a>
+                    <div class="flex flex-col h-full  p-3">
+                        <a href="{{route('show.product',['product'=>$product->id,'name'=>$product->name])}}">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class=" font-bold text-wood-800 dark:text-wood-100 leading-tight">{{$product->name}}</h3>
+                            </div>
+                            <p class="flex text-wood-600 text-sm dark:text-wood-400 mb-4 leading-relaxed">{{$product->description}}</p>
+                        </a>
+                        <!-- Price Section -->
+                        <div class=" flex flex-1" ></div>
+                        @if($product->stock == 0 || $product->status == 'inactive')
+                            <div class="bg-red-50 mb-3 dark:bg-red-900/20 text-red-600 dark:text-red-400 px-3 py-1 rounded-lg text-sm font-bold">
+                                موجود نیست
+                            </div>
+                            <div class="flex space-x-3 space-x-reverse">
 
-
-                        <div class="flex space-x-3 space-x-reverse">
-                            <button
-                                id="btn-{{$product->id}}"
-                                onclick="addToCart('product','{{$product->id}}')"
-                                class="flex-1 bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 px-4 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg">
+                                <button
+                                    id="btn-{{$product->id}}"
+                                    disabled="true"
+                                    class="flex-1 bg-wood-600  dark:bg-gray-500  text-white dark:text-gray-900 px-4 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg">
                         <span class="spinner-{{$product->id}}  hidden"><i
                                 class="fas fa-spinner fa-spin-pulse"></i></span>
-                                <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button>
+                                    <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button>
 
-                        </div>
+                            </div>
+                        @else
+
+                            <div class="flex items-center border dark:border-0 justify-between mb-3 bg-white dark:bg-wood-800 rounded-xl p-3 shadow-sm">
+                                <div class="flex flex-col h-full w-full">
+
+                                    @if($activeDiscount)
+                                        <div class="flex justify-between items-center">
+                                            <div class="flex flex-col text-right">
+                                                <div class="flex items-center">
+                                                    <div class="text-center text text-wood-500 dark:text-wood-400 line-through mb-1">
+                                                        {{ number_format($product->price) }} تومان
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="font-bold text-gray-800 dark:text-slate-200 text-xl">
+                                                    {{ number_format($finalPrice) }} <span class="">تومان</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Countdown -->
+                                        <div
+                                            class=" justify-center  p-2 rounded-xl flex items-center gap-3 shadow-2xl w-full"
+                                            data-expire="{{ $activeDiscount->end_at }}"
+                                            id="countdown-{{ $product->id }}">
+                                            Loading timer...
+                                        </div>
+                                    @else
+                                        <!-- Price Section -->
+                                        <div class="text-right">
+                                            <div class="font-bold text-gray-800 dark:text-wood-200 text-xl">
+                                                {{ number_format($product->price) }} تومان
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+
+                            </div>
+                            <div class="flex space-x-3 space-x-reverse">
+
+                                <button
+                                    id="btn-{{$product->id}}"
+                                    onclick="addToCart('product','{{$product->id}}')"
+                                    class="flex-1 bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 px-4 py-3 rounded-xl font-medium transition-all duration-300 hover:shadow-lg">
+                        <span class="spinner-{{$product->id}}  hidden"><i
+                                class="fas fa-spinner fa-spin-pulse"></i></span>
+                                    <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد </button>
+
+                            </div>
+                        @endif
                     </div>
                 </div>
             @endforeach
+
 
         </div>
     </section>
