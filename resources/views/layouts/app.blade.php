@@ -147,6 +147,18 @@
             }
         </style>
         <link rel="stylesheet" href="/css/xazarwood_style.css" />
+        @if(app()->environment('production'))
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGKY3WVLX3"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-GGKY3WVLX3');
+        </script>
+        @endif
+
     </head>
     <body dir="rtl" class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-wood-950 dark:to-wood-900 min-h-screen transition-colors duration-300">
         <div class="min-h-screen ">

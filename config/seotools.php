@@ -10,7 +10,7 @@ return [
          * The default configurations to be used by the meta generator.
          */
         'defaults'       => [
-            'title'        => "خزر چوب ", // set false to total remove
+            'title'        => "صنایع چوبی خزر چوب", // set false to total remove
             'titleBefore'  => true, // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
             'description'  => 'میزهای روستیک صنایع چوبی خزر چوب', // set false to total remove
             'separator'    => ' - ',

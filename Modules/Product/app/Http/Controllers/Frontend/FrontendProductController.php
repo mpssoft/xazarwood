@@ -3,6 +3,7 @@
 namespace Modules\Product\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 use Modules\Blog\Models\Category;
 use Modules\Product\Models\Product;
@@ -83,6 +84,16 @@ public function sortIndex( Request $request)
 
     public function showProduct(Product $product)
     {
+        $this->seo()
+            ->setTitle($product->name)
+            ->setDescription($product->description)
+        ;
+        SEOMeta::addMeta('product_id', $product->id, 'name');
+        SEOMeta::addMeta('product_name', $product->name, 'name');
+        SEOMeta::addMeta('product_price', $product->price, 'name');
+        SEOMeta::addMeta('availability', ($product->stock && $product->status == 'active') ? 'instock' : 'outofstock', 'name');
+        SEOMeta::addMeta('guarantee', $product->guarantee, 'name');
+        SEOMeta::addMeta('keywords', $product->keywords, 'name');
 
         $relatedProducts = Product::where("id","!=",$product->id)->whereHas('categories',function($query) use($product){
             $query->whereIn('name',$product->categories()->pluck('name')->toArray());

@@ -243,7 +243,7 @@
 
         <span class="text-3xl bg-gradient-to-l from-wood-700 to-wood-400 dark:from-wood-300 dark:to-wood-100
                      bg-clip-text text-transparent drop-shadow-sm tracking-tight">
-            XazarWood
+            XazarWoods
         </span>
                                         <span class="text-xl text-wood-800 dark:text-wood-200 drop-shadow-sm tracking-tight">
             خزرچوب

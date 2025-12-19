@@ -13,4 +13,5 @@ return [
     Modules\Blog\Providers\RouteServiceProvider::class,
     Modules\LessonPlan\Providers\RouteServiceProvider::class,
     Modules\Product\Providers\RouteServiceProvider::class,
+    Spatie\Sitemap\SitemapServiceProvider::class,
 ];
