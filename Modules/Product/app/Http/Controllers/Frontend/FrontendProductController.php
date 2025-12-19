@@ -3,6 +3,7 @@
 namespace Modules\Product\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 use Modules\Blog\Models\Category;
@@ -95,6 +96,14 @@ public function sortIndex( Request $request)
         SEOMeta::addMeta('guarantee', $product->guarantee, 'name');
         SEOMeta::addMeta('keywords', $product->keywords, 'name');
 
+        // Open Graph for social sharing
+        OpenGraph::setTitle($product->name)
+            ->setDescription($product->description)
+            ->addImage(asset($product->main_image)); // <-- Here you add the product image
+        foreach ($product->images as $image)
+        {
+            OpenGraph::addImage(asset($image->image));
+        }
         $relatedProducts = Product::where("id","!=",$product->id)->whereHas('categories',function($query) use($product){
             $query->whereIn('name',$product->categories()->pluck('name')->toArray());
         })->latest()->take(4)->get();
