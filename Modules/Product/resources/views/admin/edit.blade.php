@@ -50,7 +50,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Product Name -->
-                <div class="md:col-span-2">
+                <div class="">
                     <label for="product-name" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
                         نام محصول *
                     </label>
@@ -58,6 +58,16 @@
                            value="{{old('name',$product->name)}}"
                            class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
                            placeholder="نام محصول را وارد کنید...">
+                </div>
+             <!-- Product Code -->
+                <div class="">
+                    <label for="product-code" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                        کد محصول *
+                    </label>
+                    <input type="text" id="product-code" name="product_code" required
+                           value="{{old('product_code',$product->product_code)}}"
+                           class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100"
+                           placeholder="Code : XW-CT-[ID] [XazarWood-CoffeeTable]">
                 </div>
 
                 <!-- Price -->

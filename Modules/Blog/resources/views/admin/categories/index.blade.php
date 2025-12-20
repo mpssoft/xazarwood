@@ -98,6 +98,12 @@
                         نام دسته‌بندی
                     </th>
                     <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-slate-400 uppercase tracking-wider">
+                        نام انگلیسی
+                    </th>
+                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-slate-400 uppercase tracking-wider">
+                        کد دسته بندی
+                    </th>
+                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-slate-400 uppercase tracking-wider">
                         توضیحات
                     </th>
                     <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-slate-400 uppercase tracking-wider">
@@ -124,6 +130,16 @@
                         </div>
                     </td>
                     <td class="px-6 py-4">
+                        <div class="text-sm text-gray-900 dark:text-slate-100 max-w-xs truncate">
+                            {{$category->english}}
+                        </div>
+                    </td>
+                     <td class="px-6 py-4">
+                        <div class="text-sm text-gray-900 dark:text-slate-100 max-w-xs truncate">
+                            {{$category->category_code}}
+                        </div>
+                    </td>
+                     <td class="px-6 py-4">
                         <div class="text-sm text-gray-900 dark:text-slate-100 max-w-xs truncate">
                             {{$category->description}}
                         </div>

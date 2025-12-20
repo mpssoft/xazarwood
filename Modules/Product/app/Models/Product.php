@@ -18,7 +18,7 @@ class Product extends Model
     /**
      * The attributes that are mass assignable.
      */
-    protected $fillable = ['name','price','description','content','video','keywords','stock','main_image','images','status'];
+    protected $fillable = ['name','product_code','price','description','content','video','keywords','stock','main_image','images','status'];
 
     public function images()
     {

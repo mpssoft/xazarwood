@@ -4,4 +4,4 @@ Disallow: /admin/
 Disallow: /user
 Disallow: /user/
 
-
+Sitemap: https://xazarwoods.com/sitemap.xml

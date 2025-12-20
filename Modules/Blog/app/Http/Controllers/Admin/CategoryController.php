@@ -27,6 +27,8 @@ class CategoryController extends Controller
 
         $data = $request->validate([
             'name' => 'required|string|max:255',
+            'english' => 'required|string|max:255',
+            'category_table' => 'required|string|max:255',
             'description' => 'nullable|string'
         ]);
 
@@ -47,6 +49,8 @@ class CategoryController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
+            'english' => 'required|string|max:255',
+            'category_code' => 'required|string|max:255',
             'description' => 'nullable|string'
         ]);
 

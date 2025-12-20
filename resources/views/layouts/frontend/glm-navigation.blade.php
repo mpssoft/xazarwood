@@ -170,7 +170,7 @@
                                 </a>
                                 <a href="{{route('user.addresses.index')}}" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
                                     <i class="fas fa-box text-amber-600 group-hover:text-amber-700 dark:text-amber-400 dark:group-hover:text-amber-300 transition-colors duration-200 w-4"></i>
-                                    <span class="font-medium">سفارش‌ها</span>
+                                    <span class="font-medium">آدرس های من</span>
                                 </a>
                                {{-- <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
                                     <i class="fas fa-heart text-red-500 group-hover:text-red-600 dark:text-red-400 dark:group-hover:text-red-300 transition-colors duration-200 w-4"></i>
@@ -180,7 +180,7 @@
                                 <a href="{{route('user.profile.edit')}}" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
                                     <div class="flex items-center gap-3">
                                         <i class="fas fa-user-edit text-amber-600 group-hover:text-amber-700 dark:text-amber-400 dark:group-hover:text-amber-300 transition-colors duration-200 w-4"></i>
-                                        <span class="font-medium"> پروفایل</span>
+                                        <span class="font-medium"> اطلاعات کاربری</span>
                                     </div>
                                 </a>
                             </nav>

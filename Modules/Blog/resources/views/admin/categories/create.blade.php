@@ -78,6 +78,42 @@
                     <i class="fas fa-info-circle ml-1"></i>
                     حداکثر ۱۰۰ کاراکتر
                 </p>
+            </div> <!-- Category English Name -->
+            <div class="mb-6">
+                <label for="english" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-3">
+                    <i class="fas fa-tag text-gray-400 dark:text-slate-500 ml-2"></i>
+                    نام انگلیسی دسته‌بندی *
+                </label>
+                <input
+                    type="text"
+                    id="english"
+                    name="english"
+                    required
+                    class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100 placeholder-gray-500 dark:placeholder-slate-400 transition-colors"
+                    placeholder="Coffee Table"
+                    maxlength="100">
+                <p class="text-xs text-gray-500 dark:text-slate-400 mt-2">
+                    <i class="fas fa-info-circle ml-1"></i>
+                    حداکثر ۱۰۰ کاراکتر
+                </p>
+            </div> <!-- Category Code -->
+            <div class="mb-6">
+                <label for="category-code" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-3">
+                    <i class="fas fa-tag text-gray-400 dark:text-slate-500 ml-2"></i>
+                      کد دسته بندی
+                </label>
+                <input
+                    type="text"
+                    id="category-code"
+                    name="category_code"
+                    required
+                    class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100 placeholder-gray-500 dark:placeholder-slate-400 transition-colors"
+                    placeholder="Coffee Table: CF"
+                    maxlength="100">
+                <p class="text-xs text-gray-500 dark:text-slate-400 mt-2">
+                    <i class="fas fa-info-circle ml-1"></i>
+                    حداکثر ۱۰۰ کاراکتر
+                </p>
             </div>
 
             <!-- Category Description -->

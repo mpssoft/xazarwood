@@ -17,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('images')->latest()->get();
+        $products = Product::with('images')->latest()->paginate(20);
         return view('product::admin.index', compact('products'));
     }
 
@@ -37,6 +37,7 @@ class ProductController extends Controller
         $data = $request->validate([
             'name'        => 'required|string|max:255',
             'price'       => 'required|numeric|min:0',
+            'product_code' => 'nullable|string',
             'description' => 'nullable|string',
             'content' => 'nullable|string',
             'video' => 'nullable|string',
@@ -54,6 +55,7 @@ class ProductController extends Controller
             $product = Product::create([
                 'name'        => $data['name'],
                 'price'       => $data['price'],
+                'product_code' => $data['product_code'] ?? null,
                 'description' => $data['description'] ?? null,
                 'content' => $data['content'] ?? null,
                 'video' => $data['video'] ?? null,
@@ -113,6 +115,7 @@ class ProductController extends Controller
         $data = $request->validate([
             'name'        => 'required|string|max:255',
             'price'       => 'required|numeric|min:0',
+            'product_code' => 'nullable|string',
             'description' => 'nullable|string',
             'content' => 'nullable|string',
             'video' => 'nullable|string',
@@ -130,6 +133,7 @@ class ProductController extends Controller
             $product->update([
                 'name'        => $data['name'],
                 'price'       => $data['price'],
+                'product_code' => $data['product_code'] ?? null,
                 'description' => $data['description'] ?? null,
                 'content' => $data['content'] ?? null,
                 'video' => $data['video'] ?? null,
