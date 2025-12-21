@@ -5,7 +5,10 @@
                 <div class="absolute  pt-32 flex inset-0 items-center  transition-all duration-700">
                     <div class="max-w-7xl mx-auto px-4 text-center md:text-right">
                         <h2 class="text-2xl md:text-5xl font-bold text-white mb-4">{{$slider->title}}</h2>
-                        <p class=" text-white/90 mb-6 max-w-2xl">{{$slider->subtitle}}</p><a href="{{$slider->link}}" class="p-2 md:px-8 md:py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"> {{$slider->button_text}} </a>
+                        <p class=" text-white/90 mb-6 max-w-2xl">{{$slider->subtitle}}</p>
+                        @if(!empty($slider->link))
+                        <a href="{{$slider->link}}" class="p-2 md:px-8 md:py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"> {{$slider->button_text}} </a>
+                        @endif
                     </div>
                 </div>
             </div> @endforeach

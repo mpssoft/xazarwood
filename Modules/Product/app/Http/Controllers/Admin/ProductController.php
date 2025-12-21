@@ -146,10 +146,10 @@ class ProductController extends Controller
             // Replace images
 
             $product->categories()->sync($data['categories']);
-            if (!empty($data['gallery_images'])) {
-                $product->images()->delete();
-                $images = json_decode($data['gallery_images'], true); // Decode JSON array to PHP array
-
+            $product->images()->delete();
+            $images = json_decode($data['gallery_images'], true); // Decode JSON array to PHP array
+            $images = array_filter($images, fn($v) => trim($v) !== '');
+            if (!empty($images) ) {
                 if (is_array($images)) {
                     foreach ($images as $img) {
                         $product->images()->create([
@@ -158,8 +158,9 @@ class ProductController extends Controller
                     }
                 }
             }
-            $product->attributes()->detach();
+
             if(isset($data['attributes'])) {
+                $product->attributes()->detach();
                 $attributes = collect($data['attributes']);
                 $attributes->each(function ($item) use ($product) {
                     if (is_null($item['name']) || is_null($item['value'])) return;
