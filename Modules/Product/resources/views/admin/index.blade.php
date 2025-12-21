@@ -155,17 +155,17 @@
             @foreach($products as $product)
                 <div class="product-row px-6 py-4 border-b border-wood-200 dark:border-wood-700" data-status="active">
                     <div class="grid grid-cols-12 gap-4 items-center"><!-- Image -->
-                        <div class="col-span-1"><img src="{{asset(str_replace(['small','1500'],['thumb','100'],$product->main_image))}}"  class="w-12 h-12 object-cover rounded-lg shadow-sm" >
+                        <div class="col-span-1"><img src="{{asset(str_replace(['small','500'],['thumb','100'],$product->main_image))}}"  class="w-12 h-12 object-cover rounded-lg shadow-sm" >
                         </div><!-- Name -->
                         <div class="col-span-2">
                             <h3 class="font-bold text-wood-800 dark:text-wood-100 text-sm">{{$product->name}}</h3>
                         </div><!-- Product Code -->
-                        <div class="col-span-1"><span class="text-xs font-mono bg-wood-100 dark:bg-wood-700 px-2 py-1 rounded text-wood-700 dark:text-wood-300">{{$product->code}}-{{str_pad($product->id,3,'0',STR_PAD_LEFT)}}</span>
+                        <div class="col-span-1"><span class="text-xs font-mono bg-wood-100 dark:bg-wood-700 px-2 py-1 rounded text-wood-700 dark:text-wood-300">{{$product->product_code}}</span>
                         </div><!-- Price -->
                         <div class="col-span-1"><span class="font-bold text-amber-600 dark:text-amber-400 text-sm">{{number_format($product->price)}}</span> <span class="text-xs text-wood-600 dark:text-wood-400 block">تومان</span>
                         </div><!-- Description -->
                         <div class="col-span-2">
-                            <p class="text-xs text-wood-600 dark:text-wood-400 line-clamp-2">{{$product->description}}</p>
+                            <p class="text-xs text-wood-600 dark:text-wood-400 line-clamp-2">{!! $product->description !!}</p>
                         </div><!-- Keywords -->
 
                         <div class="col-span-2">

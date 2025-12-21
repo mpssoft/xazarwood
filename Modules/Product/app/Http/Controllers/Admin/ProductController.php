@@ -144,9 +144,10 @@ class ProductController extends Controller
             ]);
 
             // Replace images
-            $product->images()->delete();
+
             $product->categories()->sync($data['categories']);
             if (!empty($data['gallery_images'])) {
+                $product->images()->delete();
                 $images = json_decode($data['gallery_images'], true); // Decode JSON array to PHP array
 
                 if (is_array($images)) {

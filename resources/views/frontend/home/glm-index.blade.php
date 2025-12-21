@@ -155,31 +155,7 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Clock Product 1 -->
-                @foreach($products as $product)
-                <div class="group bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                    <div class="relative overflow-hidden">
-                        <img src="{{asset($product->main_image)}}" alt="{{$product->name}}" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-4">
-                        <a href="{{route('show.product',['product'=>$product->id,'name'=>$product->name])}}">
-                        <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">{{$product->name}}</h3>
-                        <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">{{$product->description}}</p>
-                        </a>
-                        <div class="flex items-center justify-between">
-                            <span class="text-xl font-bold text-amber-700 dark:text-amber-400">{{number_format($product->price)}}</span>
-                            <button id="btn-{{$product->id}}"
-                                    onclick="addToCart('product','{{$product->id}}')"
-                                    class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
-
-                                <i class="fas fa-cart-arrow-down"></i>
-                                <span>افزودن به سبد</span>
-                                <span class="spinner-{{$product->id}}  hidden"><i
-                                        class="fas fa-spinner fa-spin-pulse"></i></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
+                @include('product::frontend.product-card',$products)
 
                </div>
         </div>
