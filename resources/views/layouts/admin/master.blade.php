@@ -64,6 +64,7 @@
 </div>
 <script src="/js/jquery/jquery.min.js"> </script>
 <script src="/js/modules/select2.js"></script>
+<script src="/js/modules/sweetalert2.js"></script>
 <script>
     function number_format(str) {
 

@@ -1,4 +1,4 @@
-@extends('layouts.user.master')
+@extends('layouts.admin.master')
 
 @section('content')
 
@@ -104,7 +104,7 @@
         <div class="flex items-center justify-between mb-8">
             <div class="flex items-center gap-4">
                 <div>
-                    <h1 id="page-title" class="text-3xl font-bold text-wood-900 dark:text-wood-100">سفارشات من</h1>
+                    <h1 id="page-title" class="text-3xl font-bold text-wood-900 dark:text-wood-100">سفارشات مشتری ها</h1>
 
                 </div>
             </div>
@@ -186,10 +186,13 @@
                             </div>
                         </div>
                         <div class="flex items-center  w-full gap-1">
-                        <a href="{{route('shop.user.order.show',['order_id'=>$order->id])}}" class="w-full lg:w-auto px-2 py-1 bg-wood-600 hover:bg-wood-700 text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm ">مشاهده جزئیات</span> </a>
+                        <a href="{{route('shop.admin.order.show',['order_id'=>$order->id])}}" class="w-full lg:w-auto px-2 py-1 bg-wood-600 hover:bg-wood-700 text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm ">مشاهده جزئیات</span> </a>
+
+                        <a href="{{route('shop.admin.order.sent',$order->id)}}" class="w-full lg:w-auto px-2 py-1 bg-blue-600 hover:bg-blue-700  text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm "> ارسال شده</span> </a>
+                        <a href="{{route('shop.admin.order.delivered',$order->id)}}" class="w-full lg:w-auto px-2 py-1 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm ">تحویل شده </span> </a>
                        @if($order->status == 'pending')
-                                <a href="{{route('shop.cart.create',$order->id)}}" class="w-full lg:w-auto px-2 py-1 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm ">پرداخت </span> </a>
-                                <form action="{{ route('shop.user.order.delete',$order->id) }}" onsubmit="event.preventDefault();confirmDelete(event);" method="post" id="{{'delete-'.$order->id}}">@csrf @method('delete')
+
+                                <form action="{{ route('shop.admin.order.delete',$order->id) }}" onsubmit="event.preventDefault();confirmDelete(event);" method="post" id="{{'delete-'.$order->id}}">@csrf @method('delete')
                                     @csrf
                                     @method('DELETE')
 

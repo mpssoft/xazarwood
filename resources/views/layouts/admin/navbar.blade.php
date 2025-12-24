@@ -70,103 +70,59 @@
                 x-transition:leave="transition ease-in duration-150"
                 x-transition:leave-start="opacity-100 scale-100"
                 x-transition:leave-end="opacity-0 scale-95"
-                class="absolute left-0 mt-3 w-72 max-w-[90vw] bg-gradient-to-br from-white via-wood-50 to-wood-100 dark:from-wood-800 dark:via-wood-700 dark:to-wood-600 text-gray-800 dark:text-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-5 space-y-4 backdrop-blur-sm border border-white/20 dark:border-wood-600/20"
+                class=" absolute left-0 mt-16 w-72 max-w-[90vw] bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 rounded-2xl shadow-[0_8px_32px_rgba(74,47,31,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-50 p-5 space-y-4 with-blur border border-wood-300/50 dark:border-wood-700/50"
             >
                 <!-- User Info Section -->
-                <div class="flex items-center gap-4">
-                    <div class="w-14 h-14 rounded-full bg-gradient-to-r  from-pink-400 to-purple-500 p-0.5">
-                        <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-wood-700"
-                             alt="avatar">
-                    </div>
-                    <div>
-                        <p class="font-bold text-lg bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">{{auth()->user()->name}} </p>
-                        <a href="/{{auth()->user()->role}}" class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 hover:underline transition-colors duration-200">مشاهده پنل کاربری</a>
-                    </div>
-                </div>
 
-                {{--     <!-- Stats Section -->
-                     <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-4 space-y-2">
-                         <div class="flex justify-between items-center">
-                             <span class="text-sm font-medium">کیف پول</span>
-                             <div class="w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-blue-500 shadow-sm"></div>
-                         </div>
-                         <div class="flex justify-between items-center">
-                             <span class="text-sm font-medium">تجربه کاربری</span>
-                             <div class="w-3 h-3 rounded-full bg-gradient-to-r from-green-400 to-green-500 shadow-sm"></div>
-                         </div>
-                         <div class="text-green-500 font-bold text-lg">۲۰,۶۸۸ تجربه</div>
-                     </div>
-     --}}
-                <!-- Divider -->
-                <div class="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
 
-                @if(auth()->user()->role =='user')
+
+                    <!-- User Info Section -->
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 p-0.5">
+                            <img src="{{auth()->user()->image ? Storage::disk('users')->url( 'thumbs/'.auth()->user()->image) : '/images/user-avatar-man2.jpg'}}" class="w-full h-full rounded-full border-2 border-white dark:border-slate-700"
+                                 alt="avatar">
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                                {{auth()->user()->name}}</p>
+                            <a href="/{{auth()->user()->role}}" class="text-sm text-amber-600 hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300 hover:underline transition-colors duration-200">مشاهده پنل کاربری</a>
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="h-px bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
+
                     <!-- Navigation Menu -->
                     <nav class="space-y-1">
-                        <a href="{{route('user.courses.index')}}"
-                           class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 transition-all duration-200 group hover:-translate-x-1">
-                            <i class="fas fa-video text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-4"></i>
-                            <span class="font-medium">دوره ها</span>
+                        <a href="{{route('shop.admin.orders.index')}}" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
+                            <i class="fas fa-box text-amber-600 group-hover:text-amber-700 dark:text-amber-400 dark:group-hover:text-amber-300 transition-colors duration-200 w-4"></i>
+                            <span class="font-medium">سفارش‌ها</span>
                         </a>
-                        <a href="{{route('user.messages.index')}}"
-                           class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-900/20 dark:hover:to-cyan-900/20 transition-all duration-200 group hover:-translate-x-1">
-                            <i class="fas fa-paper-plane text-blue-500 group-hover:text-blue-600 transition-colors duration-200 w-4"></i>
-                            <span class="font-medium">پیام ها</span>
-                        </a>
-                        <a href="{{route('user.courses.bought')}}"
-                           class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20 transition-all duration-200 group hover:-translate-x-1">
-                            <i class="fas fa-credit-card-alt text-green-500 group-hover:text-green-600 transition-colors duration-200 w-4"></i>
-                            <span class="font-medium">خرید ها</span>
-                        </a>
-                        <a href="{{route('user.profile.edit')}}"
-                           class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50 dark:hover:from-yellow-900/20 dark:hover:to-orange-900/20 transition-all duration-200 group hover:-translate-x-1">
+
+
+
+                        <a href="{{route('user.profile.edit')}}" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
                             <div class="flex items-center gap-3">
-                                <i class="fas fa-user-edit text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200 rotate-45 w-4"></i>
-                                <span class="font-medium">ویرایش پروفایل</span>
+                                <i class="fas fa-user-edit text-amber-600 group-hover:text-amber-700 dark:text-amber-400 dark:group-hover:text-amber-300 transition-colors duration-200 w-4"></i>
+                                <span class="font-medium"> اطلاعات کاربری</span>
                             </div>
-                            {{--<span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-full w-6 h-6 text-xs flex items-center justify-center font-bold shadow-sm">۴</span>--}}
                         </a>
                     </nav>
 
-                @else
-                    <!-- Navigation Menu -->
-                    <nav class="space-y-1">
-                        <a href="{{route('admin.products.index')}}"
-                           class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 transition-all duration-200 group hover:-translate-x-1">
-                            <i class="fas fa-video text-purple-500 group-hover:text-purple-600 transition-colors duration-200 w-4"></i>
-                            <span class="font-medium">مدیریت محصولات </span>
-                        </a>
-                        <a href="{{route('admin.messages.index')}}"
-                           class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-900/20 dark:hover:to-cyan-900/20 transition-all duration-200 group hover:-translate-x-1">
-                            <i class="fas fa-paper-plane text-blue-500 group-hover:text-blue-600 transition-colors duration-200 w-4"></i>
-                            <span class="font-medium">پیام ها</span>
-                        </a>
-                        <a href="{{route('admin.licenses.index')}}"
-                           class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-900/20 dark:hover:to-emerald-900/20 transition-all duration-200 group hover:-translate-x-1">
-                            <i class="fas fa-credit-card-alt text-green-500 group-hover:text-green-600 transition-colors duration-200 w-4"></i>
-                            <span class="font-medium"> مدیریت لایسنس ها</span>
-                        </a>
-                        <a href="{{route('admin.profile.edit')}}"
-                           class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50 dark:hover:from-yellow-900/20 dark:hover:to-orange-900/20 transition-all duration-200 group hover:-translate-x-1">
-                            <div class="flex items-center gap-3">
-                                <i class="fas fa-user-edit text-yellow-500 group-hover:text-yellow-600 transition-colors duration-200 rotate-45 w-4"></i>
-                                <span class="font-medium">ویرایش پروفایل</span>
-                            </div>
-                            {{--<span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-white rounded-full w-6 h-6 text-xs flex items-center justify-center font-bold shadow-sm">۴</span>--}}
-                        </a>
-                    </nav>
+                    <!-- Divider -->
+                    <div class="h-px bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
 
-                @endif
+                    <!-- Logout Section -->
+                    <form action="{{route('logout')}}" method="post" id="logout-form">@csrf</form>
+                    <button onclick="event.preventDefault();document.getElementById('logout-form').submit()"
+                            class="w-full text-center bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 hover:from-red-100 hover:to-orange-100 dark:hover:from-red-900/30 dark:hover:to-orange-900/30 text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 py-3 rounded-xl transition-all duration-200 font-medium hover:scale-[0.98]">
+                        <i class="fas fa-sign-out-alt ml-2"></i>
+                        خروج از حساب کاربری
+                    </button>
+
                 <!-- Divider -->
                 <div class="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
 
-                <!-- Logout Section -->
-                <form action="{{route('logout')}}" method="post" id="logout-form">@csrf</form>
-                <button onclick="event.preventDefault();document.getElementById('logout-form').submit()"
-                        class="w-full text-center bg-gradient-to-r from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20 hover:from-red-100 hover:to-pink-100 dark:hover:from-red-900/30 dark:hover:to-pink-900/30 text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 py-3 rounded-xl transition-all duration-200 font-medium hover:scale-[0.98]">
-                    <i class="fas fa-sign-out-alt ml-2"></i>
-                    خروج از حساب کاربری
-                </button>
             </div>
         </div>
     </div>

@@ -46,7 +46,7 @@
     @endphp
     <div class="flex flex-col h-full group relative bg-wood-50 dark:bg-wood-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
         <div class="relative overflow-hidden h-full">
-            <img src="{{asset($product->main_image)}}" alt="{{$product->name}}" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+            <img src="{{asset($product->main_image)}}" alt="{{$product->name}}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
             @if($product->stock==0 || $product->status == 'inactive')
                 <div class="badge-unavailable absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full shadow-lg z-10 flex items-center space-x-2 space-x-reverse"> <span class="font-bold text-sm">ناموجود</span> </div>
             @endif
@@ -58,20 +58,20 @@
                         <i class="fas fa-tag ml-1"></i>{{ $activeDiscount->value }}{{ $activeDiscount->type == 'percent' ? '%' : ' تومان' }} تخفیف </span>
             @endif
         </div>
-        <div class="flex flex-col h-full  p-4 ">
+        <div class="flex flex-col md:h-full  p-4 ">
             <a  href="{{route('show.product',['product'=>$product->id,'name'=>$product->name])}}">
                 <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">{{$product->name}}</h3>
                 <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">{{$product->description}}</p>
             </a>
-            <div class="flex flex-1"></div>
+            <div class="flex h-full  flex-1"></div>
             @if($product->stock == 0 || $product->status == 'inactive')
 
-                <div class="flex  space-x-3 space-x-reverse">
+                <div class="flex justify-between  space-x-3 space-x-reverse">
                 <span class="text-xl font-bold text-gray-700 dark:text-gray-400">{{number_format($product->price)}}</span>
 
                     <button id="btn-{{$product->id}}"
                           disabled
-                            class="flex w-full items-center px-3 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg text-sm transition-colors">
+                            class="flex  items-center px-3 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg text-sm transition-colors">
 
                         <i class="fas fa-cart-arrow-down"></i>
                         <span>نا موجود</span>
