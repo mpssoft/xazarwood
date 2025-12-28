@@ -26,6 +26,7 @@
         </div>
     </div>
 </header><!-- Main Product Section -->
+    @php  $activeDiscount = 0; @endphp
 <main class="max-w-6xl mx-auto px-6 pb-16">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16"><!-- Product Images -->
         <div class="space-y-4"><!-- Main Image -->
@@ -92,6 +93,7 @@
                 <div class="flex flex-col w-full">
                     @php
                         // Check for active product discount
+
                         $productDiscount = $product->discounts
                             ->where('start_at', '<', now())
                             ->where('end_at', '>', now())
@@ -217,6 +219,9 @@
                 <div class="flex items-center p-3 bg-wood-50 dark:bg-wood-700 rounded-lg"><i class="fas fa-tint text-cyan-500 ml-3"></i> <span class="text-sm">رطوبت مناسب: ۴۰-۶۰ درصد</span>
                 </div>
             </div>
+        </div>
+        <div>
+            {!! $product->content !!}
         </div>
     </div><!-- Related Products -->
     <section>

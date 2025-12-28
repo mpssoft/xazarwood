@@ -61,7 +61,7 @@
                         </button>
 
                         <!-- Dropdown menu -->
-                        <div class="absolute overflow-hidden right-0 mt-6 w-72 p-5 bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 rounded-lg shadow-[0_8px_32px_rgba(74,47,31,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)]
+                        <div class="absolute overflow-hidden right-0 mt-6 w-72  p-5 bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 rounded-lg shadow-[0_8px_32px_rgba(74,47,31,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)]
               transform scale-95 opacity-0 invisible
               group-hover:visible group-hover:opacity-100 group-hover:scale-100
               transition-all duration-200 ease-out">
