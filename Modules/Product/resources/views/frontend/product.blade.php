@@ -18,7 +18,8 @@
         }
     </style>
 @endpush
-<div class="bg-wood-50 md:p-5 dark:bg-wood-900 text-wood-900 dark:text-wood-100 min-h-full"><!-- Simple Header -->
+<div class="bg-wood-50 md:p-5 dark:bg-wood-900 text-wood-900 dark:text-wood-100 min-h-full">
+    <!-- Simple Header -->
 <div class="container bg-slate-700/10 dark:bg-wood-950/50  md:rounded-2xl w-full md:w-[90%] mx-auto">
     <header class="max-w-6xl mx-auto px-6 py-8">
     <div class="flex items-center justify-between">
@@ -220,10 +221,12 @@
                 </div>
             </div>
         </div>
-        <div>
-            {!! $product->content !!}
-        </div>
-    </div><!-- Related Products -->
+
+    </div>
+    <div>
+        {!! $product->content !!}
+    </div>
+    <!-- Related Products -->
     <section>
         <h2 class="text-2xl font-bold  text-wood-800 dark:text-wood-100 mb-6" >محصولات مرتبط</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">

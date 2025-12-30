@@ -100,6 +100,7 @@ public function sortIndex( Request $request)
         OpenGraph::setTitle($product->name)
             ->setDescription($product->description)
             ->addImage(asset($product->main_image)); // <-- Here you add the product image
+
         foreach ($product->images as $image)
         {
             OpenGraph::addImage(asset($image->image));

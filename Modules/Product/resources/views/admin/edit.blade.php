@@ -237,7 +237,7 @@
                         </label>
 
                         <!-- TinyMCE Editor -->
-                        <textarea id="content" name="content" class="tinymce-editor">{{old('content')}}</textarea>
+                        <textarea id="content" name="content" class="tinymce-editor">{{old('content',$product->content)}}</textarea>
 
                         <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
                             <i class="fas fa-info-circle ml-1"></i>
