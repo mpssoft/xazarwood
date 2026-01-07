@@ -59,7 +59,7 @@
             @endif
         </div>
         <div class="flex flex-col md:h-full  p-4 ">
-            <a  href="{{route('show.product',['product'=>$product->id,'name'=>$product->name])}}">
+            <a  href="{{route('show.product',['product'=>$product->id,'name'=>$product->name . ' ' . $product->product_code])}}">
                 <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">{{$product->name}}</h3>
                 <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">{{$product->description}}</p>
             </a>
@@ -67,10 +67,10 @@
             @if($product->stock == 0 || $product->status == 'inactive')
 
                 <div class="flex justify-between  space-x-3 space-x-reverse">
-                <span class="text-xl font-bold text-gray-700 dark:text-gray-400">{{number_format($product->price)}}</span>
+                    <span class="text-xl font-bold text-gray-700 dark:text-gray-400">{{number_format($product->price)}}</span>
 
                     <button id="btn-{{$product->id}}"
-                          disabled
+                            disabled
                             class="flex  items-center px-3 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg text-sm transition-colors">
 
                         <i class="fas fa-cart-arrow-down"></i>
@@ -80,37 +80,40 @@
                     </button>
                 </div>
             @else
-            <div class="flex items-center justify-between">
-                @if($activeDiscount)
-                    <div class="flex justify-between items-center">
-                        <div class="flex flex-col text-right">
-                            <div class="flex items-center">
-                                <div class="text-center text text-wood-500 dark:text-wood-400 line-through mb-1">
-                                    {{ number_format($product->price) }} تومان
+                <div class="flex items-center justify-between">
+                    @if($activeDiscount)
+                        <div class="flex justify-between items-center">
+                            <div class="flex flex-col text-right">
+                                <div class="flex items-center">
+                                    <div class="text-center text text-wood-500 dark:text-wood-400 line-through mb-1">
+                                        {{ number_format($product->price) }} تومان
+
+                                    </div>
 
                                 </div>
+                                <div class="font-bold text-gray-800 dark:text-slate-200 text-xl">
+                                    {{ number_format($finalPrice) }}
+                                </div><span class="text-xs">تومان</span>
+                            </div>
 
-                            </div>
-                            <div class="font-bold text-gray-800 dark:text-slate-200 text-xl">
-                                {{ number_format($finalPrice) }}
-                            </div>
                         </div>
-
-                    </div>
-                @else
-                <span class="text-xl font-bold text-amber-700 dark:text-amber-400">{{number_format($product->price)}}</span>
-                @endif
+                    @else
+                        <div class="flex flex-col items-center ">
+                            <span class="text-xl font-bold text-amber-700 dark:text-amber-400">{{number_format($product->price)}}</span>
+                            <span class="text-xs">تومان</span>
+                        </div>
+                    @endif
                     <button id="btn-{{$product->id}}"
-                        onclick="addToCart('product','{{$product->id}}')"
-                        class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
+                            onclick="addToCart('product','{{$product->id}}')"
+                            class="px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
 
-                    <i class="fas fa-cart-arrow-down"></i>
-                    <span>افزودن به سبد</span>
+                        <i class="fas fa-cart-arrow-down"></i>
+                        <span>افزودن به سبد</span>
                         <span class="spinner-{{$product->id}}  hidden"><i
                                 class="fas fa-spinner fa-spin-pulse"></i></span>
-                </button>
-            </div>
-                @endif
+                    </button>
+                </div>
+            @endif
         </div>
     </div>
 @endforeach

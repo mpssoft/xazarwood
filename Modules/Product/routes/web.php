@@ -6,6 +6,7 @@ use Modules\Product\Http\Controllers\Frontend\FrontendProductController;
 
 Route::middleware(['auth', 'admin.auth'])->group(function () {
     Route::resource('products', ProductController::class)->names('admin.products');
+    Route::get('/products/{product}/copy',[ProductController::class,'copy'])->name('admin.products.copy');
     Route::post('admin/attribute/values',[\Modules\Product\Http\Controllers\Admin\AttributeController::class,'getValues'])->name('admin.attributes.values');
 });
 

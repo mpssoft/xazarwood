@@ -104,6 +104,11 @@ class ProductController extends Controller
         $product = Product::with('images')->findOrFail($id);
         return view('product::admin.edit', compact('product'));
     }
+    public function copy($id)
+    {
+        $product = Product::with('images')->findOrFail($id);
+        return view('product::admin.copy', compact('product'));
+    }
 
     /**
      * Update the specified resource in storage.

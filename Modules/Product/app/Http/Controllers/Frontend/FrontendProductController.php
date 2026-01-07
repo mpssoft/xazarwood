@@ -86,11 +86,11 @@ public function sortIndex( Request $request)
     public function showProduct(Product $product)
     {
         $this->seo()
-            ->setTitle($product->name)
+            ->setTitle($product->name . ' '. $product->product_code)
             ->setDescription($product->description)
         ;
         SEOMeta::addMeta('product_id', $product->id, 'name');
-        SEOMeta::addMeta('product_name', $product->name .' - '.$product->product_code, 'name');
+        SEOMeta::addMeta('product_name', $product->name .' '.$product->product_code, 'name');
         SEOMeta::addMeta('product_price', $product->price, 'name');
         SEOMeta::addMeta('availability', ($product->stock && $product->status == 'active') ? 'instock' : 'outofstock', 'name');
         SEOMeta::addMeta('guarantee', $product->guarantee, 'name');

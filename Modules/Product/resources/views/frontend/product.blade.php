@@ -38,7 +38,8 @@
                         <div class="badge-unavailable absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full shadow-lg z-10 flex items-center space-x-2 space-x-reverse"><span class="font-bold text-sm">ناموجود</span> </div>
                     @endif
                     <div class="h-96 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 flex items-center justify-center absolute inset-0" style="display: none;">
-                        <div class="text-center text-wood-700 dark:text-wood-300"><i class="fas fa-table text-8xl mb-4"></i>
+                        <div class="text-center text-wood-700 dark:text-wood-300">
+                            <i class="fas fa-table text-8xl mb-4"></i>
                             <p class="text-lg font-medium">{{$product->name}}</p>
                         </div>
                     </div><!-- Sale Badge -->
@@ -64,7 +65,8 @@
         </div><!-- Product Details -->
         <div class="space-y-6"><!-- Product Header -->
             <div>
-                <h1 class="text-2xl font-bold text-wood-800 dark:text-wood-100 mb-2">{{$product->name}} - {{$product->product_code}}</h1>
+                <h1 class="text-2xl font-bold text-wood-800 dark:text-wood-100 mb-2">{{$product->name}} </h1>
+                <p class="text-wood-700 dark:text-wood-300  text-sm"> کد : {{$product->product_code}}</p>
                 <p class="text-wood-700 dark:text-wood-300  text-sm"> {!! $product->description  !!}</p>
 {{--
                 <div class="flex items-center space-x-4 space-x-reverse mt-4">
@@ -223,7 +225,7 @@
         </div>
 
     </div>
-    <div>
+    <div class="overflow-auto">
         {!! $product->content !!}
     </div>
     <!-- Related Products -->

@@ -190,6 +190,7 @@
 
                         </div>
                         <div class="flex gap-3 justify-center  w-full">
+                            <a href="{{route('admin.products.copy',$product->id)}}"  class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 p-1"> <i class="fas fa-copy text-sm"></i> </a>
                             <a href="{{route('admin.products.edit',$product->id)}}"  class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 p-1"> <i class="fas fa-edit text-sm"></i> </a>
                             <form action="{{ route('admin.products.destroy',$product->id) }}" onsubmit="event.preventDefault();confirmDelete(event);" method="post" id="{{'delete-'.$product->id}}">@csrf @method('delete')
 
