@@ -100,12 +100,12 @@
             </div>
 
             <div>
-                <label for="status-filter" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">وضعیت</label>
-                <select id="status-filter" class="px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100">
+                <label for="status-filter" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">دسته</label>
+                <select id="status-filter" onchange="getProducts(this.value)" class="px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100">
                     <option value="">همه</option>
-                    <option value="in-stock">موجود</option>
-                    <option value="low-stock">کم موجود</option>
-                    <option value="out-of-stock">ناموجود</option>
+                  @foreach(\Modules\Blog\Models\Category::all() as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+                  @endforeach
                 </select>
             </div>
 
@@ -401,6 +401,11 @@
             popup: 'swal2-rtl'
         }
     });
+
+    function getProducts(v){
+        url = "products/?category="+v;
+        location.replace(url);
+    }
 </script>
 
 @endsection

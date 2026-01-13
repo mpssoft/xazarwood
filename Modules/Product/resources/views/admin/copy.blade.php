@@ -716,8 +716,32 @@
     <script>
         $("#gallery_images").val(JSON.stringify($("#gallery_images").val().split(',')))
         function openFileManager(callback, type = 'image') {
-            window.open('/file-manager/fm-button?type=' + type, 'fm', 'width=1000,height=600');
-            window.fmSetLink = callback;
+            // Build base URL
+            let url = '/file-manager/fm-button?type=' + type;
+            // Check localStorage for last folder
+            const lastDisk = localStorage.getItem('fm_lastDisk');
+            const lastPath = localStorage.getItem('fm_lastPath');
+            if (lastDisk)
+            {
+                url += '&leftDisk=' + encodeURIComponent(lastDisk);
+            }
+            if (lastPath)
+            {
+                url += '&leftPath=' + encodeURIComponent(lastPath);
+            }
+            window.open(url, 'fm', 'width=1000,height=600');
+            window.fmSetLink = function (fileUrl)
+            {
+                // Call original callback
+                callback(fileUrl);
+                const parts = fileUrl.split('/');
+                const disk = 'images';
+                // adjust if you use multiple disks
+                const path = parts.slice(2, -1).join('/');
+                // everything except /storage and filename // Save to localStorage
+                localStorage.setItem('fm_lastDisk', disk);
+                localStorage.setItem('fm_lastPath', path);
+            };
         }
 
         // ---- Main image ----

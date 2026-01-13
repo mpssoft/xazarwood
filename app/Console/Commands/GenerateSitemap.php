@@ -25,10 +25,13 @@ class GenerateSitemap extends Command
 
         // Add dynamic pages, for example products
         Product::all()->each(function($product) use ($sitemap) {
-            $sitemap->add(Url::create("/product/{$product->id}/".$product->name." ".$product->product_code)
+            $slug = rawurlencode($product->name.' '.$product->product_code);
+            $imageUrl = str_replace(' ', '%20', $product->main_image);
+            $sitemap->add(Url::create("/product/{$product->id}/".$slug)
                 ->setLastModificationDate($product->updated_at)
                 ->setPriority(0.9)
-                ->addImage($product->main_image,'','', $product->name)
+                ->setChangeFrequency('weekly')
+                ->addImage($imageUrl,'','', $product->name)
             );
         });
 

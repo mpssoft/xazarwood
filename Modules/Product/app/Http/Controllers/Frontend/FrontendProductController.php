@@ -5,6 +5,7 @@ namespace Modules\Product\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use Modules\Blog\Models\Category;
 use Modules\Product\Models\Product;
@@ -88,7 +89,8 @@ public function sortIndex( Request $request)
         $this->seo()
             ->setTitle($product->name . ' '. $product->product_code)
             ->setDescription($product->description)
-        ;
+            ->jsonLd()->setType("Product")
+            ;
         SEOMeta::addMeta('product_id', $product->id, 'name');
         SEOMeta::addMeta('product_name', $product->name .' '.$product->product_code, 'name');
         SEOMeta::addMeta('product_price', $product->price, 'name');
@@ -100,6 +102,27 @@ public function sortIndex( Request $request)
         OpenGraph::setTitle($product->name)
             ->setDescription($product->description)
             ->addImage(asset($product->main_image)); // <-- Here you add the product image
+
+
+        // Structured data (JSON-LD)
+        $this->seo()->jsonLd()->setType('Product');
+
+        $this->seo()->jsonLdMulti()->addValues([
+            '@context' => 'https://schema.org',
+            '@type' => 'Product',
+            'name' => $product->name,
+            'image' => [asset($product->main_image)],
+            'sku' => $product->product_code,
+            'offers' => [
+                '@type' => 'Offer',
+                'url' => route('show.product', ['product'=>$product->id,'name'=>$product->name.' '.$product->product_code]),
+                'priceCurrency' => 'IRR', // or USD/EUR etc.
+                'price' => $product->price*10,
+                'availability' => ($product->stock && $product->status == 'active') ? 'https://schema.org/InStock':'https://schema.org/OutOfStock',
+            ],
+        ]);
+
+
 
         foreach ($product->images as $image)
         {

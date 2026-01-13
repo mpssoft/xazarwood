@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         {!! SEO::generate() !!}
 
 
@@ -149,7 +150,7 @@
         <link rel="stylesheet" href="/css/xazarwood_style.css" />
         @if(app()->environment('production'))
         <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGKY3WVLX3"></script>
+       {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGKY3WVLX3"></script>--}}
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -183,7 +184,7 @@
 
         <script src="/js/jquery/jquery.min.js"> </script>
         <script src="/js/modules/sweetalert2.js" ></script>
-        <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
         @stack('scripts')
         @if(!auth()->check())
             @include('layouts.login-lightbox')

@@ -13,7 +13,7 @@
     {!! SEO::generate() !!}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="/js/modules/tailwind.js"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 
     <link href="/css/xazarwood_style.css" rel="stylesheet">
     <link href="/js/modules/select2.css" rel="stylesheet">

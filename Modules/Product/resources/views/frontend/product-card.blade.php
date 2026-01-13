@@ -61,6 +61,7 @@
         <div class="flex flex-col md:h-full  p-4 ">
             <a  href="{{route('show.product',['product'=>$product->id,'name'=>$product->name . ' ' . $product->product_code])}}">
                 <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">{{$product->name}}</h3>
+                <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">کد  : {{$product->product_code}}</p>
                 <p class="text-wood-600 dark:text-wood-300 text-sm mb-3">{{$product->description}}</p>
             </a>
             <div class="flex h-full  flex-1"></div>
