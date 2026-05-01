@@ -4,6 +4,8 @@ namespace Modules\Product\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Cookie;
+use Modules\Blog\Models\Category;
 use Modules\Product\Models\Attribute;
 use Modules\Product\Models\AttributeValue;
 use Modules\Product\Models\Product;
@@ -18,15 +20,28 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $query = Product::query();
-
-        if($request->has('category')){
-            $query->whereHas('categories', function($q) use ($request) {
-                $q->where('categories.id',$request->category);
-            });
+        $cat = 'all';
+        $layout = 'list';
+        if($request->has('category') ){
+            cookie()->queue('category',$request->category,60*24*30*12);
+            $cat = $request->category;
+            if($request->category != 'all')
+                $query->whereHas('categories', function($q) use ($request) {
+                    $q->where('categories.id',$request->category);
+                });
 
         }
         $products = $query->with('images')->latest()->paginate(20);
-        return view('product::admin.index', compact('products'));
+
+        if($request->has('layout') || Cookie::get('layout')) {
+            cookie()->queue('layout',$request->layout ?? request()->cookie('layout') ,60*24*30);
+            $layout = $request->layout ?? request()->cookie('layout');
+
+        }
+        if($layout == 'icon')
+            return view('product::admin.icon-view-index', compact('products','cat'));
+
+        return view('product::admin.index', compact('products','cat'));
     }
 
     /**
@@ -194,6 +209,17 @@ class ProductController extends Controller
         });
 
         return redirect()->route('admin.products.index')->with('success', 'Product updated successfully!');
+    }
+
+    public function updateField(Request $request, $id)
+    {
+        $product = Product::with('images')->findOrFail($id);
+
+        $product->update([
+                $request->field => $request->value
+            ]);
+
+        return response()->json(['success'=>true]);
     }
 
     /**

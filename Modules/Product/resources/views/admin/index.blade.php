@@ -33,12 +33,12 @@
 </div>
 
 <!-- Main Content -->
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
 
 
 
     <!-- Stats Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-2 mb-4">
         <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-slate-700">
             <div class="flex items-center">
                 <div class="p-3 rounded-full bg-blue-100 dark:bg-slate-700">
@@ -89,7 +89,7 @@
     </div>
 
     <!-- Filters -->
-    <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-slate-700 mb-8">
+    <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-slate-700 mb-4">
         <div class="flex flex-col md:flex-row gap-4">
             <div class="flex-1">
                 <label for="search" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">جستجو</label>
@@ -102,9 +102,9 @@
             <div>
                 <label for="status-filter" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">دسته</label>
                 <select id="status-filter" onchange="getProducts(this.value)" class="px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100">
-                    <option value="">همه</option>
+                    <option value="all">همه</option>
                   @foreach(\Modules\Blog\Models\Category::all() as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>
+                        <option  {{$category->id==$cat ? 'selected' :''}}  value="{{$category->id}}">{{$category->name}}</option>
                   @endforeach
                 </select>
             </div>
@@ -117,6 +117,23 @@
                     <option value="stock">موجودی</option>
                     <option value="date">تاریخ ایجاد</option>
                 </select>
+            </div><div >
+                <label  class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">نمایش</label>
+
+                <div class="flex  flex-1   p-2 gap-3   text-[10px] items-center justify-center">
+                    <a href="{{route('admin.products.index',['layout'=>'list', 'category'=>$cat ] )}}">
+                <i class="fas fa-list  text-[25px] text-blue-600 dark:text-slate-300"></i>
+                    </a>
+                    <a href="{{route('admin.products.index',['layout'=>'icon', 'category'=>$cat ] )}}">
+
+                    <div class="grid grid-cols-2 gap-1" >
+                <i class="fas fa-square   text-blue-600 dark:text-slate-300"></i>
+                <i class="fas fa-square  text-blue-600 dark:text-slate-300"></i>
+                <i class="fas fa-square  text-blue-600 dark:text-slate-300"></i>
+                <i class="fas fa-square  text-blue-600 dark:text-slate-300"></i>
+                </div>
+                </a>
+            </div>
             </div>
         </div>
     </div>
@@ -403,7 +420,7 @@
     });
 
     function getProducts(v){
-        url = "products/?category="+v;
+        url = "/products/?category="+v;
         location.replace(url);
     }
 </script>

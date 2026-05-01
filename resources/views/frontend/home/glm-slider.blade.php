@@ -1,5 +1,5 @@
 <!-- Hero Slider -->
-<section class="relative h-96 md:h-[550px] mt-12 md:mt-16  overflow-hidden">
+<section class="relative m-3 md:m-0 rounded-2xl md:rounded-none h-[300px] md:h-96 md:h-[550px] mt-20   overflow-hidden">
     <div class="relative w-full h-full" id="sliderContainer"><!-- Slides --> @foreach($sliders as $index => $slider)
             <div class="slide {{ $loop->first ? 'slide-active' : '' }} absolute inset-0" data-slide="{{ $index }}" style="opacity: {{ $loop->first ? '1' : '0' }}; transition: opacity 0.8s ease-in-out; pointer-events: {{ $loop->first ? 'auto' : 'none' }};"><img src="{{asset($slider->image)}}" alt="{{$slider->title}}" class="w-full h-full object-cover ">
                 <div class="absolute  pt-32 flex inset-0 items-center  transition-all duration-700">
@@ -7,7 +7,7 @@
                         <h2 class="text-2xl md:text-5xl font-bold text-white mb-4">{{$slider->title}}</h2>
                         <p class=" text-white/90 mb-6 max-w-2xl">{{$slider->subtitle}}</p>
                         @if(!empty($slider->link))
-                        <a href="{{$slider->link}}" class="p-2 md:px-8 md:py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"> {{$slider->button_text}} </a>
+                            <a href="{{$slider->link}}" class="p-2 md:px-8 md:py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"> {{$slider->button_text}} </a>
                         @endif
                     </div>
                 </div>

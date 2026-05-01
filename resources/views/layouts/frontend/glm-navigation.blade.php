@@ -30,7 +30,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M4 10v10m16-10v10M8 10v10m8-10v10"/>
                         </svg>
-                        میزها
+                        میز روستیک
                     </a>
 
                     <!-- Categories (Clock) -->

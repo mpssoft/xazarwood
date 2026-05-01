@@ -52,7 +52,7 @@
     </aside>
 
     <!-- بخش محصولات -->
-    <main id="product-list-container" class="col-span-5  p-2 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 grid-rows-[max-content] gap-2">
+    <main id="product-list-container" class="col-span-5  p-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-[max-content] gap-2">
 
             <!-- Product 1: Oak Dining Table -->
           @include('product::frontend.product-card',$products)
