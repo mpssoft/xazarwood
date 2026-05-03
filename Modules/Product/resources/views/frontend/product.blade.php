@@ -35,7 +35,7 @@
                 <div id="mainImage" class="h-[352px] relative bg-white duration-300">
                     <img id="mainImageSrc" src="{{asset($product->main_image)}}" alt="{{$product->name}}" class="w-full h-96 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"> <!-- Fallback content if image fails to load -->
                     @if($product->stock==0 || $product->status == 'inactive')
-                        <div class="badge-unavailable absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full shadow-lg z-10 flex items-center space-x-2 space-x-reverse"><span class="font-bold text-sm">ناموجود</span> </div>
+                        <div class="badge-unavailable absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full shadow-lg z-10 flex items-center space-x-2 space-x-reverse"><span class="font-bold text-sm">فروخته شد</span> </div>
                     @endif
                     <div class="h-96 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 flex items-center justify-center absolute inset-0" style="display: none;">
                         <div class="text-center text-wood-700 dark:text-wood-300">

@@ -1,4 +1,12 @@
+<div class=" mb-4 text-wood-900 dark:text-wood-100 min-h-screen">
 
+    <!-- لایه اصلی -->
+    <div class="grid grid-cols-1 md:grid-cols-6  mx-auto h-full gap-2 ">
+
+        <!-- بخش محصولات -->
+        <main id="product-list-container" class="w-full col-span-6   grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 grid-rows-[max-content] gap-2">
+
+            <!-- Product 1: Oak Dining Table -->
 @foreach($products as $product)
     @php
         // Check for active product discount
@@ -89,7 +97,7 @@
 
 
         @if($product->stock==0 || $product->status == 'inactive')
-                <div class="badge-unavailable absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full shadow-lg z-10 flex items-center space-x-2 space-x-reverse"> <span class="font-bold text-sm">ناموجود</span> </div>
+                <div class="badge-unavailable absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full shadow-lg z-10 flex items-center space-x-2 space-x-reverse"> <span class="font-bold text-sm">فروخته شد</span> </div>
             @endif
         </div>
         <div class="absolute top-4 right-4 flex flex-col space-y-2">
@@ -170,7 +178,11 @@
         </div>
     </div>
 @endforeach
+        </main>
+    </div>
 
+
+</div>
 @push('scripts')
     <script>
         $('.admin-input').on('change', function () {

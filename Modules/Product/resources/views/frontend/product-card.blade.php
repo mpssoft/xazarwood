@@ -48,7 +48,7 @@
         <div class="relative  h-full ">
             <img src="{{asset($product->main_image)}}" alt="{{$product->name}}" class="w-full     object-cover group-hover:scale-110 transition-transform duration-500">
             @if($product->stock==0 || $product->status == 'inactive')
-                <div class="badge-unavailable absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full shadow-lg z-10 flex items-center space-x-2 space-x-reverse"> <span class="font-bold text-sm">ناموجود</span> </div>
+                <div class="badge-unavailable absolute top-4 right-4 bg-red-500 text-white px-3 p-1 rounded-full shadow-lg z-10 flex items-center space-x-2 space-x-reverse"> <span class="font-bold text-xs">فروخته شد</span> </div>
             @endif
         </div>
         <div class="absolute top-4 right-4 flex flex-col space-y-2">
@@ -58,11 +58,11 @@
                         <i class="fas fa-tag ml-1"></i>{{ $activeDiscount->value }}{{ $activeDiscount->type == 'percent' ? '%' : ' تومان' }} تخفیف </span>
             @endif
         </div>
-        <div class="flex flex-col h-full  p-4 ">
+        <div class="flex flex-col h-full  p-2 ">
             <a  href="{{route('show.product',['product'=>$product->id,'name'=>$product->name . ' ' . $product->product_code])}}">
-                <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">{{$product->name}} کد {{$product->product_code}}</h3>
+                <h3 class="text-sm md:font-semibold text-wood-800 dark:text-wood-100 mb-2">{{$product->name}} | کد  {{$product->product_code}}
+                | {{$product->description}}</h3>
 
-                <p class="text-wood-600 dark:text-wood-300 text-sm mb-3 leading-relaxed   line-clamp-2">{{$product->description}}</p>
             </a>
             <div class="flex h-full  flex-1"></div>
             @if($product->stock == 0 || $product->status == 'inactive')

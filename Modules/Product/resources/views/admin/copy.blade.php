@@ -271,7 +271,7 @@
                     <button type="button" id="btn-main-image" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow">
                         انتخاب تصویر اصلی
                     </button>
-                    <input type="hidden" id="main_image" name="main_image" value="{{$product->main_image}}">
+                    <input  id="main_image" class="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100" name="main_image" value="{{$product->main_image}}">
                 </div>
                 <div id="main-image-preview" class="mt-4 ">
                     <img src="{{asset($product->main_image)}}" class="rounded-lg shadow max-h-40" alt="Main Image">
@@ -411,7 +411,7 @@
 
 @endsection
 @push('scripts')
-    <script src="https://cdn.tiny.cloud/1/{{env('TINYMC_API_KEY')}}/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+  <!--  <script src="https://cdn.tiny.cloud/1/{{env('TINYMC_API_KEY')}}/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> -->
     <script>
         // Initialize TinyMCE with Laravel File Manager
         tinymce.init({

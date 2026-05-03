@@ -16,16 +16,22 @@
     <div class="h-px bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
 <div class="grid md:grid-cols-6 ">
     <div class="col-span-1"></div>
-<header class=" max-w-7xl mx-auto  p-4 flex justify-between items-center">
+<header class="flex w-full grid-cols-5 col-span-5 mx-auto items-center justify-start p-4   ">
 
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-4">
+        <div>
         <label for="sort" class="text-sm">مرتب‌سازی:</label>
-        <select id="sort" class="border text-sm  border-wood-300 dark:border-wood-700 rounded px-2  bg-wood-100 dark:bg-wood-950">
+        <select id="sort" class="border pr-10 text-sm  border-wood-300 dark:border-wood-700 rounded px-2  bg-wood-100 dark:bg-wood-950">
 
             <option value="price-low">ارزانترین</option>
             <option value="price-high">گرانترین</option>
             <option value="newest" selected>جدیدترین</option>
         </select>
+        </div>
+        <div>
+        <input type="checkbox" class="stock border  border-wood-300  dark:border-wood-700 rounded p-2  bg-wood-100 dark:bg-wood-950">
+        <label for="stock" class="text-sm">فقط موجود</label>
+        </div>
     </div>
 </header>
 </div>
@@ -67,18 +73,18 @@
     <script>
         let cat = [];
         $(document).ready(function(){
-            $('#sort,.cat').on('change',function(){
+            $('#sort,.cat,.stock').on('change',function(){
                 let val = $('#sort').val();
                 let cats = $('.cat:checked')
                     .map(function () {
                         return this.value;
                     }).get();
-
+                let stock = $('.stock').is(":checked");
                 $.ajax({
                     url:'/sort-list/all',
                     type:'get',
                     headers: {'X-CSRF-TOKEN': "{{csrf_token()}}" },
-                    data:{sort:val,cat:cats},
+                    data:{sort:val,cat:cats,stock:stock},
                     success:function(res){
 
                         $("#product-list-container").html(res);

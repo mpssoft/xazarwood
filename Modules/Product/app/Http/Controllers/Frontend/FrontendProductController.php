@@ -77,7 +77,10 @@ public function sortIndex( Request $request)
             default: // newest
                 $query->orderBy('created_at', 'desc');
         }
-
+        if($request->stock == 'true'){
+            $query->where('status','active')
+                    ->where('stock','>',0);
+        }
         $products = $query->get();
 
 

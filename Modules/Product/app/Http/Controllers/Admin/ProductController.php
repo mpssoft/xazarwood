@@ -31,17 +31,15 @@ class ProductController extends Controller
                 });
 
         }
-        $products = $query->with('images')->latest()->paginate(20);
+        $products = $query->with('images')->latest()->paginate(200);
 
         if($request->has('layout') || Cookie::get('layout')) {
             cookie()->queue('layout',$request->layout ?? request()->cookie('layout') ,60*24*30);
             $layout = $request->layout ?? request()->cookie('layout');
 
         }
-        if($layout == 'icon')
-            return view('product::admin.icon-view-index', compact('products','cat'));
 
-        return view('product::admin.index', compact('products','cat'));
+        return view('product::admin.index', compact('products','cat','layout'));
     }
 
     /**
