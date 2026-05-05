@@ -50,7 +50,7 @@
             <h3 class="text-sm font-medium mb-2">دسته‌بندی</h3>
             <ul class="space-y-1">
              @foreach(\Modules\Blog\Models\Category::all() as $category)
-                <li><label><input  type="checkbox" value="{{$category->id}}" class=" cat mr-2">{{$category->name}}</label></li>
+                <li><label class="text-xs"><input  type="checkbox" value="{{$category->id}}" class=" cat mr-2 ml-2 border  border-wood-300  dark:border-wood-700 rounded p-2  bg-wood-100 dark:bg-wood-950">{{$category->name}}</label></li>
                 @endforeach
             </ul>
         </div>
