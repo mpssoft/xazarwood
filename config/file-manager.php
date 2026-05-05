@@ -163,4 +163,5 @@ return [
      *
      */
     'slugifyNames'      => false,
+
 ];
