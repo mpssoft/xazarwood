@@ -30,8 +30,8 @@ class GenerateSitemap extends Command
             $sitemap->add(Url::create("/product/{$product->id}/".$slug)
                 ->setLastModificationDate($product->updated_at)
                 ->setPriority(0.9)
-                ->setChangeFrequency('weekly')
-                ->addImage($imageUrl,'','', $product->name)
+                ->setChangeFrequency('monthly')
+                ->addImage($imageUrl,'','', $product->name.' - '.$product->product_code)
             );
         });
 

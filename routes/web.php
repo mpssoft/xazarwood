@@ -19,8 +19,15 @@ use Modules\Shop\Models\CartItem;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 
-Route::get('/r',function(){
+/*Route::get('/r',function(){
     Artisan::call('route:list');
+    echo "<pre>";
+    echo Artisan::output();
+});*/
+
+// generate sitemap
+Route::get('/sitemap-generate',function(){
+    Artisan::call('sitemap:generate');
     echo "<pre>";
     echo Artisan::output();
 });
