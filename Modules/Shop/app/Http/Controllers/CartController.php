@@ -56,6 +56,8 @@ class CartController extends Controller
     {
         if(!session()->has('checkout.address'))
             return back()->withErrors(['message'=>'آدرس انتخاب نشده است']);
+
+        session()->put('checkout.gateway','zarinpal');
         $cart = $this->cartService->getCart();
 
         $cart =  collect($cart)->map(function ($item) {
