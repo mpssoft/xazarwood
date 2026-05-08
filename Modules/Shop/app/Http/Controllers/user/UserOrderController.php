@@ -18,7 +18,12 @@ class UserOrderController extends Controller
         return view('shop::user.order.index' , compact('orders'));
     }
 
-
+    public function delete(Order $order)
+    {
+        auth()->user()->orders()->whereId($order->id)->delete();
+        alert("","سفارش مورد نظر شما حذف شد!","success");
+        return back();
+    }
 
     public function show()
     {
@@ -26,11 +31,6 @@ class UserOrderController extends Controller
         return view('shop::user.order.show');
     }
 
-    public function delete(Order $order)
-    {
-        auth()->user()->orders()->whereId($order->id)->delete();
-        alert("","سفارش مورد نظر شما حذف شد!","success");
-        return back();
-    }
+
 
 }
