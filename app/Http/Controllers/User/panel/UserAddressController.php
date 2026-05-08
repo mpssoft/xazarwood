@@ -31,6 +31,9 @@ class UserAddressController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
+            'name' => 'required|string',
+            'family' => 'required|string',
+            'mobile' => 'required',
             'province_id' => 'required|integer',
             'city_id' => 'required|integer',
             'address' => 'required|string',
@@ -69,6 +72,9 @@ class UserAddressController extends Controller
     public function update(Request $request, UserAddress $address)
     {
         $data = $request->validate([
+            'name' => 'required|string',
+            'family' => 'required|string',
+            'mobile' => 'required',
             'province_id' => 'required|integer',
             'city_id' => 'required|integer',
             'address' => 'required|string',

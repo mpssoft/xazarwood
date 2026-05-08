@@ -38,27 +38,40 @@
                 @csrf
                 @method('post')
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!--   name -->
+                    <div><label for="name" class="block text-sm font-semibold text-wood-900 dark:text-wood-100 mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="fas fa-user text-sm"></span>
+           نام </span> </label>
+                        <input type="text" id="name"  name="name" required maxlength="10" class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" placeholder="نام">
+                    </div>
+
+                    <!--   family -->
+                    <div><label for="family" class="block text-sm font-semibold text-wood-900 dark:text-wood-100 mb-2"> <span class="flex items-center gap-2">
+          <span class="fas fa-user text-sm"></span> نام خانوادگی </span> </label>
+                        <input type="text" id="family"  name="family" required maxlength="10" class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" placeholder="نام خانوادگی">
+                    </div>
                     <div>
                         <label for="province_id" class="block text-sm font-semibold text-wood-900 dark:text-wood-100 mb-2"> <span class="flex items-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
           </svg> استان </span> </label>
-                        <select id="province" name="province_id" required class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" >
+                        <select id="province" name="province_id" required class="w-full px-8 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" >
                             @foreach(\App\Models\ProvinceCity::where('parent',0)->get() as $item)
                                 <option value="{{$item->id}}">{{$item->title}}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div>
+                <div>
                         <label for="city" class="block text-sm font-semibold text-wood-900 dark:text-wood-100 mb-2"> <span class="flex items-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
           </svg> شهر </span> </label>
-                        <select id="city" name="city_id" required class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" >
+                        <select id="city" name="city_id" required class="w-full px-8 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" >
 
                         </select>
                     </div>
 
 
-                </div>
+
 
                 <!-- Address Field -->
                 <div>
@@ -66,6 +79,11 @@
          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
          </svg> آدرس کامل </span> </label>
                     <textarea id="address" name="address" required rows="4" class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors resize-none placeholder-wood-400 dark:placeholder-wood-500" placeholder="آدرس دقیق شامل خیابان، کوچه، پلاک و واحد"></textarea>
+                </div>
+                <!--   mobile -->
+                <div><label for="mobile" class="block text-sm font-semibold text-wood-900 dark:text-wood-100 mb-2"> <span class="flex items-center gap-2">
+           <span class="fas fa-mobile text-sm"></span> موبایل  </span> </label>
+                    <input type="text" id="mobile"  name="mobile" required maxlength="10" class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" placeholder="09120000000">
                 </div>
                 <!--   Postal Code -->
 
@@ -87,7 +105,10 @@
                             </div>
                             <p class="text-xs text-wood-700 dark:text-wood-300">این آدرس به صورت پیش‌فرض برای ارسال سفارش‌ها استفاده خواهد شد</p>
                         </div></label>
-                </div><!-- Action Buttons -->
+                </div>
+                </div>
+
+    <!-- Action Buttons -->
                 <div class="flex gap-3 pt-4 border-t-2 border-wood-300 dark:border-wood-700">
                     <button type="submit" class="flex-1 bg-gradient-to-r from-wood-500 to-wood-700 hover:from-wood-600 hover:to-wood-800 dark:from-wood-600 dark:to-wood-800 dark:hover:from-wood-700 dark:hover:to-wood-900 text-white px-6 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -96,6 +117,7 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg><span>انصراف</span> </a>
                 </div>
+
             </form>
         </div>
 

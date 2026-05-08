@@ -3,8 +3,9 @@
 @section('content')
 
 <div class="h-full w-full overflow-auto bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-950 dark:via-wood-900 dark:to-wood-950"><!-- Main Container -->
-<main class="min-h-full p-4 >
-    <div class="max-w-6xl mx-auto"><!-- Header -->
+<main class="min-h-full p-4" >
+    <div class="max-w-6xl mx-auto">
+    <!-- Header -->
         <header class="mb-4">
             <div class="bg-wood-100 dark:bg-wood-800 rounded-2xl shadow-lg p-6 border-2 border-wood-300 dark:border-wood-700">
                 <div class="flex items-center gap-4">
@@ -38,11 +39,24 @@
                 @csrf
                 @method('put')
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!--   name -->
+                    <div><label for="name" class="block text-sm font-semibold text-wood-900 dark:text-wood-100 mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="fas fa-user text-sm"></span>
+           نام </span> </label>
+                        <input type="text" id="name" value="{{$address->name}}" name="name" required maxlength="10" class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" placeholder="نام">
+                    </div>
+
+                    <!--   family -->
+                    <div><label for="family" class="block text-sm font-semibold text-wood-900 dark:text-wood-100 mb-2"> <span class="flex items-center gap-2">
+          <span class="fas fa-user text-sm"></span> نام خانوادگی </span> </label>
+                        <input type="text" id="family" value="{{$address->family}}" name="family" required maxlength="10" class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" placeholder="نام خانوادگی">
+                    </div>
                     <div>
                         <label for="province_id" class="block text-sm font-semibold text-wood-900 dark:text-wood-100 mb-2"> <span class="flex items-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
           </svg> استان </span> </label>
-                        <select id="province" name="province_id" required class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" >
+                        <select id="province" name="province_id" required class="w-full px-8 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" >
                             @foreach(\App\Models\ProvinceCity::where('parent',0)->get() as $item)
                                 <option value="{{$item->id}}" {{$item->id==$address->province_id? 'selected':''}}>{{$item->title}}</option>
                             @endforeach
@@ -53,7 +67,7 @@
                         <label for="city" class="block text-sm font-semibold text-wood-900 dark:text-wood-100 mb-2"> <span class="flex items-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
           </svg> شهر </span> </label>
-                        <select id="city" name="city_id" required class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" >
+                        <select id="city" name="city_id" required class="w-full px-8 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" >
                             @foreach(\App\Models\ProvinceCity::where('parent',$address->province_id)->get() as $item)
                                 <option value="{{$item->id}}" {{$item->id==$address->city_id? 'selected':''}}>{{$item->title}}</option>
                             @endforeach
@@ -61,7 +75,7 @@
                     </div>
 
 
-                </div>
+
 
                 <!-- Address Field -->
                 <div>
@@ -70,9 +84,12 @@
          </svg> آدرس کامل </span> </label>
                     <textarea id="address" name="address" required rows="4" class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors resize-none placeholder-wood-400 dark:placeholder-wood-500" placeholder="آدرس دقیق شامل خیابان، کوچه، پلاک و واحد">{{$address->address}}</textarea>
                 </div>
-                <!--   Postal Code -->
-
-
+                <!--   mobile -->
+                    <div><label for="mobile" class="block text-sm font-semibold text-wood-900 dark:text-wood-100 mb-2"> <span class="flex items-center gap-2">
+           <span class="fas fa-mobile text-sm"></span> موبایل  </span> </label>
+                        <input type="text" id="mobile" value="{{$address->mobile}}" name="mobile" required maxlength="10" class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" placeholder="09120000000">
+                    </div>
+  <!--   Postal Code -->
                     <div><label for="postal-code" class="block text-sm font-semibold text-wood-900 dark:text-wood-100 mb-2"> <span class="flex items-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg> کد پستی </span> </label>
@@ -99,10 +116,12 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg><span>انصراف</span> </a>
                 </div>
+                </div>
             </form>
         </div>
 
     </div>
+
 </main>
 </div>
 @endsection

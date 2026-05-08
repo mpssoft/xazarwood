@@ -40,8 +40,10 @@
                                 @endif
                             </div>
 
+                            <p class="text-amber-700 dark:text-amber-300 mb-1">{{$address->name}} - {{$address->family}} </p>
                             <p class="text-amber-700 dark:text-amber-300 mb-1">{{$address->province->title}} - {{$address->city->title}} - {{$address->address}}</p>
                             <p class="text-amber-700 dark:text-amber-300"> کد پستی: {{$address->postal_code}}</p>
+                            <p class="text-amber-700 dark:text-amber-300"> شماره موبایل: {{$address->mobile}}</p>
                         </div>
                     </div>
                 </div>
