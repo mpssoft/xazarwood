@@ -31,7 +31,7 @@ class HomeController extends Controller
         })->latest()->take(4)->get();
         $tables = Product::whereHas('categories',function($query){
             $query->where('name','میز روستیک');
-        })->latest()->take(4)->get();
+        })->orderBy('status')->take(4)->get();
 
 
         return view('frontend.home.glm-index',compact('sliders','products','tables'));

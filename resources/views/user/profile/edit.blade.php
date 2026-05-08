@@ -87,7 +87,7 @@
                         آدرس پیش فرض
                     </label>
                    <select name="default_address" class="w-full px-4 py-3 rounded-xl border border-wood-300 dark:border-wood-600 bg-white dark:bg-wood-700 text-wood-900 dark:text-wood-100 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
-                       @foreach(\App\Models\UserAddress::all() as $address)
+                       @foreach(auth()->user()->addresses()->get() as $address)
                             <option value="{{$address->id}}" {{$address->id == auth()->user()->default_address ? 'selected':''}}>{{$address->province->title}}-{{$address->city->title}}-{{$address->address}}-{{$address->postal_code}}</option>
                        @endforeach
                    </select>

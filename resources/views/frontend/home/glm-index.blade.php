@@ -73,7 +73,7 @@
     <section id="products" class="py-16 bg-white dark:bg-wood-950 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">میزهای روستیک ویژه</h2>
+                <h2 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">میزهای روستیک</h2>
                 <p class="text-lg text-wood-600 dark:text-wood-300"> بهترین میزهای روستیک دست‌ساز</p>
             </div>
             <div class="grid grid-cols-2 md:grid-cols-4  gap-3">
@@ -85,8 +85,8 @@
             <!-- Other Products Section -->
             <div class="mt-16">
                 <div class="text-center mb-8">
-                    <h3 class="text-2xl font-bold text-wood-800 dark:text-wood-100 mb-4">ساعت‌ها و ظروف چوبی</h3>
-                    <p class="text-lg text-wood-600 dark:text-wood-300">سایر محصولات روستیک</p>
+                    <h3 class="text-2xl font-bold text-wood-800 dark:text-wood-100 mb-4">ساعت‌های چوبی روستیک</h3>
+                    <p class="text-lg text-wood-600 dark:text-wood-300">با موتور آرامگرد تایوانی</p>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4  gap-3">
                     <!-- Clock Product 1 -->

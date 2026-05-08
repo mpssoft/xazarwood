@@ -174,8 +174,8 @@
                                             if($record->pivot->value->value<10){
                                                 //post
 
-                                                $shipping_cost +=250000 * $item['qty'];
-                                                $post_cost +=250000 * $item['qty'];
+                                                $shipping_cost +=400000 * $item['qty'];
+                                                $post_cost +=380000 * $item['qty'];
                                                 session()->put('shipping_cost',$shipping_cost);
                                             }else{
                                                 //barbary
@@ -186,8 +186,8 @@
 
                                             }
                                         }else{
-                                        $shipping_cost += 150000 * $item['qty'];
-                                        $post_cost += 150000 * $item['qty'];
+                                        $shipping_cost += 250000 * $item['qty'];
+                                        $post_cost += 250000 * $item['qty'];
                                         session()->put('shipping_cost',$shipping_cost);
                                     }
 
