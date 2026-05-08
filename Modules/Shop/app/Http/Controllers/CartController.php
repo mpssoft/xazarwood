@@ -226,7 +226,10 @@ class CartController extends Controller
             'province_id' => 'integer',
             'city_id' => 'integer',
             'postal_code' => 'min:10',
-            'address' => 'string',
+            'address' => 'required|string',
+            'name' => 'required|string',
+            'family' => 'required|string',
+            'mobile' => 'required|string',
         ],[
             'postal_code.min' => 'کد پستی نباید از 10 رقم کمتر باشد',
 

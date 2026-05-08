@@ -289,6 +289,8 @@
 
                                         <p class="text-wood-700 dark:text-wood-300 text-sm leading-relaxed">{{$address->province->title}},{{$address->city->title}}</p>
                                         <p class="text-wood-700 dark:text-wood-300 text-sm leading-relaxed">{{$address->address}}</p>
+                                        <p class="text-wood-700 dark:text-wood-300 text-sm leading-relaxed">{{$address->name}} {{$address->family}}</p>
+                                        <p class="text-wood-600 dark:text-wood-400 text-sm mt-2">موبایل : {{$address->mobile}}</p>
                                         <p class="text-wood-600 dark:text-wood-400 text-sm mt-2">کد پستی: {{$address->postal_code}}</p>
                                     </div>
                                 </div>

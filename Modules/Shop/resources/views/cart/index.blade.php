@@ -458,28 +458,47 @@
                                     </div>
                                         <!-- Address Form -->
                                     <form id="address-form" class=" space-y-4 mb-3 hidden overflow-hidden" style="max-height: 0; opacity: 0; transition: max-height 0.4s ease, opacity 0.3s ease;">
-                                        <div class="grid md:grid-cols-2 gap-6">
-                                        <div class="mb-2">
-                                            <label for="province" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-2">استان</label>
-                                            <select id="province" name="province_id" class=" px-4 py-3 w-[250px] rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition">
+                                        <div class="grid md:grid-cols-2 gap-3 ">
+                                            <!--   name -->
+                                            <div><label for="name" class="block text-sm font-semibold text-wood-900 dark:text-wood-100 mb-2">
+                            <span class="flex items-center gap-2">
+                                <span class="fas fa-user text-sm"></span>
+           نام </span> </label>
+                                                <input type="text" id="name"  name="name" required maxlength="10" class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" placeholder="نام">
+                                            </div>
+
+                                            <!--   family -->
+                                            <div><label for="family" class="block text-sm font-semibold text-wood-900 dark:text-wood-100 mb-2"> <span class="flex items-center gap-2">
+          <span class="fas fa-user text-sm"></span> نام خانوادگی </span> </label>
+                                                <input type="text" id="family"  name="family" required maxlength="10" class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" placeholder="نام خانوادگی">
+                                            </div>
+                                        <div class="">
+                                            <label for="province" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-1">استان</label>
+                                            <select id="province" name="province_id" class="w-full px-8 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500">
                                                 <option value="">انتخاب استان...</option>
                                                @foreach(\App\Models\ProvinceCity::where('parent',0)->get() as $item)
                                                     <option value="{{$item->id}}">{{$item->title}}</option>
                                                @endforeach
                                             </select>
                                         </div>
-                                        <div class=""><label for="city" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-2">شهر</label>
-                                            <select id="city" name="city_id" class=" px-4 py-3 w-[250px] rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition">
+                                        <div class=""><label for="city" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-1">شهر</label>
+                                            <select id="city" name="city_id" class="w-full px-8 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500">
                                                 <option value="">انتخاب شهر...</option>
 
                                             </select>
 
                                         </div>
+
                                         <div><label for="postal-code" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-2">کد پستی</label>
-                                            <input type="text" name="postal_code" id="postal-code" placeholder="۱۲۳۴۵۶۷۸۹۰" class="w-[250px] px-4 py-3 rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 placeholder-wood-400 dark:placeholder-wood-600 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition">
+                                            <input type="text" name="postal_code" id="postal-code" placeholder="۱۲۳۴۵۶۷۸۹۰" class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500">
                                         </div>
+                                            <!--   mobile -->
+                                            <div><label for="mobile" class="block text-sm font-semibold text-wood-900 dark:text-wood-100 mb-2"> <span class="flex items-center gap-2">
+           <span class="fas fa-mobile text-sm"></span> موبایل  </span> </label>
+                                                <input type="text" id="mobile"  name="mobile" required maxlength="10" class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors placeholder-wood-400 dark:placeholder-wood-500" placeholder="09120000000">
+                                            </div>
                                         <div><label for="address" class="block text-sm font-medium text-wood-700 dark:text-wood-300 mb-2">آدرس کامل</label>
-                                            <textarea id="address" name="address" rows="3" placeholder="آدرس کامل خود را وارد کنید" class="w-full px-4 py-3 rounded-lg border-2 border-wood-300 dark:border-wood-700 bg-wood-50 dark:bg-wood-800 text-wood-900 dark:text-wood-100 placeholder-wood-400 dark:placeholder-wood-600 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none smooth-transition resize-none"></textarea>
+                                            <textarea id="address" name="address" rows="3" placeholder="آدرس کامل خود را وارد کنید" class="w-full px-4 py-3 rounded-xl border-2 border-wood-300 dark:border-wood-600 bg-wood-50 dark:bg-wood-900 text-wood-900 dark:text-wood-100 focus:border-wood-500 dark:focus:border-wood-500 focus:outline-none transition-colors resize-none placeholder-wood-400 dark:placeholder-wood-500"></textarea>
                                         </div>
                                         </div>
                                         <div class="grid md:grid-cols-4">
@@ -518,11 +537,11 @@
 
                                         <!-- Divider -->
                                         <div class="h-px bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
-                                        <div
+                                        {{--<div
                                             class="flex justify-between text-lg font-bold text-wood-800 dark:text-wood-100">
                                             <span>مبلغ نهایی:</span>
                                             <span class="text-blue-600 dark:text-blue-400">{{ number_format($wholePrice-$wholeDiscount) }} تومان</span>
-                                        </div>
+                                        </div>--}}
                                     </div>
 
                                     <a id="pay-btn"   href="{{route('shop.cart.review')}}"
@@ -659,7 +678,7 @@
                 formData = $(this).serialize();
 
                 $.ajax({
-                    url: '/user/addAddress',
+                    url: '/cart/addAddress',
                     type: 'POST',
                     data:formData,
                     headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -803,6 +822,9 @@
                     $('#city').prop('disabled', false);
                     $('#postal-code').prop('disabled', false);
                     $('#address').prop('disabled', false);
+                    $('#name').prop('disabled', false);
+                    $('#family').prop('disabled', false);
+                    $('#mobile').prop('disabled', false);
                     $(".address-form-btn").removeClass("hidden");
                     setTimeout(() => {
                         form.style.maxHeight = '1000px';
@@ -831,12 +853,18 @@
                 $('#city').prop('disabled',true);
                 $('#postal-code').prop('disabled',true);
                 $('#address').prop('disabled',true);
+                $('#name').prop('disabled',true);
+                $('#family').prop('disabled',true);
+                $('#mobile').prop('disabled',true);
                 setTimeout(function(){
                     document.getElementById('city').value = addresses[e.target.value].city_id;
                 },2000)
 
                 document.getElementById('postal-code').value = addresses[e.target.value].postal_code;
                 document.getElementById('address').value = addresses[e.target.value].address;
+                document.getElementById('name').value = addresses[e.target.value].name;
+                document.getElementById('family').value = addresses[e.target.value].family;
+                document.getElementById('mobile').value = addresses[e.target.value].mobile;
                 setAddress(e.target.value);
                // form.reset();
 
