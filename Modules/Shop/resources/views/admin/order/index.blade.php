@@ -135,10 +135,29 @@
                     <div class="flex-1">
                         <div class="flex items-start justify-start gap-4 mb-3">
                             <div>
-                                <h3 class="text-xl font-bold text-wood-900 dark:text-wood-100 mb-1">شماره سفارش: {{ $order->id }}</h3>
-                                <p class="text-sm text-wood-600 dark:text-wood-400"><span>تاریخ ثبت سفارش:  {{$order->created_at}}</span> </p>
+                                <h3 class="text-xl font-bold text-wood-900 dark:text-wood-100 mb-1">شماره سفارش: {{ $order->id }} - {{$order->user->name}}  {{ $order->user->family }} - {{$order->address->mobile ?? $order->user->mobile}}</h3>
+                                <p class="text-sm text-wood-600 dark:text-wood-400 "><span>تاریخ ثبت سفارش:
+                                        {{\Morilog\Jalali\Jalalian::forge( $order->created_at)}}</span> </p>
                             </div>
-                            <div>
+
+                        </div>
+                        <div class="flex flex-wrap gap-2 mb-3">
+
+                            @foreach($order->items as $item)
+
+                            <span class="px-3 py-1 bg-wood-100 dark:bg-wood-800 text-wood-700 dark:text-wood-300 rounded-full text-sm"> {{$item->item->name ?? ''}} - {{$item->item->product_code}} </span>
+                            @endforeach
+
+                        </div>
+                       <div class="flex text-sm items-center gap-2 text-wood-600 dark:text-wood-400">
+
+                            <span class=" text-sm" > {{$order->address->province->title}}  {{ $order->address->city->title }} {{$order->address->address}} - {{$order->address->postal_code }}</span>
+
+                        </div>
+
+                    </div>
+                    <div class="flex  flex-col items-start  lg:items-end gap-3 lg:min-w-[200px]">
+                        <div>
                             @php $status = ['pending' => 'در انتظار پرداخت', 'paid'=>'در حال پردازش ', 'sent'=>'ارسال شده', 'delivered'=>'تحویل داده شده'] @endphp
                             @switch($order->status)
                                 @case('pending')
@@ -146,50 +165,35 @@
           <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" />
           </svg> {{$status[$order->status]}} </span>
                                     @break
-                             @case('sent')
+                                @case('sent')
                                     <span class="status-badge status-shipped">
           <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" /> <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z" />
           </svg> {{$status[$order->status]}} </span>
-                                @break
-                            @case('delivered')
+                                    @break
+                                @case('delivered')
                                     <span class="status-badge status-delivered">
           <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
           </svg> {{$status[$order->status]}} </span>
-                                @break
-                            @case('paid')
+                                    @break
+                                @case('paid')
                                     <span class="status-badge status-processing">
           <svg class="w-4 h-4 " fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg> {{$status[$order->status]}} </span>
-                                @break
+                                    @break
                             @endswitch
-                            </div>
                         </div>
-                        <div class="flex flex-wrap gap-2 mb-3">
-
-                            @foreach($order->items as $item)
-
-                            <span class="px-3 py-1 bg-wood-100 dark:bg-wood-800 text-wood-700 dark:text-wood-300 rounded-full text-sm"> {{$item->item->name ?? ''}} </span>
-                            @endforeach
-
-                        </div>
-                        <div class="flex items-center gap-2 text-wood-600 dark:text-wood-400">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                            </svg><span class="text-sm">{{$order->items->count()}} محصول</span>
-                        </div>
-                    </div>
-                    <div class="flex  flex-col items-start  lg:items-end gap-3 lg:min-w-[200px]">
-                        <div class="text-left lg:text-right w-full">
-                            <p class="text-sm text-wood-600 dark:text-wood-400 mb-1">مبلغ کل</p>
-                            <div class="flex items-center gap-3">
-                            <p class="text-2xl font-bold text-wood-900 dark:text-wood-100">{{number_format($order->price+$order->shipping_price)}}</p>
+                        <div class=" w-full">
+                            <div class="flex items-center gap-3 bg-wood-800 rounded-lg  p-1">
+                                <p class="text-sm   ">مبلغ پرداخت شده</p>
+                                <p class="text-2xl font-bold text-wood-900 dark:text-wood-100">{{number_format($order->price+$order->shipping_price)}}</p>
                             <p class="text-xs text-wood-500 dark:text-wood-500"> تومان </p>
                             </div>
                         </div>
                         <div class="flex items-center  w-full gap-1">
                         <a href="{{route('shop.admin.order.show',['order_id'=>$order->id])}}" class="w-full lg:w-auto px-2 py-1 bg-wood-600 hover:bg-wood-700 text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm ">مشاهده جزئیات</span> </a>
 
-                        <a href="{{route('shop.admin.order.sent',$order->id)}}" class="w-full lg:w-auto px-2 py-1 bg-blue-600 hover:bg-blue-700  text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm "> ارسال شده</span> </a>
-                        <a href="{{route('shop.admin.order.delivered',$order->id)}}" class="w-full lg:w-auto px-2 py-1 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm ">تحویل شده </span> </a>
+                        <a href="{{route('shop.admin.order.sent',$order->id)}}" class="w-full lg:w-auto px-2 py-1 bg-wood-600 hover:bg-wood-700  text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm "> ارسال شده</span> </a>
+                        <a href="{{route('shop.admin.order.delivered',$order->id)}}" class="w-full lg:w-auto px-2 py-1 bg-wood-600 hover:bg-wood-700 text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm ">تحویل شده </span> </a>
                        @if($order->status == 'pending')
 
                                 <form action="{{ route('shop.admin.order.delete',$order->id) }}" onsubmit="event.preventDefault();confirmDelete(event);" method="post" id="{{'delete-'.$order->id}}">@csrf @method('delete')

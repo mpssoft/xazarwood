@@ -210,26 +210,13 @@
                             </div>
                             <div class="flex-1">
                                 <p class="text-wood-700 dark:text-wood-300 leading-relaxed mb-3">{{$order->address->province->title}} , {{$order->address->city->title}} , {{$order->address->address}}</p>
+                                <p class="text-sm text-wood-600 dark:text-wood-400">
+                                    {{$order->address->name ?? $order->user->name}} {{$order->address->family ?? $order->user->family}} - {{$order->address->mobile ?? $order->user->mobile}}</p>
                                 <p class="text-sm text-wood-600 dark:text-wood-400"><span class="font-semibold">کد پستی:</span>
                                     {{$order->address->postal_code}}</p>
                             </div>
                         </div>
 
-                    </div>
-                </div><!-- Estimated Delivery -->
-                <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 animate-slide-in">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 rounded-full bg-wood-100 dark:bg-wood-800 flex items-center justify-center flex-shrink-0">
-                            <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-sm text-wood-600 dark:text-wood-400">زمان تحویل تخمینی</p>
-                            <p class="text-lg font-bold text-wood-900 dark:text-wood-100">۳ تا ۵ روز کاری</p>
-                        </div>
-                    </div>
-                    <div class="bg-wood-50 dark:bg-wood-800 rounded-lg p-4">
-                        <p class="text-sm text-wood-700 dark:text-wood-300">سفارش شما پس از تایید و بسته‌بندی، از طریق <span class="font-semibold">ارسال فوری</span> به آدرس شما ارسال خواهد شد.</p>
                     </div>
                 </div>
 
