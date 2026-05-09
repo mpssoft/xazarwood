@@ -40,6 +40,10 @@
             background-color: #dbeafe;
             color: #1e40af;
         }
+        .status-canceled {
+            background-color: #dbeafe;
+            color: #fab405;
+        }
 
         .status-shipped {
             background-color: #e0e7ff;
@@ -58,6 +62,10 @@
 
         .dark .status-processing {
             background-color: #1e3a8a;
+            color: #dbeafe;
+        }
+        .dark .status-canceled {
+            background-color: #fcb609;
             color: #dbeafe;
         }
 
@@ -158,7 +166,7 @@
                     </div>
                     <div class="flex  flex-col items-start  lg:items-end gap-3 lg:min-w-[200px]">
                         <div>
-                            @php $status = ['pending' => 'در انتظار پرداخت', 'paid'=>'در حال پردازش ', 'sent'=>'ارسال شده', 'delivered'=>'تحویل داده شده'] @endphp
+                            @php $status = ['pending' => 'در انتظار پرداخت', 'paid'=>'در حال پردازش ','canceled' =>'لغو شده', 'sent'=>'ارسال شده', 'delivered'=>'تحویل داده شده'] @endphp
                             @switch($order->status)
                                 @case('pending')
                                     <span class="status-badge status-pending">
@@ -180,6 +188,10 @@
           <svg class="w-4 h-4 " fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg> {{$status[$order->status]}} </span>
                                     @break
+                                @case('canceled')
+                                    <span class="status-badge status-canceled">
+                                        <span class="fas fa-cancel"> </span>{{$status[$order->status]}} </span>
+                                    @break
                             @endswitch
                         </div>
                         <div class=" w-full">
@@ -194,6 +206,7 @@
 
                         <a href="{{route('shop.admin.order.sent',$order->id)}}" class="w-full lg:w-auto px-2 py-1 bg-wood-600 hover:bg-wood-700  text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm "> ارسال شده</span> </a>
                         <a href="{{route('shop.admin.order.delivered',$order->id)}}" class="w-full lg:w-auto px-2 py-1 bg-wood-600 hover:bg-wood-700 text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm ">تحویل شده </span> </a>
+                        <a href="{{route('shop.admin.order.cancel',$order->id)}}" class="w-full lg:w-auto px-2 py-1 bg-wood-600 hover:bg-wood-700 text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm "> لغو </span> </a>
                        @if($order->status == 'pending')
 
                                 <form action="{{ route('shop.admin.order.delete',$order->id) }}" onsubmit="event.preventDefault();confirmDelete(event);" method="post" id="{{'delete-'.$order->id}}">@csrf @method('delete')

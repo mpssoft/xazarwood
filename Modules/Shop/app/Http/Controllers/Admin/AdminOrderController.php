@@ -36,6 +36,11 @@ class AdminOrderController extends Controller
         $order->update(['status'=>'delivered']);
         toast('وضعیت به تحویل شده تغییر یافت','success')->position('bottom-right');
         return back();
+    }public function cancel(Order $order)
+    {
+        $order->update(['status'=>'canceled']);
+        toast('وضعیت به لغو شده تغییر یافت','success')->position('bottom-right');
+        return back();
     }
 
     public function delete(Order $order)

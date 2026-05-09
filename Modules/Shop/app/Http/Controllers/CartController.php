@@ -237,7 +237,14 @@ class CartController extends Controller
 
         ]);
         $address = auth()->user()->addresses()->create($data);
-
+        if(auth()->user()->name == 'کاربر جدید') {
+            auth()->user()->update(
+                [
+                    'name' => $data['name'],
+                    'family' => $data['family'],
+                ]
+            );
+        }
         return response()->json(['address'=>$address]);
     }
 
