@@ -37,7 +37,7 @@
                             میزهای روستیک</a></li>
                     <li><a href="{{route('products-list','ساعت چوبی')}}" title="ساعت های چوبی روستیک" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-clock ml-2"></i>ساعت‌های چوبی</a></li>
                     <li><a href="{{route('products-list','ظروف چوبی')}}" title="ظروف چوبی روستیک" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-utensils ml-2"></i>ظروف چوبی</a></li>
-                    <li><a href="{{route('products-list','صندل روستیک')}}" title="صندل های چوبی روستیک" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-chair ml-2"></i>صندل چوبی</a></li>
+                    <li><a href="{{route('products-list','صندلی روستیک')}}" title="صندل های چوبی روستیک" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-chair ml-2"></i>صندل چوبی</a></li>
                 </ul>
             </div>
             <div>

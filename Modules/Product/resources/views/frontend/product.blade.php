@@ -174,21 +174,35 @@
                                 {{ number_format($product->price) }} تومان
                             </div>
                         </div>
+
+
                     @endif
                 </div>
 
             </div>
 
-
+                @if(strpos($product->product_code,'XW-CH-LUNA') !== false || strpos($product->product_code,'XW-CH-026') !== false)
+                    <div class="bg-white dark:bg-white-800 rounded-xl p-6 shadow-sm">
+                        <label class="text-red-800  font-medium">
+                            <span class="fas fa-check"></span>
+                            حداقل تعداد سفارش برای این محصول 4 عدد می باشد
+                        </label> <br> <label class="text-red-800  font-medium">
+                            <span class="fas fa-check"></span>
+                            انتخاب پارچه و هزینه آن به عهده مشتری می باشد
+                        </label>
+                    </div>
+                @endif
             <div class="bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
-                {{--<div class="flex items-center justify-between mb-4"><label class="text-wood-800 dark:text-wood-200 font-medium">تعداد:</label>
-                    <div class="flex items-center bg-wood-100 dark:bg-wood-700 rounded-lg"><button class="px-3 py-2 text-wood-600 dark:text-wood-400 hover:bg-wood-200 dark:hover:bg-wood-600 rounded-r-lg transition-colors" onclick="decreaseQuantity()"> <i class="fas fa-minus"></i> </button> <input type="number" id="quantity" value="1" min="1" max="10" class="w-16 text-center py-2 bg-transparent text-wood-800 dark:text-wood-200 border-none outline-none font-medium"> <button class="px-3 py-2 text-wood-600 dark:text-wood-400 hover:bg-wood-200 dark:hover:bg-wood-600 rounded-l-lg transition-colors" onclick="increaseQuantity()"> <i class="fas fa-plus"></i> </button>
+                {{--<div class="flex items-center justify-between mb-4">
+                    <label class="text-wood-800 dark:text-wood-200 font-medium">تعداد:</label>
+                    <div class="flex items-center bg-wood-100 dark:bg-wood-700 rounded-lg">
+                        <button class="px-3 py-2 text-wood-600 dark:text-wood-400 hover:bg-wood-200 dark:hover:bg-wood-600 rounded-r-lg transition-colors" onclick="decreaseQuantity()"> <i class="fas fa-minus"></i> </button> <input type="number" id="quantity" value="1" min="1" max="10" class="w-16 text-center py-2 bg-transparent text-wood-800 dark:text-wood-200 border-none outline-none font-medium"> <button class="px-3 py-2 text-wood-600 dark:text-wood-400 hover:bg-wood-200 dark:hover:bg-wood-600 rounded-l-lg transition-colors" onclick="increaseQuantity()"> <i class="fas fa-plus"></i> </button>
                     </div>
                 </div>--}}
                 <div class="space-y-3">
                     <button id="btn-{{$product->id}}"
                             onclick="addToCart('product','{{$product->id}}')"
-                     class=" bg-wood-600 hover:bg-wood-700 dark:bg-wood-500 dark:hover:bg-wood-400 text-white dark:text-wood-900 px-6 py-3 rounded-lg font-medium transition-colors">
+                     class=" bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
                         <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد خرید
                         <span class="spinner-{{$product->id}}  hidden"><i
                                 class="fas fa-spinner fa-spin-pulse"></i></span>
@@ -200,7 +214,8 @@
     </div><!-- Specifications -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16"><!-- Technical Specs -->
         <div class="bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
-            <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-4 flex items-center"><i class="fas fa-ruler-combined text-wood-600 dark:text-wood-400 ml-3"></i> مشخصات محصول</h3>
+            <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-4 flex items-center">
+                <i class="fas fa-ruler-combined text-wood-600 dark:text-wood-400 ml-3"></i> مشخصات محصول</h3>
             <div class="space-y-3">
                 @foreach($product->attributes()->get() as $attribute)
                 <div class="flex justify-between py-2 border-b border-wood-100 dark:border-wood-700">

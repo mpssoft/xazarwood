@@ -45,7 +45,7 @@
                         ظروف چوبی
                     </a>
                     <!-- Categories (chairs) -->
-                    <a href="{{route('products-list','صندل')}}" title="صندل ها چوبی روستیک خزرچوب" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
+                    <a href="{{route('products-list','صندلی')}}" title="صندل ها چوبی روستیک خزرچوب" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
                         <i class="fas fa-chair ml-2"></i>
                         صندلی چوبی
                     </a>

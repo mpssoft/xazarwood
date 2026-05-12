@@ -207,7 +207,7 @@
                         <a href="{{route('shop.admin.order.sent',$order->id)}}" class="w-full lg:w-auto px-2 py-1 bg-wood-600 hover:bg-wood-700  text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm "> ارسال شده</span> </a>
                         <a href="{{route('shop.admin.order.delivered',$order->id)}}" class="w-full lg:w-auto px-2 py-1 bg-wood-600 hover:bg-wood-700 text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm ">تحویل شده </span> </a>
                         <a href="{{route('shop.admin.order.cancel',$order->id)}}" class="w-full lg:w-auto px-2 py-1 bg-wood-600 hover:bg-wood-700 text-white rounded-lg font-medium smooth-transition"><span id="view-details-button" class="text-sm "> لغو </span> </a>
-                       @if($order->status == 'pending')
+                       @if($order->status == 'pending' || $order->status == 'canceled')
 
                                 <form action="{{ route('shop.admin.order.delete',$order->id) }}" onsubmit="event.preventDefault();confirmDelete(event);" method="post" id="{{'delete-'.$order->id}}">@csrf @method('delete')
                                     @csrf
