@@ -180,8 +180,9 @@
                                             }else{
                                                 //barbary
 
-                                                $shipping_cost += 1500000 * $item['qty'];
-                                                $barbary_cost += 1500000 * $item['qty'];
+                                                $shipping_cost += 0 * $item['qty'];
+                                                $barbary_cost += 0 * $item['qty'];
+
                                                 session()->put('shipping_cost',$shipping_cost);
 
                                             }
@@ -341,7 +342,7 @@
                                                 <div class="flex items-center gap-2">
                                                     <i  class="w-6 h-6 text-wood-600 dark:text-wood-400 fa fa-truck"></i>
                                                     <span class="text-sm text-wood-900 dark:text-wood-100 ">محصولات سنگین</span>
-                                                    <span class="text-sm text-wood-900 dark:text-wood-100">ارسال با باربری</span>
+                                                    <span class="text-sm text-wood-900 dark:text-wood-100">ارسال با باربری </span>
                                                 </div><span class="text-sm text-wood-600 dark:text-wood-400">{{number_format($barbary_cost)}} تومان</span>
                                             </div>
                                             <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">تحویل در 2 تا 4 روز کاری</p>
@@ -367,7 +368,7 @@
                                                 </i>
                                                 <div>
 
-                                                    <p class="text-wood-700 dark:text-wood-300 text-sm leading-relaxed">محصولات سنگین با باربری ارسال خواهد شد.</p>
+                                                    <p class="text-wood-700 dark:text-wood-300 text-sm leading-relaxed">محصولات سنگین با باربری ارسال خواهد شد و هزینه آن به صورت پس کرایه خواهد بود.</p>
 
                                                 </div>
                                             </div>
