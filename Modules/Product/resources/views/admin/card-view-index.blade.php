@@ -187,6 +187,7 @@
     <script>
         $('.admin-input').on('change', function () {
             let id = $(this).data('id');
+            removeComas();
             let field = $(this).attr('name');
             let value = $(this).val();
             $this = $(this);

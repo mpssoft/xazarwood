@@ -186,9 +186,6 @@
                         <label class="text-red-800  font-medium">
                             <span class="fas fa-check"></span>
                             حداقل تعداد سفارش برای این محصول 4 عدد می باشد
-                        </label> <br> <label class="text-red-800  font-medium">
-                            <span class="fas fa-check"></span>
-                            انتخاب پارچه و هزینه آن به عهده مشتری می باشد
                         </label>
                     </div>
                 @endif

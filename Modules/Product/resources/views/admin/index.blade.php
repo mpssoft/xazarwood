@@ -364,6 +364,11 @@
             url = "/products/?category=" + v;
             location.replace(url);
         }
+        function removeComas() {
+            $('.format_number').each(function (index, element) {
+                $(this).val($(this).val().replace(/,/g, "")); // Remove existing commas
+            });
+        }
     </script>
 
 @endsection
