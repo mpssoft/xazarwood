@@ -143,9 +143,11 @@
                     @if($activeDiscount)
                         <div class="flex justify-between items-center">
                             <div class="flex flex-col text-right">
+                                <span class="text-sm text-amber-400 mb-3"> (بروزرسانی  {{ \Morilog\Jalali\Jalalian::forge($product->updated_at)->ago() }} )</span>
                                 <div class="flex items-center">
                                 <div class="text-center text-lg text-wood-500 dark:text-wood-400 line-through mb-1">
                                     {{ number_format($product->price) }} تومان
+
 
                                 </div>
                                     <!-- Discount Badge -->
@@ -155,6 +157,7 @@
                                 </div>
                                 <div class="font-bold text-gray-800 dark:text-slate-200 text-2xl">
                                     {{ number_format($finalPrice) }} <span class="">تومان</span>
+
                                 </div>
                             </div>
 
@@ -169,9 +172,11 @@
                         </div>
                     @else
                         <!-- Price Section -->
+                        <span class="text-sm text-amber-400 mb-3"> (بروزرسانی  {{ \Morilog\Jalali\Jalalian::forge($product->updated_at)->ago() }} )</span>
                         <div class="text-right">
                             <div class="font-bold text-gray-800 dark:text-wood-200 text-2xl">
                                 {{ number_format($product->price) }} تومان
+
                             </div>
                         </div>
 
