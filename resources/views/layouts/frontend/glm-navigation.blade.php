@@ -99,7 +99,97 @@
             </div>
 
             <!-- Right Side Actions -->
-            <div class="flex items-center space-x-reverse space-x-3">
+            <div class="flex items-center  space-x-reverse space-x-3">
+                <!-- Dropdown (Contact) -->
+                <div class="relative group" id="contactDropdown">
+                    <!-- Trigger -->
+                    <button
+                        class="flex items-center text-wood-700 dark:text-wood-200
+               hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium"
+                        onclick="toggleDropdown('contactDropdown')"
+                    >
+                        <i class="fas text-xl fa-earth ml-2"></i>
+
+
+                    </button>
+
+                    <!-- Dropdown menu -->
+                    <!-- تغییرات: حذف group-hover و اضافه کردن data-open -->
+                    <div
+                        class="absolute overflow-hidden  -left-20 md:left-0 mt-8 w-48 p-5 bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 rounded-lg shadow-[0_8px_32px_rgba(74,47,31,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)]
+               transform scale-95 opacity-0 invisible
+               data-[open=true]:visible data-[open=true]:opacity-100 data-[open=true]:scale-100
+               transition-all duration-200 ease-out text-left " dir="ltr"
+                        data-open="false"
+                    >
+                        <nav class="space-y-1 ">
+                            <!-- Divider -->
+                            <div class="h-px bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
+                            <a href="/lang/en" class="flex text-left items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1235 650" width="30" height="20">
+                                    <rect width="1235" height="650" fill="#B22234"/>
+                                    <rect y="50" width="1235" height="50" fill="#FFFFFF"/>
+                                    <rect y="150" width="1235" height="50" fill="#FFFFFF"/>
+                                    <rect y="250" width="1235" height="50" fill="#FFFFFF"/>
+                                    <rect y="350" width="1235" height="50" fill="#FFFFFF"/>
+                                    <rect y="450" width="1235" height="50" fill="#FFFFFF"/>
+                                    <rect y="550" width="1235" height="50" fill="#FFFFFF"/>
+                                    <rect width="494" height="350" fill="#3C3B6E"/>
+                                    <g fill="#FFFFFF">
+                                        <!-- ستاره‌ها (ساده‌سازی شده) -->
+                                        <circle cx="25" cy="25" r="5"/><circle cx="75" cy="25" r="5"/><circle cx="125" cy="25" r="5"/><circle cx="175" cy="25" r="5"/><circle cx="225" cy="25" r="5"/><circle cx="275" cy="25" r="5"/><circle cx="325" cy="25" r="5"/><circle cx="375" cy="25" r="5"/><circle cx="425" cy="25" r="5"/><circle cx="475" cy="25" r="5"/>
+                                        <circle cx="50" cy="50" r="5"/><circle cx="100" cy="50" r="5"/><circle cx="150" cy="50" r="5"/><circle cx="200" cy="50" r="5"/><circle cx="250" cy="50" r="5"/><circle cx="300" cy="50" r="5"/><circle cx="350" cy="50" r="5"/><circle cx="400" cy="50" r="5"/><circle cx="450" cy="50" r="5"/>
+                                        <!-- برای سادگی کد، تعداد ستاره‌ها کم شده است، اما ساختار درست است -->
+                                    </g>
+                                </svg>
+
+                                <span class="font-medium text-left">English</span>
+                            </a>
+
+                            <a href="/lang/tr" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="30" height="20">
+                                    <rect width="1200" height="600" fill="#E30A17"/>
+                                    <circle cx="400" cy="300" r="200" fill="#FFFFFF"/>
+                                    <circle cx="440" cy="300" r="160" fill="#E30A17"/>
+                                    <g transform="translate(400, 300)" fill="#FFFFFF">
+                                        <polygon points="0,-100 22,-30 95,-30 40,15 60,85 0,45 -60,85 -40,15 -95,-30 -22,-30"/>
+                                        <polygon transform="rotate(36)" points="0,-100 22,-30 95,-30 40,15 60,85 0,45 -60,85 -40,15 -95,-30 -22,-30"/>
+                                    </g>
+                                </svg>
+
+                                <span class="font-medium">Turkish </span>
+                            </a>
+                            <a href="/lang/ar" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="30" height="20">
+                                    <rect width="1200" height="800" fill="#006C35"/>
+
+                                    <path d="M600,500 L600,750 M550,700 L650,700 M580,720 L620,720" stroke="#FFFFFF" stroke-width="10" fill="none"/>
+                                </svg>
+
+                                <span class="font-medium"> Arabic </span>
+                            </a>
+                            <a href="/lang/fa" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
+                                <div class="flex items-center gap-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="30" height="20">
+                                        <rect width="1200" height="200" fill="#239f40"/>
+                                        <rect y="200" width="1200" height="200" fill="#fff"/>
+                                        <rect y="400" width="1200" height="200" fill="#da0000"/>
+                                        <g transform="translate(600, 300) scale(1.5)" fill="#da0000">
+                                            <!-- طرح کلمه الله به صورت نمادین -->
+                                            <path d="M0,-20 L5,-5 L20,-5 L10,5 L15,20 L0,10 L-15,20 L-10,5 L-20,-5 L-5,-5 Z"/>
+                                            <path d="M-30,0 L-20,10 L-30,20 L-20,30 L-30,40 L-10,30 L-10,40 L10,40 L10,30 L30,40 L20,30 L30,20 L20,10 L30,0 L10,-10 L10,0 L-10,0 L-10,-10 Z"/>
+                                        </g>
+                                    </svg>
+
+                                    <span class="font-medium"> Farsi </span>
+                                </div>
+                            </a>
+                        </nav>
+
+                        <!-- Divider -->
+                        <div class="h-px bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
+                    </div>
+                </div>
 
                 <!-- Theme Toggle -->
                 <button onclick="toggleTheme()" class="p-2 rounded-full bg-wood-100 dark:bg-wood-800 hover:bg-wood-200 dark:hover:bg-wood-700 transition-colors">
@@ -346,5 +436,33 @@
             closeIcon.classList.toggle('hidden');
 
         }
+    </script>
+    <script>
+        function toggleDropdown(id) {
+            const container = document.getElementById(id);
+            const menu = container.querySelector('[data-open]');
+
+            // دریافت وضعیت فعلی
+            const isOpen = menu.getAttribute('data-open') === 'true';
+
+            // تغییر وضعیت
+            menu.setAttribute('data-open', !isOpen);
+
+
+        }
+
+        // بستن منو اگر کاربر بیرون از آن کلیک کرد
+        document.addEventListener('click', function(event) {
+            const dropdowns = document.querySelectorAll('[id$="Dropdown"]');
+            dropdowns.forEach(dropdown => {
+                const menu = dropdown.querySelector('[data-open]');
+                const button = dropdown.querySelector('button');
+
+                if (!dropdown.contains(event.target) && menu.getAttribute('data-open') === 'true') {
+                    menu.setAttribute('data-open', 'false');
+
+                }
+            });
+        });
     </script>
 @endpush

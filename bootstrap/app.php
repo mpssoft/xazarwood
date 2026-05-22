@@ -11,6 +11,7 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
         then: function () {
+
             Route::middleware(['web', 'auth'])
                 ->prefix('user')
                 ->name('user.')
@@ -28,6 +29,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'Melipayamak' => Melipayamak\Laravel\Facade::class,
             'admin.auth' => \App\Http\Middleware\AdminAuthenticateMiddleware::class,
             'api.key' => \App\Http\Middleware\ApiKeyMiddleware::class,
+            'SetLocale' => \App\Http\Middleware\SetLocale::class,
+        ]);
+        $middleware->web(append: [
+            \App\Http\Middleware\SetLocale::class,
         ]);
     })
     ->withCommands([

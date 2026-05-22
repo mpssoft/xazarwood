@@ -72,7 +72,7 @@
             </div>
         </div>
         <div class="border-t border-wood-200 dark:border-wood-800 pt-8 text-center">
-            <p class="text-sm text-wood-600 dark:text-wood-300">© ۱۴۰۳  خزر چوب. تمامی حقوق محفوظ است.</p>
+            <p class="text-sm text-wood-600 dark:text-wood-300">© ۱۴۰۳  خزر چوب. {{ __('All rights reserved.') }}</p>
         </div>
     </div>
 </footer>

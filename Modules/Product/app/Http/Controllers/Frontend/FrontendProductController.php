@@ -113,7 +113,8 @@ public function sortIndex( Request $request)
         $this->seo()->jsonLdMulti()->addValues([
             '@context' => 'https://schema.org',
             '@type' => 'Product',
-            'name' => $product->name,
+            'name' => $product->name .' '. $product->product_code,
+            'description' => $product->description .' کد '. $product->product_code,
             'image' => [asset($product->main_image)],
             'sku' => $product->product_code,
             'offers' => [
@@ -129,7 +130,7 @@ public function sortIndex( Request $request)
 
         foreach ($product->images as $image)
         {
-            OpenGraph::addImage(asset($image->image));
+            OpenGraph::addImage(asset(str_replace(['small','500'],['big','1500'], $image->image)));
         }
         $relatedProducts = Product::where("id","!=",$product->id)->whereHas('categories',function($query) use($product){
             $query->whereIn('name',$product->categories()->pluck('name')->toArray());

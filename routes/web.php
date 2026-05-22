@@ -56,4 +56,16 @@ Route::post('/verify-otp', [OtpLoginController::class, 'verifyOtp'])->name('otp.
 // click slider increament
 Route::post('slider/click/{slider}',[SliderController::class,'click'])->name('slider.click');
 
+Route::get('/lang/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'fa' , 'tr' , 'ar'])) {
+        abort(400);
+    }
+
+    config(['app.locale' => $locale]);
+
+    session()->put('locale', $locale); // ذخیره در سشن برای درخواست‌های بعدی
+
+    return redirect()->back();
+});
+
 require __DIR__.'/auth.php';

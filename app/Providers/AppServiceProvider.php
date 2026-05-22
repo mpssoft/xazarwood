@@ -38,5 +38,6 @@ class AppServiceProvider extends ServiceProvider
         Notification::extend('melipayamak', function ($app) {
             return new MelipayamakChannel();
         });
+
     }
 }
