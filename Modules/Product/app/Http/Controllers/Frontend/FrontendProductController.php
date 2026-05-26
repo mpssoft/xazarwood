@@ -23,11 +23,13 @@ class FrontendProductController extends Controller
         $query = Product::query();
         if(is_array($request->cat)){
             $query->whereHas('categories', function($q) use ($request) {
-                $q->whereIn('name',$request->cat);
+                $q->whereIn('name',$request->cat)
+                ->orWhereIn('english',$request->cat);
             });
         }elseif ($request->cat != 'all') {
             $query->whereHas('categories', function($q) use ($request) {
-                $q->where('name', 'like', "%{$request->cat}%");
+                $q->where('name', 'like', "%{$request->q}%")
+                    ->orWhere('english','like',"%{$request->cat}%");
             });
         }
 

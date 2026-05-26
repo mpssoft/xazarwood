@@ -7,7 +7,7 @@
     <section class="max-w-7xl mx-auto px-4 pt-5 mb-2">
 
         <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-3 space-x-reverse text-wood-600 dark:text-wood-400 text-sm"><span>خانه</span> <i class="fas fa-chevron-left text-xs"></i><a href="{{route('products-list', isset($products[0]) ?  $products[0]->categories()->first()->name : 'all')}}"> <span class="text-wood-800 dark:text-wood-200">{{ isset($products[0]) ?  $products[0]->categories()->first()->name:''}}</span> </a>
+            <div class="flex items-center space-x-3 space-x-reverse text-wood-600 dark:text-wood-400 text-sm"><span>{{__('Home')}}</span> <i class="fas fa-chevron-left text-xs"></i><a href="{{route('products-list', isset($products[0]) ?  $products[0]->categories()->first()->name : 'all')}}"> <span class="text-wood-800 dark:text-wood-200">{{ isset($products[0]) ?  __($products[0]->categories()->first()->english) :''}}</span> </a>
             </div>
         </div>
 
@@ -20,17 +20,17 @@
 
     <div class="flex items-center gap-4">
         <div>
-        <label for="sort" class="text-sm">مرتب‌سازی:</label>
+        <label for="sort" class="text-sm">{{__('Sort')}}:</label>
         <select id="sort" class="border pr-10 text-sm  border-wood-300 dark:border-wood-700 rounded px-2  bg-wood-100 dark:bg-wood-950">
 
-            <option value="price-low">ارزانترین</option>
-            <option value="price-high">گرانترین</option>
-            <option value="newest" selected>جدیدترین</option>
+            <option value="price-low">{{__('Cheapest')}}</option>
+            <option value="price-high">{{__('Most expensive')}}</option>
+            <option value="newest" selected>{{__('Newest')}}</option>
         </select>
         </div>
         <div>
         <input type="checkbox" class="stock border  border-wood-300  dark:border-wood-700 rounded p-2  bg-wood-100 dark:bg-wood-950">
-        <label for="stock" class="text-sm">فقط موجود</label>
+        <label for="stock" class="text-sm">{{__('Just existing')}}</label>
         </div>
     </div>
 </header>
@@ -42,15 +42,15 @@
     <!-- بخش فیلترها -->
     <aside class="w-full col-span-1  border-l border-wood-200 dark:border-wood-800 p-4 hidden md:block sticky top-20 h-screen overflow-y-auto">
 
-        <h2 class="text-sm text-center mb-4">فیلترها</h2>
+        <h2 class="text-sm text-center mb-4">دسته‌بندی</h2>
         <!-- Divider -->
         <div class="h-px bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
         <!-- دسته‌بندی -->
         <div class="mb-6 mt-3">
-            <h3 class="text-sm font-medium mb-2">دسته‌بندی</h3>
+
             <ul class="space-y-1">
              @foreach(\Modules\Blog\Models\Category::all() as $category)
-                <li><label class="text-xs"><input  type="checkbox" value="{{$category->id}}" class=" cat mr-2 ml-2 border  border-wood-300  dark:border-wood-700 rounded p-2  bg-wood-100 dark:bg-wood-950">{{$category->name}}</label></li>
+                <li><label class="text-xs"><input  type="checkbox" value="{{$category->id}}" class=" cat mr-2 ml-2 border  border-wood-300  dark:border-wood-700 rounded p-2  bg-wood-100 dark:bg-wood-950">{{__($category->english)}}</label></li>
                 @endforeach
             </ul>
         </div>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-
+dir="ltr"
 
 >
     <head>
@@ -44,6 +44,7 @@
         <style>
             body{
                 overflow:visible !important;
+
             }
             /* Custom scrollbar */
             ::-webkit-scrollbar {
@@ -161,8 +162,9 @@
         @endif
 
     </head>
-    <body dir="rtl" class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-wood-950 dark:to-wood-900 min-h-screen transition-colors duration-300">
-        <div class="min-h-screen ">
+    <body dir="ltr" class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-wood-950 dark:to-wood-900 min-h-screen transition-colors duration-300">
+
+    <div class="min-h-screen ">
             @include('layouts.frontend.glm-navigation')
 
             <!-- Page Heading -->

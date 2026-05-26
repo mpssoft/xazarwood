@@ -15,7 +15,7 @@
                     <div class="flex flex-col items-center leading-tight font-extrabold">
 
                         <span style="font-family:'Vazirmatn-bold' !important;" class=" text-2xl  font-bold  bg-gradient-to-r from-amber-600 via-yellow-400 to-amber-800  text-transparent bg-clip-text    tv-optimized-text-shadow">
-            خزرچوب
+            {{__('Xazarwoods')}}
         </span>
                     </div>
 
@@ -26,28 +26,28 @@
 
                 <nav class="hidden lg:flex lg:items-center lg:justify-start space-x-reverse space-x-6">
                     <!-- Products (Dining Table with custom path) -->
-                    <a href="{{route('products-list','میز')}}" title="میزهای چوبی روستیک خززچوب" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
+                    <a href="{{route('products-list',['cat'=>'Table','q'=>__('Table')])}}" title="{{__("Xazarwoods' rustic wooden tables")}}" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M4 10v10m16-10v10M8 10v10m8-10v10"/>
                         </svg>
-                        میز روستیک
+                        {{__('Rustic table')}}
                     </a>
 
                     <!-- Categories (Clock) -->
-                    <a href="{{route('products-list','ساعت')}}" title="ساعت های چوبی روستیک خزرچوب" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
-                        <i class="fas fa-clock ml-2"></i>
-                        ساعت‌ها
+                    <a href="{{route('products-list',['cat'=>'Dishes','q'=>__('Dishes')])}}" title="{{__("Xazarwoods' Rustic wooden dishes")}}" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
+                        <i class="fas fa-coffee ml-2"></i>
+                        {{__('Wooden dishes')}}
                     </a>
 
                     <!-- categories (wooden dishes) -->
-                    <a href="{{route('products-list','ظروف')}}" title="ظروف چوبی روستیک خزرچوب" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
-                        <i class="fas fa-coffee ml-2"></i>
-                        ظروف چوبی
+                    <a href="{{route('products-list',['cat'=>'Clock','q'=>__('Clock')])}}" title="{{__("Xazarwoods' rustic wooden clocks")}}" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
+                        <i class="fas fa-clock ml-2"></i>
+                        {{__('Wooden clocks')}}
                     </a>
                     <!-- Categories (chairs) -->
-                    <a href="{{route('products-list','صندلی')}}" title="صندل ها چوبی روستیک خزرچوب" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
+                    <a href="{{route('products-list',['cat'=>'Chair','q'=>__('Chair')])}}" title="{{__("Rustic wooden chairs")}}" class="flex items-center text-wood-700 dark:text-wood-200 hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
                         <i class="fas fa-chair ml-2"></i>
-                        صندلی چوبی
+                        {{__('Rustic chair')}}
                     </a>
 
                     <!-- Dropdown (Contact) -->
@@ -56,7 +56,7 @@
                         <button class="flex items-center text-wood-700 dark:text-wood-200
                  hover:text-amber-600 dark:hover:text-wood-300 transition-colors font-medium">
                             <i class="fas fa-envelope ml-2"></i>
-                            تماس
+                            {{__('Contact')}}
                             <i class="fas  text-sm fa-chevron-down mr-2"></i>
                         </button>
 
@@ -70,21 +70,21 @@
                                 <div class="h-px bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
                                 <a href="/about" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
                                     <i class="fas fa-info-circle text-amber-600 group-hover:text-amber-700 dark:text-amber-400 dark:group-hover:text-amber-300 transition-colors duration-200 w-4"></i>
-                                    <span class="font-medium">درباره خزرچوب</span>
+                                    <span class="font-medium">{{__('About us')}}</span>
                                 </a>
 
                                 <a href="/ask" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
                                     <i class="fas fa-question-circle text-green-600 group-hover:text-green-700 dark:text-green-400 dark:group-hover:text-green-300 transition-colors duration-200 w-4"></i>
-                                    <span class="font-medium">سوالات متداول </span>
+                                    <span class="font-medium">{{__('FAQ')}} </span>
                                 </a>
                                 <a href="/terms-of-service" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
                                     <i class="fas fa-list-check text-red-600 group-hover:text-red-700 dark:text-red-400 dark:group-hover:text-red-300 transition-colors duration-200 w-4"></i>
-                                    <span class="font-medium">شرایط و ضوابط استفاده  </span>
+                                    <span class="font-medium">{{__('Terms and conditions')}}  </span>
                                 </a>
                                 <a href="/contact" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
                                     <div class="flex items-center gap-3">
                                         <i class="fas fa-envelope text-amber-600 group-hover:text-amber-700 dark:text-amber-400 dark:group-hover:text-amber-300 transition-colors duration-200 w-4"></i>
-                                        <span class="font-medium">تماس با ما</span>
+                                        <span class="font-medium">{{__('Contact us')}}</span>
                                     </div>
                                 </a>
                             </nav>
@@ -245,7 +245,7 @@
                                 <div>
                                     <p class="font-bold text-lg bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
                                         {{auth()->user()->name}}</p>
-                                    <a href="/{{auth()->user()->role}}" class="text-sm text-amber-600 hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300 hover:underline transition-colors duration-200">مشاهده پنل کاربری</a>
+                                    <a href="/{{auth()->user()->role}}" class="text-sm text-amber-600 hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300 hover:underline transition-colors duration-200">{{__('Show user panel')}}</a>
                                 </div>
                             </div>
 
@@ -256,11 +256,11 @@
                             <nav class="space-y-1">
                                 <a href="{{route('shop.user.orders.index')}}" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
                                     <i class="fas fa-box text-amber-600 group-hover:text-amber-700 dark:text-amber-400 dark:group-hover:text-amber-300 transition-colors duration-200 w-4"></i>
-                                    <span class="font-medium">سفارش‌ها</span>
+                                    <span class="font-medium">{{__('Orders')}}</span>
                                 </a>
                                 <a href="{{route('user.addresses.index')}}" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
                                     <i class="fas fa-box text-amber-600 group-hover:text-amber-700 dark:text-amber-400 dark:group-hover:text-amber-300 transition-colors duration-200 w-4"></i>
-                                    <span class="font-medium">آدرس های من</span>
+                                    <span class="font-medium">{{__('My addresses')}}</span>
                                 </a>
                                {{-- <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
                                     <i class="fas fa-heart text-red-500 group-hover:text-red-600 dark:text-red-400 dark:group-hover:text-red-300 transition-colors duration-200 w-4"></i>
@@ -270,7 +270,7 @@
                                 <a href="{{route('user.profile.edit')}}" class="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-wood-800 dark:hover:to-wood-700 transition-all duration-200 group hover:-translate-x-1">
                                     <div class="flex items-center gap-3">
                                         <i class="fas fa-user-edit text-amber-600 group-hover:text-amber-700 dark:text-amber-400 dark:group-hover:text-amber-300 transition-colors duration-200 w-4"></i>
-                                        <span class="font-medium"> اطلاعات کاربری</span>
+                                        <span class="font-medium">{{__('My profile')}}</span>
                                     </div>
                                 </a>
                             </nav>
@@ -283,14 +283,14 @@
                             <button onclick="event.preventDefault();document.getElementById('logout-form').submit()"
                              class="w-full text-center bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 hover:from-red-100 hover:to-orange-100 dark:hover:from-red-900/30 dark:hover:to-orange-900/30 text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 py-3 rounded-xl transition-all duration-200 font-medium hover:scale-[0.98]">
                                 <i class="fas fa-sign-out-alt ml-2"></i>
-                                خروج از حساب کاربری
+                                {{__('log out')}}
                             </button>
                         </div>
                     @else
                         <div id="authButtons" class="hidden md:flex ">
                             <a href="#" onclick="openLoginBox()"
                                class="bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 px-6 py-2 rounded-lg font-medium hover:from-wood-100 hover:via-wood-200 hover:to-wood-300 dark:hover:from-wood-800 dark:hover:via-wood-700 dark:hover:to-wood-900 hover:shadow-md hover:-translate-y-0.5 transition-all ">
-                                ورود / ثبت نام
+                                {{__('Log in')}}
                             </a>
                         </div>
                     @endif
@@ -312,7 +312,9 @@
         <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 min-h-full w-80 bg-white dark:bg-wood-900/95  shadow-2xl z-50 lg:hidden ">
 
             <!-- Header Section -->
-            <div class="bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100  shadow-[0_8px_32px_rgba(74,47,31,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] p-6 pt-0 relative overflow-hidden">
+            <div class="bg-gradient-to-br object-cover from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100  shadow-[0_8px_32px_rgba(74,47,31,0.15)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] p-6 pt-0 relative overflow-hidden"
+
+            >
                 <div class="absolute inset-0 bg-black/10"></div>
                 <div class="relative z-10 ">
 
@@ -320,9 +322,9 @@
                         <i class="fas fa-times text-xl"></i>
                     </button>
                     <div class="">
-                        <div class="flex items-center text-center space-x-3 space-x-reverse">
+                        <div class="flex items-center  text-center space-x-3 space-x-reverse">
 
-                            <div class="w-full">
+                            <div class="w-full ">
                                 <div class="p-4  flex items-center justify-center">
                                     <i class="fas fa-tree  text-7xl text-amber-500 dark:text-white "></i>
                                 </div>
@@ -331,19 +333,16 @@
                                     <!-- 🪵 Brand Text -->
                                      <div class="flex flex-col items-center leading-tight font-extrabold">
 
-        <span class="text-3xl bg-gradient-to-l from-wood-700 to-wood-400 dark:from-wood-300 dark:to-wood-100
-                     bg-clip-text text-transparent drop-shadow-sm tracking-tight">
-            XazarWoods
-        </span>
+
                                         <span class="text-xl text-wood-800 dark:text-wood-200 drop-shadow-sm tracking-tight">
-            خزرچوب
+            {{__('Xazarwoods')}}
         </span>
                                     </div>
 
 
                                 </div>
 
-                                <p class="text-amber-600 dark:text-white/80 text-sm">زیبایی طبیعت در خانه شما</p>
+                                <p class="text-amber-600 dark:text-white/80 text-sm">{{__('Beauty of nature in your home')}}</p>
                             </div>
                         </div>
                     </div>
@@ -360,7 +359,7 @@
                             <div class="w-10 h-10 bg-gradient-to-br from-wood-500 to-wood-500 rounded-lg flex items-center justify-center">
                                 <i class="fas fa-box-open text-white text-sm"></i>
                             </div>
-                            <span class="font-semibold ">همه محصولات</span>
+                            <span class="font-semibold ">{{__('All products')}}</span>
                         </div>
                     </a>
                     <div class="mr-6 space-y-1">
@@ -369,7 +368,7 @@
                                 <div class="w-8 h-8 bg-gradient-to-br from-wood-400 to-wood-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
                                     <i class="fas fa-box text-white text-xs"></i>
                                 </div>
-                                <span class="font-medium">{{$category->name}}</span>
+                                <span class="font-medium">{{__($category->english)}}</span>
                             </a>
                         @endforeach
                     </div>
@@ -390,7 +389,7 @@
                             <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
                                 <i class="fas fa-user-cog text-white text-sm"></i>
                             </div>
-                            <span class="font-medium dark:text-white">پنل کاربری</span>
+                            <span class="font-medium text-gray-800 dark:text-white">{{__('User panel')}}</span>
                         </a>
                     </div>
                 @else
@@ -398,7 +397,7 @@
                         <button onclick="openLoginBox()"
                                 class="bg-gradient-to-br from-wood-50 via-wood-100 to-wood-200 dark:from-wood-900 dark:via-wood-800 dark:to-wood-950 text-wood-800 dark:text-wood-100 px-6 py-2 rounded-lg font-medium hover:from-wood-100 hover:via-wood-200 hover:to-wood-300 dark:hover:from-wood-800 dark:hover:via-wood-700 dark:hover:to-wood-900 hover:shadow-md hover:-translate-y-0.5 transition-all ">
                             <i class="fas fa-sign-in-alt"></i>
-                            <span>ورود / ثبت نام</span>
+                            <span>{{__('Log in')}}</span>
                         </button>
                     </div>
                 @endif

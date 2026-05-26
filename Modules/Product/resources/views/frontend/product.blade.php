@@ -23,7 +23,7 @@
 <div class="container bg-slate-700/10 dark:bg-wood-950/50  md:rounded-2xl w-full md:w-[90%] mx-auto">
     <header class="max-w-6xl mx-auto px-6 py-8">
     <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-3 space-x-reverse text-wood-600 dark:text-wood-400 text-sm"><span>خانه</span> <i class="fas fa-chevron-left text-xs"></i><a href="{{route('products-list',$product->categories()->first()->name)}}"> <span class="text-wood-800 dark:text-wood-200">{{$product->categories()->first()->name}}</span> </a><i class="fas fa-chevron-left text-xs"></i> <span class="text-wood-800 dark:text-wood-200">{{$product->name}}</span>
+        <div class="flex items-center space-x-3 space-x-reverse text-wood-600 dark:text-wood-400 text-sm"><span>{{__('Home')}}</span> <i class="fas fa-chevron-left text-xs"></i><a href="{{route('products-list',$product->categories()->first()->name)}}"> <span class="text-wood-800 dark:text-wood-200">{{__($product->categories()->first()->english)}}</span> </a><i class="fas fa-chevron-left text-xs"></i> <span class="text-wood-800 dark:text-wood-200">{{$product->name}}</span>
         </div>
     </div>
 </header><!-- Main Product Section -->
@@ -35,7 +35,7 @@
                 <div id="mainImage" class="h-[352px] relative bg-white duration-300">
                     <img id="mainImageSrc" src="{{asset($product->main_image)}}" alt="{{$product->name}}" class="w-full h-96 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"> <!-- Fallback content if image fails to load -->
                     @if($product->stock==0 || $product->status == 'inactive')
-                        <div class="badge-unavailable absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full shadow-lg z-10 flex items-center space-x-2 space-x-reverse"><span class="font-bold text-sm">فروخته شد</span> </div>
+                        <div class="badge-unavailable absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full shadow-lg z-10 flex items-center space-x-2 space-x-reverse"><span class="font-bold text-sm">{{__('Sold')}}</span> </div>
                     @endif
                     <div class="h-96 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 flex items-center justify-center absolute inset-0" style="display: none;">
                         <div class="text-center text-wood-700 dark:text-wood-300">
@@ -77,7 +77,7 @@
             <!-- Price Section -->
             @if($product->stock == 0 || $product->status == 'inactive')
                 <div class="bg-red-50 mb-3 dark:bg-red-900/20 text-red-600 dark:text-red-400 px-3 py-1 rounded-lg text-sm font-bold">
-                    موجود نیست
+                    {{__('Out of stock')}}
                 </div>
                 <div class="bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
 
@@ -85,7 +85,7 @@
                         <button id="btn-{{$product->id}}"
                                 disabled="true"
                                 class=" bg-gray-600  dark:bg-gray-500  text-white dark:text-gray-900 px-6 py-3 rounded-lg font-medium transition-colors">
-                            <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد خرید
+                            <i class="fas fa-shopping-cart ml-2"></i>{{__('Add to cart')}}
                             <span class="spinner-{{$product->id}}  hidden"><i
                                     class="fas fa-spinner fa-spin-pulse"></i></span>
                         </button>
@@ -143,7 +143,7 @@
                     @if($activeDiscount)
                         <div class="flex justify-between items-center">
                             <div class="flex flex-col text-right">
-                                <span class="text-sm text-amber-400 mb-3"> (بروزرسانی  {{ \Morilog\Jalali\Jalalian::forge($product->updated_at)->ago() }} )</span>
+                                <span class="text-sm text-amber-400 mb-3"> ({{__('Update')}}  {{ \Morilog\Jalali\Jalalian::forge($product->updated_at)->ago() }} )</span>
                                 <div class="flex items-center">
                                 <div class="text-center text-lg text-wood-500 dark:text-wood-400 line-through mb-1">
                                     {{ number_format($product->price) }} تومان
@@ -152,7 +152,8 @@
                                 </div>
                                     <!-- Discount Badge -->
                                     <div class="flex bg-red-300 text-sm dark:bg-red-500 text-red-500 dark:text-white px-2 mr-2 py-1 rounded  font-bold shadow-sm">
-                                        {{ $activeDiscount->value }}{{ $activeDiscount->type == 'percent' ? '%' : ' تومان' }} تخفیف
+                                        {{ $activeDiscount->value }}{{ $activeDiscount->type == 'percent' ? '%' : ' تومان' }}
+                                        {{__("Discount")}}
                                     </div>
                                 </div>
                                 <div class="font-bold text-gray-800 dark:text-slate-200 text-2xl">
@@ -172,7 +173,7 @@
                         </div>
                     @else
                         <!-- Price Section -->
-                        <span class="text-sm text-amber-400 mb-3"> (بروزرسانی  {{ \Morilog\Jalali\Jalalian::forge($product->updated_at)->ago() }} )</span>
+                        <span class="text-sm text-amber-400 mb-3"> ({{__('Update')}}  {{ \Morilog\Jalali\Jalalian::forge($product->updated_at)->ago() }} )</span>
                         <div class="text-right">
                             <div class="font-bold text-gray-800 dark:text-wood-200 text-2xl">
                                 {{ number_format($product->price) }} تومان
@@ -190,7 +191,7 @@
                     <div class="bg-white dark:bg-white-800 rounded-xl p-6 shadow-sm">
                         <label class="text-red-800  font-medium">
                             <span class="fas fa-check"></span>
-                            حداقل تعداد سفارش برای این محصول 4 عدد می باشد
+                            {{__('The minimum order quantity for this product is 4 units.')}}
                         </label>
                     </div>
                 @endif
@@ -205,7 +206,7 @@
                     <button id="btn-{{$product->id}}"
                             onclick="addToCart('product','{{$product->id}}')"
                      class=" bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                        <i class="fas fa-shopping-cart ml-2"></i>افزودن به سبد خرید
+                        <i class="fas fa-shopping-cart ml-2"></i>{{__('Add to cart')}}
                         <span class="spinner-{{$product->id}}  hidden"><i
                                 class="fas fa-spinner fa-spin-pulse"></i></span>
                     </button>
@@ -217,7 +218,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16"><!-- Technical Specs -->
         <div class="bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
             <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-4 flex items-center">
-                <i class="fas fa-ruler-combined text-wood-600 dark:text-wood-400 ml-3"></i> مشخصات محصول</h3>
+                <i class="fas fa-ruler-combined text-wood-600 dark:text-wood-400 ml-3"></i> {{__('Product detail')}}</h3>
             <div class="space-y-3">
                 @foreach($product->attributes()->get() as $attribute)
                 <div class="flex justify-between py-2 border-b border-wood-100 dark:border-wood-700">

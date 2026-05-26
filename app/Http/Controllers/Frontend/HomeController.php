@@ -26,15 +26,19 @@ class HomeController extends Controller
             ;
         $sliders = Slider::where('is_active',1)->orderBy('order')->get();
         //$courses = Course::where('spotplayer_id','!=','')->where("status","active")->get();
-        $products = Product::whereDoesntHave('categories',function($query){
-            $query->where('name','میز روستیک');
+        //$clocks = Product::whereDoesntHave('categories',function($query){
+        $clocks = Product::whereHas('categories',function($query){
+            $query->where('name','ساعت چوبی');
+        })->latest()->take(4)->get();
+        $dishes = Product::whereHas('categories',function($query){
+            $query->where('name','ظروف چوبی');
         })->latest()->take(4)->get();
         $tables = Product::whereHas('categories',function($query){
             $query->where('name','میز روستیک');
         })->orderBy('status')->take(4)->get();
 
 
-        return view('frontend.home.glm-index',compact('sliders','products','tables'));
+        return view('frontend.home.glm-index',compact('sliders','clocks','tables','dishes'));
     }
 
 

@@ -12,7 +12,7 @@
                         <div class="flex flex-col items-center leading-tight font-extrabold">
 
                         <span style="font-family:'Vazirmatn-bold' !important;" class=" text-2xl  font-bold  bg-gradient-to-r from-amber-600 via-yellow-400 to-amber-800  text-transparent bg-clip-text    tv-optimized-text-shadow">
-            خزرچوب
+            {{__("Xazrawoods")}}
         </span>
                         </div>
 
@@ -21,39 +21,40 @@
                 </div>
 
                 <p class="text-wood-600 dark:text-wood-300 text-sm"><a href="/about">
-                    خزرچوب در شهر زیبای سلماس با هدف احیای هنر چوب‌کاری سنتی و ترکیب آن با طراحی مدرن تاسیس شد ...
+                    {{__('Using high-quality walnut wood and handcrafted techniques, we create products that are not only beautiful but will endure for generations. Each of our products is the result of countless hours of meticulous and loving craftsmanship.')}}
                     </a>
                 </p>
                 <a class="mx-auto w-20" referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=681990&Code=0aW8D3gy2qQdF9QAPpxTv8BdcywJBvSW'><img class="w-20 " referrerpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=681990&Code=0aW8D3gy2qQdF9QAPpxTv8BdcywJBvSW' alt='' style='cursor:pointer' code='0aW8D3gy2qQdF9QAPpxTv8BdcywJBvSW'></a>
 
             </div>
             <div>
-                <h4 class="font-semibold text-wood-800 dark:text-wood-100 mb-4">محصولات</h4>
+                <h4 class="font-semibold text-wood-800 dark:text-wood-100 mb-4">{{__('Products')}}</h4>
                 <ul class="space-y-2 text-sm text-wood-600 dark:text-wood-300">
-                    <li><a href="{{route('products-list','میز')}}" title="میزهای روستیک" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
+                    <li><a href="{{route('products-list',['cat'=>'Table','q'=>__('Table')])}}" title="{{__('Rustic tables')}}" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M4 10v10m16-10v10M8 10v10m8-10v10"/>
                             </svg>
-                            میزهای روستیک</a></li>
-                    <li><a href="{{route('products-list','ساعت چوبی')}}" title="ساعت های چوبی روستیک" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-clock ml-2"></i>ساعت‌های چوبی</a></li>
-                    <li><a href="{{route('products-list','ظروف چوبی')}}" title="ظروف چوبی روستیک" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-utensils ml-2"></i>ظروف چوبی</a></li>
-                    <li><a href="{{route('products-list','صندلی روستیک')}}" title="صندل های چوبی روستیک" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-chair ml-2"></i>صندل چوبی</a></li>
+                        {{__('Rustic tables')}}</a></li>
+                    <li><a href="{{route('products-list',['cat'=>'Clock','q'=>__('Clock')])}}" title="{{__('Rustic wooden clocks')}}" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-clock ml-2"></i>{{__('Wooden clocks')}}</a></li>
+                    <li><a href="{{route('products-list',['cat'=>'Dishes','q'=>__('Dishes')])}}" title="{{__('Rustic wooden dishes')}}" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-utensils ml-2"></i>{{__('Wooden dishes')}}</a></li>
+                    <li><a href="{{route('products-list',['cat'=>'Chair','q'=>__('Chair')])}}" title="{{__('Rustic wooden chairs')}}" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-chair ml-2"></i>{{__('Rustic wooden chairs')}}</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-semibold text-wood-800 dark:text-wood-100 mb-4">لینک های مفید</h4>
+                <h4 class="font-semibold text-wood-800 dark:text-wood-100 mb-4">{{__('Helpful links')}}</h4>
                 <ul class="space-y-2 text-sm text-wood-600 dark:text-wood-300">
-                    <li><a href="/about" title="درباره صنایع چوبی خزرچوب" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-info-circle ml-2 w-4"></i>درباره ما</a></li>
-                    <li><a href="/ask" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-question-circle ml-2 w-4"></i> سوالات متداول </a></li>
-                    <li><a href="/terms-of-service" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-list-check ml-2 w-4"></i>قوانین و مقررات سایت </a></li>
-                    <li><a href="/contact" title="راه های ارتباطی با خزرچوب" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-envelope ml-2 w-4"></i>تماس با ما </a></li>
+                    <li><a href="/about" title="{{__("About Xazarwood's Wood Industries")}}" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-info-circle ml-2 w-4"></i>{{__('About us')}}</a></li>
+                    <li><a href="/ask" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-question-circle ml-2 w-4"></i> {{__('FAQ')}} </a></li>
+                    <li><a href="/terms-of-service" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-list-check ml-2 w-4"></i>{{__('Terms and conditions')}} </a></li>
+                    <li><a href="/contact" title="{{__('Contact ways')}}" class="flex items-center hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fas fa-envelope ml-2 w-4"></i>{{__('Contact us')}}</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-semibold text-wood-800 dark:text-wood-100 mb-4">آدرس </h4>
+                <h4 class="font-semibold text-wood-800 dark:text-wood-100 mb-4">{{__('Address')}} </h4>
                 <ul class="space-y-2 text-sm text-wood-600 dark:text-wood-300">
-                    <li><i class="fas fa-map-marker-alt ml-2"></i> آذربایجانغربی، سلماس، خیابان شریعتی تقاطع خیابان فردوسی </li>
-                    <li><i class="fas fa-phone ml-2"></i> 09144851033 - 09356042248</li>
+                    <li><i class="fas fa-map-marker-alt ml-2"></i> {{__('Iran ,Western Azerbaijan, Salmas, Shariati Street intersection with Ferdosi Street')}} </li>
+                    <li><i class="fas fa-mobile-phone ml-2"></i> 09144851033 - 09356042248</li>
+
 
                 </ul>
                 <div class="flex  items-center justify-center gap-2 mt-3   " >
@@ -72,7 +73,7 @@
             </div>
         </div>
         <div class="border-t border-wood-200 dark:border-wood-800 pt-8 text-center">
-            <p class="text-sm text-wood-600 dark:text-wood-300">© ۱۴۰۳  خزر چوب. {{ __('All rights reserved.') }}</p>
+            <p class="text-sm text-wood-600 dark:text-wood-300">© ۱۴۰۳ {{__('Xazarwoods')}} - {{ __('All rights reserved') }}</p>
         </div>
     </div>
 </footer>

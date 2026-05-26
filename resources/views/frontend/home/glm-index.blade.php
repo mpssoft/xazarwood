@@ -7,23 +7,23 @@
     <section id="categories" class="py-16">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">محصولات ما</h2>
-                <p class="text-lg text-wood-600 dark:text-wood-300">هنر چوب در سه دسته اصلی</p>
+                <h2 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">{{__('Our products')}}</h2>
+                <p class="text-lg text-wood-600 dark:text-wood-300">{{__('Three main categories')}}</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Main Product - Rustic Tables -->
                 <div class="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2">
 
-                    <img src="{{asset('/images/tables/big/xazarwood_ir_rustic_table_with_rustic_chairs_and_wooden_cup.jpg')}}" alt="میزهای روستیک" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <img src="{{asset('/images/tables/big/xazarwood_ir_rustic_table_with_rustic_chairs_and_wooden_cup.jpg')}}" alt="{{__('Rustic tables')}}" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end">
                         <div class="p-6 text-right w-full">
 
-                            <h3 class="text-2xl font-bold text-white mb-2">میزهای روستیک</h3>
-                            <p class="text-white/90 text-sm mb-4">طراحی‌های منحصر به فرد با چوب طبیعی</p>
+                            <h3 class="text-2xl font-bold text-white mb-2">{{__('Rustic tables')}}</h3>
+                            <p class="text-white/90 text-sm mb-4">{{__('Unique designs with natural wood')}}</p>
                             <div class="flex items-center justify-between">
 
-                                <a href="{{route('products-list','میز روستیک')}}" title="میز های روستیک زیبا با طراحی منحصر به فرد " class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
-                                    مشاهده
+                                <a href="{{route('products-list',__('Rustic Table'))}}" title="{{__('Unique designs with natural wood')}}" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
+                                    {{__('Show category')}}
                                 </a>
                             </div>
                         </div>
@@ -32,16 +32,16 @@
 
                 <!-- Rustic Clocks -->
                 <div class="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2">
-                    <img src="{{asset('/images/clocks/_0063ee4b-3d9a-4a8b-b49a-9697a8b00e12.jpg')}}" alt="ساعت‌های چوبی" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <img src="{{asset('/images/clocks/_0063ee4b-3d9a-4a8b-b49a-9697a8b00e12.jpg')}}" alt="{{__('Wooden clocks')}}" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end">
                         <div class="p-6 text-right w-full">
 
-                            <h3 class="text-2xl font-bold text-white mb-2">ساعت‌های چوبی روستیک</h3>
-                            <p class="text-white/90 text-sm mb-4">زمان را با زیبایی طبیعت دنبال کنید</p>
+                            <h3 class="text-2xl font-bold text-white mb-2">{{__('Rustic wooden clocks')}}</h3>
+                            <p class="text-white/90 text-sm mb-4">{{__('Follow time with the beauty of nature')}}</p>
                             <div class="flex items-center justify-between">
 
-                                <a href="{{route('products-list','ساعت چوبی')}}" title="ساعت‌های چوبی روستیک" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
-                                    مشاهده
+                                <a href="{{route('products-list',__('Wooden clocks'))}}" title="{{__('Rustic wooden clocks')}}" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
+                                    {{__('Show category')}}
                                 </a>
                             </div>
                         </div>
@@ -51,15 +51,15 @@
                 <!-- Wooden Kitchenware -->
                 <div class="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2">
 
-                    <img src="{{asset('/images/1760712938389.jpg')}}" alt="ظروف چوبی" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <img src="{{asset('/images/1760712938389.jpg')}}" alt="{{__('Wooden dishes')}}" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end">
                         <div class="p-6 text-right w-full">
-                            <h3 class="text-2xl font-bold text-white mb-2">ظروف چوبی آشپزخانه</h3>
-                            <p class="text-white/90 text-sm mb-4">طعم طبیعت در غذای شما</p>
+                            <h3 class="text-2xl font-bold text-white mb-2">{{__('Wooden dishes')}}</h3>
+                            <p class="text-white/90 text-sm mb-4">{{__('The taste of nature in your food')}}</p>
                             <div class="flex items-center justify-between">
 
-                                <a href="{{route('products-list','ظروف چوبی')}}" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
-                                    مشاهده
+                                <a href="{{route('products-list',__('Wooden dishes'))}}" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-medium transition-colors">
+                                    {{__('Show category')}}
                                 </a>
                             </div>
                         </div>
@@ -73,8 +73,8 @@
     <section id="products" class="py-16 bg-white dark:bg-wood-950 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">میزهای روستیک</h2>
-                <p class="text-lg text-wood-600 dark:text-wood-300"> بهترین میزهای روستیک دست‌ساز</p>
+                <h2 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">{{__('Rustic tables')}}</h2>
+                <p class="text-lg text-wood-600 dark:text-wood-300"> {{__('Best rustic hand-made tables')}}</p>
             </div>
             <div class="grid grid-cols-2 md:grid-cols-4  gap-3">
                 <!-- Product 1 - Featured Rustic Table -->
@@ -85,19 +85,31 @@
             <!-- Other Products Section -->
             <div class="mt-16">
                 <div class="text-center mb-8">
-                    <h3 class="text-2xl font-bold text-wood-800 dark:text-wood-100 mb-4">ساعت‌های چوبی روستیک</h3>
-                    <p class="text-lg text-wood-600 dark:text-wood-300">با موتور آرامگرد تایوانی</p>
+                    <h3 class="text-2xl font-bold text-wood-800 dark:text-wood-100 mb-4">{{__('Rustic wooden clocks')}}</h3>
+                    <p class="text-lg text-wood-600 dark:text-wood-300">{{__('Taiwanese silent motor')}}</p>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4  gap-3">
                     <!-- Clock Product 1 -->
-                    @include('product::frontend.product-card',$products)
+                    @include('product::frontend.product-card',['products'=>$clocks])
+
+                </div>
+            </div>
+            <!--  dishes  -->
+            <div class="mt-16">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-wood-800 dark:text-wood-100 mb-4">{{__('Rustic wooden dishes')}}</h3>
+                    <p class="text-lg text-wood-600 dark:text-wood-300">{{__('Wooden dishes made from walnut wood')}}</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4  gap-3">
+                    <!-- Clock Product 1 -->
+                    @include('product::frontend.product-card',['products'=>$dishes])
 
                 </div>
             </div>
 
             <div class="text-center mt-8">
                 <a href="{{route('products-list','all')}}" class="px-8 py-3 border-2 border-amber-600 text-amber-600 dark:text-amber-400 hover:bg-amber-600 hover:text-white rounded-lg font-semibold transition-all duration-300">
-                    مشاهده همه محصولات
+                    {{__('Show all products')}}
                 </a>
             </div>
         </div>
@@ -108,20 +120,20 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <img src="{{asset('/images/kargah.jpg')}}" alt="کارگاه چوب" class="rounded-2xl shadow-2xl">
+                    <img src="{{asset('/images/dishs/chocolate/big/xazarwoods_com_rustic_rustic_dish_1500x1500_014.webp')}}" alt="{{__("Xazarwoods' Workshop")}}" class="rounded-2xl shadow-2xl">
                 </div>
                 <div>
-                    <h2 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-6">هنر میزهای روستیک</h2>
+                    <h2 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-6">{{__('Rustic Table Art')}}</h2>
                     <p class="text-wood-600 dark:text-wood-300 mb-4">
-                        ما بیش از 15 سال است که در زمینه تولید میزهای روستیک دست‌ساز فعالیت داریم. هر میز که از کارگاه ما خارج می‌شود، نتیجه ترکیبی از هنر سنتی و تکنیک‌های مدرن است.
+                        {{__('We have been specializing in the handcrafted production of rustic tables for over 15 years. Every table that leaves our workshop is a result of a blend of traditional art and modern techniques.')}}
                     </p>
                     <p class="text-wood-600 dark:text-wood-300 mb-6">
-                        تخصص اصلی ما ساخت میزهای روستیک است که هر کدام داستان خود را دارند. ما به استفاده از چوب‌های پایدار و روش‌های تولید دوست‌دار محیط زیست متعهد هستیم.
+                        {{__('Our primary specialty is crafting rustic tables, each with its own story. We are committed to using sustainable woods and eco-friendly production methods.')}}
                     </p>
                     <div class="grid grid-cols-2 gap-4 text-center">
                         <div>
-                            <div class="text-3xl font-bold text-amber-600 dark:text-amber-400">15+</div>
-                            <div class="text-sm text-wood-600 dark:text-wood-300">سال تجربه</div>
+                            <div class="text-3xl font-bold text-amber-600 dark:text-amber-400">20+</div>
+                            <div class="text-sm text-wood-600 dark:text-wood-300">{{__('Years of experience')}}</div>
                         </div>
                         {{--<div>
                             <div class="text-3xl font-bold text-amber-600 dark:text-amber-400">۵۰۰۰+</div>
@@ -129,7 +141,7 @@
                         </div>--}}
                         <div>
                             <div class="text-3xl font-bold text-amber-600 dark:text-amber-400">۱۰۰%</div>
-                            <div class="text-sm text-wood-600 dark:text-wood-300">دست‌ساز</div>
+                            <div class="text-sm text-wood-600 dark:text-wood-300">{{__('Hand-made')}}</div>
                         </div>
                     </div>
                 </div>
@@ -145,15 +157,15 @@
                     <div class="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-tree text-2xl text-amber-600 dark:text-amber-400 icon-pulse"></i>
                     </div>
-                    <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">چوب طبیعی</h3>
-                    <p class="text-sm text-wood-600 dark:text-wood-300">استفاده از بهترین چوب‌های طبیعی</p>
+                    <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">{{__('Natural wood')}}</h3>
+                    <p class="text-sm text-wood-600 dark:text-wood-300">{{__('Using the best natural woods')}}</p>
                 </div>
                 <div class="text-center">
                     <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-hand-holding-heart text-2xl text-green-600 dark:text-green-400 icon-pulse"></i>
                     </div>
-                    <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">ساخت دستی</h3>
-                    <p class="text-sm text-wood-600 dark:text-wood-300">هر قطعه با دقت و عشق ساخته شده</p>
+                    <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">{{__('Hand-made')}}</h3>
+                    <p class="text-sm text-wood-600 dark:text-wood-300">{{__('Every piece is crafted with care and love')}}</p>
                 </div>
                 {{-- <div class="text-center">
                      <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -166,8 +178,8 @@
                     <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-award text-2xl text-purple-600 dark:text-purple-400 icon-pulse"></i>
                     </div>
-                    <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">ضمانت کیفیت</h3>
-                    <p class="text-sm text-wood-600 dark:text-wood-300">ضمانت ۱۰ ساله کیفیت محصولات</p>
+                    <h3 class="font-semibold text-wood-800 dark:text-wood-100 mb-2">{{__('Quality Assurance')}}</h3>
+                    <p class="text-sm text-wood-600 dark:text-wood-300">{{__('10-year quality guarantee for products')}}</p>
                 </div>
             </div>
         </div>

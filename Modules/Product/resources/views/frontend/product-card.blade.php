@@ -55,7 +55,7 @@
 
             @if($activeDiscount && $product->stock > 0 && $product->status == 'active')
                 <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
-                        <i class="fas fa-tag ml-1"></i>{{ $activeDiscount->value }}{{ $activeDiscount->type == 'percent' ? '%' : ' تومان' }} تخفیف </span>
+                        <i class="fas fa-tag ml-1"></i>{{ $activeDiscount->value }}{{ $activeDiscount->type == 'percent' ? '%' : ' تومان' }} {{__('Discount')}} </span>
             @endif
         </div>
         <div class="flex flex-col h-full  p-2 ">
@@ -77,7 +77,7 @@
                             class="w-full  px-3 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg text-sm transition-colors">
 
                         <i class="fas fa-cart-arrow-down"></i>
-                        <span>نا موجود</span>
+                        <span>{{__('Out of stock')}}</span>
 
                     </button>
                 </div>
@@ -111,7 +111,7 @@
                             class="w-full md:w-auto px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm transition-colors">
 
                         <i class="fas fa-cart-arrow-down"></i>
-                        <span>افزودن به سبد</span>
+                        <span>{{__('Add to cart')}}</span>
                         <span class="spinner-{{$product->id}}  hidden"><i
                                 class="fas fa-spinner fa-spin-pulse"></i></span>
                     </button>
