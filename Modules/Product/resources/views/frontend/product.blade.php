@@ -229,15 +229,15 @@
             </div>
         </div><!-- Care Instructions -->
         <div class="bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
-            <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-4 flex items-center"><i class="fas fa-heart text-wood-600 dark:text-wood-400 ml-3"></i> راهنمای نگهداری</h3>
+            <h3 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-4 flex items-center"><i class="fas fa-heart text-wood-600 dark:text-wood-400 ml-3"></i>{{__('Maintenance Guide')}}</h3>
             <div class="space-y-3">
-                <div class="flex items-center p-3 bg-wood-50 dark:bg-wood-700 rounded-lg"><i class="fas fa-droplet text-blue-500 ml-3"></i> <span class="text-sm">از مواد شوینده ملایم استفاده کنید</span>
+                <div class="flex items-center p-3 bg-wood-50 dark:bg-wood-700 rounded-lg"><i class="fas fa-droplet text-blue-500 ml-3"></i> <span class="text-sm">{{__('Use mild detergents.')}}</span>
                 </div>
-                <div class="flex items-center p-3 bg-wood-50 dark:bg-wood-700 rounded-lg"><i class="fas fa-sun text-yellow-500 ml-3"></i> <span class="text-sm">از نور مستقیم خورشید دوری کنید</span>
+                <div class="flex items-center p-3 bg-wood-50 dark:bg-wood-700 rounded-lg"><i class="fas fa-sun text-yellow-500 ml-3"></i> <span class="text-sm">{{__('Avoid direct sunlight.')}}</span>
                 </div>
-                <div class="flex items-center p-3 bg-wood-50 dark:bg-wood-700 rounded-lg"><i class="fas fa-thermometer-half text-red-500 ml-3"></i> <span class="text-sm">دمای مناسب: ۱۸-۲۴ درجه سانتی‌گراد</span>
+                <div class="flex items-center p-3 bg-wood-50 dark:bg-wood-700 rounded-lg"><i class="fas fa-thermometer-half text-red-500 ml-3"></i> <span class="text-sm">{{__('Appropriate temperature: 18-24 °C')}}</span>
                 </div>
-                <div class="flex items-center p-3 bg-wood-50 dark:bg-wood-700 rounded-lg"><i class="fas fa-tint text-cyan-500 ml-3"></i> <span class="text-sm">رطوبت مناسب: ۴۰-۶۰ درصد</span>
+                <div class="flex items-center p-3 bg-wood-50 dark:bg-wood-700 rounded-lg"><i class="fas fa-tint text-cyan-500 ml-3"></i> <span class="text-sm">{{__('Optimal humidity: 40-60%')}}</span>
                 </div>
             </div>
         </div>
@@ -248,7 +248,7 @@
     </div>
     <!-- Related Products -->
     <section>
-        <h2 class="text-2xl font-bold  text-wood-800 dark:text-wood-100 mb-6" >محصولات مرتبط</h2>
+        <h2 class="text-2xl font-bold  text-wood-800 dark:text-wood-100 mb-6" >{{__('Related products')}}</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
             <!-- Related Product 1 -->
             @include('product::frontend.product-card',['products'=>$relatedProducts])

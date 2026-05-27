@@ -48,7 +48,7 @@
         <div class="relative  h-full ">
             <img src="{{asset($product->main_image)}}" alt="{{$product->name}}" class="w-full     object-cover group-hover:scale-110 transition-transform duration-500">
             @if($product->stock==0 || $product->status == 'inactive')
-                <div class="badge-unavailable absolute top-4 right-4 bg-red-500 text-white px-3 p-1 rounded-full shadow-lg z-10 flex items-center space-x-2 space-x-reverse"> <span class="font-bold text-xs">فروخته شد</span> </div>
+                <div class="badge-unavailable absolute top-4 right-4 bg-red-500 text-white px-3 p-1 rounded-full shadow-lg z-10 flex items-center space-x-2 space-x-reverse"> <span class="font-bold text-xs">{{__('Sold')}}</span> </div>
             @endif
         </div>
         <div class="absolute top-4 right-4 flex flex-col space-y-2">

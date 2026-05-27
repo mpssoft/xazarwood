@@ -11,10 +11,10 @@
     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
     <div class="max-w-6xl mx-auto px-6 relative z-20">
         <div class="text-center fade-in">
-            <div class="inline-block bg-wood-600 dark:bg-wood-500 text-white px-4 py-2 rounded-full text-sm font-medium mb-4"><i class="fas fa-hammer ml-2"></i> بیش از ۱۵ سال تجربه
+            <div class="inline-block bg-wood-600 dark:bg-wood-500 text-white px-4 py-2 rounded-full text-sm font-medium mb-4"><i class="fas fa-hammer ml-2"></i>{{__('More than 20 years of experience')}}
             </div>
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">درباره خزرچوب</h2>
-            <p class="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">ما با عشق و دقت، محصولات چوبی دست‌ساز از جنس گردو می‌سازیم که زیبایی و دوام را در خانه شما به ارمغان می‌آورد</p>
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">{{__('About xazarwood')}}</h2>
+            <p class="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">{{__('We craft high-quality, hand-made oak wooden products with love and care, bringing beauty and durability to your home.')}}</p>
         </div>
     </div><!-- Decorative Elements -->
     <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-wood-50 dark:from-wood-900 to-transparent z-20"></div>
@@ -23,21 +23,21 @@
     <section class="mb-20 fade-in">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-                <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-6"><i class="fas fa-book-open text-wood-600 dark:text-wood-400 ml-3"></i> داستان ما</h3>
+                <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-6"><i class="fas fa-book-open text-wood-600 dark:text-wood-400 ml-3"></i> {{__('Our story')}}</h3>
                 <div class="space-y-4 text-wood-700 dark:text-wood-300 leading-relaxed">
-                    <p>خزرچوب در شهر زیبای <strong>سلماس</strong> با هدف احیای هنر چوب‌کاری سنتی و ترکیب آن با طراحی مدرن تاسیس شد. ما معتقدیم که هر قطعه چوب داستانی دارد و وظیفه ما این است که آن داستان را به زیباترین شکل ممکن روایت کنیم.</p>
-                    <p>با استفاده از چوب گردو مرغوب و تکنیک‌های دست‌سازی، ما محصولاتی می‌سازیم که نه تنها زیبا هستند، بلکه برای نسل‌ها دوام خواهند آورد. هر محصول ما حاصل ساعت‌ها کار دقیق و عاشقانه است.</p>
-                    <p>فلسفه ما ساده است: <strong>کیفیت بی‌نظیر، طراحی منحصر به فرد، و رضایت کامل مشتری</strong>.</p>
+                    <p>{{__('xazarwood was founded in the beautiful city of Salmas with the aim of revitalizing traditional woodcarving art and combining it with modern design. We believe that every piece of wood has a story, and it is our duty to tell that story in the most beautiful way possible.')}}</p>
+                    <p>{{__('Using high-quality walnut wood and handcrafted techniques, we create products that are not only beautiful but will endure for generations. Each of our products is the result of countless hours of meticulous and loving craftsmanship.')}}</p>
+                    <p>{{__('Our philosophy is simple: unparalleled quality, unique design, and complete customer satisfaction.')}} </p>
                 </div>
             </div>
             <div class="bg-white dark:bg-wood-800 rounded-2xl shadow-lg p-8">
                 <div class="grid grid-cols-2 gap-6">
                     <div class="text-center p-6 bg-wood-50 dark:bg-wood-700 rounded-xl">
                         <div class="text-4xl font-bold text-wood-600 dark:text-wood-400 mb-2">
-                            ۱۵+
+                            20+
                         </div>
                         <div class="text-sm text-wood-700 dark:text-wood-300">
-                            سال تجربه
+                            {{__('Years of experience')}}
                         </div>
                     </div>
 
@@ -46,7 +46,7 @@
                             ۱۰۰٪
                         </div>
                         <div class="text-sm text-wood-700 dark:text-wood-300">
-                            دست‌ساز
+                            {{__('Hand-made')}}
                         </div>
                     </div>
                     <div class="text-center p-6 bg-wood-50 dark:bg-wood-700 rounded-xl">
@@ -54,7 +54,7 @@
                             100+
                         </div>
                         <div class="text-sm text-wood-700 dark:text-wood-300">
-                            مشتری راضی
+                            {{__('Customer satisfaction')}}
                         </div>
                     </div>
                 </div>
@@ -70,9 +70,9 @@
                 </div>
                 <div class="md:col-span-2">
 
-                    <h3 class="text-3xl font-bold mb-4">علیرضا حق نظری</h3>
-                    <p class="text-white/90 leading-relaxed mb-4">با بیش از ۱۵ سال تجربه در هنر چوب‌کاری، علیرضا حق نظری تمام عشق و تخصص خود را در ساخت محصولات چوبی منحصر به فرد به کار می‌گیرد. او معتقد است که چوب‌کاری فقط یک حرفه نیست، بلکه یک هنر و یک سبک زندگی است.</p>
-                    <div class="flex flex-wrap gap-3"> <span class="bg-white/20 px-3 py-1 rounded-lg text-sm"> <i class="fas fa-palette ml-1"></i> طراح محصول </span> <span class="bg-white/20 px-3 py-1 rounded-lg text-sm"> <i class="fas fa-tools ml-1"></i> استاد کار دست‌ساز </span>
+                    <h3 class="text-3xl font-bold mb-4">{{__('Ali Reza Haghnazari')}}</h3>
+                    <p class="text-white/90 leading-relaxed mb-4">{{__('With over 20 years of experience in woodworking, Ali Reza Haknami pours all his love and expertise into creating unique wooden products. He believes that woodworking is not just a profession, but an art and a way of life.')}}</p>
+                    <div class="flex flex-wrap gap-3"> <span class="bg-white/20 px-3 py-1 rounded-lg text-sm"> <i class="fas fa-palette ml-1"></i> {{__('Product Designer')}} </span> <span class="bg-white/20 px-3 py-1 rounded-lg text-sm"> <i class="fas fa-tools ml-1"></i> {{__('master craftsman')}} </span>
                     </div>
                 </div>
             </div>
@@ -80,40 +80,40 @@
     </section><!-- Products Section -->
     <section class="mb-20 fade-in">
         <div class="text-center mb-12">
-            <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">محصولات ما</h3>
-            <p class="text-lg text-wood-700 dark:text-wood-300 max-w-2xl mx-auto">ما طیف متنوعی از محصولات چوبی دست‌ساز را با استفاده از چوب گردو مرغوب تولید می‌کنیم</p>
+            <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">{{__('Our products')}}</h3>
+            <p class="text-lg text-wood-700 dark:text-wood-300 max-w-2xl mx-auto">{{__('We produce a diverse range of handcrafted wooden products using high-quality walnut wood.')}}</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"><!-- Product 1 -->
             <div class="bg-white dark:bg-wood-800 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
                 <div class="w-20 h-20 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 rounded-full flex items-center justify-center mx-auto mb-4 product-icon"><i class="fas fa-table text-3xl text-wood-600 dark:text-wood-300"></i>
                 </div>
-                <h4 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-2">میزهای روستیک</h4>
-                <p class="text-sm text-wood-600 dark:text-wood-400">میزهای غذاخوری و جلو مبلی با طراحی روستیک و مدرن</p>
+                <h4 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-2">{{__('Rustic tables')}}</h4>
+                <p class="text-sm text-wood-600 dark:text-wood-400">{{__('Dining tables and lounge chairs with rustic and modern designs')}}</p>
             </div><!-- Product 2 -->
             <div class="bg-white dark:bg-wood-800 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
                 <div class="w-20 h-20 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 rounded-full flex items-center justify-center mx-auto mb-4 product-icon"><i class="fas fa-clock text-3xl text-wood-600 dark:text-wood-300"></i>
                 </div>
-                <h4 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-2">ساعت‌های دیواری</h4>
-                <p class="text-sm text-wood-600 dark:text-wood-400">ساعت‌های چوبی دست‌ساز با طراحی‌های منحصر به فرد</p>
+                <h4 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-2"> {{__('Rustic clocks')}}</h4>
+                <p class="text-sm text-wood-600 dark:text-wood-400">{{__('Handmade wooden clocks with unique designs')}}</p>
             </div><!-- Product 3 -->
             <div class="bg-white dark:bg-wood-800 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
                 <div class="w-20 h-20 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 rounded-full flex items-center justify-center mx-auto mb-4 product-icon"><i class="fas fa-utensils text-3xl text-wood-600 dark:text-wood-300"></i>
                 </div>
-                <h4 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-2">ظروف آشپزخانه</h4>
-                <p class="text-sm text-wood-600 dark:text-wood-400">کاسه، بشقاب و ظروف چوبی برای آشپزخانه شما</p>
+                <h4 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-2">{{__('Wooden dishes')}}</h4>
+                <p class="text-sm text-wood-600 dark:text-wood-400">{{__('Bowls, plates, and wooden utensils for your kitchen')}}</p>
             </div><!-- Product 4 -->
             <div class="bg-white dark:bg-wood-800 rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
                 <div class="w-20 h-20 bg-gradient-to-br from-wood-100 to-wood-200 dark:from-wood-700 dark:to-wood-600 rounded-full flex items-center justify-center mx-auto mb-4 product-icon"><i class="fas fa-chair text-3xl text-wood-600 dark:text-wood-300"></i>
                 </div>
-                <h4 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-2">صندلی‌های چوبی</h4>
-                <p class="text-sm text-wood-600 dark:text-wood-400">صندلی‌های راحت و زیبا با کیفیت بی‌نظیر</p>
+                <h4 class="text-xl font-bold text-wood-800 dark:text-wood-100 mb-2">{{__('Wooden chairs')}}</h4>
+                <p class="text-sm text-wood-600 dark:text-wood-400">{{__('Comfortable and beautiful chairs with unparalleled quality')}}</p>
             </div>
         </div>
     </section><!-- Why Choose Us Section -->
     <section class="mb-20 fade-in">
         <div class="text-center mb-12">
-            <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">چرا خزرچوب؟</h3>
-            <p class="text-lg text-wood-700 dark:text-wood-300 max-w-2xl mx-auto">ویژگی‌هایی که ما را از دیگران متمایز می‌کند</p>
+            <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">{{__('Why xazarwood?')}}</h3>
+            <p class="text-lg text-wood-700 dark:text-wood-300 max-w-2xl mx-auto">{{__('Characteristics that distinguish us from others')}}</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="bg-white dark:bg-wood-800 rounded-xl shadow-sm p-6">
@@ -121,8 +121,8 @@
                     <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fas fa-leaf text-green-600 dark:text-green-400 text-xl"></i>
                     </div>
                     <div>
-                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">چوب گردو مرغوب</h4>
-                        <p class="text-sm text-wood-600 dark:text-wood-400">استفاده از بهترین چوب گردو طبیعی با کیفیت عالی</p>
+                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">{{__('High-quality walnut wood')}}</h4>
+                        <p class="text-sm text-wood-600 dark:text-wood-400">{{__('Using the best natural walnut wood with excellent quality')}}</p>
                     </div>
                 </div>
             </div>
@@ -131,8 +131,8 @@
                     <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fas fa-hands text-blue-600 dark:text-blue-400 text-xl"></i>
                     </div>
                     <div>
-                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">۱۰۰٪ دست‌ساز</h4>
-                        <p class="text-sm text-wood-600 dark:text-wood-400">تمام محصولات با دست و با دقت بالا ساخته می‌شوند</p>
+                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">۱۰۰٪ {{__('Hand-made')}}</h4>
+                        <p class="text-sm text-wood-600 dark:text-wood-400">{{__('All products are handmade with high precision.')}}</p>
                     </div>
                 </div>
             </div>
@@ -141,8 +141,8 @@
                     <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fas fa-palette text-purple-600 dark:text-purple-400 text-xl"></i>
                     </div>
                     <div>
-                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">طراحی سفارشی</h4>
-                        <p class="text-sm text-wood-600 dark:text-wood-400">امکان سفارش محصول با طراحی دلخواه شما</p>
+                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">{{__('Custom design')}}</h4>
+                        <p class="text-sm text-wood-600 dark:text-wood-400">{{__('The possibility of ordering a product with your desired design')}}</p>
                     </div>
                 </div>
             </div>
@@ -152,8 +152,8 @@
                     <div class="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fas fa-heart text-red-600 dark:text-red-400 text-xl"></i>
                     </div>
                     <div>
-                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">ساخت با عشق</h4>
-                        <p class="text-sm text-wood-600 dark:text-wood-400">هر محصول با دقت و علاقه فراوان ساخته می‌شود</p>
+                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">{{__('Love-made construction')}}</h4>
+                        <p class="text-sm text-wood-600 dark:text-wood-400">{{__('Every product is made with great care and enthusiasm.')}}</p>
                     </div>
                 </div>
             </div>
@@ -162,8 +162,8 @@
                     <div class="w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-lg flex items-center justify-center flex-shrink-0"><i class="fas fa-shield-alt text-yellow-600 dark:text-yellow-400 text-xl"></i>
                     </div>
                     <div>
-                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">ضمانت کیفیت</h4>
-                        <p class="text-sm text-wood-600 dark:text-wood-400">تضمین کیفیت و دوام بالای محصولات</p>
+                        <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">{{__('Quality Assurance')}}</h4>
+                        <p class="text-sm text-wood-600 dark:text-wood-400">{{__('Quality and high durability assurance of products')}}</p>
                     </div>
                 </div>
             </div>
@@ -171,44 +171,44 @@
     </section><!-- Process Section -->
     <section class="mb-20 fade-in">
         <div class="text-center mb-12">
-            <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">فرآیند کار ما</h3>
-            <p class="text-lg text-wood-700 dark:text-wood-300 max-w-2xl mx-auto">از سفارش تا تحویل، مراحل ساخت محصول شما</p>
+            <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4">{{__('Our working process')}}</h3>
+            <p class="text-lg text-wood-700 dark:text-wood-300 max-w-2xl mx-auto">{{__('From order to delivery, the steps of your product manufacturing process.')}}</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div class="text-center">
                 <div class="w-16 h-16 bg-wood-600 dark:bg-wood-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
                     ۱
                 </div>
-                <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">مشاوره و سفارش</h4>
-                <p class="text-sm text-wood-600 dark:text-wood-400">دریافت سفارش و مشاوره رایگان درباره طراحی</p>
+                <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">{{__('Consultation and Ordering')}}</h4>
+                <p class="text-sm text-wood-600 dark:text-wood-400">{{__('Order reception and free consultation about design')}}</p>
             </div>
             <div class="text-center">
                 <div class="w-16 h-16 bg-wood-600 dark:bg-wood-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
                     ۲
                 </div>
-                <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">طراحی و تایید</h4>
-                <p class="text-sm text-wood-600 dark:text-wood-400">ارائه طرح نهایی و دریافت تایید شما</p>
+                <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">{{__('Design and Approval')}}</h4>
+                <p class="text-sm text-wood-600 dark:text-wood-400">{{__('Submission of the final plan and receiving your approval')}}</p>
             </div>
             <div class="text-center">
                 <div class="w-16 h-16 bg-wood-600 dark:bg-wood-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
                     ۳
                 </div>
-                <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">ساخت دست‌ساز</h4>
-                <p class="text-sm text-wood-600 dark:text-wood-400">شروع ساخت محصول با دقت و کیفیت بالا</p>
+                <h4 class="text-lg font-bold text-wood-800 dark:text-wood-100 mb-2">{{__('Handmade construction')}}</h4>
+                <p class="text-sm text-wood-600 dark:text-wood-400">{{__('Starting product development with high precision and quality')}}</p>
             </div>
 
         </div>
     </section><!-- Contact CTA Section -->
     <section class="fade-in">
         <div class="bg-gradient-to-br from-wood-600 to-wood-700 dark:from-wood-700 dark:to-wood-800 rounded-2xl shadow-xl p-8 md:p-12 text-center text-white"><i class="fas fa-map-marker-alt text-5xl mb-6 opacity-80"></i>
-            <h3 class="text-3xl font-bold mb-4">ما را پیدا کنید</h3>
-            <p class="text-xl mb-2">شهر سلماس، آذربایجان غربی</p>
+            <h3 class="text-3xl font-bold mb-4">{{__('Find us')}}</h3>
+            <p class="text-xl mb-2">{{__('Salmas City, West Azerbaijan ')}}</p>
 
             <section class="mb-20 fade-in">
                 <div class="bg-white dark:bg-wood-800 rounded-2xl shadow-lg p-8">
                     <div class="text-center mb-8">
-                        <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4"><i class="fas fa-map text-wood-600 dark:text-wood-400 ml-3"></i> موقعیت کارگاه</h3>
-                        <p class="text-wood-700 dark:text-wood-300">سلماس، خیابان شریعتی، تقاطع خیابان فردوسی - صنایع چوبی خزرچوب</p>
+                        <h3 class="text-3xl font-bold text-wood-800 dark:text-wood-100 mb-4"><i class="fas fa-map text-wood-600 dark:text-wood-400 ml-3"></i>{{__('Workshop location')}}</h3>
+                        <p class="text-wood-700 dark:text-wood-300">{{__('Iran ,Western Azerbaijan, Salmas, Shariati Street intersection with Ferdosi Street')}}</p>
                     </div>
                     <div class="bg-wood-100 dark:bg-wood-700 rounded-xl h-96 flex items-center justify-center">
                         <div class="text-center w-full h-full ">
@@ -219,7 +219,7 @@
             </section>
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="/contact" >
-                <div class="bg-white/20 px-6 py-3 rounded-lg"><i class="fas fa-phone ml-2"></i> <span>تماس با ما</span>
+                <div class="bg-white/20 px-6 py-3 rounded-lg"><i class="fas fa-phone ml-2"></i> <span>{{__('Contact us')}}</span>
                 </div>
                 </a>
             </div>
