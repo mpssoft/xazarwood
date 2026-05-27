@@ -4,8 +4,8 @@
             <div class="slide {{ $loop->first ? 'slide-active' : '' }} absolute inset-0" data-slide="{{ $index }}" style="opacity: {{ $loop->first ? '1' : '0' }}; transition: opacity 0.8s ease-in-out; pointer-events: {{ $loop->first ? 'auto' : 'none' }};"><img src="{{asset($slider->image)}}" alt="{{$slider->title}}" class="w-full h-full object-cover ">
                 <div class="absolute  pt-32 flex inset-0 items-center  transition-all duration-700">
                     <div class="max-w-7xl mx-auto px-4 text-center md:text-right">
-                        <h2 class="text-2xl md:text-5xl font-bold text-white mb-4">{{$slider->title}}</h2>
-                        <p class=" text-white/90 mb-6 max-w-2xl">{{$slider->subtitle}}</p>
+                        <h2 class="text-2xl md:text-5xl font-bold text-white mb-4">{{__($slider->title)}}</h2>
+                        <p class=" text-white/90 mb-6 max-w-2xl">{{__($slider->subtitle)}}</p>
                         @if(!empty($slider->link))
                             <a href="{{$slider->link}}" class="p-2 md:px-8 md:py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"> {{$slider->button_text}} </a>
                         @endif
