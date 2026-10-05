@@ -12,7 +12,7 @@
                         <div class="flex flex-col items-center leading-tight font-extrabold">
 
                         <span style="font-family:'Vazirmatn-bold' !important;" class=" text-2xl  font-bold  bg-gradient-to-r from-amber-600 via-yellow-400 to-amber-800  text-transparent bg-clip-text    tv-optimized-text-shadow">
-            {{__("Xazrawoods")}}
+            {{__("Xazarwoods")}}
         </span>
                         </div>
 

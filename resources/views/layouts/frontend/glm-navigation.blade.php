@@ -364,7 +364,7 @@
                     </a>
                     <div class="mr-6 space-y-1">
                         @foreach(\Modules\Blog\Models\Category::all() as $category)
-                            <a href="{{ route('products-list',$category->name) }}"  class="flex items-center space-x-3 space-x-reverse p-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-wood-300 hover:to-wood-50 dark:hover:from-wood-950/95 dark:hover:to-yellow-900/20 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
+                            <a href="{{ route('products-list',['cat'=>$category->english,'q'=>$category->name]) }}"  class="flex items-center space-x-3 space-x-reverse p-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-wood-300 hover:to-wood-50 dark:hover:from-wood-950/95 dark:hover:to-yellow-900/20 text-gray-600 dark:text-gray-300 group transition-all duration-200 hover:transform hover:-translate-x-1">
                                 <div class="w-8 h-8 bg-gradient-to-br from-wood-400 to-wood-400 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
                                     <i class="fas fa-box text-white text-xs"></i>
                                 </div>
