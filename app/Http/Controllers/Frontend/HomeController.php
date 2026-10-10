@@ -29,7 +29,7 @@ class HomeController extends Controller
         //$clocks = Product::whereDoesntHave('categories',function($query){
         $clocks = Product::whereHas('categories',function($query){
             $query->where('name','ساعت چوبی');
-        })->latest()->take(4)->get();
+        })->where('status','active')->where('status','active')->latest()->take(4)->get();
         $dishes = Product::whereHas('categories',function($query){
             $query->where('name','ظروف چوبی');
         })->latest()->take(4)->get();
