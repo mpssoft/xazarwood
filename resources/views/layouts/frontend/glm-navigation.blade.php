@@ -451,17 +451,6 @@
         }
 
         // بستن منو اگر کاربر بیرون از آن کلیک کرد
-        document.addEventListener('click', function(event) {
-            const dropdowns = document.querySelectorAll('[id$="Dropdown"]');
-            dropdowns.forEach(dropdown => {
-                const menu = dropdown.querySelector('[data-open]');
-                const button = dropdown.querySelector('button');
 
-                if (!dropdown.contains(event.target) && menu.getAttribute('data-open') === 'true') {
-                    menu.setAttribute('data-open', 'false');
-
-                }
-            });
-        });
     </script>
 @endpush

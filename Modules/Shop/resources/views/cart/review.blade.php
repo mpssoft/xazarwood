@@ -297,32 +297,116 @@
                                 </div>
                             </div>
                         </div>
+
                             <!-- Payment Method -->
-                            <div class="  bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 animate-fade-in">
-                                <h2 class=" font-semibold text-wood-900 dark:text-wood-100 mb-6">روش پرداخت</h2>
+                            <div class="bg-white dark:bg-wood-900 rounded-xl shadow-lg p-6 animate-fade-in">
+
+                                <h2 class="font-semibold text-wood-900 dark:text-wood-100 mb-6">
+                                    روش پرداخت
+                                </h2>
+
                                 <!-- Divider -->
                                 <div class="h-px mb-3 bg-gradient-to-r from-transparent via-wood-300 dark:via-wood-600 to-transparent"></div>
-                                <div class="mb-2"><label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800">
-                                        <input type="radio"  name="payment" value="zarinpal" checked  class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+
+                                <!-- Zarinpal -->
+                                <div class="mb-2">
+                                    <label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800">
+
+                                        <input
+                                            type="radio"
+                                            name="payment"
+                                            value="zarinpal"
+                                            checked
+                                            class="w-5 h-5 text-wood-600 focus:ring-wood-500"
+                                        >
+
                                         <div class="flex-1">
                                             <div class="flex items-center gap-2">
-                                                <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                                </svg><span class="text-sm text-wood-900 dark:text-wood-100">پرداخت آنلاین</span>
+                                                <svg class="w-6 h-6 text-wood-600 dark:text-wood-400"
+                                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                                </svg>
+
+                                                <span class="text-sm text-wood-900 dark:text-wood-100">
+                        پرداخت آنلاین
+                    </span>
                                             </div>
-                                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">زرین پال</p>
-                                        </div></label>
+
+                                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">
+                                                زرین پال
+                                            </p>
+                                        </div>
+                                    </label>
                                 </div>
-                                <div class="mb-2"><label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800">
-                                        <input type="radio"  name="payment" value="bitpay"  class="w-5 h-5 text-wood-600 focus:ring-wood-500">
+
+                                <!-- BitPay -->
+                                <div class="mb-2">
+                                    <label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800">
+
+                                        <input
+                                            type="radio"
+                                            name="payment"
+                                            value="bitpay"
+                                            class="w-5 h-5 text-wood-600 focus:ring-wood-500"
+                                        >
+
                                         <div class="flex-1">
                                             <div class="flex items-center gap-2">
-                                                <svg class="w-6 h-6 text-wood-600 dark:text-wood-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                                </svg><span class="text-sm text-wood-900 dark:text-wood-100">پرداخت آنلاین</span>
+                                                <svg class="w-6 h-6 text-wood-600 dark:text-wood-400"
+                                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                                </svg>
+
+                                                <span class="text-sm text-wood-900 dark:text-wood-100">
+                        پرداخت آنلاین
+                    </span>
                                             </div>
-                                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1"> BitPay</p>
-                                        </div></label>
+
+                                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">
+                                                BitPay
+                                            </p>
+                                        </div>
+                                    </label>
                                 </div>
+
+                                <!-- TorobPay -->
+                                <div class="mb-2">
+                                    <label class="flex items-center gap-4 p-4 border-2 border-wood-300 dark:border-wood-700 rounded-lg cursor-pointer hover:border-wood-500 dark:hover:border-wood-500 smooth-transition has-[:checked]:border-wood-600 has-[:checked]:bg-wood-50 dark:has-[:checked]:bg-wood-800">
+
+                                        <input
+                                            type="radio"
+                                            name="payment"
+                                            value="torobpay"
+                                            class="w-5 h-5 text-wood-600 focus:ring-wood-500"
+                                        >
+
+                                        <div class="flex-1">
+                                            <div class="flex items-center gap-2">
+                                                <svg class="w-6 h-6 text-wood-600 dark:text-wood-400"
+                                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/>
+                                                </svg>
+
+                                                <span class="text-sm text-wood-900 dark:text-wood-100">
+                        پرداخت آنلاین
+                    </span>
+                                            </div>
+
+                                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">
+                                                ترب‌پی (TorobPay)
+                                            </p>
+                                        </div>
+                                    </label>
+                                </div>
+
                             </div>
+
                         </div>
                             <!-- Order Summary -->
 

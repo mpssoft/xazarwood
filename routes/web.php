@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\TwoFactorAuthenticateController;
 
 use App\Http\Controllers\Frontend\ContactMessageController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 
 use App\Models\User;
@@ -67,5 +68,8 @@ Route::get('/lang/{locale}', function ($locale) {
 
     return redirect()->back();
 });
-
+Route::post('/payment/torobpay/callback', [
+    PaymentController::class,
+    'torobpayCallback',
+])->name('payment.torobpay.callback');
 require __DIR__.'/auth.php';

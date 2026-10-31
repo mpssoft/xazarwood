@@ -41,5 +41,11 @@ return [
     'spotplayer' => [
         'api_key' => env('SPOTPLAYER_API_KEY'),
     ],
-
+    'torob' => [
+        'base_url' => env('TOROB_BASE_URL'),
+        'client_id' => env('TOROB_CLIENT_ID'),
+        'client_secret' => env('TOROB_CLIENT_SECRET'),
+        'username' => env('TOROB_USERNAME'),
+        'password' => env('TOROB_PASSWORD'),
+    ],
 ];

@@ -23,7 +23,7 @@ use Modules\File\Models\File;
 use Modules\LessonPlan\Models\LessonPlan;
 use Modules\Shop\Models\CartItem;
 use function PHPUnit\Framework\isEmpty;
-
+use App\Services\TorobPayService;
 
 #[AllowDynamicProperties] class PaymentController extends Controller
 {
@@ -126,6 +126,121 @@ use function PHPUnit\Framework\isEmpty;
                     'status' => 'initiated',
                 ]);
                 return $this->bitpay($totalPrice,$order);
+            case 'torobpay':
+                $payment = Payment::create([
+                    'order_id' => $order->id,
+                    'gateway' => 'torobpay',
+                    'status' => 'initiated',
+                ]);
+                return $this->torobpay($totalPrice, $order, $payment);
+        }
+    }
+
+    private function torobpay($totalPrice, $order, Payment $payment)
+    {
+        $order->loadMissing([
+            'user',
+            'address.province',
+            'address.city',
+            'items.item',
+        ]);
+
+        $service = app(TorobPayService::class);
+
+        $transactionId = 'order-' . $order->id . '-payment-' . $payment->id;
+
+        $result = $service->createOrderPayment(
+            $order,
+            $order->address,
+            $transactionId
+        );
+
+        $payment->update([
+            'payment_token' => $result['paymentToken'],
+            'transaction_id' => (string) $order->id,
+        ]);
+
+        return redirect()->away($result['paymentPageUrl']);
+    }
+    public function torobpayCallback(Request $request)
+    {
+        $request->validate([
+            'transactionId' => ['required', 'string'],
+            'state' => ['required', 'in:OK,FAILED'],
+        ]);
+
+        $payment = Payment::with('order')
+            ->where('gateway', 'torobpay')
+            ->where('transaction_id', $request->transactionId)
+            ->firstOrFail();
+
+        $order = $payment->order;
+
+        if ($payment->status === 'success') {
+            return response('Payment already processed.', 200);
+        }
+
+        if ($request->state === 'FAILED') {
+            $payment->update([
+                'status' => 'failed',
+            ]);
+
+            return response('Payment failed.', 200);
+        }
+
+        $request->validate([
+            'amount' => ['required', 'integer', 'min:1'],
+        ]);
+
+        $expectedAmount = (int) ($order->price * 10);
+
+        if ((int) $request->amount !== $expectedAmount) {
+            return response('Payment amount mismatch.', 400);
+        }
+
+        try {
+            $service = app(TorobPayService::class);
+
+            $statusResponse = $service->getPaymentStatus(
+                $payment->payment_token
+            );
+
+            $currentStatus = $statusResponse['status'] ?? null;
+
+            if (in_array($currentStatus, ['NEW', 'IPG', 'W_FOR_VERIFY'])) {
+                $service->verifyPayment($payment->payment_token);
+
+                $currentStatus = 'W_FOR_SETTLE';
+            }
+
+            if ($currentStatus === 'W_FOR_SETTLE') {
+                $service->settlePayment($payment->payment_token);
+            } elseif (!in_array($currentStatus, ['ONGOING', 'PAID', 'UPDATED'])) {
+                throw new \RuntimeException(
+                    'Unexpected TorobPay payment status: ' . ($currentStatus ?? 'unknown')
+                );
+            }
+            $order->update([
+                'status' => 'paid',
+            ]);
+            $this->paymentSuccess($order);
+            $payment->update([
+                'status' => 'success',
+            ]);
+
+
+
+
+
+            return response('Payment successful.', 200);
+
+        } catch (\Throwable $e) {
+            Log::error('TorobPay callback failed', [
+                'payment_id' => $payment->id,
+                'error' => $e->getMessage(),
+            ]);
+
+            return response('Payment verification failed.', 500);
         }
     }
     public function bitpay($totalPrice,$order)
@@ -265,39 +380,49 @@ public function zarinpalCallback()
         DB::beginTransaction();
 
         try {
-            $order->load('items.item'); // eager load order items + related models
-            $user = auth()->user();
-            Log::info("Reached paymentSuccess for order {$order->id}");
-            $items = CartItem::where('user_id', auth()->id())->with('product')->get();
-            $orderDetail ="";
-            foreach ($items as $item)
-            {
-                $orderDetail .= $item['product']->name. "\n";
+            $order->load([
+                'user',
+                'items.item',
+            ]);
+
+            $user = $order->user;
+
+            if (!$user) {
+                throw new \RuntimeException(
+                    "User not found for order ID: {$order->id}"
+                );
             }
 
+            $orderDetail = '';
 
+            foreach ($order->items as $orderItem) {
+                if ($orderItem->item) {
+                    $orderDetail .= $orderItem->item->name . "\n";
+                }
+            }
             $admin = User::where('mobile','09384056563')->first();
 
-            $user->notify(new NotifyUserBuy($order,$orderDetail));
+            $user->notify(new NotifyUserBuy($order, $orderDetail));
             $admin->notify(new NotifyAdminBuy($user,$order,$orderDetail));
 
+            // Delete only this user's cart.
+            CartItem::where('user_id', $user->id)->delete();
 
-            CartItem::where('user_id', auth()->id())->delete();
             Cookie::queue(Cookie::forget('shop_cart'));
+
             DB::commit();
 
-
-
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             DB::rollBack();
-            Log::error('Payment error', [
+
+            Log::error('Payment success processing error', [
                 'order_id' => $order->id,
-                'message'  => $e->getMessage(),
+                'message' => $e->getMessage(),
             ]);
-            return back()->with('error', 'Payment processed but license generation failed.');
+
+            throw $e;
         }
     }
-
 
 
 }

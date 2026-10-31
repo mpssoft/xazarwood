@@ -7,7 +7,7 @@
                         <h2 class="text-2xl md:text-5xl font-bold text-white mb-4">{{__($slider->title)}}</h2>
                         <p class=" text-white/90 mb-6 max-w-2xl">{{__($slider->subtitle)}}</p>
                         @if(!empty($slider->link))
-                            <a href="{{$slider->link}}" class="p-2 md:px-8 md:py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"> {{$slider->button_text}} </a>
+                            <a href="{{$slider->link}}"  data-id="{{$slider->id}}" class="slider-link p-2 md:px-8 md:py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"> {{$slider->button_text}} </a>
                         @endif
                     </div>
                 </div>
@@ -201,5 +201,22 @@
         if (totalSlides > 1) {
             startAutoPlay();
         }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".slider-link").forEach(function (link) {
+                link.addEventListener("click", function () {
+                    let sliderId = this.dataset.id;
+
+                    // sendBeacon requires a Blob or FormData
+                    const data = new FormData();
+                    data.append('_token', "{{ csrf_token() }}");
+
+                    navigator.sendBeacon(`/slider/click/${sliderId}`, data);
+                    // navigation will continue normally
+                });
+            });
+        });
+
     </script>
 @endpush
