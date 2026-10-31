@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use http\Message\Body;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use RuntimeException;
@@ -157,6 +158,7 @@ class TorobPayService
             $this->buildAddressPayload($address),
             [
                 'paymentMethodTypeDto' => 'ONLINE_CREDIT',
+                'amount' => $amountInRials,
                 'transactionId' => $transactionId,
                 'returnURL' => route('payment.torobpay.callback'),
                 'cartList' => [
