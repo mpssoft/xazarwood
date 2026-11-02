@@ -157,7 +157,7 @@ use App\Services\TorobPayService;
 
         $payment->update([
             'payment_token' => $result['paymentToken'],
-            'transaction_id' => (string) $order->id,
+            'transaction_id' => $transactionId,
         ]);
 
         return redirect()->away($result['paymentPageUrl']);
@@ -177,7 +177,9 @@ use App\Services\TorobPayService;
         $order = $payment->order;
 
         if ($payment->status === 'success') {
-            return response('Payment already processed.', 200);
+            alert("","پرداخت قبلا با موفقیت انجام شده است",'success');
+            return redirect()->route('shop.user.orders.index');
+
         }
 
         if ($request->state === 'FAILED') {
@@ -185,7 +187,8 @@ use App\Services\TorobPayService;
                 'status' => 'failed',
             ]);
 
-            return response('Payment failed.', 200);
+            alert("","پرداخت با خطا مواجه شد",'error');
+            return redirect()->route('shop.cart.review');
         }
 
         $request->validate([
@@ -205,17 +208,33 @@ use App\Services\TorobPayService;
                 $payment->payment_token
             );
 
+            $statusResponse = $service->getPaymentStatus(
+                $payment->payment_token
+            );
+
             $currentStatus = $statusResponse['status'] ?? null;
 
-            if (in_array($currentStatus, ['NEW', 'IPG', 'W_FOR_VERIFY'])) {
+            if ($currentStatus === 'PENDING') {
                 $service->verifyPayment($payment->payment_token);
 
-                $currentStatus = 'W_FOR_SETTLE';
+                $currentStatus = 'VERIFY';
             }
 
-            if ($currentStatus === 'W_FOR_SETTLE') {
+            if ($currentStatus === 'VERIFY') {
                 $service->settlePayment($payment->payment_token);
-            } elseif (!in_array($currentStatus, ['ONGOING', 'PAID', 'UPDATED'])) {
+
+                $currentStatus = 'SETTLE';
+            }
+
+            if ($currentStatus === 'REVERT') {
+                $payment->update([
+                    'status' => 'failed',
+                ]);
+
+                return response('Payment was reverted.', 200);
+            }
+
+            if ($currentStatus !== 'SETTLE') {
                 throw new \RuntimeException(
                     'Unexpected TorobPay payment status: ' . ($currentStatus ?? 'unknown')
                 );
@@ -228,11 +247,8 @@ use App\Services\TorobPayService;
                 'status' => 'success',
             ]);
 
-
-
-
-
-            return response('Payment successful.', 200);
+            return redirect()->route('shop.user.orders.index')
+                ->with('success', 'پرداخت با موفقیت انجام شد.');
 
         } catch (\Throwable $e) {
             Log::error('TorobPay callback failed', [

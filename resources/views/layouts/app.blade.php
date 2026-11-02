@@ -147,6 +147,7 @@ dir="ltr"
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
             }
+
         </style>
         <link rel="stylesheet" href="/css/xazarwood_style.css" />
         @if(app()->environment('production'))

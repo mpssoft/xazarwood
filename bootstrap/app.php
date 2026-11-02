@@ -35,7 +35,7 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\SetLocale::class,
         ]);
         $middleware->validateCsrfTokens(except: [
-            'payment/torobpay/callback',
+            '/payment/torobpay/callback',
         ]);
     })
     ->withCommands([

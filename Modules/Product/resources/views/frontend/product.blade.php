@@ -213,6 +213,17 @@
                 </div>
             </div>
                 @endif
+            <div class="flex gap-2 bg-white dark:bg-wood-800 rounded-xl p-6 shadow-sm">
+                <div class="size-[40px] shrink-0 overflow-hidden rounded-md shadow-xs">
+                    <div class="relative overflow-hidden size-full">
+                        <img alt="ترب‌پی" loading="lazy" decoding="async" data-nimg="fill" class="!relative !aspect-[inherit] !size-[inherit] !max-h-[inherit] !max-w-[inherit] object-contain" style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent" src="https://tellxstore.ir/static/_next/static/media/torobpay-installment.3htwr8584-xwd.svg">
+                    </div>
+                </div>
+                <div class="flex min-w-0 flex-col gap-xxs">
+                    <span class="text-sm font-bold text-[--text-primary]">۴ قسط {{ $finalPrice ?? number_format( $product->price / 4) }} تومانی</span>
+                    <span class="text-xs font-normal text-[--text-secondary]">ترب‌پی<!-- -->، بدون چک و ضامن</span>
+                </div>
+            </div>
         </div>
     </div><!-- Specifications -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16"><!-- Technical Specs -->

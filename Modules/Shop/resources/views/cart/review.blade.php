@@ -385,22 +385,14 @@
                                         >
 
                                         <div class="flex-1">
-                                            <div class="flex items-center gap-2">
-                                                <svg class="w-6 h-6 text-wood-600 dark:text-wood-400"
-                                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          stroke-width="2"
-                                                          d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/>
-                                                </svg>
-
+                                            <div class="flex  items-center gap-2">
+                                                <img src="/images/logo_torob.svg" alt="ترب‌پی" class="torobpay-widget-image" width="60" height="60">
                                                 <span class="text-sm text-wood-900 dark:text-wood-100">
-                        پرداخت آنلاین
+                        قسط بندی با اعتبار ترب پی
                     </span>
                                             </div>
 
-                                            <p class="text-sm text-wood-600 dark:text-wood-400 mr-8 mt-1">
-                                                ترب‌پی (TorobPay)
-                                            </p>
+
                                         </div>
                                     </label>
                                 </div>

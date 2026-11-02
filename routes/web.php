@@ -68,8 +68,6 @@ Route::get('/lang/{locale}', function ($locale) {
 
     return redirect()->back();
 });
-Route::post('/payment/torobpay/callback', [
-    PaymentController::class,
-    'torobpayCallback',
-])->name('payment.torobpay.callback');
+Route::post('/payment/torobpay/callback', [ PaymentController::class,'torobpayCallback',])
+    ->name('payment.torobpay.callback');
 require __DIR__.'/auth.php';
