@@ -263,7 +263,7 @@ use App\Services\TorobPayService;
     public function bitpay($totalPrice,$order)
     {
 
-        $amount      = $totalPrice*10;
+        $amount      = (int) $totalPrice*10;
 
         $orderId    = $order->id;
         $redirectUrl = env('BITPAY_CALLBACK_URL');
