@@ -150,6 +150,7 @@ use App\Services\TorobPayService;
         $transactionId = 'order-' . $order->id . '-payment-' . $payment->id;
 
         $result = $service->createOrderPayment(
+            $totalPrice,
             $order,
             $order->address,
             $transactionId

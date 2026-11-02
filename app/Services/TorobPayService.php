@@ -145,8 +145,8 @@ class TorobPayService
     /**
      * Create a TorobPay payment for an order.
      */
-    public function createOrderPayment($order, $address, string $transactionId): array    {
-        $amountInRials = (int) ($order->price * 10);
+    public function createOrderPayment($totalPrice, $order, $address, string $transactionId): array    {
+        $amountInRials = (int) ($totalPrice * 10 );
 
         if ($amountInRials < 200000 || $amountInRials > 1000000000) {
             throw new RuntimeException(
